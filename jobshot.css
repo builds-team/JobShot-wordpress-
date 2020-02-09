@@ -6420,14 +6420,6 @@ font-size: 13px !important;
   margin: 0;
   padding: 5px;
 }
-/* .apply-form-wrap input[name="job-name"] {
-  border: none;
-  box-shadow: none;
-  width: 100%;
-  font-size: 25px !important;
-  padding: 20px 0 20px 0;
-  margin: 0;
-} */
 .apply-form-wrap.your-date input, .apply-form-wrap.your-time input {
   margin: 0 5px;
 }
@@ -6494,20 +6486,20 @@ font-size: 13px !important;
     padding: 0 20px;
   }
   .apply-form-container {
-    padding: 20px 0 70px 0;
+    padding: 20px 0 50px 0;
     border-bottom: none;
   }
   .job-name-container {
     width: calc(100% - 40px);
-    padding: 35px 20px 10px 20px;
+    padding: 25px 0px 10px 0px;
     border-bottom: 1px solid #e6e6e6;
   }
   .job-name-container .job-name {
-    font: 550 20px/30px Arial;
+    font: 550 20px/33px Arial;
   }
   .apply-form-wrap.your-name, .apply-form-wrap.your-email, .your-date-container {
     left: 0px;
-    top: 60px;
+    top: 50px;
   }
   .apply-form-wrap.your-name, .apply-form-wrap input[name="your-name"] {
     width: 167px;
@@ -6517,6 +6509,7 @@ font-size: 13px !important;
   }
   .apply-form-wrap.your-date input, .apply-form-wrap.your-time input {
     border: 1px solid #e6e6e6;
+    padding: 2px 5px;
   }
   .your-date-container label{
     padding-top: 20px;
@@ -6527,6 +6520,9 @@ font-size: 13px !important;
   }
   .form-necessarily {
     font-size: 13px;
+  }
+  .form-necessarily:before {
+    margin-right: 5px;
   }
   .entry-seat {
     margin: 20px 0 0 0;
@@ -6545,6 +6541,8 @@ font-size: 13px !important;
     height: 22px;
     line-height: 22px;
     padding: 4 5px;
+    text-shadow: 0px 3px 6px #00000029;
+    box-shadow: initial;
   }
   .pre-es-example {
     margin-left: 5px;
