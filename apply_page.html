@@ -744,8 +744,8 @@ body.custom-background { background-color: #ffffff; }
 <h1 class="title">応募フォーム</h1>	<section class="entry">
 <div role="form" class="wpcf7" id="wpcf7-f324-p918-o1" lang="ja" dir="ltr">
 <div class="screen-reader-response"></div>
-<div class="job-name"><p class="job-name text">ああああああ</p></div>
-<form action="/apply?form_id=324&amp;post_id=9001&amp;jobname=%E3%80%90%E8%B5%B7%E6%A5%AD%E5%AE%B6%E5%BF%97%E6%9C%9B%2F#wpcf7-f324-p918-o1" method="post" class="wpcf7-form" novalidate="novalidate">
+<div class="apply-form-container job-name-container"><p class="job-name">『現役東大生社長』圧倒的に優秀な仲間と仕事がしたい学生募集！</p></div>
+<form action="/apply?form_id=324&amp;post_id=9001&amp;jobname=%E3%80%90%E8%B5%B7%E6%A5%AD%E5%AE%B6%E5%BF%97%E6%9C%9B%2F#wpcf7-f324-p918-o1" method="post" class="wpcf7-form apply-form" novalidate="novalidate">
 <div style="display: none;">
 <input type="hidden" name="_wpcf7" value="324">
 <input type="hidden" name="_wpcf7_version" value="5.1.6">
@@ -754,36 +754,35 @@ body.custom-background { background-color: #ffffff; }
 <input type="hidden" name="_wpcf7_container_post" value="918">
 <input type="hidden" name="_wpnonce" value="4806b09e3e">
 </div>
-<p>
-<!-- 変更点 -->
+<p class="hidden">
 <span style="display:none;"> <span class="wpcf7-form-control-wrap company-email"><input type="email" name="company-email" value="info@quickwork.jp" size="40" class="wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email" aria-required="true" aria-invalid="false"></span></span></p>
 <input type="hidden" name="your-id" value="suzutaka" class="wpcf7-form-control wpcf7-hidden">
-<div class="wpcf7-form-control-container job-name">
+<div class="wpcf7-form-control-container apply-form-container hidden">
 <label>
-    <span class="wpcf7-form-control-wrap job-name hidden"><input type="text" name="job-name" value="【起業家志望/ああああああああああああああああああああああああああ" size="40" class="wpcf7-form-control wpcf7-text" readonly="readonly" aria-invalid="false"></span> </label>
+    <span class="wpcf7-form-control-wrap apply-form-wrap job-name"><input type="text" name="job-name" value="【起業家志望/ああああああああああああああああああああああああああ" size="40" class="wpcf7-form-control wpcf7-text" readonly="readonly" aria-invalid="false"></span> </label>
 </div>
-<div class="wpcf7-form-control-container">
+<div class="wpcf7-form-control-container apply-form-container">
 <label class="form-necessarily"> お名前
-    <span class="wpcf7-form-control-wrap your-name"><input type="text" name="your-name" value="鈴木 貴也" size="40" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false"></span> </label>
+    <span class="wpcf7-form-control-wrap apply-form-wrap your-name"><input type="text" name="your-name" value="鈴木 貴也" size="40" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false"></span> </label>
 </div>
-<div class="wpcf7-form-control-container">
+<div class="wpcf7-form-control-container  apply-form-container">
 <label class="form-necessarily"> メールアドレス
-    <span class="wpcf7-form-control-wrap your-email"><input type="email" name="your-email" value="wertyuio.1234qp@gmail.com" size="40" class="wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email" aria-required="true" aria-invalid="false"></span> </labelform-necessarily>
+    <span class="wpcf7-form-control-wrap apply-form-wrap your-email"><input type="email" name="your-email" value="wertyuio.1234qp@gmail.com" size="40" class="wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email" aria-required="true" aria-invalid="false"></span> </labelform-necessarily>
 </div>
-<div class="wpcf7-form-control-container hidden">
+<div class="wpcf7-form-control-container apply-form-container hidden">
 <label> 応募先ID
-    <span class="wpcf7-form-control-wrap job-id"><input type="text" name="job-id" value="9001" size="40" class="wpcf7-form-control wpcf7-text" readonly="readonly" aria-invalid="false"></span> </label>
+    <span class="wpcf7-form-control-wrap apply-form-wrap job-id"><input type="text" name="job-id" value="9001" size="40" class="wpcf7-form-control wpcf7-text" readonly="readonly" aria-invalid="false"></span> </label>
 </div>
-<div id="canworktime"  class="wpcf7-form-control-container">
+<div id="canworktime"  class="wpcf7-form-control-container apply-form-container">
 <label class="form-necessarily">勤務可能時間
 <span class="your-date-container">
-<span class="wpcf7-form-control-wrap your-date">週<input type="number" name="your-date" value="" class="wpcf7-form-control wpcf7-number wpcf7-validates-as-number" min="1" max="7" aria-invalid="false">日</span><span class="wpcf7-form-control-wrap your-time">計<input type="number" name="your-time" value="" class="wpcf7-form-control wpcf7-number wpcf7-validates-as-number" min="1" max="60" aria-invalid="false">時間</span>
+<span class="wpcf7-form-control-wrap apply-form-wrap your-date">週<input type="number" name="your-date" value="" class="wpcf7-form-control wpcf7-number wpcf7-validates-as-number" min="1" max="7" aria-invalid="false">日</span><span class="wpcf7-form-control-wrap apply-form-wrap your-time">計<input type="number" name="your-time" value="" class="wpcf7-form-control wpcf7-number wpcf7-validates-as-number" min="1" max="60" aria-invalid="false">時間</span>
 <label>長気インターン合格者は週１３時間確保している方が多いので、週１３時間以上での記入がオススメです！</label></span></label>
 </div>
-<div class="wpcf7-form-control-container noborder">
+<div class="wpcf7-form-control-container apply-form-container noborder">
 <label class="form-necessarily"> 自己PR</label>
 <div class="entry-seat">
-        <label><span class="wpcf7-form-control-wrap your-message"><textarea name="your-message" cols="40" rows="10" class="wpcf7-form-control wpcf7-textarea" id="pr-textarea" aria-invalid="false"></textarea></span></label><label class="entry-seat hidden" style="float: right;"><input type="checkbox" name="your_message[]" class="pr_save_check_box"><span> 自己PRを保存する</span></label>
+        <label><span class="wpcf7-form-control-wrap apply-form-wrap your-message"><textarea name="your-message" cols="40" rows="10" class="wpcf7-form-control wpcf7-textarea" id="pr-textarea" aria-invalid="false"></textarea></span></label><label class="entry-seat hidden" style="float: right;"><input type="checkbox" name="your_message[]" class="pr_save_check_box"><span> 自己PRを保存する</span></label>
 </div>
 <div class="es-example">
 <label>・自分の強みは何か<br>・強みを活かせたエピソード<br>・インターンでどのように強みを活かすか<br>この流れで自己PRを記入すると面接通過率が30%アップします！</label>
@@ -837,8 +836,8 @@ body.custom-background { background-color: #ffffff; }
 <p></p></div>
 </div>
 </div>
-<p class="wpcf7-form-control-btn">
-<input type="submit" value="応募する" class="wpcf7-form-control wpcf7-submit"><span class="ajax-loader"></span></p>
+<p class="wpcf7-form-control-btn apply-submit-btn">
+<input type="submit" value="応募する" class="wpcf7-form-control wpcf7-submit apply-submit"><span class="ajax-loader"></span></p>
 <!-- <p>※応募に10秒ほどかかる場合がございます。送信完了の表示が出るまでしばらくお待ちください。</p> -->
 <div class="wpcf7-response-output wpcf7-display-none"></div></form></div>
 <!-- 変更点終わり -->

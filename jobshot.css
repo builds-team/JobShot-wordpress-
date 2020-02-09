@@ -6366,17 +6366,23 @@ font-size: 13px !important;
 }
 
 /* 応募ページ */
-.wpcf7-form {
+.apply-form {
   width: 762px;
   margin: 0 auto;
 }
-.wpcf7-form-control-container {
+.apply-form-container {
   padding: 45px 0 90px 0;
   border-bottom: 0.3px solid #e6e6e6;
   position: relative;
 }
 .noborder {
   border: none;
+}
+.job-name-container {
+  width: 762px;
+  margin: 0 auto;
+  padding: 90px 0 45px 0;
+  color: #222;
 }
 #canworktime {
   padding: 40px 0 120px 0;
@@ -6393,13 +6399,10 @@ font-size: 13px !important;
   padding: 4px 6px;
   margin-right: 10px;
 }
-.wpcf7-form-control-container label {
+.apply-form-container label {
   font-weight: normal;
 }
-.wpcf7-form-control-wrap.job-name {
-  margin: 0;
-}
-.wpcf7-form-control-wrap.your-name, .wpcf7-form-control-wrap.your-email, .your-date-container {
+.apply-form-wrap.your-name, .apply-form-wrap.your-email, .your-date-container {
   position: absolute;
   left: 270px;
 }
@@ -6410,22 +6413,22 @@ font-size: 13px !important;
 .your-date-container span:first-child {
   padding-right: 20px;
 }
-.wpcf7-form-control-wrap textarea {
+.apply-form-wrap textarea {
   height: 250px;
 }
-.wpcf7-form-control-wrap input {
+.apply-form-wrap input {
   margin: 0;
   padding: 5px;
 }
-.wpcf7-form-control-wrap input[name="job-name"] {
+/* .apply-form-wrap input[name="job-name"] {
   border: none;
   box-shadow: none;
   width: 100%;
   font-size: 25px !important;
   padding: 20px 0 20px 0;
   margin: 0;
-}
-.wpcf7-form-control-wrap.your-date input, .wpcf7-form-control-wrap.your-time input {
+} */
+.apply-form-wrap.your-date input, .apply-form-wrap.your-time input {
   margin: 0 5px;
 }
 .entry-seat {
@@ -6468,10 +6471,10 @@ font-size: 13px !important;
   color: #333;
   opacity: 0.5;
 }
-.wpcf7-form-control-btn {
+.apply-submit-btn {
   text-align: center;
 }
-.wpcf7-form-control-btn input[type="submit"] {
+.apply-submit-btn input[type="submit"] {
   height: 50px;
   width: 370px;
   color: #fff;
@@ -6481,37 +6484,38 @@ font-size: 13px !important;
   box-shadow: 0px 3px 6px #00000029;
   border-radius: 25px;
 }
-.wpcf7-form-control-btn input[type="submit"]:hover {
+.apply-submit-btn input[type="submit"]:hover {
   background-color: #EFB753;
   opacity: 0.5;
 }
 @media screen and (max-width: 480px) {
-  .wpcf7-form {
+  .apply-form {
     width: calc(100% - 40px);
     padding: 0 20px;
   }
-  .wpcf7-form-control-container {
+  .apply-form-container {
     padding: 20px 0 70px 0;
     border-bottom: none;
   }
-  .wpcf7-form-control-container.job-name {
-    padding: 0;
+  .job-name-container {
+    width: calc(100% - 40px);
+    padding: 35px 20px 10px 20px;
     border-bottom: 1px solid #e6e6e6;
   }
-  .wpcf7-form-control-container.job-name input[name="job-name"] {
-    white-space: normal;
+  .job-name-container .job-name {
+    font: 550 20px/30px Arial;
   }
-  .wpcf7-form-control-wrap.your-name, .wpcf7-form-control-wrap.your-email, .your-date-container {
+  .apply-form-wrap.your-name, .apply-form-wrap.your-email, .your-date-container {
     left: 0px;
     top: 60px;
   }
-  .wpcf7-form-control-wrap.your-name, .wpcf7-form-control-wrap input[name="your-name"] {
+  .apply-form-wrap.your-name, .apply-form-wrap input[name="your-name"] {
     width: 167px;
   }
-  .wpcf7-form-control-wrap.your-email, .wpcf7-form-control-wrap input[type="email"] {
+  .apply-form-wrap.your-email, .apply-form-wrap input[type="email"] {
     width: 100%;
   }
-  .wpcf7-form-control-wrap.your-date input, .wpcf7-form-control-wrap.your-time input {
+  .apply-form-wrap.your-date input, .apply-form-wrap.your-time input {
     border: 1px solid #e6e6e6;
   }
   .your-date-container label{
@@ -6528,7 +6532,7 @@ font-size: 13px !important;
     margin: 20px 0 0 0;
     width: 100%;
   }
-  .wpcf7-form-control-wrap textarea {
+  .apply-form-wrap textarea {
     height: 84px;
   }
   .es-example {
@@ -6548,14 +6552,14 @@ font-size: 13px !important;
   .open-options.button {
     height: 22px;
   }
-  .wpcf7-form-control-btn {
+  .apply-submit-btn {
     margin: -20px 0 100px 0;
   }
-  .wpcf7-form-control-btn input[type="submit"] {
+  .apply-submit-btn input[type="submit"] {
     height: 50px;
     width: 220px;
   }
-  .wpcf7-form-control-btn input[type="submit"]:hover {
+  .apply-submit-btn input[type="submit"]:hover {
     background-color: #EFB753;
     opacity: 0.5;
   }
