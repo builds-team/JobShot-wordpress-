@@ -6062,11 +6062,8 @@ font-size: 13px !important;
 .score-card .info-area p{
   font-size: 10px;
 }
-/* コラムページ */
-#post-7767 {
-  padding-top: 0;
-}
-.column-img-container {
+/* 背景画像 */
+.background-img-container {
   position: relative;
   height: 400px;
   left: 50%;
@@ -6074,14 +6071,14 @@ font-size: 13px !important;
   width: 100vw;
   overflow: hidden;
 }
-.column-img-container img {
+.background-img-container img {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 100%;
 }
-.column-img-container:before {
+.background-img-container:before {
   background-color: rgba(0,0,0,0.5);
   content: ' ';
   position: absolute;
@@ -6092,26 +6089,49 @@ font-size: 13px !important;
   height: 400px;
   z-index: 1;
 }
-.column-img {
+.background-img-text {
   position: absolute;
   width: 100%;
   text-align: center;
   top: 30%;
   z-index: 2;
 }
-.column-img h1, .column-img p {
+.background-img-text h1, .background-img-text p {
   color: #fff;
 }
-.siteorigin-widget-tinymce .column-img-container .column-img h1 {
+.background-img-container .background-img-text h1 {
   font-size: 65px;
   font-weight: 550;
   padding: 0 20%;
 }
-.siteorigin-widget-tinymce .column-img-container .column-img p {
+.background-img-container .background-img-text p {
   margin-top: 20px;
   padding: 10px;
   display: inline-block;
   font-size: 20px;
+}
+@media screen and (max-width:782px) {
+  .background-img-container {
+      height: 200px;
+      overflow: hidden;
+  }
+}
+@media screen and (max-width: 782px) {
+  .background-img-container .background-img-text h1 {
+      color: #fff;
+      font-size: 40px;
+  }
+  .background-img-container .background-img-text p {
+      margin: 5px 20px;
+      padding: 0px;
+      display: inline-block;
+      font-size: 10px;
+  }
+}
+
+/* コラムページ */
+#post-7767 {
+  padding-top: 0;
 }
 .so-widget-sow-editor-base .siteorigin-widget-tinymce .column_search_category {
     font-size: 20px;
@@ -6143,13 +6163,7 @@ font-size: 13px !important;
   text-decoration: underline;
   color: #aaad;
 }
-@media screen and (max-width:782px) {
-  .column-img-container {
-      height: 200px;
-      overflow: hidden;
-  }
-}
-@media screen and (min-width: 480px) {
+@media screen and (min-width: 782px) {
   .column-navi h2 {
       margin-top: 0;
   }
@@ -6166,17 +6180,7 @@ font-size: 13px !important;
       margin-bottom: 10px;
   }
 }
-@media screen and (max-width: 480px) {
-  .siteorigin-widget-tinymce .column-img-container .column-img h1 {
-      color: #fff;
-      font-size: 40px;
-  }
-  .siteorigin-widget-tinymce .column-img-container .column-img p {
-      margin: 5px 20px;
-      padding: 0px;
-      display: inline-block;
-      font-size: 10px;
-  }
+@media screen and (max-width: 782px) {
   .column_navigation_bar {
     font-size: 12px;
     }
