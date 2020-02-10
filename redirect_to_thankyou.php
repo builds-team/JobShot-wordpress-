@@ -57,25 +57,18 @@ function past_self_internship_PR_func(){
     $user = wp_get_current_user();
     $user_id = $user->data->ID;
     $login_name = $user->user_login;
-    $self_internship_pr_num = do_shortcode(' [cfdb-count form="/インターン応募フォーム.*/" filter="your-id='.$login_name.'"]');
-    $self_internship_pr_value = do_shortcode('[cfdb-value form="/インターン応募フォーム.*/" filter="your-id='.$login_name.'"]');
+    $self_internship_pr_value = do_shortcode('[cfdb-value form="インターン応募フォーム" show="your-message" filter="your-id='.$login_name.'&&your_message=on" limit="5" orderby="Submitted DESC"]');
+    $internship_title = do_shortcode('[cfdb-value form="インターン応募フォーム" show="job-name" filter="your-id='.$login_name.'&&your_message=on" limit="5" orderby="Submitted DESC"]');
     $self_internship_pr_value = preg_split("/[,]/",$self_internship_pr_value);
-    $count = 0;
-    $self_internship_pr_value = array_chunk($self_internship_pr_value,18);
+    $internship_title = preg_split("/[,]/",$internship_title);
     $izimodal_content = '<button class="open-options button" style="float: right;">過去の自己PRを使う</button>';
-    foreach($self_internship_pr_value as $self_internship_pr_value_each){
-        $internship_title = $self_internship_pr_value_each[7];
-        $self_internship_pr_content = $self_internship_pr_value_each[8];
-        $title_count = $count+1;
+    for($i = 0; $i<count($self_internship_pr_value); $i++){
+        $title_count = $i+1;
         $izimodal_content .= '
-        <div class="modal_options" data-izimodal-group="group1" data-izimodal-loop="" data-izimodal-title="過去の自己PR'.$title_count.'" data-izimodal-subtitle="'.$internship_title.'">
-            <p id="past-self-pr-'.$title_count.'" class="past-self-pr-text">'.$self_internship_pr_content.'</p>
+        <div class="modal_options" data-izimodal-group="group1" data-izimodal-loop="" data-izimodal-title="過去の自己PR'.$title_count.'" data-izimodal-subtitle="'.$internship_title[$i].'">
+            <p id="past-self-pr-'.$title_count.'" class="past-self-pr-text">'.$self_internship_pr_value[$i].'</p>
             <input type="button" class="past-self-pr-button" id="button'.$title_count.'" value="これを使う"/>
         </div>';
-        $count += 1;
-        if($count > 4){
-            break;
-        }
     }
     return $izimodal_content;
 }

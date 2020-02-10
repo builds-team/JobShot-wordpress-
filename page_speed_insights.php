@@ -13,6 +13,7 @@ if (!(is_admin() )) {
     function add_async_to_enqueue_script( $url ) {
         if ( FALSE === strpos( $url, '.js' ) ) return $url;       //.js以外は対象外
         if ( strpos( $url, 'jquery.min.js' ) ) return $url;       //'jquery.min.js'は、asyc対象外
+        if (strpos($url,'.js')) return $url;
         return "$url' async charset='UTF-8";                      // async属性を付与
     }
     add_filter( 'clean_url', 'add_async_to_enqueue_script', 11, 1 );
@@ -116,15 +117,21 @@ function my_enqueue_scripts() {
     // }
     // wp_enqueue_script('jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js', array(), '3.3.1');
     wp_deregister_script('jquery');
-    wp_enqueue_script('jquery','https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js', array(), '1.8.3');
+    if(is_page( array('user','register','login','user_account','mypage_test','apply','interview_apply','contact','published_contact','scout','intern_test') )){
+        wp_enqueue_script('jquery','https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js',array(),'3.1.1');
+    }else{
+        wp_enqueue_script('jquery','https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js', array(), '1.8.3'); 
+    }
 }
 add_action('wp_enqueue_scripts', 'my_enqueue_scripts');
 
 function enqueue_js_footer() {
     // jQuery3系
-    if(is_page( array('user','register','login','user_account','mypage_test','apply','interview_apply','contact','published_contact','scout','intern_test') )){
+    /*
+    if(is_page( array('user','register','login','user_account','mypage_test','interview_apply','contact','published_contact','scout','intern_test') )){
         wp_enqueue_script('jquery3','https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js',array(),'3.1.1');
     }
+    */
     // jQuery2系
     // if(is_page( array('user','register','login','user_account','mypage_test','apply','interview_apply','contact','published_contact','scout','intern_test') )){
     //     wp_enqueue_script('jquery3','https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js',array(),'3.1.1');
