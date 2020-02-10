@@ -430,4 +430,13 @@ function enterprise_help(){
     return $html;
 }
 add_shortcode("enterprise_help","enterprise_help");
+
+function enterprise_edit_button(){
+  $current_user = wp_get_current_user();
+  $current_user_roles = $current_user->roles;
+  if(in_array("company", $current_user_roles)){
+    echo '<style type="text/css">.post-edit-link{display:none !important;}</style>';
+  }
+}
+add_action( 'wp_head', 'enterprise_edit_button');
 ?>
