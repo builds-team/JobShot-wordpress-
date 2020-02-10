@@ -511,9 +511,9 @@ add_shortcode("add_sidebar_column","add_sidebar_column");
 function add_top_bar_column(){
     $home_url =esc_url( home_url());
     $html = '
-    <div class="column-img-container">
+    <div class="background-img-container">
         <img src="https://images.unsplash.com/photo-1555443712-22cd30585e5c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80" alt="">
-        <div class="column-img">
+        <div class="background-img-text">
             <h1 class="font-serif">就活記事</h1>
             <p>就活で勝ち抜くために必要な情報や体験談が多数投稿されています。<br>就活初心者から選考中の人まで様々な人を対象にコンテンツを網羅。コラム記事を読んで万全の対策をしよう！</p>
         </div>
