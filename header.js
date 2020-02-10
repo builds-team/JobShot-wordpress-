@@ -121,13 +121,10 @@ jQuery(function($){
     $( '#testform' ).submit( function(event){
         // クリックイベントをこれ以上伝播させない
         event.preventDefault();
-
         // フォームデータから、サーバへ送信するデータを作成
         var fd = new FormData( this );
-
         // サーバー側で何の処理をするかを指定。後ほどphp側で実装する
         fd.append('action'  , 'ajax_base' );
-
         // ajaxの通信
         $.ajax({
             type: 'POST',
@@ -136,8 +133,10 @@ jQuery(function($){
             processData: false,
             contentType: false,
             success: function( response ){
-                $("#base").html(response);
+                $("#base").html(response[0]);
                 $("#resultarea").html("基本情報を更新しました");
+                $(".user_profile_score_value").html(response[1]);
+                $(".score-area p").html(response[1]);
                 $("#resultarea").css('display','block');
                 $(".um-editor-base").removeClass("active");
                 $(".um-edit-btn-base").removeClass("active");
@@ -159,13 +158,10 @@ jQuery(function($){
     $( '#testform2' ).submit( function(event){
         // クリックイベントをこれ以上伝播させない
         event.preventDefault();
-
         // フォームデータから、サーバへ送信するデータを作成
         var fd = new FormData( this );
-
         // サーバー側で何の処理をするかを指定。後ほどphp側で実装する
         fd.append('action'  , 'ajax_univ' );
-
         // ajaxの通信
         $.ajax({
             type: 'POST',
@@ -174,8 +170,10 @@ jQuery(function($){
             processData: false,
             contentType: false,
             success: function( response ){
-                $("#univ").html(response);
+                $("#univ").html(response[0]);
                 $("#resultarea2").html("学歴を更新しました");
+                $(".user_profile_score_value").html(response[1]);
+                $(".score-area p").html(response[1]);
                 $("#resultarea2").css('display','block');
                 $(".um-editor-univ").removeClass("active");
                 $(".um-edit-btn-univ").removeClass("active");
@@ -197,13 +195,10 @@ jQuery(function($){
     $( '#testform3' ).submit( function(event){
         // クリックイベントをこれ以上伝播させない
         event.preventDefault();
-
         // フォームデータから、サーバへ送信するデータを作成
         var fd = new FormData( this );
-
         // サーバー側で何の処理をするかを指定。後ほどphp側で実装する
         fd.append('action'  , 'ajax_abroad' );
-
         // ajaxの通信
         $.ajax({
             type: 'POST',
@@ -212,8 +207,10 @@ jQuery(function($){
             processData: false,
             contentType: false,
             success: function( response ){
-                $("#abroad").html(response);
+                $("#abroad").html(response[0]);
                 $("#resultarea3").html("留学を更新しました");
+                $(".user_profile_score_value").html(response[1]);
+                $(".score-area p").html(response[1]);
                 $("#resultarea3").css('display','block');
                 $(".um-editor-abroad").removeClass("active");
                 $(".um-edit-btn-abroad").removeClass("active");
@@ -235,13 +232,10 @@ jQuery(function($){
     $( '#testform4' ).submit( function(event){
         // クリックイベントをこれ以上伝播させない
         event.preventDefault();
-
         // フォームデータから、サーバへ送信するデータを作成
         var fd = new FormData( this );
-
         // サーバー側で何の処理をするかを指定。後ほどphp側で実装する
         fd.append('action'  , 'ajax_programming' );
-
         // ajaxの通信
         $.ajax({
             type: 'POST',
@@ -250,8 +244,10 @@ jQuery(function($){
             processData: false,
             contentType: false,
             success: function( response ){
-                $("#programming").html(response);
+                $("#programming").html(response[0]);
                 $("#resultarea4").html("プログラミングを更新しました");
+                $(".user_profile_score_value").html(response[1]);
+                $(".score-area p").html(response[1]);
                 $("#resultarea4").css('display','block');
                 $(".um-editor-programming").removeClass("active");
                 $(".um-edit-btn-programming").removeClass("active");
@@ -273,13 +269,10 @@ jQuery(function($){
     $( '#testform5' ).submit( function(event){
         // クリックイベントをこれ以上伝播させない
         event.preventDefault();
-
         // フォームデータから、サーバへ送信するデータを作成
         var fd = new FormData( this );
-
         // サーバー側で何の処理をするかを指定。後ほどphp側で実装する
         fd.append('action'  , 'ajax_skill' );
-
         // ajaxの通信
         $.ajax({
             type: 'POST',
@@ -288,8 +281,10 @@ jQuery(function($){
             processData: false,
             contentType: false,
             success: function( response ){
-                $("#skills").html(response);
+                $("#skills").html(response[0]);
                 $("#resultarea5").html("資格・その他スキルを更新しました");
+                $(".user_profile_score_value").html(response[1]);
+                $(".score-area p").html(response[1]);
                 $("#resultarea5").css('display','block');
                 $(".um-editor-skill").removeClass("active");
                 $(".um-edit-btn-skill").removeClass("active");
@@ -311,13 +306,10 @@ jQuery(function($){
     $( '#testform6' ).submit( function(event){
         // クリックイベントをこれ以上伝播させない
         event.preventDefault();
-
         // フォームデータから、サーバへ送信するデータを作成
         var fd = new FormData( this );
-
         // サーバー側で何の処理をするかを指定。後ほどphp側で実装する
         fd.append('action'  , 'ajax_community' );
-
         // ajaxの通信
         $.ajax({
             type: 'POST',
@@ -326,8 +318,10 @@ jQuery(function($){
             processData: false,
             contentType: false,
             success: function( response ){
-                $("#community").html(response);
+                $("#community").html(response[0]);
                 $("#resultarea6").html("コミュニティを更新しました");
+                $(".user_profile_score_value").html(response[1]);
+                $(".score-area p").html(response[1]);
                 $("#resultarea6").css('display','block');
                 $(".um-editor-community").removeClass("active");
                 $(".um-edit-btn-community").removeClass("active");
@@ -349,13 +343,10 @@ jQuery(function($){
     $( '#testform7' ).submit( function(event){
         // クリックイベントをこれ以上伝播させない
         event.preventDefault();
-
         // フォームデータから、サーバへ送信するデータを作成
         var fd = new FormData( this );
-
         // サーバー側で何の処理をするかを指定。後ほどphp側で実装する
         fd.append('action'  , 'ajax_intern' );
-
         // ajaxの通信
         $.ajax({
             type: 'POST',
@@ -364,8 +355,10 @@ jQuery(function($){
             processData: false,
             contentType: false,
             success: function( response ){
-                $("#intern").html(response);
+                $("#intern").html(response[0]);
                 $("#resultarea7").html("長期インターンを更新しました");
+                $(".user_profile_score_value").html(response[1]);
+                $(".score-area p").html(response[1]);
                 $("#resultarea7").css('display','block');
                 $(".um-editor-internship").removeClass("active");
                 $(".um-edit-btn-internship").removeClass("active");
@@ -387,13 +380,10 @@ jQuery(function($){
     $( '#testform8' ).submit( function(event){
         // クリックイベントをこれ以上伝播させない
         event.preventDefault();
-
         // フォームデータから、サーバへ送信するデータを作成
         var fd = new FormData( this );
-
         // サーバー側で何の処理をするかを指定。後ほどphp側で実装する
         fd.append('action'  , 'ajax_interest' );
-
         // ajaxの通信
         $.ajax({
             type: 'POST',
@@ -402,8 +392,10 @@ jQuery(function($){
             processData: false,
             contentType: false,
             success: function( response ){
-                $("#interest").html(response);
+                $("#interest").html(response[0]);
                 $("#resultarea8").html("興味・関心を更新しました");
+                $(".user_profile_score_value").html(response[1]);
+                $(".score-area p").html(response[1]);
                 $("#resultarea8").css('display','block');
                 $(".um-editor-interest").removeClass("active");
                 $(".um-edit-btn-interest").removeClass("active");
@@ -437,8 +429,10 @@ jQuery(function($){
             processData: false,
             contentType: false,
             success: function( response ){
-                $("#experience").html(response);
+                $("#experience").html(response[0]);
                 $("#resultarea9").html("学生時代の経験を更新しました");
+                $(".user_profile_score_value").html(response[1]);
+                $(".score-area p").html(response[1]);
                 $("#resultarea9").css('display','block');
                 $(".um-editor-experience").removeClass("active");
                 $(".um-edit-btn-experience").removeClass("active");
