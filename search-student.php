@@ -1753,14 +1753,13 @@ if (isset($_GET['freeword']) ) {
             }else{
                 $result_html.='<td label="スカウト"><a href="'.$user_link.'">'.$scout_status['status'].'</a></td>';
             }
-		}
-    }
-
-    if( in_array("administrator", $roles) ){
-        $result_html.='<td label="接触記録"><a href="'.student_contact_form_link($user).'">接触記録を入力</a></td>';
-    }
-    if( $user_login_name == "kotaro" || $user_login_name == "amano1104"|| $user_login_name == "yuu"){
-        $result_html.='<td label="メールアドレス">'.$email.'</td>';
+        }
+        if( in_array("administrator", $roles) ){
+            $result_html.='<td label="接触記録"><a href="'.student_contact_form_link($user).'">接触記録を入力</a></td>';
+        }
+        if( $user_login_name == "kotaro" || $user_login_name == "amano1104"|| $user_login_name == "yuu"){
+            $result_html.='<td label="メールアドレス">'.$email.'</td>';
+        }
     }
     $result_html.='
             </tbody>
