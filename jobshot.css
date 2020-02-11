@@ -6493,3 +6493,13 @@ font-size: 13px !important;
   min-width: 70px;
 }
 /* イベントページ追加 */
+#post-1993{
+  padding-top: 0;
+}
+.page-id-1993 .col-sidebar{
+  display: none !important;
+}
+/* 新卒ページ */
+#post-3104{
+  padding-top: 0;
+}

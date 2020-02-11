@@ -79,4 +79,42 @@ $html.=$term_list;
 return $html;
 }
 
+function add_top_bar($atts){
+  extract(shortcode_atts(array(
+    'item_type' => '',
+  ), $atts));
+  $home_url =esc_url( home_url());
+  $title_array = array(
+    'internship'  =>  '長期インターン',
+    'job' =>  '新卒情報',
+    'event' =>  'イベント',
+    'column'  =>  '就活記事',
+    'scout' =>  'スカウト'
+  );
+  $text_array = array(
+    'internship'  =>  '業界No.1の高時給を誇る長期インターン案件を多数掲載中。<br>週２日～で働けるから大学生活との両立も簡単です。自分が興味のある案件に応募して、就活に向けての第一歩を踏み出そう。',
+    'job' =>  '大手企業からベンチャー企業まで、様々な業界で活躍する企業の新卒求人案件を掲載中。<br>自分の理想的なキャリアを歩んでいきたいあなたにとって最適な企業を紹介します。',
+    'event' =>  '企業説明からワークショップ、就活対策セミナーまで、就活で周りと差をつけられるイベント情報が満載です。<br>『JobShot』限定の選考パスもご用意しており、トップレベルの学生と切磋琢磨したい方は必見です。',
+    'column'  =>  '就活で勝ち抜くために必要な情報や体験談が多数投稿されています。<br>就活初心者から選考中の人まで様々な人を対象にコンテンツを網羅。コラム記事を読んで万全の対策をしよう！',
+    'scout' =>  ''
+  );
+  $img_array = array(
+    'internship'  =>  '2020/02/photo-1552664730-d307ca884978.jpeg',
+    'job' =>  '2020/02/photo-1462899006636-339e08d1844e.jpeg',
+    'event' =>  '2020/02/photo-1544264747-d8af8eb09999.jpeg',
+    'column'  =>  '2020/02/photo-1555443712-22cd30585e5c.jpeg',
+    'scout' =>  ''
+  );
+  $html = '
+  <div class="background-img-container">
+      <img src="'.$home_url.'/wp-content/uploads/'.$img_array[$item_type].'" alt="">
+      <div class="background-img-text">
+          <h1 class="font-serif">'.$title_array[$item_type].'</h1>
+          <p>'.$text_array[$item_type].'</p>
+      </div>
+  </div>';
+  return $html;
+}
+add_shortcode("add_top_bar","add_top_bar");
+
 ?>
