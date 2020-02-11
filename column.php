@@ -4,6 +4,7 @@ function template_column2_func($content){
     global $post;
     $post_id = $post->ID;
     $column_sidebar = do_shortcode("[add_sidebar_column]");
+    $premium_column = get_post_meta($post_id, 'プレミアム記事', true);
 
     $first_category_values = CFS()->get('first_category',$post_id);
     foreach ($first_category_values as $first_category_value => $first_category_label) {
@@ -73,7 +74,14 @@ function template_column2_func($content){
             </span>
         </div>';
     }
-    $html .= $content;
+    if (!is_user_logged_in() and !empty($premium_column[0])){
+        $content_sub = preg_split("/<h2>/",$content);
+        $html .= $content_sub[0];
+        $html .= '<p class="text-align-center"><i class="fas fa-lock"></i>この記事は会員限定です。JobShotに登録すると続きをお読みいただけます。</p>';
+        $html .= apply_redirect();
+    }else{
+        $html .= $content;
+    }
     return $html;
 }
 

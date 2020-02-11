@@ -5635,7 +5635,7 @@ font-size: 13px !important;
   float: right;
 }
 .column_card_date i{
-  margin-right: 5px;
+  margin: 5px;
 }
 @media screen and (max-width: 480px){
   .column_card_img{
@@ -6502,4 +6502,7 @@ font-size: 13px !important;
 /* 新卒ページ */
 #post-3104{
   padding-top: 0;
+}
+.text-align-center{
+  text-align: center;
 }
