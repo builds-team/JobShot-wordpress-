@@ -4,19 +4,8 @@ function import_template2_func( $content ) {
     if( is_single() && ! empty( $GLOBALS['post'] ) ) {
         if ( $GLOBALS['post']->ID == get_the_ID() ) {
           if( get_post_type() =='event' ) {
-            if(is_user_logged_in()){
-              $content = template_event2_func($content);
-              return $content;
-            }else{
-              global $post;
-              $post_id = $post->ID;
-              if($post_id == 9146){
-                $content = template_event2_func($content);
-                return $content;
-              }else{
-                return apply_redirect();
-              }
-            }
+            $content = template_event2_func($content);
+            return $content;
           }
           if( get_post_type() == 'internship' ) {
             if(is_user_logged_in()){
