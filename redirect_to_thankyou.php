@@ -58,11 +58,15 @@ function past_self_internship_PR_func(){
     $user_id = $user->data->ID;
     $login_name = $user->user_login;
     $self_internship_pr_value = do_shortcode('[cfdb-value form="インターン応募フォーム" show="your-message" filter="your-id='.$login_name.'&&your_message=on" limit="5" orderby="Submitted DESC"]');
+    $self_internship_pr_count = do_shortcode('[cfdb-count form="インターン応募フォーム" show="your-message" filter="your-id='.$login_name.'&&your_message=on" limit="5" orderby="Submitted DESC"]');
     $internship_title = do_shortcode('[cfdb-value form="インターン応募フォーム" show="job-name" filter="your-id='.$login_name.'&&your_message=on" limit="5" orderby="Submitted DESC"]');
     $self_internship_pr_value = preg_split("/[,]/",$self_internship_pr_value);
     $internship_title = preg_split("/[,]/",$internship_title);
-    $izimodal_content = '<button class="open-options button" style="float: right;">過去の自己PRを使う</button>';
-    for($i = 0; $i<count($self_internship_pr_value); $i++){
+    $izimodal_content = '<button class="open-options button">過去の自己PRを使う</button>';
+    if($self_internship_pr_count == 0){
+	  $izimodal_content = '<button class="open-options button button-nonactive">過去の自己PRを使う</button>';
+	}
+    for($i = 0; $i<$self_internship_pr_count; $i++){
         $title_count = $i+1;
         $izimodal_content .= '
         <div class="modal_options" data-izimodal-group="group1" data-izimodal-loop="" data-izimodal-title="過去の自己PR'.$title_count.'" data-izimodal-subtitle="'.$internship_title[$i].'">

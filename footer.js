@@ -619,9 +619,10 @@ jQuery(function(){
 jQuery(function($){
     if(document.URL.match("https://jobshot.jp/apply")) {
 		if($('#esmenjo').length){
-			$(".entry-seat").remove();
-			$(".es-example").remove();
+			$("#es").remove();
 			$("#esmenjo").remove();
+            $(".entry-seat").remove();
+            $(".es-example").remove();
 　		}
     }
 });
