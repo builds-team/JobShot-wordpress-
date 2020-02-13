@@ -93,7 +93,7 @@ function side_bar_widget_func(){
     $html = '
     <h3 class="widgettitle">特別コンテンツ</h3>
     <p>
-        <a href="'.$home_url.'/interview"><img class="special_contents_img wp-image-5404 aligncenter" src="'.$home_url.'/wp-content/uploads/2019/09/c7b52d093ae61f8c6d8350c2f44d6aaf-e1568541207179.png"></a>
+        <a href="'.$home_url.'/interview"><img class="special_contents_img wp-image-5404 aligncenter" src="'.$home_url.'/wp-content/uploads/2020/02/9628bacf8cc0154c6bec8a8ac88ced35.png"></a>
         <br>
         <a href="'.$home_url.'/gift_money"><img class="special_contents_img wp-image-5404 aligncenter" src="'.$home_url.'/wp-content/uploads/2019/10/0cc52848b5f9663458606f357ee63b46.png"></a>
         <br>';

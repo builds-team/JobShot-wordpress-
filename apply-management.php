@@ -357,6 +357,10 @@ function view_applylist_func ( $atts ) {
 add_shortcode('view_applylist','view_applylist_func');
 
 function view_intern_all_applylist_func ( $atts ) {
+  if(!current_user_can('administrator')){
+    header('Location: '.$home_url.'/');
+    die();
+  }
   extract(shortcode_atts(array(
     'type' => '',
   ),$atts));
