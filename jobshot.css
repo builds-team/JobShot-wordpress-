@@ -5635,7 +5635,7 @@ font-size: 13px !important;
   float: right;
 }
 .column_card_date i{
-  margin-right: 5px;
+  margin: 5px;
 }
 @media screen and (max-width: 480px){
   .column_card_img{
@@ -6493,7 +6493,25 @@ font-size: 13px !important;
   min-width: 70px;
 }
 /* イベントページ追加 */
-
+#post-1993{
+    padding-top: 0;
+  }
+  .page-id-1993 .col-sidebar{
+    display: none !important;
+  }
+  /* 新卒ページ */
+  #post-3104{
+    padding-top: 0;
+  }
+  .text-align-center{
+    text-align: center;
+  }
+  #post-1986{
+    padding-top: 0;
+  }
+  #post-1673{
+    padding-top: 0;
+  }
 /*インターン応募ページ*/
 .apply-form {
     width: 762px;
@@ -6724,3 +6742,4 @@ font-size: 13px !important;
     pointer-events: none;
     background-color:#AAA !important;
 }
+

@@ -294,7 +294,7 @@ function search_form_func($atts){
   if (isset($business_type_tag)){
     $business_type_conditions = '　業種：';
     foreach($business_type_tag as $business) {
-      $frend = explode($business,$select_business_type);
+      $frend = explode('value="'.$business,$select_business_type);
       $delete_text = '">';
       $frend2 = explode($delete_text,$frend[1]);
       $frend3 = explode("</span>",$frend2[1]);

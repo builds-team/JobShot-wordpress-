@@ -41,9 +41,10 @@ function Ajax_Base(){
         </div>';
     }
     $results .= '</div></div>';
-    // echoで、クライアント側に返すデータを送信する
-    echo $results;
-    // dieしておかないと末尾に余計なデータ「0」が付与されるので注意
+    $score = update_user_total_profile_score($user_id);
+    $list = array($results,$score);
+    header("Content-Type: application/json; charset=UTF-8"); //ヘッダー情報の明記。必須。
+    echo json_encode($list);
     die();
 }
 add_action( 'wp_ajax_ajax_base', 'Ajax_Base' );
@@ -91,9 +92,10 @@ function Ajax_Univ(){
         </div>';
     }
     $results .= '</div></div>';
-    // echoで、クライアント側に返すデータを送信する
-    echo $results;
-    // dieしておかないと末尾に余計なデータ「0」が付与されるので注意
+    $score = update_user_total_profile_score($user_id);
+    $list = array($results,$score);
+    header("Content-Type: application/json; charset=UTF-8"); //ヘッダー情報の明記。必須。
+    echo json_encode($list);
     die();
 }
 add_action( 'wp_ajax_ajax_univ', 'Ajax_Univ' );
@@ -143,9 +145,10 @@ function Ajax_Abroad(){
         </div>';
     }
     $results .= '</div></div>';
-    // echoで、クライアント側に返すデータを送信する
-    echo $results;
-    // dieしておかないと末尾に余計なデータ「0」が付与されるので注意
+    $score = update_user_total_profile_score($user_id);
+    $list = array($results,$score);
+    header("Content-Type: application/json; charset=UTF-8"); //ヘッダー情報の明記。必須。
+    echo json_encode($list);
     die();
 }
 add_action( 'wp_ajax_ajax_abroad', 'Ajax_Abroad' );
@@ -260,9 +263,10 @@ function Ajax_Programming(){
         </div>'.$language_result;
     }
     $results .= '</div></div>';
-    // echoで、クライアント側に返すデータを送信する
-    echo $results;
-    // dieしておかないと末尾に余計なデータ「0」が付与されるので注意
+    $score = update_user_total_profile_score($user_id);
+    $list = array($results,$score);
+    header("Content-Type: application/json; charset=UTF-8"); //ヘッダー情報の明記。必須。
+    echo json_encode($list);
     die();
 }
 add_action( 'wp_ajax_ajax_programming', 'Ajax_Programming' );
@@ -295,9 +299,10 @@ function Ajax_Skill(){
             </div>
         </div>
     </div>';
-    // echoで、クライアント側に返すデータを送信する
-    echo $results;
-    // dieしておかないと末尾に余計なデータ「0」が付与されるので注意
+    $score = update_user_total_profile_score($user_id);
+    $list = array($results,$score);
+    header("Content-Type: application/json; charset=UTF-8"); //ヘッダー情報の明記。必須。
+    echo json_encode($list);
     die();
 }
 add_action( 'wp_ajax_ajax_skill', 'Ajax_Skill' );
@@ -343,9 +348,10 @@ function Ajax_Community(){
         </div>';
     }
     $results .= '</div></div>';
-    // echoで、クライアント側に返すデータを送信する
-    echo $results;
-    // dieしておかないと末尾に余計なデータ「0」が付与されるので注意
+    $score = update_user_total_profile_score($user_id);
+    $list = array($results,$score);
+    header("Content-Type: application/json; charset=UTF-8"); //ヘッダー情報の明記。必須。
+    echo json_encode($list);
     die();
 }
 add_action( 'wp_ajax_ajax_community', 'Ajax_Community' );
@@ -390,9 +396,10 @@ function Ajax_Intern(){
         </div>';
     }
     $results .= '</div></div>';
-    // echoで、クライアント側に返すデータを送信する
-    echo $results;
-    // dieしておかないと末尾に余計なデータ「0」が付与されるので注意
+    $score = update_user_total_profile_score($user_id);
+    $list = array($results,$score);
+    header("Content-Type: application/json; charset=UTF-8"); //ヘッダー情報の明記。必須。
+    echo json_encode($list);
     die();
 }
 add_action( 'wp_ajax_ajax_intern', 'Ajax_Intern' );
@@ -438,9 +445,10 @@ function Ajax_Interest(){
         </div>';
     }
     $results .= '</div></div>';
-    // echoで、クライアント側に返すデータを送信する
-    echo $results;
-    // dieしておかないと末尾に余計なデータ「0」が付与されるので注意
+    $score = update_user_total_profile_score($user_id);
+    $list = array($results,$score);
+    header("Content-Type: application/json; charset=UTF-8"); //ヘッダー情報の明記。必須。
+    echo json_encode($list);
     die();
 }
 add_action( 'wp_ajax_ajax_interest', 'Ajax_Interest' );
@@ -477,9 +485,10 @@ function Ajax_Experience(){
             </div>
         </div>
     </div>';
-    // echoで、クライアント側に返すデータを送信する
-    echo $results;
-    // dieしておかないと末尾に余計なデータ「0」が付与されるので注意
+    $score = update_user_total_profile_score($user_id);
+    $list = array($results,$score);
+    header("Content-Type: application/json; charset=UTF-8"); //ヘッダー情報の明記。必須。
+    echo json_encode($list);
     die();
 }
 add_action( 'wp_ajax_ajax_experience', 'Ajax_Experience' );

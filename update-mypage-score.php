@@ -260,7 +260,7 @@ function update_user_experience_profile_score($user_id){
     $student_experience = get_user_meta( $user_id, 'student_experience',false)[0];
 
     $user_experience_profile_score = 0;
-    if($bussiness_type){
+    if($student_experience){
         $user_experience_profile_score += 5;
     }
     update_user_meta( $user_id, 'user_experience_profile_score', $user_experience_profile_score);
@@ -268,21 +268,14 @@ function update_user_experience_profile_score($user_id){
 // プロフィール画像の情報をもとにスコアを更新する関数
 function update_user_picture_profile_score($user_id){
     $user_picture_profile_score = 0;
+    $upload_dir = wp_upload_dir();
     $upload_file_name = $upload_dir['basedir'] . "/" .'profile_photo'.$user_id.'.png';
-    if(!file_exists($upload_file_name)){
-      $attachment_id=2632;
-      $upload_file_src = wp_get_attachment_image_src($attachment_id)[0];
-      if($upload_file_src){
+    if(file_exists($upload_file_name)){
         $user_picture_profile_score += 15;
-      }
     }
     $upload_cover_name = $upload_dir['basedir']."/".'cover_photo'.$user_id.'.png';
-    if(!file_exists($upload_cover_name)){
-      $attachment_id=2631;
-      $upload_cover_src = wp_get_attachment_image_src($attachment_id,'full')[0];
-      if($upload_cover_src){
+    if(file_exists($upload_cover_name)){
         $user_picture_profile_score += 10;
-      }
     }
     update_user_meta( $user_id, 'user_picture_profile_score', $user_picture_profile_score);
 }

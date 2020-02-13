@@ -335,6 +335,9 @@ function view_custom_search_func($atts){
         }
     }else{
         $html = paginate($cat_query->max_num_pages, get_query_var( 'paged' ), $cat_query->found_posts, $posts_per_page);
+        if($item_type == "event"){
+            $html = '';
+        }
     }
     $html .= '<div class="cards-container">';
     // 通常用ーーーここからーーー
