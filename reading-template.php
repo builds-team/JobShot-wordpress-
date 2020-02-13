@@ -74,7 +74,7 @@ function add_top_bar($atts){
   ), $atts));
   $home_url =esc_url( home_url());
   $title_array = array(
-    'internship'  =>  '長期インターン',
+    'internship'  =>  'インターン',
     'job' =>  '新卒情報',
     'event' =>  'イベント',
     'column'  =>  '就活記事',
@@ -85,14 +85,14 @@ function add_top_bar($atts){
     'job' =>  '大手企業からベンチャー企業まで、様々な業界で活躍する企業の新卒求人案件を掲載中。<br>自分の理想的なキャリアを歩んでいきたいあなたにとって最適な企業を紹介します。',
     'event' =>  '企業説明からワークショップ、就活対策セミナーまで、就活で周りと差をつけられるイベント情報が満載です。<br>『JobShot』限定の選考パスもご用意しており、トップレベルの学生と切磋琢磨したい方は必見です。',
     'column'  =>  '就活で勝ち抜くために必要な情報や体験談が多数投稿されています。<br>就活初心者から選考中の人まで様々な人を対象にコンテンツを網羅。コラム記事を読んで万全の対策をしよう！',
-    'scout' =>  ''
+    'scout' =>  '気になる学生をスカウトしよう！'
   );
   $img_array = array(
     'internship'  =>  '2020/02/photo-1552664730-d307ca884978.jpeg',
     'job' =>  '2020/02/photo-1462899006636-339e08d1844e.jpeg',
     'event' =>  '2020/02/photo-1544264747-d8af8eb09999.jpeg',
     'column'  =>  '2020/02/photo-1555443712-22cd30585e5c.jpeg',
-    'scout' =>  ''
+    'scout' =>  '2020/02/list-1925752_1920.jpg'
   );
   $html = '
   <div class="background-img-container">

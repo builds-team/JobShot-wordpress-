@@ -5635,7 +5635,7 @@ font-size: 13px !important;
   float: right;
 }
 .column_card_date i{
-  margin-right: 5px;
+  margin: 5px;
 }
 @media screen and (max-width: 480px){
   .column_card_img{
@@ -6501,5 +6501,244 @@ font-size: 13px !important;
 }
 /* 新卒ページ */
 #post-3104{
+  padding-top: 0;
+}
+.text-align-center{
+  text-align: center;
+}
+/*インターン応募ページ*/
+.apply-form {
+  width: 762px;
+  margin: 0 auto;
+}
+.apply-form-container {
+  padding: 45px 0 90px 0;
+  border-bottom: 0.3px solid #e6e6e6;
+  position: relative;
+}
+.noborder {
+  border: none;
+}
+.job-name-container {
+  width: 762px;
+  margin: 0 auto;
+  padding: 90px 0 45px 0;
+  color: #222;
+}
+#canworktime {
+  padding: 40px 0 120px 0;
+}
+.form-necessarily {
+  font-size: 16px;
+  font-weight: lighter;
+}
+.form-necessarily:before {
+  content: "必須";
+  color: #fff;
+  background: #BE3D3D 0% 0% no-repeat padding-box;
+  border-radius: 2px;
+  padding: 4px 6px;
+  margin-right: 10px;
+}
+.apply-form-container label {
+  font-weight: normal;
+}
+.apply-form-container .your-name, .apply-form-container .your-email, .your-date-container {
+  position: absolute;
+  left: 270px;
+}
+.your-date-container label{
+  padding-top: 20px;
+  line-height: 30px;
+}
+.your-date-container span:first-child {
+  padding-right: 20px;
+}
+.apply-form-container textarea {
+  height: 250px;
+}
+.apply-form-container input {
+  margin: 0;
+  padding: 5px;
+}
+.apply-form-container .your-date input, .apply-form-container .your-time input {
+  margin: 0 5px;
+}
+.entry-seat {
+  margin: -24px 0 0 270px;
+  width: 492px;
+}
+.es-example {
+  margin: 0 0 0 270px;
+}
+.es-example-container {
+  margin-top: 25px;
+}
+.post-es-example, .pre-es-example {
+  width:40%;
+  text-align:center;
+  vertical-align: top;
+  display: inline-block;
+  height: 40px;
+  line-height: 40px;
+  background-color: #DBDBDB;
+  padding: 0 12px;
+  border-radius: 5px;
+  box-shadow: 0px 3px 6px #00000029;
+  border: 1px solid #B4B4B4;
+}
+.pre-es-example {
+  margin-left: 30px;
+}
+.open-options.button {
+  height: 40px;
+  color: #333;
+  padding: 0;
+  background-color: #DBDBDB;
+}
+.open-options.button:hover {
+  background-color: #DBDBDB;
+  opacity: 0.5;
+}
+.pre-es-example a{
+  color: #333;
+}
+.pre-es-example a:hover {
+  color: #333;
+  opacity: 0.5;
+}
+.apply-submit-btn {
+  text-align: center;
+}
+.apply-submit-btn input[type="submit"] {
+  height: 50px;
+  width: 370px;
+  color: #fff;
+  font-size: 25px;
+  font-weight: normal;
+  background-color: #EFB753;
+  box-shadow: 0px 3px 6px #00000029;
+  border-radius: 25px;
+}
+.apply-submit-btn input[type="submit"]:hover {
+  background-color: #EFB753;
+  opacity: 0.5;
+}
+@media screen and (max-width: 1000px) {
+  .apply-form {
+    width: calc(100% - 40px);
+    padding: 0 20px;
+  }
+  .apply-form-container {
+    padding: 20px 0 50px 0;
+    border-bottom: none;
+  }
+  .job-name-container {
+    width: calc(100% - 40px);
+    padding: 25px 0px 10px 0px;
+    border-bottom: 1px solid #e6e6e6;
+  }
+  .job-name-container .job-name {
+    font: 550 20px/33px Arial;
+  }
+  .apply-form-container .your-name, .apply-form-container .your-email, .your-date-container {
+    left: 0px;
+    top: 50px;
+  }
+  .apply-form-container .your-name, .apply-form-container input[name="your-name"] {
+    width: 167px;
+  }
+  .apply-form-container .your-email, .apply-form-container input[type="email"] {
+    width: 100%;
+  }
+  .apply-form-container .your-date input, .apply-form-container .your-time input {
+    border: 1px solid #e6e6e6;
+    padding: 2px 5px;
+  }
+  .your-date-container label{
+    padding-top: 20px;
+    line-height: 20px;
+  }
+  #canworktime {
+    padding: 20px 0 130px 0;
+  }
+  .form-necessarily {
+    font-size: 13px;
+  }
+  .form-necessarily:before {
+    margin-right: 5px;
+  }
+  .entry-seat {
+    margin: 20px 0 0 0;
+    width: 100%;
+  }
+  .apply-form-container textarea {
+    height: 84px;
+  }
+  .es-example {
+    margin: 0;
+  }
+  .es-example-container {
+    margin-top: 20px;
+  }
+  .post-es-example, .pre-es-example {
+    width:37%;
+    height: 22px;
+    line-height: 22px;
+    padding: 4 5px;
+    text-shadow: 0px 3px 6px #00000029;
+    box-shadow: initial;
+  }
+  .pre-es-example {
+    margin-left: 5px;
+  }
+  .open-options.button {
+    height: 22px;
+  }
+  .apply-submit-btn {
+    margin: -20px 0 100px 0;
+  }
+  .apply-submit-btn input[type="submit"] {
+    height: 50px;
+    width: 220px;
+  }
+  .apply-submit-btn input[type="submit"]:hover {
+    background-color: #EFB753;
+    opacity: 0.5;
+  }
+}
+	.pre-es-example p:hover{
+	 opacity: 0.5;
+	}
+	.apply-form br {
+	 display:none;
+	}
+.pr-example-small p br {
+	 display:block !important;
+}
+.self-pr-ex{
+  cursor: pointer;
+  color:#333;
+}
+.self-pr-ex:hover{
+  opacity:0.5;
+}
+#self-pr-ex1{
+  display: none;
+}
+.pr-example-small-active{
+  height: auto !important;
+  padding: 5px !important;
+  background: #eaeaea !important;
+  opacity: 1 !important;
+}
+.button-nonactive{
+  pointer-events: none;
+  background-color:#AAA !important;
+}
+#post-1986{
+  padding-top: 0;
+}
+#post-1673{
   padding-top: 0;
 }
