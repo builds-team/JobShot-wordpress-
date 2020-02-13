@@ -6593,6 +6593,7 @@ font-size: 13px !important;
 }
 .apply-submit-btn {
     text-align: center;
+    margin-bottom:25px !important;
 }
 .apply-submit-btn input[type="submit"] {
     height: 50px;
@@ -6619,7 +6620,7 @@ font-size: 13px !important;
     }
     .job-name-container {
         width: 100%;
-        padding: 25px 0px 10px 0px;
+        padding: 0px 0px 10px 0px;
         border-bottom: 1px solid #e6e6e6;
     }
     .job-name-container .job-name {
@@ -6637,9 +6638,10 @@ font-size: 13px !important;
     }
     .apply-form-container .your-date input, .apply-form-container .your-time input {
         border: 1px solid #e6e6e6;
-        padding: 2px 5px;
+        padding: 5px 5px;
         width:20px;
         height:18px;
+        font-size:16px !important;
     }
     .your-date-container label{
         padding-top: 20px;
