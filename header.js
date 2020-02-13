@@ -464,7 +464,7 @@ jQuery(function($){
      }
   });
 });
-//からのpタグを除去
+//空のpタグを除去
 jQuery(function($){
   $( "p:empty" ).remove();
 });

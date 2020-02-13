@@ -6535,6 +6535,9 @@ font-size: 13px !important;
     position: absolute;
     left: 270px;
 }
+.your-date-container{
+    top:36px;
+}
 .your-date-container label{
     padding-top: 20px;
     line-height: 30px;
@@ -6607,15 +6610,15 @@ font-size: 13px !important;
 }
 @media screen and (max-width: 1000px) {
     .apply-form {
-        width: calc(100% - 40px);
-        padding: 0 20px;
+        width: 100%;
+        padding: 0px;
     }
     .apply-form-container {
         padding: 20px 0 50px 0;
         border-bottom: none;
     }
     .job-name-container {
-        width: calc(100% - 40px);
+        width: 100%;
         padding: 25px 0px 10px 0px;
         border-bottom: 1px solid #e6e6e6;
     }
@@ -6635,6 +6638,8 @@ font-size: 13px !important;
     .apply-form-container .your-date input, .apply-form-container .your-time input {
         border: 1px solid #e6e6e6;
         padding: 2px 5px;
+        width:20px;
+        height:18px;
     }
     .your-date-container label{
         padding-top: 20px;
@@ -6663,7 +6668,7 @@ font-size: 13px !important;
         margin-top: 20px;
     }
     .post-es-example, .pre-es-example {
-        width:37%;
+        width:40%;
         height: 22px;
         line-height: 22px;
         padding: 4 5px;
@@ -6671,7 +6676,7 @@ font-size: 13px !important;
         box-shadow: initial;
     }
     .pre-es-example {
-        margin-left: 5px;
+        margin-left: 3%;
     }
     .open-options.button {
         height: 22px;
