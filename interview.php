@@ -47,11 +47,11 @@ function about_interview(){
         }
     </style>
     <section>
-        <img src="'.$home_url.'/wp-content/uploads/2019/09/c7b52d093ae61f8c6d8350c2f44d6aaf-e1568541207179.png">
+        <img src="'.$home_url.'/wp-content/uploads/2020/02/9628bacf8cc0154c6bec8a8ac88ced35.png">
         <div class="card-category-container event">
-            <div class="card-category">本番同様の面接対策とフィードバックにより合格率200%UP！！！</div><br>
-            <div class="card-category">人事と接点のある社員から人事が何をどのように評価しているのか学ぶ！</div><br>
-            <div class="card-category">志望業界に入るため、今どのような活動をするべきかを相談！</div><br>
+            <div class="card-category">将来の志望企業から逆算して最適なインターン選びをお手伝いします！</div><br>
+            <div class="card-category">ESを一緒に作成し、通過率を高めます！</div><br>
+            <div class="card-category">過去問による面接で採用率を高めます！</div><br>
         </div>
     </section>
     <section>
@@ -79,6 +79,10 @@ function about_interview(){
                 <tr>
                     <th>持ち物</th>
                     <td>メモ帳・筆記用具</td>
+                </tr>
+                <tr>
+                    <th>備考</th>
+                    <td>スカイプでの相談も可能です！</td>
                 </tr>
             </tbody>
         </table>
