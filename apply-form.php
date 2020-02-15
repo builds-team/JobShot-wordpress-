@@ -1,8 +1,9 @@
 <?php
 //インターンのタイトルを表示
 function apply_title(){
-    if(isset($_GET['jobname'])){
-        $title=$_GET['jobname'];
+    if(isset($_GET['post_id'])){
+        $post_id = $_GET['post_id'];
+        $title = get_field("募集タイトル",$post_id);
     }
     $html = '
     <section class="entry">
