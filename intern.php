@@ -82,11 +82,26 @@ function template_internship2_func($content){
   $selection_flows_re = array_map('trim', $selection_flows_re); // 各行にtrim()をかける
   $selection_flows_re = array_filter($selection_flows_re, 'strlen'); // 文字数が0の行を取り除く
   $selection_flows_re = array_values($selection_flows_re); // これはキーを連番に振りなおしてるだけ
-  $selection_html_re = '<ol class="flowchart">';
-    foreach($selection_flows_re as $selection_flow){
-      $selection_html_re .= '<li class="flowchart__item">'.$selection_flow.'</li>';
-    }
-  $selection_html_re .= '<li class="flowchart__item flowchart__item--last">採用</li></ol>';
+  $selection_html_re = '<ul class="flowchart">';
+  $counter = 1;
+  foreach($selection_flows_re as $selection_flow){
+        $selection_html_re .= '
+        <li class="flowlist">
+            <dl>
+                <dt><span class="icon">STEP.0'.$counter.'</span></dt>
+                <dd>'.$selection_flow.'</dd>
+            </dl>
+        </li>';
+	$counter +=1;
+  }
+  $selection_html_re .= '
+    <li class="flowlist">
+        <dl>
+            <dt><span class="icon">STEP.0'.$counter.'</span></dt>
+            <dd>採用</dd>
+        </dl>
+    </li>
+  </ul>';
 
   $image = get_field("イメージ画像",$post_id);
   $image2 = get_field("イメージ画像2",$post_id);
