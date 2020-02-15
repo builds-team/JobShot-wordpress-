@@ -1125,19 +1125,27 @@ function student_search_result_func($atts){
         $graduate_years = $_GET["graduate_year"];
         if(in_array(2020,$graduate_years)){
             $graduate_year_sub = "2020(2019年4月時点で大学4年生/大学院2年生)";
+            $graduate_year_sub_1 = "2020";
             array_push($graduate_years,$graduate_year_sub);
+            array_push($graduate_years,$graduate_year_sub_1);
         }
         if(in_array(2021,$graduate_years)){
             $graduate_year_sub = "2021(2019年4月時点で大学3年生/大学院1年生)";
+            $graduate_year_sub_1 = "2021";
             array_push($graduate_years,$graduate_year_sub);
+            array_push($graduate_years,$graduate_year_sub_1);
         }
         if(in_array(2022,$graduate_years)){
             $graduate_year_sub = "2022(2019年4月時点で大学2年生)";
+            $graduate_year_sub_1 = "2022";
             array_push($graduate_years,$graduate_year_sub);
+            array_push($graduate_years,$graduate_year_sub_1);
         }
         if(in_array(2023,$graduate_years)){
             $graduate_year_sub = "2023(2019年4月時点で大学1年生)";
+            $graduate_year_sub_1 = "2023";
             array_push($graduate_years,$graduate_year_sub);
+            array_push($graduate_years,$graduate_year_sub_1);
         }
         $graduate_year_meta_query = array('relation' => 'OR');
         foreach($graduate_years as $graduate_year){
@@ -1530,16 +1538,16 @@ if (isset($_GET['freeword']) ) {
     // Builds社員の招待番号による絞り込み
     if (isset($_GET['inviter_user_login']) ) {
         $inviter_user_login = $_GET["inviter_user_login"];
-        array_push($meta_query_args, array(
-            'key'       => 'inviter_user_login',
-            'value'     => $inviter_user_login,
-            'compare'   => 'LIKE'
-        ));
+        // array_push($meta_query_args, array(
+        //     'key'       => 'inviter_user_login',
+        //     'value'     => $inviter_user_login,
+        //     'compare'   => 'LIKE'
+        // ));
     }
 
-    $choice_array=get_choice_array('experience_and_achievement_select');
-    array_push ($meta_query_args, add_search_characteristic_func('experience_and_achievement_select', '経験/実績', true, '','query_arg', $choice_array, 'LIKE','AND'));
-    array_push ($meta_query_args, add_search_characteristic_func('conditions_pay', '時給（円以下）', false,'int', 'query_arg', '', '<=',''));
+    // $choice_array=get_choice_array('experience_and_achievement_select');
+    // array_push ($meta_query_args, add_search_characteristic_func('experience_and_achievement_select', '経験/実績', true, '','query_arg', $choice_array, 'LIKE','AND'));
+    // array_push ($meta_query_args, add_search_characteristic_func('conditions_pay', '時給（円以下）', false,'int', 'query_arg', '', '<=',''));
     //$chara_id, $chara_label, $array_flag, $return_type, $choice_array, $compare)
     //faculty_lineage
 
@@ -1610,7 +1618,7 @@ if (isset($_GET['freeword']) ) {
         //	'order'        => 'ASC',
         'offset'       => '',
         'search'       => '*'.esc_attr($searchword).'*',
-        'search_columns' => array( 'user_login','faculty_lineage','languages','programming_languages','region','skill_dev','skill',),
+        // 'search_columns' => array( 'user_login','faculty_lineage','languages','programming_languages','region','skill_dev','skill',),
         //	'number'       => '',
         'count_total'  => true,
         'fields'       => 'all',
