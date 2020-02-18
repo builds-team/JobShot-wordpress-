@@ -185,6 +185,115 @@ function view_applylist_func ( $atts ) {
   $style_html = '';
 
   $participant_num = do_shortcode(' [cfdb-count form="/'.$formname.'.*/" filter="job-id='.$post_id.'"]');
+  if($type == 'print'){
+      if(get_post_type($post_id)=='event'){
+          $style_html = '
+          /* イベント印刷用 */
+          table.event_management_tbl02 tbody th {
+            padding: 10px 15px;
+            color: #000;
+            vertical-align: middle;
+            background: #A9A9A9;
+            border-right: #000 solid 1px;
+            border-bottom: #000 solid 1px;
+            font-size: 15px;
+          }
+          table.event_management_tbl02 tbody td {
+            padding: 10px 15px;
+            vertical-align: middle;
+            background: #FFF;
+            border-bottom: #000 solid 1px;
+            border-left: #000 solid 1px;
+            color:#000;
+            font-size: 12px;
+          }
+          table.event_management_tbl02 tbody tr:last-child th {
+            border-bottom: #000 solid 1px;
+          }
+          .event_management_info table {
+            margin: 40px;
+            table-layout:fixed;
+            font-size: 10px;
+            width:320px;
+            border-collapse: collapse;
+            color:#000
+          }
+          table.event_management_info_tbl02 tbody, td, tr {
+            border-collapse: collapse;
+            border: 1px solid black;
+          }
+          .event_management_info {
+            display:inline-block;
+          }
+          .event_management_center {
+            text-align: center;
+          }
+          .event_management_name td{
+            font-weight: bold;
+            font-size: 15px !important;
+          }
+          td.event_management_furigana{
+            border-bottom:#000 dotted 1px !iomportant;
+          }
+          .event_management_over td{
+            word-wrap: break-word;
+          }
+          table.event_management_info_tbl02 tbody tr:last-child td {
+            width: 320px;
+          }
+          .event_management_sottunen td{
+              height="20" 
+              width="300"
+              /*height="20" width="300"*/
+          }
+          .event_management_kyomi_gyo {
+              height="100"
+          }
+          .all_event_management_table {
+              font-size = 2;
+          }
+          ';
+          $phtml.='<p>'."全".$participant_num."件".'<p>';
+          $phtml.=
+          do_shortcode('[cfdb-html form="/'.$formname.'.*/" orderby="Submitted desc" filter="job-id='.$post_id.'"]
+          <font size="2">
+            <div class = "event_management_info">
+              <table class="event_management_info_tbl02">
+                <tbody>
+                  <tr>
+                    <th>フリガナ</th>
+                    <td class="event_management_modi event_management_center event_management_furigana"><p>[get_user_ruby field=login value="${your-id}"]</p></td>
+                    <td class="event_management_modi event_management_center" rowspan="2">[get_user_sex field=login value="${your-id}"]</td>
+                  </tr>
+                    <th>名前</th>
+                    <td class="event_management_modi event_management_center event_management_name"><p>${your-name}</p></td>
+                  <tr>
+                    <th>大学・学部</th>
+                    <td class="event_management_modi event_management_center" colspan="2"><p>[my_get_userdata_by field=login value="${your-id}" data=univ]<br>[my_get_userdata_by field=login value="${your-id}" data=faculty]</p></td>
+                  </tr>
+                  <tr>
+                    <th>卒業年度</th>
+                    <td class="event_management_modi event_management_center event_management_sottunen" colspan="2"><p>[get_user_graduate_year field=login value="${your-id}"]</p><p>[get_user_school_year ield=login value="${your-id}"]</p></td>
+                  </tr>
+                  <tr>
+                    <th>資格</th>
+                    <td class="event_management_modi event_management_center" colspan="2"><p>[get_user_skill field=login value="${your-id}"]</td>
+                  </tr>
+                    <th>経歴</th>
+                    <td class="event_management_modi event_management_center " colspan="2"><p>プログラミング：[get_user_experience_programming field=login value="${your-id}"]<br>留学：[get_user_studied_abroad field=login value="${your-id}"]</p></td>
+                  <tr>
+                    <th>興味ある業界</th>
+                    <td  colspan="2" class="event_management_over event_management_kyomi_gyo"><div class="event_management_modi event_management_center" ><p>[get_user_bussiness_type field=login value="${your-id}"]</div></p></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </font>
+          [/cfdb-html]');
+          $phtml.='<p>'."全".$participant_num."件".'<p>';
+          return $style_html.$phtml;
+      }
+  }
   if($mode=='dbview'){
     $phtml.='<a href="'.str_replace('mode=dbview','',$_SERVER["REQUEST_URI"]).'">通常表示に切り替え</a>';
     $phtml.=do_shortcode(' [cfdb-datatable form="/'.$formname.'.*/" filter="job-id='.$post_id.'"]');

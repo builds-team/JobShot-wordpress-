@@ -6742,8 +6742,7 @@ font-size: 13px !important;
     pointer-events: none;
     background-color:#AAA !important;
 }
-
-//選考フロー
+/* 選考フロー */
 .flowchart {
     padding: 0;
 }
