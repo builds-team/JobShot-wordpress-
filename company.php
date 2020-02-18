@@ -465,8 +465,12 @@ function view_company_contents_by_umuser_func(){
     $company_id = get_company_post_ids_func($company_user_id)[0];
     $company_url = get_permalink($company_id);
     $location = $company_url;
-    wp_redirect( $location );
-    exit;
+    if($location){
+        wp_redirect( $location );
+        exit;
+    }else{
+        wp_redirect( esc_url( home_url() ) );
+    }
 }
 add_shortcode('view_company_contents_by_umuser','view_company_contents_by_umuser_func');
 
