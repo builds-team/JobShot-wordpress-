@@ -395,29 +395,25 @@ function update_company_info(){
 add_action('template_redirect', 'update_company_info');
 
 function get_company_post_ids_func($company_user_id){
-if ( class_exists( 'coauthors_plus' ) ) {
-global $coauthors_plus;
-$author_term = $coauthors_plus->get_author_term( get_user_by('id',$company_user_id));
-$args = array(
-'posts_per_page'    =>  -1,
-'post_type'         =>  array('company'),
-'post_status' => array('publish' ),
-'tax_query'=>array(
-array(
-'taxonomy' => $coauthors_plus->coauthor_taxonomy,
-'field'    => 'name',
-'terms'    => $author_term->name,
-),
-)
-);
-$cat_query = new WP_Query( $args );
-$post_ids=array();
-while ( $cat_query->have_posts()):$cat_query->the_post();
-array_push($post_ids,get_the_ID($post));
-//  			$pid.=get_the_ID($post).', ';
-endwhile;
-return $post_ids;
-}
+    if ( class_exists( 'coauthors_plus' ) ) {
+        global $coauthors_plus;
+        $company = get_user_by('id',$company_user_id);
+        $company_name= $company->user_login;
+        $author_term = $coauthors_plus->get_author_term( get_user_by('id',$company_user_id));
+        $args = array(
+            'posts_per_page'    =>  -1,
+            'post_type'         =>  array('company'),
+            'post_status' => array('publish' ),
+            'author'    =>  $company_user_id,
+        );
+        $cat_query = new WP_Query( $args );
+        $post_ids=array();
+        while ($cat_query->have_posts()):
+            $cat_query->the_post();
+            array_push($post_ids,get_the_ID($post));
+        endwhile;
+        return $post_ids;
+    }
 }
 function get_company_post_id_func($company_user_id){
 return get_company_post_ids_func($company_user_id)[0];
@@ -466,7 +462,7 @@ add_shortcode('view_my_contents','view_my_contents_func');
 function view_company_contents_by_umuser_func(){
     $user = wp_get_current_user();
     $company_user_id = $user->ID;
-    $company_id = get_company_post_id_func($company_user_id);
+    $company_id = get_company_post_ids_func($company_user_id)[0];
     $company_url = get_permalink($company_id);
     $location = $company_url;
     wp_redirect( $location );
