@@ -188,6 +188,7 @@ function view_applylist_func ( $atts ) {
   if($type == 'print'){
       if(get_post_type($post_id)=='event'){
           $style_html = '
+          <style>
           /* イベント印刷用 */
           table.event_management_tbl02 tbody th {
             padding: 10px 15px;
@@ -252,6 +253,7 @@ function view_applylist_func ( $atts ) {
           .all_event_management_table {
               font-size = 2;
           }
+          </style>
           ';
           $phtml.='<p>'."全".$participant_num."件".'<p>';
           $phtml.=
