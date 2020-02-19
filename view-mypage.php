@@ -590,6 +590,9 @@ function update_user_selection_status(){
     $post_id = $_POST["post_id"];
     $new_status = $_POST["selection_status"];
     $selection_status = get_post_meta($post_id,'selection_status',false)[0];
+    if(empty($selection_status)){
+      $selection_status = array();
+    }
     if(array_key_exists($user_login_name, $selection_status)){
       $selection_status[$user_login_name] = $new_status;
     }else{
