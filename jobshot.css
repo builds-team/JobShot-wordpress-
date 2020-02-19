@@ -6806,3 +6806,16 @@ font-size: 13px !important;
     margin:0 20px;
 	}
 }
+
+.flowchart_job {
+	width:50%;
+}
+@media (max-width: 782px) {
+  .flowchart_job{
+	  margin:0;
+		width:100%;
+	}
+	.flowchart_job > li dl dt .icon {
+    font-size: 10px;
+	}
+}
