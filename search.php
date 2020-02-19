@@ -253,7 +253,7 @@ function view_custom_search_func($atts){
                 'test' => '筆記試験・WEBテスト',
                 'discussion' => 'グループディスカッション',
                 'interview' => '面接',
-                'case_interview' => 'ケース面接・フェミル推定',
+                'case_interview' => 'ケース面接・フェルミ推定',
                 'internship' => 'インターンシップ・ジョブ',
                 'recruiter' => 'OB訪問・リクルーター',
                 'english' => '英語・TOEIC対策',
