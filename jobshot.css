@@ -6805,4 +6805,10 @@ font-size: 13px !important;
   .flowchart{
     margin:0 20px;
 	}
+/* 新卒ページ */
+#post-3104{
+  padding-top: 0;
+}
+.text-align-center{
+  text-align: center;
 }

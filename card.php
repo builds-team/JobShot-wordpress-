@@ -743,6 +743,10 @@ function view_fullwidth_column_card_func($post_id){
   $description = get_post_meta($post_id, '_aioseop_description', true);
   $post_date = get_the_date( 'Y-m-d', $post_id );
   $image_url = get_the_post_thumbnail_url( $post_id , 'medium' );
+  $premium_column = get_post_meta($post_id, 'プレミアム記事', true);
+  if (!is_user_logged_in() and !empty($premium_column[0])){
+    $lock_html = '<i class="fas fa-lock"></i>';
+  }
 
   $card_html = '
   <div class="card full-card">
@@ -756,7 +760,7 @@ function view_fullwidth_column_card_func($post_id){
           <p>'.$description.'</p>
         </div>
         <div class="column_card_date">
-          <p><i class="far fa-clock"></i>'.$post_date.'</p>
+          <p><i class="far fa-clock"></i>'.$post_date.$lock_html.'</p>
         </div>
       </div>
     </div>
