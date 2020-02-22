@@ -6805,10 +6805,16 @@ font-size: 13px !important;
   .flowchart{
     margin:0 20px;
 	}
-/* 新卒ページ */
-#post-3104{
-  padding-top: 0;
 }
-.text-align-center{
-  text-align: center;
+.flowchart_job {
+	width:50%;
+}
+@media (max-width: 782px) {
+  .flowchart_job{
+	  margin:0;
+		width:100%;
+	}
+	.flowchart_job > li dl dt .icon {
+    font-size: 10px;
+	}
 }

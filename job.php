@@ -34,11 +34,26 @@ function template_job2_func($content){
     }else{
       $title_html = '<h2 class="mainhead">'.$occupation.'職</h2>';
     }
-    $selection_html = '<ol class="flowchart">';
+    $selection_html = '<ul class="flowchart flowchart_job">';
+    $counter = 1;
     foreach($selection_flows as $selection_flow){
-      $selection_html .= '<li class="flowchart__item">'.$selection_flow.'</li>';
+      $selection_html .= '
+      <li class="flowlist">
+        <dl>
+          <dt><span class="icon">STEP.0'.$counter.'</span></dt>
+          <dd>'.$selection_flow.'</dd>
+        </dl>
+      </li>';
+      $counter +=1;
     }
-    $selection_html .= '<li class="flowchart__item flowchart__item--last">採用</li></ol>';
+    $selection_html .= '
+      <li class="flowlist">
+        <dl>
+          <dt><span class="icon">STEP.0'.$counter.'</span></dt>
+          <dd>採用</dd>
+        </dl>
+      </li>
+    </ul>';
 
     $require_person = nl2br(get_field("求める人物像",$post_id));
     $company_bussiness = nl2br(get_field("事業内容",$company_id));

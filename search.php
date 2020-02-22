@@ -403,7 +403,7 @@ function view_custom_search_func($atts){
                     </tr>
                     <tr>
                     <th>開催日時</th>
-                    <td>2019年2月1日〜2019年2月22日</td>
+                    <td>2019年2月1日〜2019年2月29日</td>
                     </tr>
                     <tr>
                     <th>募集対象</th>
