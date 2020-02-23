@@ -110,7 +110,7 @@ function new_es_form_practice(){
     </div>
   </div>';
   $es_content = '';
-  //ESを見るで編集ボタンが押されたときに表示される画面
+  //ESを見るで編集ボタンが押されたときの処理
   if(!empty($_GET['post_id']) && !empty($_GET['action'])){
     $es = get_post($post_id);
     if($es->post_author == $user_id){
@@ -188,6 +188,16 @@ function new_es_form_challenge(){
       </ul>
     </div>
     <form action="" method="POST" enctype="multipart/form-data">
+      <p>ESのテーマ*</p>
+      <div class="select_box select_box_01">
+        <select name="selection_status" required>
+            <option value="gakutika">学生時代力を入れたこと</option>
+            <option value="self-pr">自己PR</option>
+            <option value="strong-weak">長所・短所</option>
+            <option value="motivation">志望動機</option>
+            <option value="news">最近のニュース</option>
+        </select>
+      </div>
       <div class="">
         <table class="">
           <tbody>
@@ -342,6 +352,7 @@ function view_past_es(){
       $html .= '</tbody></table></div></div></div>';
     }
   }else{
+    //ESを見るの一覧ページ
     $args = array(
       'post_type' => 'entry_sheet',
       'post_status' => array('publish'),
@@ -425,7 +436,8 @@ function view_past_es(){
         $es_content .= '...';
       }
       $es_urls = get_es_url();
-    $es_url = $es_urls[$es_category];
+      //ESのカテゴリのgetパラメータを取得
+      $es_url = $es_urls[$es_category];
       $practice_card_html .= '
         <div class="card full-card">
           <div class="full-card-main">
@@ -506,7 +518,8 @@ function get_es_categories($type){
   }else{
     $es_categories = array(
       'test' => array('テスト','テストの説明','imageurl'),
-      'builds' => array('株式会社Builds','株式会社Buildsの説明','imageurl','imageurl')
+      'builds' => array('株式会社Builds','株式会社Buildsの説明','imageurl'),
+      'musojyuku' => array('就活無双塾','就活無双塾の説明','imageurl')
     );
   }
   return $es_categories;
@@ -526,7 +539,8 @@ function get_es_points($type){
   else{
     $es_points = array(
       'test' => array('testの要項１','testの要項２'),
-      'builds' => array('buildsの要項１','buildsの要項２')
+      'builds' => array('buildsの要項１','buildsの要項２'),
+      'musojyuku' => array('就活無双塾の要項１','就活無双塾の要項２')
     );
   }
   return $es_points;
@@ -540,7 +554,8 @@ function get_es_url(){
       '志望動機' => 'motivation',
       '最近のニュース' => 'news',
       'テスト' => 'test',
-      '株式会社' => 'builds'
+      '株式会社Builds' => 'builds',
+      '就活無双塾' => 'musojyuku'
     );
   return $es_url;
 }
