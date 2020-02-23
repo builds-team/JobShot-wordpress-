@@ -6869,11 +6869,9 @@ font-size: 13px !important;
 }
 .es-cards{
   margin: 80px auto;
-  margin-top: 20px;
+  margin-top: 0px;
   max-width: 986px;
   text-align: center;
-  background: #eee;
-  padding: 20px 0;
 }
 .es-card{
   background: #ffffff;
@@ -6886,6 +6884,7 @@ font-size: 13px !important;
   transition: all 0.3s 0s ease-in;
   width: 300px;
   z-index: 1;
+  box-shadow: rgba(0, 0, 0, 0.16) 0 3px 8px;
 }
 .es-card__image-holder{
   background: rgba(0,0,0,0.1);
