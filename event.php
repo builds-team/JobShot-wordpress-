@@ -164,6 +164,15 @@ function template_event2_func($content){
             </a>
         </div>';
     }
+    // メルカリ用
+    if($post_id == 9484){
+        $entry_html = '
+        <div class="fixed-buttom">
+            <a href="https://jobshot.jp/?page_id=9777">
+                <button class="button button-apply">イベントに応募する</button>
+            </a>
+        </div>';
+    }
     $user = wp_get_current_user();
     $user_login = $user->data->user_login;
     $event_apply_value = do_shortcode('[cfdb-count form="/イベント応募.*/" filter="job-id='.$post_id.'&&your-id='.$user_login.'"]');
