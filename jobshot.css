@@ -6818,3 +6818,195 @@ font-size: 13px !important;
     font-size: 10px;
 	}
 }
+/* エントリーシート */
+#post-9464 {
+  padding-top:0px;
+}
+.es-navi{
+  margin-top: 20px;
+}
+.es-container{
+
+}
+.es-navi-each{
+  display: flex;
+  list-style: none;
+  position: relative;
+  font-size: 16px;
+  min-width: 180px;
+  align-items: center;
+  margin: 8px 0;
+}
+.es-navi-selected{
+  background-color: #eee;
+  border-radius: 100px;
+}
+.es-navi-each a{
+  height: 54px;
+  display: block;
+  line-height: 54px;
+  color: #555;
+  font-style: normal;
+  font-weight: 700;
+  word-break: break-all;
+  margin-left: 15px;
+}
+.es-cards-container{
+
+}
+.es-cards{
+  margin: 80px auto;
+  margin-top: 20px;
+  max-width: 960px;
+  text-align: center;
+  background: #eee;
+  padding: 20px 0;
+}
+.es-card{
+  background: #ffffff;
+  display: inline-block;
+  margin: 8px;
+  max-width: 300px;
+  perspective: 1000;
+  position: relative;
+  text-align: left;
+  transition: all 0.3s 0s ease-in;
+  width: 300px;
+  z-index: 1;
+}
+.es-card img{
+  max-width: 300px;
+}
+.es-card__image-holder{
+  background: rgba(0,0,0,0.1);
+  height: 0;
+  padding-bottom: 75%;
+}
+.es-card .card-title{
+  background: #ffffff;
+  padding: 6px 15px 10px;
+  position: relative;
+  z-index: 0;
+}
+.es-card .card-title a.toggle-info {
+  border-radius: 32px;
+  height: 32px;
+  padding: 0;
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  width: 32px;
+}
+.es-card .card-title a.toggle-info span{
+  background: #ffffff;
+  display: block;
+  height: 2px;
+  position: absolute;
+  top: 16px;
+  transition: all 0.15s 0s ease-out;
+  width: 12px;
+}
+.es-card .card-title a.toggle-info span.left{
+  right: 14px;
+  transform: rotate(45deg);
+}
+.es-card .card-title a.toggle-info span.right{
+  left: 14px;
+  transform: rotate(-45deg);
+}
+.es-card .card-title h2{
+  font-size: 20px;
+  font-weight: 700;
+  margin: 5px 0;
+  padding: 0;
+  color: #777;
+}
+.es-card .card-title h2 small{
+  display: block;
+  font-size: 10px;
+  font-weight: 600;
+  margin-top: 20px;
+}
+.es-card .card-description {
+  padding: 0 15px 10px;
+  position: relative;
+  font-size: 14px;
+}
+.es-card .card-actions {
+  box-shadow: 0 2px 0px 0 rgba(0,0,0,0.075);
+  padding: 10px 15px 20px;
+  text-align: center;
+}
+.es-card .card-flap {
+  background: darken(#ffffff,15);
+  position: absolute;
+  width: 100%;
+  transform-origin: top;
+  transform: rotateX(-90deg);
+}
+.es-card .flap1 {
+  transition: all 0.3s 0.3s ease-out;
+  z-index: -1;
+}
+.es-card .flap2 {
+  transition: all 0.3s 0s ease-out;
+  z-index: -2;
+}
+.es-card a.btn {
+  background: #03c4b0;
+  border-radius: 4px;
+	box-shadow: 0 2px 0px 0 rgba(0,0,0,0.25);
+  color: #ffffff;
+  display: inline-block;
+  padding: 6px 30px 8px;
+  position: relative;
+  text-decoration: none;
+	transition: all 0.1s 0s ease-out;
+}
+.es-card .no-touch a.btn:hover {
+  background: lighten(#0096a0,2.5);
+  box-shadow: 0px 8px 2px 0 rgba(0, 0, 0, 0.075);
+  transform: translateY(-2px);
+  transition: all 0.25s 0s ease-out;
+}
+.es-card .no-touch a.btn:active, a.btn:active {
+  background: darken(#0096a0,2.5);
+  box-shadow: 0 1px 0px 0 rgba(255,255,255,0.25);
+  transform: translate3d(0,1px,0);
+  transition: all 0.025s 0s ease-out;
+}
+.es-cards.showing .es-card{
+  cursor: pointer;
+  opacity: 0.6;
+  transform: scale(0.88);
+}
+.no-touch .es-cards.showing .es-card:hover{
+  opacity: 0.94;
+  transform: scale(0.92);
+}
+.es-card.show {
+  opacity: 1 !important;
+  transform: scale(1) !important;
+}
+.es-card.show .card-title a.toggle-info {
+  background: #ff6666 !important;
+}
+.es-card.show .card-title a.toggle-info span {
+  top: 15px;
+}
+.es-card.show .card-title a.toggle-info span.left {
+  right: 10px;
+}
+.es-card.show .card-title a.toggle-info span.right {
+  left: 10px;
+}
+.es-card.show .card-flap {
+  background: #ffffff;
+  transform: rotateX(0deg);
+}
+.es-card.show .flap1 {
+  transition: all 0.3s 0s ease-out;
+}
+.es-card.show .flap2 {
+  transition: all 0.3s 0.2s ease-out;
+}

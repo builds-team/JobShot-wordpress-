@@ -4,16 +4,22 @@
 function add_sidebar_es(){
   $home_url =esc_url( home_url());
   $html = '
-    <div class="es-navi">
-      <ul class="es-container">
-        <li>
-          <a href="'.$home_url.'/entry-sheet">ESを書く</a>
-        </li>
-        <li>
-          <a href="'.$home_url.'/entry-sheet/view">ESを見る</a>
-        </li>
-      </ul>
-    </div>';
+  <div class="es-navi">
+    <ul class="es-container">
+      <li class="es-navi-each es-navi-selected">
+          <a href="https://jobshot.jp/entry-sheet">📝 ホーム</a>
+      </li>
+      <li class="es-navi-each">
+        <a href="https://jobshot.jp/entry-sheet">🔰 基礎から学ぶ</a>
+      </li>
+      <li class="es-navi-each">
+        <a href="https://jobshot.jp/entry-sheet/view">👥 ESを確認する</a>
+      </li>
+      <li class="es-navi-each">
+          <a href="https://jobshot.jp/entry-sheet/view">🔥 実践チャレンジ</a>
+      </li>
+    </ul>
+  </div>';
   return $html;
 }
 add_shortcode("add_sidebar_es","add_sidebar_es");
@@ -23,69 +29,99 @@ function view_es_type_func(){
   $home_url =esc_url( home_url());
   $es_practice_categories = get_es_categories('practice');
   $es_challenge_categories = get_es_categories('challenge');
-  $practice_card_html = '';
+  $practice_card_html = '<div class="es-cards">';
   foreach ($es_practice_categories as $es_get_param => $es_contents) {
+    // $practice_card_html .= '
+    //   <div class="card full-card">
+    //     <div class="full-card-maim">
+    //       <div class="column_card_img">
+    //         <img src="'.$es_contents[2].'" alt="何かの写真">
+    //       </div>
+    //       <div class="column_card_contents">
+    //         <div class="column_card_title">
+    //           <h3 id="column_card_title_text"><a href="'.$home_url.'/entry-sheet/practice?category='.$es_get_param.'">'.$es_contents[0].'</a></h3>
+    //         </div>
+    //         <div class="column_card_description">
+    //           <p>'.$es_contents[1].'</p>
+    //         </div>
+    //       </div>
+    //     </div>
+    //   </div>';
     $practice_card_html .= '
-      <div class="card full-card">
-        <div class="full-card-maim">
-          <div class="column_card_img">
-            <img src="'.$es_contents[2].'" alt="何かの写真">
-          </div>
-          <div class="column_card_contents">
-            <div class="column_card_title">
-              <h3 id="column_card_title_text"><a href="'.$home_url.'/entry-sheet/practice?category='.$es_get_param.'">'.$es_contents[0].'</a></h3>
-            </div>
-            <div class="column_card_description">
-              <p>'.$es_contents[1].'</p>
+      <div class="es-card">
+        <div class="es-card__image-holder">
+          <img class="card__image" src="https://source.unsplash.com/300x225/?wave" alt="wave" />
+        </div>
+        <div class="card-title">
+          <a href="#" class="toggle-info btn">
+            <span class="left"></span>
+            <span class="right"></span>
+          </a>
+          <h2>'.$es_contents[0].'<small>🔰 基礎から学ぶ</small></h2>
+        </div>
+        <div class="card-flap flap1">
+          <div class="card-description">'.$es_contents[1].'</div>
+          <div class="card-flap flap2">
+            <div class="card-actions">
+              <a href="'.$home_url.'/entry-sheet/practice?category='.$es_get_param.'" class="btn">Read more</a>
             </div>
           </div>
         </div>
       </div>
     ';
   }
+  $practice_card_html = '</div>';
   $html = '
     <h2 class="column_search_category">ESを書く</h2>
-    <div class="es-cards-container">
-      <h3 class="">項目別練習</h3>
-      '.$practice_card_html.'
-    </div>';
-  $challenge_card_html = '';
+    '.$practice_card_html;
+  $challenge_card_html = '<div class="es-cards">';
   foreach ($es_challenge_categories as $es_get_param => $es_contents) {
+    // $challenge_card_html .= '
+    //   <div class="card full-card">
+    //     <div class="full-card-maim">
+    //       <div class="column_card_img">
+    //         <img src="'.$es_contents[2].'" alt="何かの写真">
+    //       </div>
+    //       <div class="column_card_contents">
+    //         <div class="column_card_title">
+    //           <h3 id="column_card_title_text"><a href="'.$home_url.'/entry-sheet/challenge?category='.$es_get_param.'">'.$es_contents[0].'</a></h3>
+    //         </div>
+    //         <div class="column_card_description">
+    //           <p>'.$es_contents[1].'</p>
+    //         </div>
+    //       </div>
+    //     </div>
+    //   </div>
+    // ';
     $challenge_card_html .= '
-      <div class="card full-card">
-        <div class="full-card-maim">
-          <div class="column_card_img">
-            <img src="'.$es_contents[2].'" alt="何かの写真">
-          </div>
-          <div class="column_card_contents">
-            <div class="column_card_title">
-              <h3 id="column_card_title_text"><a href="'.$home_url.'/entry-sheet/challenge?category='.$es_get_param.'">'.$es_contents[0].'</a></h3>
-            </div>
-            <div class="column_card_description">
-              <p>'.$es_contents[1].'</p>
+      <div class="es-card">
+        <div class="es-card__image-holder">
+          <img class="card__image" src="https://source.unsplash.com/300x225/?wave" alt="wave" />
+        </div>
+        <div class="card-title">
+          <a href="#" class="toggle-info btn">
+            <span class="left"></span>
+            <span class="right"></span>
+          </a>
+          <h2>'.$es_contents[0].'<small>🔰 基礎から学ぶ</small></h2>
+        </div>
+        <div class="card-flap flap1">
+          <div class="card-description">'.$es_contents[1].'</div>
+          <div class="card-flap flap2">
+            <div class="card-actions">
+              <a href="'.$home_url.'/entry-sheet/challenge?category='.$es_get_param.'" class="btn">Read more</a>
             </div>
           </div>
         </div>
       </div>
     ';
   }
+  $challenge_card_html = '</div>';
   $html .= '
     <div class="es-cards-container">
       <h3 class="">ES添削チャレンジ</h3>
       '.$challenge_card_html.'
     </div>';
-  $html .='
-    <style type="text/css">
-      .es-cards-container {
-        display:inline-block;
-        vertical-align:top;
-        width:49%;
-      }
-	  #post-9464 {
-	    padding-top:0px;
-	  }
-    </style>
-  ';
   return $html;
 }
 add_shortcode('view_es_type','view_es_type_func');
