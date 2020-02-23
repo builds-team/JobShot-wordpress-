@@ -6999,6 +6999,29 @@ font-size: 13px !important;
     line-height: 40px;
     width: 100%;
   }
+  .es-navi-each a span{
+    background: #555;
+    display: block;
+    height: 1px;
+    position: absolute;
+    transition: all 0.15s 0s ease-out;
+    width: 12px;
+    right: 20px;
+  }
+  .es-navi-each a .left{
+    top: 16px;
+    transform: rotate(45deg);
+  }
+  .es-navi-each a .right{
+    top: 24px;
+    transform: rotate(-45deg);
+  }
+  .es-navi{
+    margin-top: 0px;
+  }
+  #pgc-9464-1-0{
+    margin-bottom: 0px !important;
+  }
 }
 @media screen and (min-width: 481px) {
   .es-card img{

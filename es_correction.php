@@ -5,18 +5,19 @@ function add_sidebar_es(){
   $home_url =esc_url( home_url());
   $html = '
   <div class="es-navi">
+    <h2 class="only-sp text-align-center">カテゴリーから探す</h2>
     <ul class="es-container">
       <li class="es-navi-each es-navi-selected">
-          <a href="https://jobshot.jp/entry-sheet">📝 ホーム</a>
+          <a href="https://jobshot.jp/entry-sheet">📝 ホーム<span class="left"></span><span class="right"></span></a>
       </li>
       <li class="es-navi-each">
-        <a href="https://jobshot.jp/entry-sheet">🔰 基礎から学ぶ</a>
+        <a href="https://jobshot.jp/entry-sheet">🔰 基礎から学ぶ<span class="left"></span><span class="right"></span></a>
       </li>
       <li class="es-navi-each">
-        <a href="https://jobshot.jp/entry-sheet/view">👥 ESを確認する</a>
+        <a href="https://jobshot.jp/entry-sheet/view">👥 ESを確認する<span class="left"></span><span class="right"></span></a>
       </li>
       <li class="es-navi-each">
-          <a href="https://jobshot.jp/entry-sheet/view">🔥 実践チャレンジ</a>
+          <a href="https://jobshot.jp/entry-sheet/view">🔥 実践チャレンジ<span class="left"></span><span class="right"></span></a>
       </li>
     </ul>
   </div>';
