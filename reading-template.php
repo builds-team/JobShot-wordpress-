@@ -74,7 +74,7 @@ function add_top_bar($atts){
   ), $atts));
   $home_url =esc_url( home_url());
   $title_array = array(
-    'internship'  =>  'インターン',
+    'internship'  =>  '長期インターン',
     'job' =>  '新卒情報',
     'event' =>  'イベント',
     'column'  =>  '就活記事',
@@ -87,7 +87,7 @@ function add_top_bar($atts){
     'event' =>  '企業説明会から就活対策セミナーまで、就活イベント情報が満載。<br>トップレベルの就活を体感しよう。JobShot限定選考パスも。',
     'column'  =>  '就活で勝ち抜くために必要な情報や体験談が多数投稿されています。<br>就活初心者から選考中の人まで様々な人を対象にコンテンツを網羅。コラム記事を読んで万全の対策をしよう！',
     'scout' =>  '最大35項目から学生に直接アプローチするスカウト機能により、<br>「熱意×適性」を両立した、企業に最適な人材を獲得できます。',
-    'entry-sheet' => ''
+    'entry-sheet' => '企業の選考フローで最初の関門となるエントリーシート。<br>項目別練習と実践チャレンジを活用して、確実に突破しよう！'
   );
   $img_array = array(
     'internship'  =>  '2020/02/photo-1552664730-d307ca884978.jpeg',

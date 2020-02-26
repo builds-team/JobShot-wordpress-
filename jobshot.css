@@ -6119,7 +6119,7 @@ font-size: 13px !important;
 @media screen and (max-width: 782px) {
   .background-img-container .background-img-text h1 {
       color: #fff;
-      font-size: 40px;
+      font-size: 7vw;
   }
   .background-img-container .background-img-text p {
       margin: 5px 20px;
@@ -6728,22 +6728,25 @@ font-size: 13px !important;
         opacity: 0.5;
     }
     #interview_date{
-      margin-top: -50px;
+      margin-top: -30px;
+    }
+    #interview_practice{
+      margin-top: -30px;
     }
     .apply-form #interview_date .form-necessarily{
       margin-bottom: 60px;
     }
     #interview_date .interview_date_1{
       left: 0;
-      top: 80px;
+      top: 50px;
     }
     #interview_date .interview_date_2{
       left: 0;
-      top: 160px;
+      top: 130px;
     }
     #interview_date .interview_date_3{
       left: 0;
-      top: 240px;
+      top: 210px;
     }
     #interview_date .interview_date_sub1{
       left: 0;
@@ -7043,6 +7046,7 @@ font-size: 13px !important;
     height: 40px;
     line-height: 40px;
     width: 100%;
+    margin-left: 25px;
   }
   .es-navi-each a span{
     background: #555;
@@ -7063,6 +7067,10 @@ font-size: 13px !important;
   }
   .es-navi{
     margin-top: 0px;
+    margin-left: -20px;
+  }
+  .es-navi h2{
+    margin-left: 20px;
   }
   #pgc-9464-1-0{
     margin-bottom: 0px !important;
