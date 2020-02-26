@@ -610,7 +610,7 @@ function edit_internship_info(){
     $company_name = $company->data->display_name;
     $post_title = $post->post_title;
     $regist_occupation = get_the_terms($post_id,"occupation")[0]->name;
-    $occupation_array= array("engineer"=>"エンジニア","designer"=>"デザイナー","director"=>"ディレクター","marketer"=>"マーケティング","writer"=>"ライター","sales"=>"営業","corporate_staff"=>"事務/コーポレート・スタッフ","human_resources"=>"総務・人事・経理","planning"=>"企画","others"=>"その他");
+    $occupation_array= array("engineer"=>"エンジニア","designer"=>"デザイナー","consulting"=>"コンサル","director"=>"ディレクター","marketer"=>"マーケティング","writer"=>"ライター","sales"=>"営業","corporate_staff"=>"事務/コーポレート・スタッフ","human_resources"=>"総務・人事・経理","planning"=>"企画","others"=>"その他");
     $occupation_html = '';
     foreach($occupation_array as $occupation_key => $occupation_value){
       if($regist_occupation == $occupation_value){
@@ -1100,7 +1100,7 @@ function update_internship_info(){
 add_action('template_redirect', 'update_internship_info');
 
 function new_internship_form(){
-  $occupation_array= array("engineer"=>"エンジニア","designer"=>"デザイナー","director"=>"ディレクター","marketer"=>"マーケティング","writer"=>"ライター","sales"=>"営業","corporate_staff"=>"事務/コーポレート・スタッフ","human_resources"=>"総務・人事・経理","planning"=>"企画","others"=>"その他");
+  $occupation_array= array("engineer"=>"エンジニア","designer"=>"デザイナー","consulting"=>"コンサル","director"=>"ディレクター","marketer"=>"マーケティング","writer"=>"ライター","sales"=>"営業","corporate_staff"=>"事務/コーポレート・スタッフ","human_resources"=>"総務・人事・経理","planning"=>"企画","others"=>"その他");
   $occupation_html = '<div class="company-established new_intern_occupation">';
   foreach($occupation_array as $occupation_key => $occupation_value){
     $occupation_html .= '<div><input type="radio" name="occupation" value="'.$occupation_key.'" />'.$occupation_value.'</div>';

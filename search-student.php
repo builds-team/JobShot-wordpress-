@@ -544,6 +544,9 @@ function student_search_form_func($atts) {
             <input type="checkbox" name="occupation[]" value="デザイナー" class="checkbox"><span> デザイナー</span>
         </label>
         <label class="btn active">
+            <input type="checkbox" name="occupation[]" value="コンサル" class="checkbox"><span> コンサル</span>
+        </label>
+        <label class="btn active">
             <input type="checkbox" name="occupation[]" value="ディレクター" class="checkbox"><span> ディレクター</span>
         </label>
         <label class="btn active">
