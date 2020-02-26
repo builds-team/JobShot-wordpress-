@@ -6546,10 +6546,18 @@ font-size: 13px !important;
     padding: 4px 6px;
     margin-right: 10px;
 }
+.form-option:before {
+  content: "任意";
+  color: #fff;
+  background: #AAA 0% 0% no-repeat padding-box;
+  border-radius: 2px;
+  padding: 4px 6px;
+  margin-right: 10px;
+}
 .apply-form-container label {
     font-weight: normal;
 }
-.apply-form-container .your-name, .apply-form-container .your-email, .your-date-container {
+.apply-form-container .your-name, .apply-form-container .your-email, .your-date-container, .apply-form-container .interview_date_1,.apply-form-container .interview_date_2,.apply-form-container .interview_date_3, .interview_practice {
     position: absolute;
     left: 270px;
 }
@@ -6648,10 +6656,14 @@ font-size: 13px !important;
         left: 0px;
         top: 50px;
     }
+    .apply-form-container .interview_practice{
+      left: 0px;
+      top: 60px;
+    }
     .apply-form-container .your-name, .apply-form-container input[name="your-name"] {
         width: 167px;
     }
-    .apply-form-container .your-email, .apply-form-container input[type="email"] {
+    .apply-form-container .your-email, .apply-form-container input[type="email"], #interview_date .interview_date_1, #interview_date .interview_date_2, #interview_date .interview_date_3, #interview_date input[type="text"]{
         width: 100%;
     }
     .apply-form-container .your-date input, .apply-form-container .your-time input {
@@ -6673,6 +6685,9 @@ font-size: 13px !important;
     }
     .form-necessarily:before {
         margin-right: 5px;
+    }
+    .form-option:before {
+      margin-right: 5px;
     }
     .entry-seat {
         margin: 20px 0 0 0;
@@ -6711,6 +6726,37 @@ font-size: 13px !important;
     .apply-submit-btn input[type="submit"]:hover {
         background-color: #EFB753;
         opacity: 0.5;
+    }
+    #interview_date{
+      margin-top: -50px;
+    }
+    .apply-form #interview_date .form-necessarily{
+      margin-bottom: 60px;
+    }
+    #interview_date .interview_date_1{
+      left: 0;
+      top: 80px;
+    }
+    #interview_date .interview_date_2{
+      left: 0;
+      top: 160px;
+    }
+    #interview_date .interview_date_3{
+      left: 0;
+      top: 240px;
+    }
+    #interview_date .interview_date_sub1{
+      left: 0;
+      top: 280px;
+    }
+    #interview_date .interview_date_sub2{
+      left: 0;
+      top: 300px;
+    }
+    .apply-form #interview_practice p{
+      padding-left: 0px;
+      padding-top: 60px;
+      line-height: 30px;
     }
 }
 .pre-es-example p:hover{
@@ -6817,4 +6863,35 @@ font-size: 13px !important;
 	.flowchart_job > li dl dt .icon {
     font-size: 10px;
 	}
+}
+#interview_date .form-necessarily{
+  margin: 30px 0;
+}
+.interview_date_sub1{
+  position: absolute;
+  left: 270px;
+}
+.interview_date_sub2{
+  position: absolute;
+  top: 270px;
+  left: 270px;
+}
+.interview_practice input{
+  margin: 0;
+  padding: 0;
+  vertical-align: text-top;
+}
+.pr_save_check_box{
+  vertical-align: text-top;
+}
+.interview_practice .wpcf7-list-item{
+  margin: 0;
+}
+#interview_practice p{
+  padding-left: 270px;
+  padding-top: 20px;
+  line-height: 30px;
+}
+.interview_practice .wpcf7-list-item-label{
+  margin-left: 5px;
 }
