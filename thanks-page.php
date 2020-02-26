@@ -8,9 +8,9 @@ function add_thankspage(){
     <p style="text-align: center;">ご登録済みのメールアドレスに応募完了のメールが送信されているかご確認ください。</p>
     <div class="thankyou-main">
         <div class="reccomend-internship">
-            <p>同時に複数のインターンに申し込むと、</p>
-            <p>合格率が<span class="emphasis-number">2</span>倍以上UP！<br>今すぐ他の長期インターンも探してみよう！</p>
-            <a href="'.$home_url.'/internship" class="btn-flat-border">他のインターンを探す</a>
+            <p>外資内定者による過去問に基づく面接対策により、</p>
+            <p>合格率<span class="emphasis-number">50</span>％以上UP！<br>面接対策に応募してみよう！</p>
+            <a href="'.$home_url.'/interview" class="btn-flat-border">面接対策に応募する</a>
         </div>
         <hr>
         <div class="after-flow-internship">
