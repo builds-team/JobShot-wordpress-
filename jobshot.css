@@ -6577,7 +6577,9 @@ font-size: 13px !important;
 .apply-form-container input {
     margin: 0;
     padding: 5px;
-    vertical-align: text-top;
+}
+.apply-form-container input[type="checkbox"] {
+  vertical-align: text-top;
 }
 .apply-form-container .your-date input, .apply-form-container .your-time input {
     margin: 0 5px;
