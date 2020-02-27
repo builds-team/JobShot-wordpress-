@@ -418,11 +418,11 @@ function view_past_es(){
       ';
     }
     $html = '
-      <h2 class="column_search_category">ESを見る</h2>
-      <div class="">
-        <h3 class="">ES添削チャレンジ</h3>
-        '.$challenge_card_html.'
-      </div>';
+    <div class="es-title-container">
+      <p class="es-title-sub">\ 基礎からはじめよう /</p>
+      <h2 class="es-title">項目別練習</h2>
+    </div>
+    '.$practice_card_html;
 
     $es_categories = get_es_categories('practice');
     $es_points = get_es_points('practice');
@@ -465,11 +465,7 @@ function view_past_es(){
         </div>
       ';
     }
-    $html .= '
-      <div class="">
-        <h3 class="">項目別練習</h3>
-        '.$practice_card_html.'
-      </div>';
+    $html .= $practice_card_html;
   }
   return $html;
 }
