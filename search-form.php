@@ -12,7 +12,7 @@ function convert_to_dropdown_checkboxes($html,$id,$name,$text,$tags){
   $selects_arr=explode("<opt",$html);
   array_splice($selects_arr, 0, 2);
   $html="<div class='select-dropdown-container'><label><input class='select-dropdown-check' type='checkbox'><div class='select-dropdown-text'>".$text."</div><ul>";
-  foreach ($selects_arr as &$select_bt) {
+  foreach ($selects_arr as $select_bt) {
     if(strncmp($select_bt,"ion ",4)==0){
       $select_bt=str_replace("\r", '', $select_bt);
       $select_bt=str_replace("\n", '', $select_bt);
@@ -29,14 +29,16 @@ function convert_to_dropdown_checkboxes($html,$id,$name,$text,$tags){
         }
       }
       if($tag_cnt>0){
-        $select_bt=str_replace("ion", "<li><label class='select-chkbox'><input type='checkbox' checked= 'checked' id='".$id.$cnt."' name='".$name."[]'", 						$select_bt);
+        $select_bt_2=str_replace("ion", "<li><label class='select-chkbox'><input type='checkbox' checked= 'checked' id='".$id.$cnt."' name='".$name."[]'", substr($select_bt, 0, 3));
+        $select_bt_2 .= substr($select_bt, 4);
       }else{
-        $select_bt=str_replace("ion", "<li><label class='select-chkbox'><input type='checkbox' id='".$id.$cnt."' name='".$name."[]'", $select_bt);
+        $select_bt_2=str_replace("ion", "<li><label class='select-chkbox'><input type='checkbox' id='".$id.$cnt."' name='".$name."[]'", substr($select_bt, 0, 3));
+        $select_bt_2 .= substr($select_bt, 4);
       }
-      $select_bt=rtrim($select_bt);
-      $select_bt=$select_bt."</span></label></li>";
+      $select_bt_2=rtrim($select_bt_2);
+      $select_bt_2=$select_bt_2."</span></label></li>";
     }
-    $html.=$select_bt;
+    $html.=$select_bt_2;
   }
   $html.="</ul></label><div class='select-dropdown-shadow'></div></div>";
   return $html;

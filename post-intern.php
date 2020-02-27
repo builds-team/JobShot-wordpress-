@@ -12,6 +12,7 @@ function internship_form(){
             <p>職種：</p>
             <input type="radio" name="occupation" value="engineer" checked="checked" />エンジニア
             <input type="radio" name="occupation" value="designer" />デザイナー
+            <input type="radio" name="occupation" value="consulting" />コンサル
             <input type="radio" name="occupation" value="director" />ディレクター
             <input type="radio" name="occupation" value="marketer" />マーケティング
             <input type="radio" name="occupation" value="writer" />ライター
