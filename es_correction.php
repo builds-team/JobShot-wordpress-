@@ -11,13 +11,13 @@ function add_sidebar_es(){
           <a href="https://jobshot.jp/entry-sheet">📝 ホーム<span class="left"></span><span class="right"></span></a>
       </li>
       <li class="es-navi-each">
-        <a href="https://jobshot.jp/entry-sheet">🔰 基礎から学ぶ<span class="left"></span><span class="right"></span></a>
+        <a href="https://jobshot.jp/entry-sheet?type=practice">🔰 基礎から学ぶ<span class="left"></span><span class="right"></span></a>
       </li>
       <li class="es-navi-each">
         <a href="https://jobshot.jp/entry-sheet/view">👥 ESを確認する<span class="left"></span><span class="right"></span></a>
       </li>
       <li class="es-navi-each">
-          <a href="https://jobshot.jp/entry-sheet/view">🔥 実践チャレンジ<span class="left"></span><span class="right"></span></a>
+          <a href="https://jobshot.jp/entry-sheet?type=challenge">🔥 実践チャレンジ<span class="left"></span><span class="right"></span></a>
       </li>
     </ul>
   </div>';
@@ -84,6 +84,13 @@ function view_es_type_func(){
     ';
   }
   $challenge_card_html .= '</div>';
+  if(isset($_GET['type'])){
+    if($_GET['type'] == 'practice'){
+      return $practice_card_html;
+    }else{
+      return $challenge_card_html;
+    }
+  }
   $html = $practice_card_html.$challenge_card_html;
   return $html;
 }
@@ -105,7 +112,8 @@ function new_es_form_practice(){
 	    <input type="hidden" name="es_category" value="'.$es_categories[$category][0].'">
       <input type="hidden" name="new_es_practice" value="new_es_practice">
       <input type="hidden" name="user_id" value="'.$user_id.'">
-      <input type="submit" name="save" id="publish" class="button button-primary button-large" value="保存">
+      <input type="hidden" name="correction" value="false">
+      <input type="submit" name="publish" id="publish" class="button button-primary button-large" value="保存">
     </div>
   </div>';
   $es_content = '';
@@ -168,12 +176,35 @@ function new_es_form_challenge(){
   $user_name = $user->data->display_name;
   $es_categories = get_es_categories('challenge');
   $es_points = get_es_points('challenge');
-  $post_button_html = '
-  <div class="">
-    <div class="">
-      <input type="submit" name="publish" id="publish" class="button button-primary button-large" value="投稿">
-    </div>
-  </div>';
+  $args = array(
+    'post_type' => 'entry_sheet',
+    'post_status' => array('publish'),
+    'post_author' => $user_id,
+    'meta_key' => 'company',
+    'meta_value' => $es_categories[$category][0],
+    'posts_per_page' => 100
+  );
+  $es_challenge = get_posts($args);
+  $count = 0;
+  foreach($es_challenge as $es){
+    if($es->post_author == $user_id){
+      $count += 1;
+    }
+  }
+  if($count == 0){
+    $post_button_html = '
+      <div class="">
+        <div class="">
+          <input type="hidden" name="correction" value="true">
+          <input type="submit" name="publish" id="publish" class="button button-primary button-large" value="投稿">
+        </div>
+      </div>';
+  }else{
+    $post_button_html = '
+      <div class="">
+          <button type="submit" class="button button-primary button-large" disabled>投稿済み</button>
+      </div>';
+  }
   $points_html = '';
   foreach($es_points[$category] as $es_point){
     $points_html .= '<li>'.$es_point.'</li>';
@@ -189,12 +220,13 @@ function new_es_form_challenge(){
     <form action="" method="POST" enctype="multipart/form-data">
       <p>ESのテーマ*</p>
       <div class="select_box select_box_01">
-        <select name="selection_status" required>
-            <option value="gakutika">学生時代力を入れたこと</option>
-            <option value="self-pr">自己PR</option>
-            <option value="strong-weak">長所・短所</option>
-            <option value="motivation">志望動機</option>
-            <option value="news">最近のニュース</option>
+        <select name="challenge_category" required>
+            <option value=""></option>
+            <option value="学生時代力を入れたこと">学生時代力を入れたこと</option>
+            <option value="自己PR">自己PR</option>
+            <option value="長所・短所">長所・短所</option>
+            <option value="志望動機">志望動機</option>
+            <option value="最近のニュース">最近のニュース</option>
         </select>
       </div>
       <div class="">
@@ -225,11 +257,15 @@ function new_es_post(){
     $user = wp_get_current_user();
     $es_content = $_POST["es_content"];
     $es_category = $_POST["es_category"];
+    if(isset($_POST["challenge_category"])){
+      $challenge_category = '/'.$_POST["challenge_category"];
+    }
+    $correction = $_POST["correction"];
     $user_name = $user->data->display_name;
 		$es_type = 'entry_sheet';
     $post_value = array(
       'post_author' => get_current_user_id(),
-      'post_title' => $es_category.'/'.$user_name,
+      'post_title' => $es_category.$challenge_category,
       'post_type' => $es_type,
       'post_status' => 'draft'
     );
@@ -248,8 +284,12 @@ function new_es_post(){
       }
       $post_value['post_status'] = $post_status; // 公開ステータスを$post_statusで
       update_post_meta($insert_id, 'author', $user_name);
-      update_post_meta($insert_id, '投稿テーマ', $es_category);
+      update_post_meta($insert_id, '投稿テーマ', $es_category.$challenge_category);
       update_post_meta($insert_id, '投稿内容', $es_content);
+      update_post_meta($insert_id,'correction',$correction);
+      if(!empty($_POST["new_es_challenge"])){
+        update_post_meta($insert_id,'company',$es_category);
+      }
 		  $home_url =esc_url( home_url( ));
       $insert_id2 = wp_insert_post($post_value);
       if($insert_id2) {
@@ -288,8 +328,8 @@ function view_past_es(){
   if(!empty($_GET["post_id"]) && !empty($_GET["action"])){
     $post_id = $_GET["post_id"];
     $es = get_post($post_id);
-    $post_status = get_post_status($post_id);
-    if($post_status == 'publish'){
+    $post_status = get_post_meta($post_id,'correction',true);
+    if($post_status == 'true'){
       $es_categories = get_es_categories('challenge');
       $es_points = get_es_points('challenge');
     }else{
@@ -298,8 +338,12 @@ function view_past_es(){
     }
     if($es->post_author == $user_id){
       $es_category = get_field("投稿テーマ",$post_id);
+      if($post_status == 'true'){
+        $es_category_sub = explode("/",$es_category)[1];
+        $es_category = explode("/",$es_category)[0];
+      }
       $es_urls = get_es_url();
-	  $es_url = $es_urls[$es_category];
+	    $es_url = $es_urls[$es_category];
       $es_content = get_field("投稿内容",$post_id);
       $es_corrector = get_field("添削者",$post_id);
       $es_correction = get_field("添削内容",$post_id);
@@ -307,14 +351,18 @@ function view_past_es(){
       foreach($es_points[$es_url] as $es_point){
         $points_html .= '<li>'.$es_point.'</li>';
       }
-      if($post_status == 'publish'){
+      if($post_status == 'true'){
        $html = '<h2 class="maintitle">ES添削チャレンジ('.$es_categories[$es_url][0].')</h2>
        <div class="">
          <h2 class="">'.$es_categories[$es_url][0].'の要項</h2>
          <ul class="">
            '.$points_html.'
          </ul>
-       </div>';
+       </div>
+       <p>ESのテーマ*</p>
+       <p>'.$es_category_sub.'</p>
+       ';
+       $es_category_sub = '/'.$es_category_sub;
       }else{
         $html = '<h2 class="maintitle">ES添削チャレンジ('.$es_categories[$es_url][0].')</h2>
        <div class="">
@@ -329,7 +377,7 @@ function view_past_es(){
           <div class="full-card-main">
 		        <div class="full-card-text">
               <div class="full-card-text-title">
-                <h3>'.$es_category.'</h3>
+                <h3>'.$es_category.$es_category_sub.'</h3>
               </div>
               <table class="full-card-table">
                 <tbody>
@@ -356,13 +404,17 @@ function view_past_es(){
       'post_type' => 'entry_sheet',
       'post_status' => array('publish'),
       'post_author' => $user_id,
+      'meta_key' => 'correction',
+	    'meta_value' => 'true',
 	  'posts_per_page' => 100
     );
     $es_challenge = get_posts($args);
     $args = array(
       'post_type' => 'entry_sheet',
-      'post_status' => array('draft'),
+      'post_status' => array('publish'),
       'post_author' => $user_id,
+      'meta_key' => 'correction',
+	    'meta_value' => 'false',
 	  'posts_per_page' => 100
     );
     $es_practice = get_posts($args);
@@ -370,6 +422,7 @@ function view_past_es(){
     $challenge_card_html = '';
     foreach($es_challenge as $es){
       $post_id = $es->ID;
+      if($es->post_author == $user_id){
       $es_category = get_field("投稿テーマ",$post_id);
       $es_content = get_field("投稿内容",$post_id);
       $es_corrector = get_field("添削者",$post_id);
@@ -416,18 +469,19 @@ function view_past_es(){
           </div>
         </div>
       ';
+      }
     }
     $html = '
     <div class="es-title-container">
-      <p class="es-title-sub">\ 基礎からはじめよう /</p>
-      <h2 class="es-title">項目別練習</h2>
+      <h2 class="es-title">ES添削チャレンジ</h2>
     </div>
-    '.$practice_card_html;
+    '.$challenge_card_html;
 
     $es_categories = get_es_categories('practice');
     $es_points = get_es_points('practice');
     foreach($es_practice as $es){
       $post_id = $es->ID;
+      if($es->post_author == $user_id){
       $es_category = get_field("投稿テーマ",$post_id);
       $es_content = get_field("投稿内容",$post_id);
       if(mb_strlen($es_content) > 100){
@@ -464,8 +518,13 @@ function view_past_es(){
           </div>
         </div>
       ';
+      }
     }
-    $html .= $practice_card_html;
+    $html .= '
+      <div class="es-title-container">
+        <h2 class="es-title">項目別練習</h2>
+      </div>
+      '.$practice_card_html;
   }
   return $html;
 }
@@ -535,7 +594,7 @@ function get_es_points($type){
     $es_points = array(
       'test' => array('testの要項１','testの要項２'),
       'builds' => array('buildsの要項１','buildsの要項２'),
-      'musojyuku' => array('就活無双塾の要項１','就活無双塾の要項２')
+      'musojyuku' => array('ES添削チャレンジは一つのチャレンジで一つしか提出出来ません','就活無双塾の要項２')
     );
   }
   return $es_points;
@@ -554,3 +613,16 @@ function get_es_url(){
     );
   return $es_url;
 }
+
+function add_entry_sheet_column( $defaults ) {
+  $defaults['correction'] = '添削';
+  return $defaults;
+  }
+  add_filter('manage_entry_sheet_posts_columns', 'add_entry_sheet_column');
+
+  function add_custom_column_id($column_name, $id) {
+      if( $column_name == 'correction' ) {
+      echo get_post_meta($id, 'correction', true);
+      }
+  }
+  add_action('manage_entry_sheet_posts_custom_column', 'add_custom_column_id', 10, 2);

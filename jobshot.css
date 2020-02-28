@@ -7117,3 +7117,26 @@ font-size: 13px !important;
 .interview_practice .wpcf7-list-item-label{
   margin-left: 5px;
 }
+}
+
+.page-id-9741 .col-sidebar{
+  display: none !important;
+}
+.page-id-9741 .main-content{
+	width:100% !important;
+}
+.post-9745 {
+	padding-top:0px !important;
+}
+.page-id-9745 .col-sidebar{
+  display: none !important;
+}
+.page-id-9745 .main-content{
+	width:100% !important;
+}
+.post-9745 {
+	padding-top:0px !important;
+}
+.post-9746 {
+	padding-top:0px !important;
+}
