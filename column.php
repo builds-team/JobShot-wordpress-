@@ -28,6 +28,17 @@ function template_column2_func($content){
         'internship' => 'インターンシップ・ジョブ',
         'recruiter' => 'OB訪問・リクルーター',
         'english' => '英語・TOEIC対策',
+        'consulting'=>'コンサル',
+        'trading_company'=>'商社',
+        'mfr'=>'メーカー',
+        'fin'=>'金融（銀行・証券・保険）',
+        'real_estate'=>'不動産',
+        'adv'=>'広告・出版・マスコミ',
+        'infrastructure'=>'インフラ',
+        'internet'=>'インターネット・通信',
+        'government'=>'官公庁',
+        'venture'=>'ベンチャー企業',
+        'others_industry'=>'その他',
         'science' => '理系学生',
         'female_student' => '女子学生',
         'athlete' => '体育会系',
@@ -137,6 +148,17 @@ function add_column_category($column_name, $post_id) {
                 'internship' => 'インターンシップ・ジョブ',
                 'recruiter' => 'OB訪問・リクルーター',
                 'english' => '英語・TOEIC対策',
+                'consulting'=>'コンサル',
+                'trading_company'=>'商社',
+                'mfr'=>'メーカー',
+                'fin'=>'金融（銀行・証券・保険）',
+                'real_estate'=>'不動産',
+                'adv'=>'広告・出版・マスコミ',
+                'infrastructure'=>'インフラ',
+                'internet'=>'インターネット・通信',
+                'government'=>'官公庁',
+                'venture'=>'ベンチャー企業',
+                'others_industry'=>'その他',
                 'science' => '理系学生',
                 'female_student' => '女子学生',
                 'athlete' => '体育会系',
@@ -334,6 +356,47 @@ function add_sidebar_column(){
                         </li>
                     </ul>
                 </li>
+                <li class="column-section">
+                    <p>業界研究</p>
+                    <ul>
+                        <li>
+                            <a href="'.$home_url.'/column?first_category=industry">業界研究一覧</a>
+                        </li>
+                        <li>
+                            <a href="'.$home_url.'/column?second_category=consulting">コンサル</a>
+                        </li>
+                        <li>
+                            <a href="'.$home_url.'/column?second_category=trading_company">商社</a>
+                        </li>
+                        <li>
+                            <a href="'.$home_url.'/column?second_category=mfr">メーカー</a>
+                        </li>
+                        <li>
+                            <a href="'.$home_url.'/column?second_category=fin">金融（銀行・証券・保険）</a>
+                        </li>
+                        <li>
+                            <a href="'.$home_url.'/column?second_category=real_estate">不動産</a>
+                        </li>
+                        <li>
+                            <a href="'.$home_url.'/column?second_category=adv">広告・出版・マスコミ</a>
+                        </li>
+                        <li>
+                            <a href="'.$home_url.'/column?second_category=infrastructure">インフラ</a>
+                        </li>
+                        <li>
+                            <a href="'.$home_url.'/column?second_category=internet">インターネット・通信</a>
+                        </li>
+                        <li>
+                            <a href="'.$home_url.'/column?second_category=government">官公庁</a>
+                        </li>
+                        <li>
+                            <a href="'.$home_url.'/column?second_category=venture">ベンチャー企業</a>
+                        </li>
+                        <li>
+                            <a href="'.$home_url.'/column?second_category=others_industry">その他</a>
+                        </li>
+                    </ul>
+                </li>
             </ul>
         </div>';
     if(isset($_GET["first_category"]) || isset($_GET["second_category"])){
@@ -506,6 +569,47 @@ function add_sidebar_column(){
                         </li>
                         <li>
                             <a href="'.$home_url.'/column?second_category=english">英語・TOEIC対策</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="column-section">
+                    <p>業界研究</p>
+                    <ul>
+                        <li>
+                            <a href="'.$home_url.'/column?first_category=industry">業界研究一覧</a>
+                        </li>
+                        <li>
+                            <a href="'.$home_url.'/column?second_category=consulting">コンサル</a>
+                        </li>
+                        <li>
+                            <a href="'.$home_url.'/column?second_category=trading_company">商社</a>
+                        </li>
+                        <li>
+                            <a href="'.$home_url.'/column?second_category=mfr">メーカー</a>
+                        </li>
+                        <li>
+                            <a href="'.$home_url.'/column?second_category=fin">金融（銀行・証券・保険）</a>
+                        </li>
+                        <li>
+                            <a href="'.$home_url.'/column?second_category=real_estate">不動産</a>
+                        </li>
+                        <li>
+                            <a href="'.$home_url.'/column?second_category=adv">広告・出版・マスコミ</a>
+                        </li>
+                        <li>
+                            <a href="'.$home_url.'/column?second_category=infrastructure">インフラ</a>
+                        </li>
+                        <li>
+                            <a href="'.$home_url.'/column?second_category=internet">インターネット・通信</a>
+                        </li>
+                        <li>
+                            <a href="'.$home_url.'/column?second_category=government">官公庁</a>
+                        </li>
+                        <li>
+                            <a href="'.$home_url.'/column?second_category=venture">ベンチャー企業</a>
+                        </li>
+                        <li>
+                            <a href="'.$home_url.'/column?second_category=others_industry">その他</a>
                         </li>
                     </ul>
                 </li>
