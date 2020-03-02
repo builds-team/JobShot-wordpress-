@@ -290,6 +290,9 @@ footer#footer.container {
 .container {
   padding-top: 50px;
 }
+.job-template-default .container {
+  max-width: 860px;
+}
 .type-job .container {
   padding-top: 0px;
 }
