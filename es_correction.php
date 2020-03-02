@@ -3,22 +3,31 @@
 //ES用のサイドバーの追加
 function add_sidebar_es(){
   $home_url =esc_url( home_url());
+  $category_array = array(
+    '/entry-sheet'  =>  '<i class="fas fa-home"></i>ホーム',
+    '/entry-sheet?type=practice' =>  '<i class="fas fa-book-open"></i>基礎から学ぶ',
+    '/entry-sheet?type=challenge'  =>  '<i class="fas fa-user-tie"></i>実践チャレンジ',
+    '/entry-sheet/view'  =>  '<i class="far fa-address-card"></i>あなたのES',
+  );
+  foreach($category_array as $category_each_key =>  $category_each_value){
+    $url = $_SERVER["REQUEST_URI"];
+    if($category_each_key == $url){
+      $category_html .= '
+      <li class="es-navi-each es-navi-selected">
+        <a href="https://jobshot.jp'.$category_each_key.'">'.$category_each_value.'<span class="left"></span><span class="right"></span></a>
+      </li>';
+    }else{
+      $category_html .= '
+      <li class="es-navi-each">
+        <a href="https://jobshot.jp'.$category_each_key.'">'.$category_each_value.'<span class="left"></span><span class="right"></span></a>
+      </li>';
+    }
+  }
   $html = '
   <div class="es-navi">
     <h2 class="only-sp text-align-center">カテゴリーから探す</h2>
     <ul class="es-container">
-      <li class="es-navi-each es-navi-selected">
-          <a href="https://jobshot.jp/entry-sheet">📝 ホーム<span class="left"></span><span class="right"></span></a>
-      </li>
-      <li class="es-navi-each">
-        <a href="https://jobshot.jp/entry-sheet?type=practice">🔰 基礎から学ぶ<span class="left"></span><span class="right"></span></a>
-      </li>
-      <li class="es-navi-each">
-        <a href="https://jobshot.jp/entry-sheet/view">👥 ESを確認する<span class="left"></span><span class="right"></span></a>
-      </li>
-      <li class="es-navi-each">
-          <a href="https://jobshot.jp/entry-sheet?type=challenge">🔥 実践チャレンジ<span class="left"></span><span class="right"></span></a>
-      </li>
+      '.$category_html.'
     </ul>
   </div>';
   return $html;
@@ -40,10 +49,10 @@ function view_es_type_func(){
     $practice_card_html .= '
       <div class="es-card">
         <div class="es-card__image-holder">
-          <img class="card__image" src="https://source.unsplash.com/400x300" alt="wave" />
+          <img class="card__image" src="'.$home_url.'/wp-content/uploads/'.$es_contents[2].'" alt="wave" />
         </div>
         <div class="card-title">
-          <h2>'.$es_contents[0].'<small>🔰 基礎から学ぶ</small></h2>
+          <h2>'.$es_contents[0].'<small><i class="fas fa-book-open"></i>基礎から学ぶ</small></h2>
         </div>
         <div class="card-flap flap1">
           <div class="card-description">'.$es_contents[1].'</div>
@@ -67,10 +76,10 @@ function view_es_type_func(){
     $challenge_card_html .= '
       <div class="es-card">
         <div class="es-card__image-holder">
-          <img class="card__image" src="https://source.unsplash.com/400x300" alt="wave" />
+          <img class="card__image" src="'.$home_url.'/wp-content/uploads/'.$es_contents[2].'" alt="wave" />
         </div>
         <div class="card-title">
-          <h2>'.$es_contents[0].'<small>🔥 実践チャレンジ</small></h2>
+          <h2>'.$es_contents[0].'<small><i class="fas fa-user-tie"></i>実践チャレンジ</small></h2>
         </div>
         <div class="card-flap flap1">
           <div class="card-description">'.$es_contents[1].'</div>
@@ -610,17 +619,15 @@ add_action('template_redirect', 'edit_es_post');
 function get_es_categories($type){
   if($type == "practice"){
     $es_categories = array(
-      'gakutika' => array('学生時代力を入れたこと','学生時代力を入れたことの説明','imageurl'),
-      'self-pr' => array('自己PR','自己PRの説明','imageurl'),
-      'strong-weak' => array('長所・短所','自己PRの説明','imageurl'),
-      'motivation' => array('志望動機','志望動機の説明','imageurl'),
-      'news' => array('最近のニュース','最近のニュースの説明','imageurl')
+      'gakutika' => array('学生時代力を入れたこと','あなたが普段どのような活動を行い何を学んできたのかを問う定番項目です。','2020/03/akson-1K8pIbIrhkQ-unsplash-e1583117897684.jpg'),
+      'self-pr' => array('自己PR','あなたがどのような人物であるのかを問うことを目的とした定番項目です。','2020/03/obi-onyeador-nsYboB2RDwU-unsplash.jpg'),
+      'strong-weak' => array('長所・短所','あなたが自分のことを客観的に見ることができているのかを問う定番項目です。','2020/03/jordan-whitt-b8rkmfxZjdU-unsplash-e1583135048633.jpg'),
+      'motivation' => array('志望動機','あなたがどれだけ応募した企業へ入りたいのか、その熱意を確認する定番項目です。','2020/03/business-1853682_1920-e1583123241772.jpg'),
+      'news' => array('最近のニュース','あなたがどれだけ社会に対する問題意識を持っているか確認する定番項目です。','2020/03/roman-kraft-_Zua2hyvTBk-unsplash-e1583123073166.jpg')
     );
   }else{
     $es_categories = array(
-      'test' => array('テスト','テストの説明','imageurl'),
-      'builds' => array('株式会社Builds','株式会社Buildsの説明','imageurl'),
-      'musojyuku' => array('就活無双塾','就活無双塾の説明','imageurl')
+      'musojyuku' => array('就活無双塾','【3/◯◯~3/◯◯開催】<br>元JPMorgan新卒採用担当者によるエントリーシート添削企画開催！<br>※抽選で10名限定','2020/03/max-bender-FuxYvi-hcWQ-unsplash-e1583138722808.jpg')
     );
   }
   return $es_categories;
@@ -630,17 +637,45 @@ function get_es_categories($type){
 function get_es_points($type){
   if($type == "practice"){
     $es_points = array(
-      'gakutika' => array('がくちかのポイント１','がくちかのポイント２','がくちかのポイント３'),
-      'self-pr' => array('自己PRの１','自己PRのポイント２'),
-      'strong-weak' => array('長所・短所のポイント１','長所・短所のポイント２','長所・短所のポイント３','長所・短所のポイント４'),
-      'motivation' => array('志望動機のポイント１','志望動機のポイント２'),
-      'news' => array('最近のニュースのポイント１','最近のニュースのポイント２')
+      'gakutika' => array(
+        '【結論】どのようなことに取り組んだのか述べる<br>「私は大学時代に◯◯に従事しました。」',
+        '【理由】なぜ上記に取り組んだのかを述べる<br>「もともと◯◯が足りないことには気が付いており、大学時代には◯◯を身に付けたいと考えたため上記の活動に取り組むことにしました。」',
+        '【目標や課題】どのようなことを目標にして活動していたか、またそこから見つかった課題を述べる<br>「◯◯という目標のもと活動を行っていましたが、◯◯という壁に直面することになりました。」',
+        '【解決策と行動】課題から考え出した解決策や行動を述べる<br>「そこで私は、◯◯を改善することで問題を解決できると考え、◯◯という計画を実行しました。」',
+        '【成果】結果としてどのような成果を得られたのか述べる<br>「結果として、◯◯という成果をあげることができました。」',
+        '【学びと今後の展望】ここから学んだことや、強みや長所を今後どのように生かしていくか述べる<br>「この経験から◯◯を学び、これを貴社での◯◯業務にいかしていきたいと考えています。」',
+      ),
+      'self-pr' => array(
+        '【結論】強みや長所を述べる<br>「私の強みは◯◯です。」',
+        '【具体例】過去に強みや長所が発揮された具体例を述べる<br>「◯年生の時には◯◯を行いました。」',
+        '【目標や課題】どのようなことを目標にして活動していたか、またそこから見つかった課題を述べる<br>「◯◯という目標のもと活動を行っていましたが、◯◯という壁に直面することになりました。」',
+        '【解決策と行動】課題から考え出した解決策や行動を述べる<br>「そこで私は、◯◯を改善することで問題を解決できると考え、◯◯という計画を実行しました。」',
+        '【成果】結果としてどのような成果を得られたのか述べる<br>「結果として、◯◯という成果をあげることができました。」',
+        '【学びと今後の展望】ここから学んだことや、強みや長所を今後どのように生かしていくか述べる<br>「この経験から◯◯を学び、これを貴社での◯◯業務にいかしていきたいと考えています。」'
+      ),
+      'strong-weak' => array(
+        '【概要】自分の短所を簡潔に述べる<br>「私の短所は、◯◯です。」',
+        '【具体例】過去に自分の短所が出てしまった例を述べる<br>「以前、◯◯の状況下において私の短所が出てしまいました。」',
+        '【改善理由】短所を改善すべき理由を述べる<br>「しかし会社に入ると、◯◯であるためこの短所は改善する必要があると感じています。」',
+        '【解決法】短所を改善するための解決法を述べる<br>「そこで私は、この短所を解決するために◯◯と考え、常に心がけています。」'
+      ),
+      'motivation' => array(
+        '【志望理由】その企業を志望する旨を述べる<br>「◯◯な貴社で◯◯に貢献したいため応募しました。」',
+        '【志望業界や企業の軸】業界の動向や人物像・能力から企業選びの軸を伝える<br>「◯◯という成長を続けている◯◯業界に置いて、◯◯な人材が必要であると考えております。」',
+        "【他社ではなく志望企業】他の企業を差し置いて応募企業を志望する理由を述べる<br>「貴社には◯◯や◯◯といった要素を兼ね備えている方が多数いると、インターンでのコミュニケーションを通して強く感じました。」",
+        "【自己PR】実体験に基づいた自分の強みを述べる<br>「◯◯という経験をもとに、私は◯◯が強みです。」",
+        "【マッチング】企業の求める人材と自分が一致していることを述べる<br>「貴社では◯◯という活躍ができると考えているため、貴社を強く志望しています。」"
+      ),
+      'news' => array(
+        "【選んだニュース】志望業界に基づくニュースを述べる<br>「私が最近気になっているニュースは◯◯です。」",
+        "【理由】上記のニュースを選んだ理由を述べる<br>「このニュースを選んだ理由は◯◯です。」",
+        "【概要】上記のニュースの概要を簡潔に述べる<br>「今回のニュースでは、◯◯で、◯◯という影響がありました。」",
+        "【考え】今回のニュースで自分なりの考えを述べる<br>「私は今回のニュースを受けて◯◯と感じ、◯◯を改善したいと考えています。」",
+        )
     );
   }
   else{
     $es_points = array(
-      'test' => array('testの要項１','testの要項２'),
-      'builds' => array('buildsの要項１','buildsの要項２'),
       'musojyuku' => array('ES添削チャレンジは一つのチャレンジで一つしか提出出来ません','就活無双塾の要項２')
     );
   }
@@ -654,8 +689,6 @@ function get_es_url(){
       '長所・短所' => 'strong-weak',
       '志望動機' => 'motivation',
       '最近のニュース' => 'news',
-      'テスト' => 'test',
-      '株式会社Builds' => 'builds',
       '就活無双塾' => 'musojyuku'
     );
   return $es_url;
