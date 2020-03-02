@@ -58,7 +58,7 @@ function template_job2_func($content){
     $require_person = nl2br(get_field("求める人物像",$post_id));
     $company_bussiness = nl2br(get_field("事業内容",$company_id));
     $job_contents = nl2br(get_field("業務内容",$post_id));
-    $salary = get_field("給与",$post_id);
+    $salary = nl2br(get_field("給与",$post_id));
     $recruit_capacity = get_field("採用予定人数",$post_id);
     $target = nl2br(get_field("応募資格",$post_id));
     $allowance = nl2br(get_field("待遇",$post_id));
@@ -461,6 +461,7 @@ function update_job_info(){
     $job_contents = $_POST["job_contents"];
     $require_person = $_POST["require_person"];
     $salary = $_POST["salary"];
+    $recruit_capacity = $_POST["recruit_capacity"];
     $skill_requirements = $_POST["skill_requirements"];
     $allowance = $_POST["allowance"];
     $welfare = $_POST["welfare"];
@@ -488,7 +489,7 @@ function update_job_info(){
       update_post_meta($post_id, "給与", $salary);
     }
     if($_POST["recruit_capacity"]){
-      update_post_meta($post_id, "採用予定人数", $salary);
+      update_post_meta($post_id, "採用予定人数", $recruit_capacity);
     }
     if($_POST["skill_requirements"]){
       update_post_meta($post_id, "応募資格", esc_html($skill_requirements));
