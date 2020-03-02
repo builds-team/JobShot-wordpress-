@@ -95,7 +95,7 @@ function add_top_bar($atts){
     'event' =>  '2020/02/photo-1544264747-d8af8eb09999.jpeg',
     'column'  =>  '2020/02/photo-1555443712-22cd30585e5c.jpeg',
     'scout' =>  '2020/02/list-1925752_1920.jpg',
-    'entry-sheet' => '2020/02/list-1925752_1920.jpg'
+    'entry-sheet' => '2020/03/anders-jilden-TZCehSn-T-o-unsplash.jpg'
   );
   $html = '
   <div class="background-img-container">
