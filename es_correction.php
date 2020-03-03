@@ -381,7 +381,7 @@ function view_past_es(){
       }
       if($post_status == 'true'){
        $html = '<h2 class="maintitle">ES添削チャレンジ('.$es_categories[$es_url][0].')</h2>
-       <div class="">
+       <div class="es-cards">
          <h2 class="">'.$es_categories[$es_url][0].'の要項</h2>
          <ul class="">
            '.$points_html.'
@@ -393,7 +393,7 @@ function view_past_es(){
        $es_category_sub = '/'.$es_category_sub;
       }else{
         $html = '<h2 class="maintitle">ES添削チャレンジ('.$es_categories[$es_url][0].')</h2>
-       <div class="">
+       <div class="es-cards">
          <h2 class="">'.$es_categories[$es_url][0].'の要項</h2>
          <ul class="">
            '.$points_html.'
@@ -525,7 +525,7 @@ function view_past_es(){
     <div class="es-title-container">
       <h2 class="es-title">ES添削チャレンジ</h2>
     </div>
-    '.$challenge_card_html;
+    <div class="es-cards">'.$challenge_card_html.'</div>';
 
     $es_categories = get_es_categories('practice');
     $es_points = get_es_points('practice');
@@ -580,7 +580,7 @@ function view_past_es(){
       <div class="es-title-container">
         <h2 class="es-title">項目別練習</h2>
       </div>
-      '.$practice_card_html;
+      <div class="es-cards">'.$practice_card_html.'</div>';
   }
   return $html;
 }
