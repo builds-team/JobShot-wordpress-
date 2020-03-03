@@ -49,7 +49,9 @@ function view_es_type_func(){
     $practice_card_html .= '
       <div class="es-card">
         <div class="es-card__image-holder">
-          <img class="card__image" src="'.$home_url.'/wp-content/uploads/'.$es_contents[2].'" alt="wave" />
+          <a href="'.$home_url.'/entry-sheet/practice?category='.$es_get_param.'">
+            <img class="card__image" src="'.$home_url.'/wp-content/uploads/'.$es_contents[2].'" alt="wave" />
+          </a>
         </div>
         <div class="card-title">
           <h2>'.$es_contents[0].'<small><i class="fas fa-book-open"></i>基礎から学ぶ</small></h2>
@@ -76,7 +78,9 @@ function view_es_type_func(){
     $challenge_card_html .= '
       <div class="es-card">
         <div class="es-card__image-holder">
-          <img class="card__image" src="'.$home_url.'/wp-content/uploads/'.$es_contents[2].'" alt="wave" />
+          <a href="'.$home_url.'/entry-sheet/challenge?category='.$es_get_param.'">
+            <img class="card__image" src="'.$home_url.'/wp-content/uploads/'.$es_contents[2].'" alt="wave" />
+          </a>
         </div>
         <div class="card-title">
           <h2>'.$es_contents[0].'<small><i class="fas fa-user-tie"></i>実践チャレンジ</small></h2>
@@ -381,7 +385,7 @@ function view_past_es(){
       }
       if($post_status == 'true'){
        $html = '<h2 class="maintitle">ES添削チャレンジ('.$es_categories[$es_url][0].')</h2>
-       <div class="es-cards">
+       <div class="es-cards-container">
          <h2 class="">'.$es_categories[$es_url][0].'の要項</h2>
          <ul class="">
            '.$points_html.'
@@ -393,7 +397,7 @@ function view_past_es(){
        $es_category_sub = '/'.$es_category_sub;
       }else{
         $html = '<h2 class="maintitle">ES添削チャレンジ('.$es_categories[$es_url][0].')</h2>
-       <div class="es-cards">
+       <div class="es-cards-container">
          <h2 class="">'.$es_categories[$es_url][0].'の要項</h2>
          <ul class="">
            '.$points_html.'
@@ -478,40 +482,81 @@ function view_past_es(){
         $es_correction = mb_substr($es_correction, 0,100);
         $es_correction .= '...';
       }
-      $challenge_card_html .=
-        '<div class="card full-card">
-          <div class="full-card-main">
-            <div class="full-card-text">
-              <div class="full-card-text-title">
-                <h3>'.$es_category.'</h3>
+      // $challenge_card_html .=
+      //   '<div class="card full-card">
+      //     <div class="full-card-main">
+      //       <div class="full-card-text">
+      //         <div class="full-card-text-title">
+      //           <h3>'.$es_category.'</h3>
+      //         </div>
+      //         <table class="full-card-table">
+      //           <tbody>
+      //             <tr>
+      //               <th>投稿内容</th>
+      //               <td>'.$es_content.'</td>
+      //             </tr>';
+      //             if(!empty($es_corrector)){
+      //               $challenge_card_html .= '
+      //                 <tr>
+      //                   <th>添削者</th>
+      //                   <td>'.$es_corrector.'</td>
+      //                 </tr>
+      //                 <tr>
+      //                   <th>添削内容</th>
+      //                   <td>'.$es_correction.'</td>
+      //                 </tr>';
+      //             }
+      // $challenge_card_html .='
+      //           </tbody>
+      //         </table>
+      //       </div>
+      //     </div>
+      //     <div class="full-card-buttons">
+      //       <a href = "'.$home_url.'/entry-sheet/view?post_id='.$post_id.'&action=show"><button class="button">詳細を見る</button></a>
+      //     </div>
+      //   </div>
+      // ';
+      $challenge_card_html .= '
+      <div class="es-timeline__item">
+        <a href = "'.$home_url.'/entry-sheet/view?post_id='.$post_id.'&action=show">
+          <section class="es-text-box">
+            <div class="es-text__body">
+              <div class="es-text__eyecatch">
+                <img src="https://source.unsplash.com/random/200x200">
               </div>
-              <table class="full-card-table">
-                <tbody>
-                  <tr>
-                    <th>投稿内容</th>
-                    <td>'.$es_content.'</td>
-                  </tr>';
-                  if(!empty($es_corrector)){
-                    $challenge_card_html .= '
-                      <tr>
-                        <th>添削者</th>
-                        <td>'.$es_corrector.'</td>
-                      </tr>
-                      <tr>
-                        <th>添削内容</th>
-                        <td>'.$es_correction.'</td>
-                      </tr>';
-                  }
-      $challenge_card_html .='
-                </tbody>
-              </table>
+              <h3 class="es-text__title">'.$es_category.'</h3>
+              <p class="es-text__description">'.$es_content.'</p>
+              <div class="es-fav_status">
+                <div class="es-fav_status_item">
+                  <div class="es-fav_status_icon">
+                    <i class="far fa-heart"></i>
+                  </div>
+                  <div class="es-fav_status_label">42</div>
+                </div>
+                <div class="es-category_item">実践チャレンジ</div>
+              </div>
             </div>
-          </div>
-          <div class="full-card-buttons">
-            <a href = "'.$home_url.'/entry-sheet/view?post_id='.$post_id.'&action=show"><button class="button">詳細を見る</button></a>
-          </div>
-        </div>
-      ';
+            <div class="es-timeline_footer">
+              <div class="es-timeline_footer_avatar">
+                <div class="es-timeline_footer_icon">
+                  <div class="es-avatar">
+                    <img src="https://source.unsplash.com/random/200x200">
+                  </div>
+                </div>
+                <div class="es-timeline_footer_name">
+                  <span>山田　さおり</span>
+                </div>
+                <div class="es-timeline_footer_date">
+                  <span>6時間前</span>
+                </div>
+              </div>
+              <div class="o-like">
+                <button aria-label="heart"></button>
+              </div>
+            </div>
+          </section>
+        </a>
+      </div>';
     }
 
     //実践チャレンジに投稿がないとき
@@ -525,7 +570,7 @@ function view_past_es(){
     <div class="es-title-container">
       <h2 class="es-title">ES添削チャレンジ</h2>
     </div>
-    <div class="es-cards">'.$challenge_card_html.'</div>';
+    <div class="es-cards-container">'.$challenge_card_html.'</div>';
 
     $es_categories = get_es_categories('practice');
     $es_points = get_es_points('practice');
@@ -540,33 +585,74 @@ function view_past_es(){
       $es_urls = get_es_url();
       //ESのカテゴリのgetパラメータを取得
       $es_url = $es_urls[$es_category];
+      // $practice_card_html .= '
+      //   <div class="card full-card">
+      //     <div class="full-card-main">
+      //       <div class="full-card-text">
+      //         <div class="full-card-text-title">
+      //           <h3>'.$es_category.'</h3>
+      //         </div>
+      //         <table class="full-card-table">
+      //           <tbody>
+      //             <tr>
+      //               <th>投稿内容</th>
+      //               <td>'.$es_content.'</td>
+      //             </tr>
+      //           </tbody>
+      //         </table>
+      //       </div>
+      //     </div>
+      //     <div class="full-card-buttons">
+      //       <a href = "'.$home_url.'/entry-sheet/practice?category='.$es_url.'&post_id='.$post_id.'&action=edit"><button class="button">編集する</button></a>
+      //       <a href = "'.$home_url.'/entry-sheet/view?post_id='.$post_id.'&action=show"><button class="button">詳細を見る</button></a>
+      //       <form action="" method="POST">
+      //         <input type="hidden" name="post_id" value="'.$post_id.'">
+      //         <input type="submit" name="es-delete" id="es-delete" class="button button-primary button-large" value="削除する">
+      //       </form>
+      //     </div>
+      //   </div>
+      // ';
       $practice_card_html .= '
-        <div class="card full-card">
-          <div class="full-card-main">
-            <div class="full-card-text">
-              <div class="full-card-text-title">
-                <h3>'.$es_category.'</h3>
+      <div class="es-timeline__item">
+        <a href="'.$home_url.'/entry-sheet/view?post_id='.$post_id.'&action=show">
+          <section class="es-text-box">
+            <div class="es-text__body">
+              <div class="es-text__eyecatch">
+                <img src="https://source.unsplash.com/random/200x200">
               </div>
-              <table class="full-card-table">
-                <tbody>
-                  <tr>
-                    <th>投稿内容</th>
-                    <td>'.$es_content.'</td>
-                  </tr>
-                </tbody>
-              </table>
+              <h3 class="es-text__title">'.$es_category.'</h3>
+              <p class="es-text__description">'.$es_content.'</p>
+              <div class="es-fav_status">
+                <div class="es-fav_status_item">
+                  <div class="es-fav_status_icon">
+                    <i class="far fa-heart"></i>
+                  </div>
+                  <div class="es-fav_status_label">42</div>
+                </div>
+                <div class="es-category_item">項目別練習</div>
+              </div>
             </div>
-          </div>
-          <div class="full-card-buttons">
-            <a href = "'.$home_url.'/entry-sheet/practice?category='.$es_url.'&post_id='.$post_id.'&action=edit"><button class="button">編集する</button></a>
-            <a href = "'.$home_url.'/entry-sheet/view?post_id='.$post_id.'&action=show"><button class="button">詳細を見る</button></a>
-            <form action="" method="POST">
-              <input type="hidden" name="post_id" value="'.$post_id.'">
-              <input type="submit" name="es-delete" id="es-delete" class="button button-primary button-large" value="削除する">
-            </form>
-          </div>
-        </div>
-      ';
+            <div class="es-timeline_footer">
+              <div class="es-timeline_footer_avatar">
+                <div class="es-timeline_footer_icon">
+                  <div class="es-avatar">
+                    <img src="https://source.unsplash.com/random/200x200">
+                  </div>
+                </div>
+                <div class="es-timeline_footer_name">
+                  <span>山田　さおり</span>
+                </div>
+                <div class="es-timeline_footer_date">
+                  <span>6時間前</span>
+                </div>
+              </div>
+              <div class="o-like">
+                <button aria-label="heart"></button>
+              </div>
+            </div>
+          </section>
+        </a>
+      </div>';
     }
 
     //項目別練習にESがないとき
@@ -580,7 +666,7 @@ function view_past_es(){
       <div class="es-title-container">
         <h2 class="es-title">項目別練習</h2>
       </div>
-      <div class="es-cards">'.$practice_card_html.'</div>';
+      <div class="es-cards-container">'.$practice_card_html.'</div>';
   }
   return $html;
 }
