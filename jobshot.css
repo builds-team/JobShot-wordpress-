@@ -5609,11 +5609,11 @@ font-size: 13px !important;
   border-left: solid 5px rgb(109, 209, 180);
 }
 .column .entry p {
-  line-height: 27px;
+  line-height: 40px;
 }
 @media screen and (max-width: 480px) {
   .column .entry p {
-      line-height: 20px;
+      line-height: 30px;
   }
 }
 .column_card_img{
@@ -5630,30 +5630,39 @@ font-size: 13px !important;
   margin: 5px 0;
   font-size: 18px;
   font-weight: normal;
+  line-height: 20px;
 }
 .column_card_description{
   margin: 10px 0;
+  line-height: 30px;
 }
 .column_card_date{
-  float: right;
+  text-align: right;
+  padding-right: 5px;
 }
 .column_card_date i{
   margin: 5px;
 }
 @media screen and (max-width: 480px){
   .column_card_img{
-    width: 70px;
-    height: 50px;
+    width: 140px;
+    height: 90px;
     margin: 0 10px;
     margin-top: 1.5px;
   }
+  .column_card_img img{
+    width: 140px;
+    height: 90px;
+    object-fit: cover;
+  }
   .column_card_contents{
-    margin-left: 90px;
+    margin-left: 150px;
     margin-right: 10px;
-    padding-bottom: 20px;
+    padding-bottom: 0px;
   }
   .column_card_title{
     margin: 5px 0;
+    height: 70px;
   }
   #column_card_title_text{
     margin: 0;
@@ -6122,7 +6131,7 @@ font-size: 13px !important;
 @media screen and (max-width: 782px) {
   .background-img-container .background-img-text h1 {
       color: #fff;
-      font-size: 40px;
+      font-size: 7vw;
   }
   .background-img-container .background-img-text p {
       margin: 5px 20px;
@@ -6581,6 +6590,9 @@ font-size: 13px !important;
     margin: 0;
     padding: 5px;
 }
+.apply-form-container input[type="checkbox"] {
+  vertical-align: text-top;
+}
 .apply-form-container .your-date input, .apply-form-container .your-time input {
     margin: 0 5px;
 }
@@ -6731,22 +6743,25 @@ font-size: 13px !important;
         opacity: 0.5;
     }
     #interview_date{
-      margin-top: -50px;
+      margin-top: -30px;
+    }
+    #interview_practice{
+      margin-top: -30px;
     }
     .apply-form #interview_date .form-necessarily{
       margin-bottom: 60px;
     }
     #interview_date .interview_date_1{
       left: 0;
-      top: 80px;
+      top: 50px;
     }
     #interview_date .interview_date_2{
       left: 0;
-      top: 160px;
+      top: 130px;
     }
     #interview_date .interview_date_3{
       left: 0;
-      top: 240px;
+      top: 210px;
     }
     #interview_date .interview_date_sub1{
       left: 0;
@@ -6867,34 +6882,280 @@ font-size: 13px !important;
     font-size: 10px;
 	}
 }
-#interview_date .form-necessarily{
-  margin: 30px 0;
+/* エントリーシート */
+#post-9464 {
+  padding-top:0px;
 }
-.interview_date_sub1{
-  position: absolute;
-  left: 270px;
+.es-title-container{
+  margin-top: 20px;
+  text-align: center;
+  color: #555;
 }
-.interview_date_sub2{
-  position: absolute;
-  top: 270px;
-  left: 270px;
+.es-title{
+  margin-top: 5px !important;
+  color: #555;
 }
-.interview_practice input{
-  margin: 0;
+.es-navi{
+  margin-top: 20px;
+}
+.es-container{
+
+}
+.es-navi-each{
+  display: flex;
+  list-style: none;
+  position: relative;
+  font-size: 16px;
+  min-width: 180px;
+  align-items: center;
+  margin: 8px 0;
+  color: #555;
+}
+.es-navi-selected{
+  background-color: #eee;
+  border-radius: 100px;
+  color: #03c4b0;
+}
+.es-navi-each a{
+  height: 54px;
+  display: block;
+  line-height: 54px;
+  color: #555;
+  font-style: normal;
+  word-break: break-all;
+  margin-left: 15px;
+}
+.es-navi-each a:hover {
+  color: #03c4b0;
+}
+.es-navi-each a i{
+  margin: 0 5px;
+  padding-right: 10px;
+}
+.es-cards-container{
+
+}
+.es-cards{
+  margin: 80px auto;
+  margin-top: 0px;
+  max-width: 986px;
+  text-align: center;
+}
+.es-card{
+  background: #ffffff;
+  display: inline-block;
+  margin: 20px 8px;
+  max-width: 400px;
+  perspective: 1000;
+  position: relative;
+  text-align: left;
+  transition: all 0.3s 0s ease-in;
+  width: 400px;
+  z-index: 1;
+  box-shadow: rgba(0, 0, 0, 0.16) 0 3px 8px;
+}
+.es-card__image-holder{
+  background: rgba(0,0,0,0.1);
+  height: 0;
+  padding-bottom: 75%;
+  overflow: hidden;
+}
+.es-card .card-title{
+  background: #ffffff;
+  padding: 10px 15px 10px;
+  position: relative;
+  z-index: 0;
+}
+.es-card .card-title a.toggle-info {
+  border-radius: 32px;
+  height: 32px;
   padding: 0;
-  vertical-align: text-top;
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  width: 32px;
 }
-.pr_save_check_box{
-  vertical-align: text-top;
+.es-card .card-title a.toggle-info span{
+  background: #ffffff;
+  display: block;
+  height: 2px;
+  position: absolute;
+  top: 16px;
+  transition: all 0.15s 0s ease-out;
+  width: 12px;
 }
-.interview_practice .wpcf7-list-item{
-  margin: 0;
+.es-card .card-title a.toggle-info span.left{
+  right: 14px;
+  transform: rotate(45deg);
 }
-#interview_practice p{
-  padding-left: 270px;
-  padding-top: 20px;
-  line-height: 30px;
+.es-card .card-title a.toggle-info span.right{
+  left: 14px;
+  transform: rotate(-45deg);
 }
-.interview_practice .wpcf7-list-item-label{
-  margin-left: 5px;
+.es-card .card-title h2{
+  font-size: 20px;
+  margin: 5px 0;
+  padding: 0;
+  color: #555;
+}
+.es-card .card-title h2 small{
+  display: block;
+  font-size: 10px;
+  font-weight: 600;
+  margin-top: 12px;
+  color: #777;
+}
+.es-card .card-title h2 small i{
+  padding-right: 5px;
+}
+.es-card .card-description {
+  padding: 0 15px 10px;
+  position: relative;
+  font-size: 14px;
+  color: #999;
+}
+.es-card .card-actions {
+  box-shadow: 0 2px 0px 0 rgba(0,0,0,0.075);
+  padding: 10px 15px 20px;
+  text-align: center;
+}
+.es-card .flap1 {
+  transition: all 0.3s 0.3s ease-out;
+  z-index: -1;
+}
+.es-card .flap2 {
+  transition: all 0.3s 0s ease-out;
+  z-index: -2;
+}
+.es-card a.btn {
+  background: #03c4b0;
+  border-radius: 4px;
+  color: #ffffff;
+  display: inline-block;
+  padding: 6px 30px 8px;
+  position: relative;
+  text-decoration: none;
+  transition: all 0.1s 0s ease-out;
+  font-size: 12px;
+}
+.es-card a.btn:hover {
+  background: lighten(#0096a0,2.5);
+  box-shadow: 0px 4px 2px 0 rgba(0, 0, 0, 0.075);
+  transform: translateY(-0.2px);
+  transition: all 0.25s 0s ease-out;
+  background-color: #04ddc7;
+}
+.es-card a.btn:active, a.btn:active {
+  background: darken(#0096a0,2.5);
+  box-shadow: 0 1px 0px 0 rgba(255,255,255,0.25);
+  transform: translate3d(0,1px,0);
+  transition: all 0.025s 0s ease-out;
+}
+@media screen and (max-width: 480px) {
+  .es-title{
+    font-size: 22px !important;
+  }
+  .es-card img {
+    width: 100%;
+    height: auto;
+  }
+  .es-card {
+    margin: 20px 0px;
+    width: 95%;
+    max-width: initial;
+  }
+  .es-container{
+    flex-direction: row;
+  }
+  .es-navi-each a {
+    height: 40px;
+    line-height: 40px;
+    width: 100%;
+    margin-left: 25px;
+  }
+  .es-navi-each a span{
+    background: #555;
+    display: block;
+    height: 1px;
+    position: absolute;
+    transition: all 0.15s 0s ease-out;
+    width: 12px;
+    right: 20px;
+  }
+  .es-navi-each a .left{
+    top: 16px;
+    transform: rotate(45deg);
+  }
+  .es-navi-each a .right{
+    top: 24px;
+    transform: rotate(-45deg);
+  }
+  .es-navi{
+    margin-top: 0px;
+    margin-left: -20px;
+  }
+  .es-navi h2{
+    margin-left: 20px;
+  }
+  #pgc-9464-1-0{
+    margin-bottom: 0px !important;
+  }
+}
+@media screen and (min-width: 481px) {
+  .es-card img{
+    max-width: 400px;
+  }
+  #interview_date .form-necessarily{
+    margin: 30px 0;
+  }
+  .interview_date_sub1{
+    position: absolute;
+    left: 270px;
+  }
+  .interview_date_sub2{
+    position: absolute;
+    top: 270px;
+    left: 270px;
+  }
+  .interview_practice input{
+    margin: 0;
+    padding: 0;
+    vertical-align: text-top;
+  }
+  .pr_save_check_box{
+    vertical-align: text-top;
+  }
+  .interview_practice .wpcf7-list-item{
+    margin: 0;
+  }
+  #interview_practice p{
+    padding-left: 270px;
+    padding-top: 20px;
+    line-height: 30px;
+  }
+  .interview_practice .wpcf7-list-item-label{
+    margin-left: 5px;
+  }
+}
+
+.page-id-9741 .col-sidebar{
+  display: none !important;
+}
+.page-id-9741 .main-content{
+	width:100% !important;
+}
+.post-9745 {
+	padding-top:0px !important;
+}
+.page-id-9745 .col-sidebar{
+  display: none !important;
+}
+.page-id-9745 .main-content{
+	width:100% !important;
+}
+.post-9745 {
+	padding-top:0px !important;
+}
+.post-9746 {
+	padding-top:0px !important;
 }
