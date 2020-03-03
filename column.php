@@ -325,6 +325,20 @@ function add_sidebar_column(){
             <h2>カテゴリー</h2>
             <ul class="column-container">
                 <li class="column-section">
+                    <p>長期インターン</p>
+                    <ul>
+                        <li>
+                            <a href="'.$home_url.'/column?first_category=internship">長期インターン一覧</a>
+                        </li>
+                        <li>
+                            <a href="'.$home_url.'/column?second_category=columm">コラム</a>
+                        </li>
+                        <li>
+                            <a href="'.$home_url.'/column?second_category=experience">体験記</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="column-section">
                     <p>選考ステップ別対策</p>
                     <ul>
                         <li>
@@ -540,6 +554,20 @@ function add_sidebar_column(){
         <div class="column-navi only-pc">
             <h2>カテゴリー</h2>
             <ul class="column-container">
+                <li class="column-section">
+                    <p>長期インターン</p>
+                    <ul>
+                        <li>
+                            <a href="'.$home_url.'/column?first_category=internship">長期インターン一覧</a>
+                        </li>
+                        <li>
+                            <a href="'.$home_url.'/column?second_category=columm">コラム</a>
+                        </li>
+                        <li>
+                            <a href="'.$home_url.'/column?second_category=experience">体験記</a>
+                        </li>
+                    </ul>
+                </li>
                 <li class="column-section">
                     <p>選考ステップ別対策</p>
                     <ul>
