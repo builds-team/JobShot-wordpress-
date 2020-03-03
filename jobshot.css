@@ -5618,16 +5618,22 @@ font-size: 13px !important;
 }
 .column_card_img{
   float: left;
-  width: 200px;
-  height: auto;
+  width: 250px;
+  height: 160px;
   margin: 0 20px;
 }
+.column_card_img img{
+  width: 250px;
+  height: 160px;
+  object-fit: cover;
+}
 .column_card_contents{
-  margin-left: 240px;
+  margin-left: 270px;
   padding-bottom: 30px;
 }
 #column_card_title_text{
   margin: 5px 0;
+  padding-top: 5px;
   font-size: 18px;
   font-weight: normal;
   line-height: 20px;
@@ -5667,7 +5673,6 @@ font-size: 13px !important;
   #column_card_title_text{
     margin: 0;
     font-size: 12px;
-    padding-top: 5px;
   }
   .column_card_description{
     display: none;

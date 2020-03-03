@@ -1658,7 +1658,7 @@ if (isset($_GET['freeword']) ) {
     $current_page = get_query_var('paged') ? (int) get_query_var('paged') : 1;
     $users_per_page = 20;
     if( $user_login_name == "kotaro" || $user_login_name == "amano1104"){
-        $users_per_page = 100;
+        $users_per_page = 1000;
     }
 
     $args+=array(
