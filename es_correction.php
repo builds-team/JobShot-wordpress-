@@ -158,6 +158,29 @@ function new_es_form_practice(){
     $points_html .= '<li>'.$es_point.'</li>';
   }
   $new_html =  '
+    <div class="es-framework-container">
+      <div class="es-framework-head-container">
+          <h3 class="es-framework-head-title">'.$es_categories[$category][0].'のフレームワーク</h3>
+          <div class="es-framework-head-step-box">
+              <p color="#FFFFFF">6</p>
+          </div>
+      </div>
+      <div class="es-framework-box">
+          <div class="es-framework-num">
+              <h1 font-size="48px">01</h1>
+              <div></div>
+          </div>
+          <div class="es-framework-main">
+              <div class="es-framework-main-text">
+                  <h2 class="sc-ifAKCX hOCPBR">デザインのコツ : そろえる</h2>
+                  <div>
+                      1. 要素を揃えて配置することでスッキリと見やすくて、分かりやすいデザインにすることができます<br>
+                      2. 左揃え、右揃え、中央揃えなど基本的なパターンを使いながら整って見えるように工夫してみましょう
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>
     <h2 class="maintitle">項目別練習('.$es_categories[$category][0].')</h2>
     <div class="">
       <h2 class="">'.$es_categories[$category][0].'のポイント</h2>
