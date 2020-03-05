@@ -705,9 +705,9 @@ function add_custom_column_id($column_name, $id) {
   if( $column_name == 'correction' ) {
     $correction = get_post_meta($id, 'correction', true);
     if($correction == 'true'){
-      echo 'true';
+      echo "<a href="."https://jobshot.jp/wp-admin/edit.php?post_type=entry_sheet&correction=true".">〇</a>";
     }else{
-      echo 'false';
+      echo "<a href="."https://jobshot.jp/wp-admin/edit.php?post_type=entry_sheet&correction=false".">-</a>";
     }
   }
 }
@@ -825,7 +825,7 @@ add_action( 'restrict_manage_posts', 'restrict_manage_posts_custom_field' );
 function pre_get_posts_admin_custom_field( $query ) {
 	// 管理画面 / 投稿タイプが投稿 / メインクエリ、のすべての条件を満たす場合
 	// (カスタム投稿タイプのみに適用したい場合は 'post' をカスタム投稿タイプの内部名に変更してください)
-	if ( is_admin() && 'entry_sheet' == get_current_screen()->post_type && $query->is_main_query() ) {
+	if ( is_admin() && 'entry_sheet' == $_GET['post_type'] && $query->is_main_query() ) {
 		// カスタムフィールドのキー(名称例)
 		$meta_key = 'correction';
 		// 選択されている値
