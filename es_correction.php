@@ -1,4 +1,13 @@
 <?php
+/*
+
+ログイン時のみesがかけるようにする(完了)
+user_idで取得することができるようにする(完了)
+ファイルの分割(完了)
+公開日の取得（完了）
+日付順に変更(完了、更新日時取得完了)
+*/
+
 
 //ES用のサイドバーの追加
 function add_sidebar_es(){
@@ -125,84 +134,107 @@ function new_es_form_practice(){
 
   //ボタン
   $post_button_html = '
-  <div class="">
-    <div class="">
-	    <input type="hidden" name="es_category" value="'.$es_categories[$category][0].'">
-      <input type="hidden" name="new_es_practice" value="new_es_practice">
-      <input type="hidden" name="user_id" value="'.$user_id.'">
-      <input type="hidden" name="correction" value="false">
-      <input type="submit" name="publish" id="publish" class="button button-primary button-large" value="保存">
-    </div>
+  <div class="es-submit-box">
+    <input type="hidden" name="es_category" value="'.$es_categories[$category][0].'">
+    <input type="hidden" name="new_es_practice" value="new_es_practice">
+    <input type="hidden" name="user_id" value="'.$user_id.'">
+    <input type="hidden" name="correction" value="false">
+    <input type="submit" name="publish" id="publish" class="es-submit-button" value="保存する">
   </div>';
   $es_content = '';
   //ESを見るで編集ボタンが押されたときの処理
   if(!empty($_GET['post_id']) && !empty($_GET['action'])){
+    $post_id = $_GET["post_id"];
     $es = get_post($post_id);
+    $uploaded_date = get_the_modified_date('Y/n/j',$post_id);
     if($es->post_author == $user_id){
-      $post_id = $_GET["post_id"];
       $es_content = get_field("投稿内容",$post_id);
       $post_button_html = '
-        <div class="">
-          <div class="">
-            <input type="hidden" name="es_category" value="'.$es_categories[$category][0].'">
-            <input type="hidden" name="edit_es_practice" value="edit_es_practice">
-            <input type="hidden" name="user_id" value="'.$user_id.'">
-            <input type="hidden" name="post_id" value="'.$post_id.'">
-            <input type="submit" name="publish" id="publish" class="button button-primary button-large" value="保存">
+        <div class="es-submit-box">
+          <input type="hidden" name="es_category" value="'.$es_categories[$category][0].'">
+          <input type="hidden" name="edit_es_practice" value="edit_es_practice">
+          <input type="hidden" name="user_id" value="'.$user_id.'">
+          <input type="hidden" name="post_id" value="'.$post_id.'">
+          <input type="submit" name="publish" id="publish" class="es-submit-button" value="保存する">
+        </div>';
+      $new_html =  '
+        <div class="es-framework-container">
+          <div class="es-content-main">
+            <div class="es-timeline_footer_avatar">
+              <div class="es-timeline_footer_icon">
+                <a href="/nagatasaori" class="a-link">
+                  <div class="es-avatar">
+                    <img src="https://source.unsplash.com/random/200x200">
+                  </div>
+                </a>
+              </div>
+              <div class="es-timeline_footer_name">
+                  <span>'.$user_name.'</span>
+              </div>
+              <div class="es-timeline_footer_date">
+                  <span>'.$uploaded_date.'</span>
+              </div>
+            </div>
+            <div class="es-fav_status margin-10">
+              <div class="es-fav_status_item">
+                  <div class="es-fav_status_icon">
+                      <i class="far fa-heart"></i>
+                  </div>
+                  <div class="es-fav_status_label">42</div>
+              </div>
+              <div class="es-category_item">項目別練習</div>
+              <div class="es-category_item">'.$es_categories[$category][0].'</div>
+            </div>
+            <form action="" method="POST" enctype="multipart/form-data">
+              <div class="es-content-box">
+                <h3>'.$es_categories[$category][0].'</h3>
+                <textarea class="es-content-textarea" name="es_content" placeholder="上記のフレームワークを活かしてESを書いてみよう!" height="100px" rows="4" required>'.$es_content.'</textarea>
+              </div>
+              '.$post_button_html.'
+            </form>
           </div>
         </div>';
+      return $new_html;
     }
   }
   $points_html = '';
+  $point_count = 0;
   foreach($es_points[$category] as $es_point){
-    $points_html .= '<li>'.$es_point.'</li>';
+    $point_count += 1;
+    $points_html .= '
+    <div class="es-framework-box">
+      <div class="es-framework-num">
+        <h1 font-size="48px">0'.$point_count.'</h1>
+        <div></div>
+      </div>
+      <div class="es-framework-main">
+          <div class="es-framework-main-text">
+              <h2 class="sc-ifAKCX hOCPBR">デザインのコツ : そろえる</h2>
+              <div>
+                '.$es_point.'
+              </div>
+          </div>
+      </div>
+    </div>
+    ';
   }
   $new_html =  '
     <div class="es-framework-container">
       <div class="es-framework-head-container">
           <h3 class="es-framework-head-title">'.$es_categories[$category][0].'のフレームワーク</h3>
           <div class="es-framework-head-step-box">
-              <p color="#FFFFFF">6</p>
+              <p color="#FFFFFF">'.count($es_points[$category]).'</p>
           </div>
       </div>
-      <div class="es-framework-box">
-          <div class="es-framework-num">
-              <h1 font-size="48px">01</h1>
-              <div></div>
-          </div>
-          <div class="es-framework-main">
-              <div class="es-framework-main-text">
-                  <h2 class="sc-ifAKCX hOCPBR">デザインのコツ : そろえる</h2>
-                  <div>
-                      1. 要素を揃えて配置することでスッキリと見やすくて、分かりやすいデザインにすることができます<br>
-                      2. 左揃え、右揃え、中央揃えなど基本的なパターンを使いながら整って見えるように工夫してみましょう
-                  </div>
-              </div>
-          </div>
-      </div>
-    </div>
-    <h2 class="maintitle">項目別練習('.$es_categories[$category][0].')</h2>
-    <div class="">
-      <h2 class="">'.$es_categories[$category][0].'のポイント</h2>
-      <ul class="">
-        '.$points_html.'
-      </ul>
-    </div>
-    <form action="" method="POST" enctype="multipart/form-data">
-      <div class="">
-        <table class="">
-          <tbody>
-            <tr>
-              <th align="left" nowrap="nowrap">本文*</th>
-              <td>
-                <div class="es-text"><textarea name="es_content" id="" cols="30" rows="12" placeholder="" required>'.$es_content.'</textarea></div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+      '.$points_html.'
+      <form action="" method="POST" enctype="multipart/form-data">
+        <div class="es-content-box">
+          <h3>実際にESを書いてみよう！</h3>
+          <textarea class="es-content-textarea" name="es_content" placeholder="上記のフレームワークを活かしてESを書いてみよう!" height="100px" rows="4" required>'.$es_content.'</textarea>
+        </div>
         '.$post_button_html.'
-      </div>
-    </form>';
+      </form>
+    </div>';
   return $new_html;
 }
 add_shortcode('new_es_form_practice','new_es_form_practice');
@@ -238,61 +270,70 @@ function new_es_form_challenge(){
   $count = count($es_challenge);
   if($count == 0){
     $post_button_html = '
-      <div class="">
-        <div class="">
-          <input type="hidden" name="correction" value="true">
-          <input type="submit" name="publish" id="publish" class="button button-primary button-large" value="投稿">
-        </div>
+      <div class="es-submit-box">
+        <input type="hidden" name="challenge_company" value="'.$es_categories[$category][0].'">
+        <input type="hidden" name="new_es_challenge" value="new_es_challenge">
+        <input type="hidden" name="user_id" value="'.$user_id.'">
+        <input type="hidden" name="correction" value="true">
+        <input type="submit" name="publish" id="publish" class="es-submit-button" value="投稿する">
       </div>';
   }else{
     $post_button_html = '
-      <div class="">
-          <button type="submit" class="button button-primary button-large" disabled>投稿済み</button>
+      <div class="es-submit-box">
+          <button type="submit" class="es-submit-button" disabled>投稿済み</button>
       </div>';
   }
 
 
   $points_html = '';
+  $point_count = 0;
   foreach($es_points[$category] as $es_point){
-    $points_html .= '<li>'.$es_point.'</li>';
+    $point_count += 1;
+    $points_html .= '
+    <div class="es-framework-box">
+      <div class="es-framework-num">
+        <h1 font-size="48px">0'.$point_count.'</h1>
+        <div></div>
+      </div>
+      <div class="es-framework-main">
+          <div class="es-framework-main-text">
+              <h2 class="sc-ifAKCX hOCPBR">デザインのコツ : そろえる</h2>
+              <div>
+                '.$es_point.'
+              </div>
+          </div>
+      </div>
+    </div>
+    ';
   }
   $new_html =  '
-    <h2 class="maintitle">ES添削チャレンジ('.$es_categories[$category][0].')</h2>
-    <div class="">
-      <h2 class="">'.$es_categories[$category][0].'の要項</h2>
-      <ul class="">'
-        .$points_html.'
-      </ul>
-    </div>
-    <form action="" method="POST" enctype="multipart/form-data">
-      <p>ESのテーマ*</p>
-      <div class="select_box select_box_01">
-        <select name="es_category" required>
-            <option value=""></option>
-            <option value="学生時代力を入れたこと">学生時代力を入れたこと</option>
-            <option value="自己PR">自己PR</option>
-            <option value="長所・短所">長所・短所</option>
-            <option value="志望動機">志望動機</option>
-            <option value="最近のニュース">最近のニュース</option>
-        </select>
+    <div class="es-framework-container">
+      <div class="es-framework-head-container">
+          <h3 class="es-framework-head-title">'.$es_categories[$category][0].'のフレームワーク</h3>
+          <div class="es-framework-head-step-box">
+              <p color="#FFFFFF">'.count($es_points[$category]).'</p>
+          </div>
       </div>
-      <div class="">
-        <table class="">
-          <tbody>
-            <tr>
-              <th align="left" nowrap="nowrap">本文*</th>
-              <td>
-                <div class="es-text"><textarea name="es_content" id="" cols="30" rows="12" placeholder="" required></textarea></div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <input type="hidden" name="challenge_company" value="'.$es_categories[$category][0].'">
-        <input type="hidden" name="new_es_challenge" value="new_es_challenge">
-        <input type="hidden" name="user_id" value="'.$user_id.'">
+      '.$points_html.'
+      <form action="" method="POST" enctype="multipart/form-data">
+        <p>ESのテーマ*</p>
+        <div class="select_box select_box_01">
+          <select name="es_category" required>
+              <option value=""></option>
+              <option value="学生時代力を入れたこと">学生時代力を入れたこと</option>
+              <option value="自己PR">自己PR</option>
+              <option value="長所・短所">長所・短所</option>
+              <option value="志望動機">志望動機</option>
+              <option value="最近のニュース">最近のニュース</option>
+          </select>
+        </div>
+        <div class="es-content-box">
+          <h3>実際にESを書いてみよう！</h3>
+          <textarea class="es-content-textarea" name="es_content" placeholder="上記のフレームワークを活かしてESを書いてみよう!" height="100px" rows="4" required>'.$es_content.'</textarea>
+        </div>
         '.$post_button_html.'
-      </div>
-    </form>';
+      </form>
+    </div>';
   return $new_html;
 }
 add_shortcode('new_es_form_challenge','new_es_form_challenge');
@@ -375,11 +416,13 @@ function view_past_es(){
   $home_url =esc_url( home_url( ));
   $user = wp_get_current_user();
   $user_id = get_current_user_id();
-
+  $user_info = get_userdata($user_id);
+  $user_name = $user_info->user_login;
   //詳細を見るボタンが押された時の表示
   if(!empty($_GET["post_id"]) && !empty($_GET["action"])){
     $post_id = $_GET["post_id"];
     $es = get_post($post_id);
+    $uploaded_date = get_the_modified_date('Y/n/j',$post_id);
     $post_status = get_post_meta($post_id,'correction',true);
     if($post_status == 'true'){
       $es_categories = get_es_categories('challenge');
@@ -402,98 +445,128 @@ function view_past_es(){
       $es_content = get_field("投稿内容",$post_id);
       $es_corrector = get_field("添削者",$post_id);
       $es_correction = get_field("添削内容",$post_id);
-      $points_html = '';
-      foreach($es_points[$es_url] as $es_point){
-        $points_html .= '<li>'.$es_point.'</li>';
-      }
+      $es_kansei = get_field("完成es",$post_id);
       if($post_status == 'true'){
-       $html = '<h2 class="maintitle">ES添削チャレンジ('.$es_categories[$es_url][0].')</h2>
-       <div class="es-cards-container">
-         <h2 class="">'.$es_categories[$es_url][0].'の要項</h2>
-         <ul class="">
-           '.$points_html.'
-         </ul>
-       </div>
-       <p>ESのテーマ*</p>
-       <p>'.$es_category_sub.'</p>
-       ';
-       $es_category_sub = '/'.$es_category_sub;
+        $html = '
+          <div class="es-framework-container">
+            <div class="es-content-main">
+                <div class="es-timeline_footer_avatar">
+                    <div class="es-timeline_footer_icon">
+                        <a href="/nagatasaori" class="a-link">
+                        <div class="es-avatar">
+                            <img src="https://source.unsplash.com/random/200x200">
+                        </div>
+                        </a>
+                    </div>
+                    <div class="es-timeline_footer_name">
+                        <span>'.$user_name.'</span>
+                    </div>
+                    <div class="es-timeline_footer_date">
+                        <span>'.$uploaded_date.'</span>
+                    </div>
+                </div>
+                <div class="es-fav_status margin-10">
+                    <div class="es-fav_status_item">
+                        <div class="es-fav_status_icon">
+                            <i class="far fa-heart"></i>
+                        </div>
+                        <div class="es-fav_status_label">42</div>
+                    </div>
+                    <div class="es-category_item">実践チャレンジ</div>
+                    <div class="es-category_item">'.$es_category_sub.'</div>
+                </div>
+                <div class="es-detail-content-box">
+                    <div class="es-content-box-text">'.$es_content.'</div>
+                </div>
+            </div>
+            <hr>
+            <div>
+                <div class="es-timeline_footer_avatar">
+                    <div class="es-timeline_footer_icon">
+                        <a href="/nagatasaori" class="a-link">
+                        <div class="es-avatar">
+                            <img src="https://source.unsplash.com/random/200x200">
+                        </div>
+                        </a>
+                    </div>
+                    <div class="es-timeline_footer_name">
+                        <span>'.$es_corrector.'</span>
+                    </div>
+                    <div class="es-timeline_footer_date">
+                        <span>'.$es_category.'</span>
+                    </div>
+                </div>
+                <div class="es-content-box">
+                <div class="es-content-box-text">'.$es_correction.'</div>
+                </div>
+            </div>
+            <hr>
+            <div>
+                <div class="es-framework-head-container margin-buttom-0">
+                    <h3 class="es-framework-head-title">完成ES</h3>
+                </div>
+                <div class="es-content-box">
+                <div class="es-content-box-text">'.$es_kansei.'</div>
+                </div>
+            </div>
+        </div>
+        ';
       }else{
-        $html = '<h2 class="maintitle">ES添削チャレンジ('.$es_categories[$es_url][0].')</h2>
-       <div class="es-cards-container">
-         <h2 class="">'.$es_categories[$es_url][0].'の要項</h2>
-         <ul class="">
-           '.$points_html.'
-         </ul>
-       </div>';
+        $html = '
+          <div class="es-framework-container">
+            <div class="es-content-main">
+                <div class="es-timeline_footer_avatar">
+                    <div class="es-timeline_footer_icon">
+                        <a href="/nagatasaori" class="a-link">
+                        <div class="es-avatar">
+                            <img src="https://source.unsplash.com/random/200x200">
+                        </div>
+                        </a>
+                    </div>
+                    <div class="es-timeline_footer_name">
+                        <span>'.$user_name.'</span>
+                    </div>
+                    <div class="es-timeline_footer_date">
+                        <span>'.$uploaded_date.'</span>
+                    </div>
+                </div>
+                <div class="es-content-edit">
+                  <i class="fas fa-pen-fancy"></i>
+                  <a href="/entry-sheet/practice?post_id='.$post_id.'&category='.$es_url.'&action=edit">編集</a>
+                </div>
+                <div class="es-content-edit-delete-between">|</div>
+                <div class="es-content-delete">
+                  <form action="" method="POST" enctype="multipart/form-data">
+                    <i class="fas fa-trash"></i>
+                    <input type="hidden" name="post_id" value="'.$post_id.'">
+                    <input type="submit" name="es-delete" id="es-delete" class="" value="削除">
+                  </form>
+                </div>
+                <div class="es-fav_status margin-10">
+                    <div class="es-fav_status_item">
+                        <div class="es-fav_status_icon">
+                            <i class="far fa-heart"></i>
+                        </div>
+                        <div class="es-fav_status_label">42</div>
+                    </div>
+                    <div class="es-category_item">項目別練習</div>
+                    <div class="es-category_item">'.$es_category.'</div>
+                </div>
+                <div class="es-detail-content-box">
+                <div class="es-content-box-text">'.$es_content.'</div>
+                </div>
+            </div>
+          </div>
+      ';
       }
-      $html .= '
-        <div class="card full-card">
-          <div class="full-card-main">
-		        <div class="full-card-text">
-              <div class="full-card-text-title">
-                <h3>'.$es_category.$es_category_sub.'</h3>
-              </div>
-              <table class="full-card-table">
-                <tbody>
-                  <tr>
-                    <th>投稿内容</th>
-                    <td>'.$es_content.'</td>
-                  </tr>';
-      if(!empty($es_corrector)){
-        $html .= '
-          <tr>
-            <th>添削者</th>
-            <td>'.$es_corrector.'</td>
-          </tr>
-          <tr>
-            <th>添削内容</th>
-            <td>'.$es_correction.'</td>
-          </tr>';
-      }
-      $html .= '</tbody></table></div></div></div>';
     }
   }else{
     //ESを見るの一覧ページ
-    $args = array(
-      'post_type' => 'entry_sheet',
-      'post_status' => array('publish'),
-      'posts_per_page' => 100,
-      'meta_query' => array(
-        array(
-          'key' => 'correction',
-          'value' => 'true'
-        ),
-        array(
-          'key' => 'author_id',
-          'value' => $user_id
-        )
-      )
-    );
-    $es_challenge = get_posts($args);
-    $args = array(
-      'post_type' => 'entry_sheet',
-      'post_status' => array('publish'),
-      'posts_per_page' => 100,
-      'meta_query' => array(
-        array(
-          'key' => 'correction',
-          'value' => 'false'
-        ),
-        array(
-          'key' => 'author_id',
-          'value' => $user_id
-        )
-      )
-    );
-    $es_practice = get_posts($args);
-	  $practice_count =  count($es_practice);
-	  $challenge_count =  count($es_challenge);
-    $post_ids=array();
-    $challenge_card_html = '';
-    foreach($es_challenge as $es){
+    $es_total = get_past_es($user_id,'all');
+    foreach($es_total as $es){
       $post_id = $es->ID;
-      $es_category = $es->post_title;
+      $post_status = get_post_meta($post_id,'correction',true);
+      $uploaded_date = get_the_modified_date('Y/n/j',$post_id);
       $es_content = get_field("投稿内容",$post_id);
       $es_corrector = get_field("添削者",$post_id);
       $es_correction = get_field("添削内容",$post_id);
@@ -505,191 +578,70 @@ function view_past_es(){
         $es_correction = mb_substr($es_correction, 0,100);
         $es_correction .= '...';
       }
-      // $challenge_card_html .=
-      //   '<div class="card full-card">
-      //     <div class="full-card-main">
-      //       <div class="full-card-text">
-      //         <div class="full-card-text-title">
-      //           <h3>'.$es_category.'</h3>
-      //         </div>
-      //         <table class="full-card-table">
-      //           <tbody>
-      //             <tr>
-      //               <th>投稿内容</th>
-      //               <td>'.$es_content.'</td>
-      //             </tr>';
-      //             if(!empty($es_corrector)){
-      //               $challenge_card_html .= '
-      //                 <tr>
-      //                   <th>添削者</th>
-      //                   <td>'.$es_corrector.'</td>
-      //                 </tr>
-      //                 <tr>
-      //                   <th>添削内容</th>
-      //                   <td>'.$es_correction.'</td>
-      //                 </tr>';
-      //             }
-      // $challenge_card_html .='
-      //           </tbody>
-      //         </table>
-      //       </div>
-      //     </div>
-      //     <div class="full-card-buttons">
-      //       <a href = "'.$home_url.'/entry-sheet/view?post_id='.$post_id.'&action=show"><button class="button">詳細を見る</button></a>
-      //     </div>
-      //   </div>
-      // ';
-      $challenge_card_html .= '
-      <div class="es-timeline__item">
-        <a href = "'.$home_url.'/entry-sheet/view?post_id='.$post_id.'&action=show">
-          <section class="es-text-box">
-            <div class="es-text__body">
-              <div class="es-text__eyecatch">
-                <img src="https://source.unsplash.com/random/200x200">
-              </div>
-              <h3 class="es-text__title">'.$es_category.'</h3>
-              <p class="es-text__description">'.$es_content.'</p>
-              <div class="es-fav_status">
-                <div class="es-fav_status_item">
-                  <div class="es-fav_status_icon">
-                    <i class="far fa-heart"></i>
-                  </div>
-                  <div class="es-fav_status_label">42</div>
-                </div>
-                <div class="es-category_item">実践チャレンジ</div>
-              </div>
-            </div>
-            <div class="es-timeline_footer">
-              <div class="es-timeline_footer_avatar">
-                <div class="es-timeline_footer_icon">
-                  <div class="es-avatar">
-                    <img src="https://source.unsplash.com/random/200x200">
-                  </div>
-                </div>
-                <div class="es-timeline_footer_name">
-                  <span>山田　さおり</span>
-                </div>
-                <div class="es-timeline_footer_date">
-                  <span>6時間前</span>
-                </div>
-              </div>
-              <div class="o-like">
-                <button aria-label="heart"></button>
-              </div>
-            </div>
-          </section>
-        </a>
-      </div>';
-    }
-
-    //実践チャレンジに投稿がないとき
-    if($challenge_count == 0){
-      $challenge_card_html = '
-      <div class="es-title-container">
-        <p>過去のESがありません</br>実践チャレンジから挑戦しましょう</p>
-      </div>';
-    }
-    $html = '
-    <div class="es-title-container">
-      <h2 class="es-title">ES添削チャレンジ</h2>
-    </div>
-    <div class="es-cards-container">'.$challenge_card_html.'</div>';
-
-    $es_categories = get_es_categories('practice');
-    $es_points = get_es_points('practice');
-    foreach($es_practice as $es){
-      $post_id = $es->ID;
-      $es_category = get_field("投稿テーマ",$post_id);
-      $es_content = get_field("投稿内容",$post_id);
-      if(mb_strlen($es_content) > 100){
-        $es_content = mb_substr($es_content, 0,100);
-        $es_content .= '...';
+      if($post_status == 'true'){
+        $es_category = $es->post_title;
+      }else{
+        $es_category = get_field("投稿テーマ",$post_id);
       }
-      $es_urls = get_es_url();
-      //ESのカテゴリのgetパラメータを取得
-      $es_url = $es_urls[$es_category];
-      // $practice_card_html .= '
-      //   <div class="card full-card">
-      //     <div class="full-card-main">
-      //       <div class="full-card-text">
-      //         <div class="full-card-text-title">
-      //           <h3>'.$es_category.'</h3>
-      //         </div>
-      //         <table class="full-card-table">
-      //           <tbody>
-      //             <tr>
-      //               <th>投稿内容</th>
-      //               <td>'.$es_content.'</td>
-      //             </tr>
-      //           </tbody>
-      //         </table>
-      //       </div>
-      //     </div>
-      //     <div class="full-card-buttons">
-      //       <a href = "'.$home_url.'/entry-sheet/practice?category='.$es_url.'&post_id='.$post_id.'&action=edit"><button class="button">編集する</button></a>
-      //       <a href = "'.$home_url.'/entry-sheet/view?post_id='.$post_id.'&action=show"><button class="button">詳細を見る</button></a>
-      //       <form action="" method="POST">
-      //         <input type="hidden" name="post_id" value="'.$post_id.'">
-      //         <input type="submit" name="es-delete" id="es-delete" class="button button-primary button-large" value="削除する">
-      //       </form>
-      //     </div>
-      //   </div>
-      // ';
-      $practice_card_html .= '
-      <div class="es-timeline__item">
-        <a href="'.$home_url.'/entry-sheet/view?post_id='.$post_id.'&action=show">
-          <section class="es-text-box">
-            <div class="es-text__body">
-              <div class="es-text__eyecatch">
-                <img src="https://source.unsplash.com/random/200x200">
-              </div>
-              <h3 class="es-text__title">'.$es_category.'</h3>
-              <p class="es-text__description">'.$es_content.'</p>
-              <div class="es-fav_status">
-                <div class="es-fav_status_item">
-                  <div class="es-fav_status_icon">
-                    <i class="far fa-heart"></i>
-                  </div>
-                  <div class="es-fav_status_label">42</div>
+      $es_card_html .= '
+        <div class="es-timeline__item">
+          <a href = "'.$home_url.'/entry-sheet/view?post_id='.$post_id.'&action=show">
+            <section class="es-text-box">
+              <div class="es-text__body">
+                <div class="es-text__eyecatch">
+                  <img src="https://source.unsplash.com/random/200x200">
                 </div>
-                <div class="es-category_item">項目別練習</div>
+                <h3 class="es-text__title">'.$es_category.'</h3>
+                <p class="es-text__description">'.$es_content.'</p>
+                <div class="es-fav_status">
+                  <div class="es-fav_status_item">
+                    <div class="es-fav_status_icon">
+                      <i class="far fa-heart"></i>
+                    </div>
+                    <div class="es-fav_status_label">42</div>
+                  </div>
+                  <div class="es-category_item">実践チャレンジ</div>
+                </div>
               </div>
-            </div>
-            <div class="es-timeline_footer">
-              <div class="es-timeline_footer_avatar">
-                <div class="es-timeline_footer_icon">
-                  <div class="es-avatar">
-                    <img src="https://source.unsplash.com/random/200x200">
+              <div class="es-timeline_footer">
+                <div class="es-timeline_footer_avatar">
+                  <div class="es-timeline_footer_icon">
+                    <div class="es-avatar">
+                      <img src="https://source.unsplash.com/random/200x200">
+                    </div>
+                  </div>
+                  <div class="es-timeline_footer_name">
+                    <span>'.$user_name.'</span>
+                  </div>
+                  <div class="es-timeline_footer_date">
+                    <span>'.$uploaded_date.'</span>
                   </div>
                 </div>
-                <div class="es-timeline_footer_name">
-                  <span>山田　さおり</span>
-                </div>
-                <div class="es-timeline_footer_date">
-                  <span>6時間前</span>
+                <div class="o-like">
+                  <button aria-label="heart"></button>
                 </div>
               </div>
-              <div class="o-like">
-                <button aria-label="heart"></button>
-              </div>
-            </div>
-          </section>
-        </a>
-      </div>';
+            </section>
+          </a>
+        </div>
+      ';
     }
-
-    //項目別練習にESがないとき
-    if($practice_count == 0){
-      $practice_card_html = '
+    $es_count =  count($es_total);
+    if($es_count>0){
+      $html = '
         <div class="es-title-container">
-          <p>過去のESがありません</br>基礎から学ぶで練習しましょう</p>
+          <h2 class="es-title">あなたのES</h2>
+        </div>
+        <div class="es-cards-container">'.$es_card_html.'</div>';
+    }else{
+      $html = '
+        <div class="es-title-container">
+          <h2 class="es-title">あなたのES</h2>
+        </div>
+        <div class="es-title-container">
+          <p>過去のESがありません</br>基礎から学ぶや実践チャレンジに取り組みましょう</p>
         </div>';
     }
-    $html .= '
-      <div class="es-title-container">
-        <h2 class="es-title">項目別練習</h2>
-      </div>
-      <div class="es-cards-container">'.$practice_card_html.'</div>';
   }
   return $html;
 }
@@ -724,84 +676,6 @@ function edit_es_post(){
 }
 add_action('template_redirect', 'edit_es_post');
 
-//esのカテゴリの取得（key：getパラメータ、value:題名、説明、イメージ画像）
-function get_es_categories($type){
-  if($type == "practice"){
-    $es_categories = array(
-      'gakutika' => array('学生時代力を入れたこと','あなたが普段どのような活動を行い何を学んできたのかを問う定番項目です。','2020/03/akson-1K8pIbIrhkQ-unsplash-e1583117897684.jpg'),
-      'self-pr' => array('自己PR','あなたがどのような人物であるのかを問うことを目的とした定番項目です。','2020/03/obi-onyeador-nsYboB2RDwU-unsplash.jpg'),
-      'strong-weak' => array('長所・短所','あなたが自分のことを客観的に見ることができているのかを問う定番項目です。','2020/03/jordan-whitt-b8rkmfxZjdU-unsplash-e1583135048633.jpg'),
-      'motivation' => array('志望動機','あなたがどれだけ応募した企業へ入りたいのか、その熱意を確認する定番項目です。','2020/03/business-1853682_1920-e1583123241772.jpg'),
-      'news' => array('最近のニュース','あなたがどれだけ社会に対する問題意識を持っているか確認する定番項目です。','2020/03/roman-kraft-_Zua2hyvTBk-unsplash-e1583123073166.jpg')
-    );
-  }else{
-    $es_categories = array(
-      'musojyuku' => array('就活無双塾','【3/◯◯~3/◯◯開催】<br>元JPMorgan新卒採用担当者によるエントリーシート添削企画開催！<br>※抽選で10名限定','2020/03/max-bender-FuxYvi-hcWQ-unsplash-e1583138722808.jpg')
-    );
-  }
-  return $es_categories;
-}
-
-//esのポイントの取得（key：getパラメータ、value:ポイントの配列の取得）
-function get_es_points($type){
-  if($type == "practice"){
-    $es_points = array(
-      'gakutika' => array(
-        '【結論】どのようなことに取り組んだのか述べる<br>「私は大学時代に◯◯に従事しました。」',
-        '【理由】なぜ上記に取り組んだのかを述べる<br>「もともと◯◯が足りないことには気が付いており、大学時代には◯◯を身に付けたいと考えたため上記の活動に取り組むことにしました。」',
-        '【目標や課題】どのようなことを目標にして活動していたか、またそこから見つかった課題を述べる<br>「◯◯という目標のもと活動を行っていましたが、◯◯という壁に直面することになりました。」',
-        '【解決策と行動】課題から考え出した解決策や行動を述べる<br>「そこで私は、◯◯を改善することで問題を解決できると考え、◯◯という計画を実行しました。」',
-        '【成果】結果としてどのような成果を得られたのか述べる<br>「結果として、◯◯という成果をあげることができました。」',
-        '【学びと今後の展望】ここから学んだことや、強みや長所を今後どのように生かしていくか述べる<br>「この経験から◯◯を学び、これを貴社での◯◯業務にいかしていきたいと考えています。」',
-      ),
-      'self-pr' => array(
-        '【結論】強みや長所を述べる<br>「私の強みは◯◯です。」',
-        '【具体例】過去に強みや長所が発揮された具体例を述べる<br>「◯年生の時には◯◯を行いました。」',
-        '【目標や課題】どのようなことを目標にして活動していたか、またそこから見つかった課題を述べる<br>「◯◯という目標のもと活動を行っていましたが、◯◯という壁に直面することになりました。」',
-        '【解決策と行動】課題から考え出した解決策や行動を述べる<br>「そこで私は、◯◯を改善することで問題を解決できると考え、◯◯という計画を実行しました。」',
-        '【成果】結果としてどのような成果を得られたのか述べる<br>「結果として、◯◯という成果をあげることができました。」',
-        '【学びと今後の展望】ここから学んだことや、強みや長所を今後どのように生かしていくか述べる<br>「この経験から◯◯を学び、これを貴社での◯◯業務にいかしていきたいと考えています。」'
-      ),
-      'strong-weak' => array(
-        '【概要】自分の短所を簡潔に述べる<br>「私の短所は、◯◯です。」',
-        '【具体例】過去に自分の短所が出てしまった例を述べる<br>「以前、◯◯の状況下において私の短所が出てしまいました。」',
-        '【改善理由】短所を改善すべき理由を述べる<br>「しかし会社に入ると、◯◯であるためこの短所は改善する必要があると感じています。」',
-        '【解決法】短所を改善するための解決法を述べる<br>「そこで私は、この短所を解決するために◯◯と考え、常に心がけています。」'
-      ),
-      'motivation' => array(
-        '【志望理由】その企業を志望する旨を述べる<br>「◯◯な貴社で◯◯に貢献したいため応募しました。」',
-        '【志望業界や企業の軸】業界の動向や人物像・能力から企業選びの軸を伝える<br>「◯◯という成長を続けている◯◯業界に置いて、◯◯な人材が必要であると考えております。」',
-        "【他社ではなく志望企業】他の企業を差し置いて応募企業を志望する理由を述べる<br>「貴社には◯◯や◯◯といった要素を兼ね備えている方が多数いると、インターンでのコミュニケーションを通して強く感じました。」",
-        "【自己PR】実体験に基づいた自分の強みを述べる<br>「◯◯という経験をもとに、私は◯◯が強みです。」",
-        "【マッチング】企業の求める人材と自分が一致していることを述べる<br>「貴社では◯◯という活躍ができると考えているため、貴社を強く志望しています。」"
-      ),
-      'news' => array(
-        "【選んだニュース】志望業界に基づくニュースを述べる<br>「私が最近気になっているニュースは◯◯です。」",
-        "【理由】上記のニュースを選んだ理由を述べる<br>「このニュースを選んだ理由は◯◯です。」",
-        "【概要】上記のニュースの概要を簡潔に述べる<br>「今回のニュースでは、◯◯で、◯◯という影響がありました。」",
-        "【考え】今回のニュースで自分なりの考えを述べる<br>「私は今回のニュースを受けて◯◯と感じ、◯◯を改善したいと考えています。」",
-        )
-    );
-  }
-  else{
-    $es_points = array(
-      'musojyuku' => array('ES添削チャレンジは一つのチャレンジで一つしか提出出来ません','就活無双塾の要項２')
-    );
-  }
-  return $es_points;
-}
-
-function get_es_url(){
-    $es_url = array(
-      '学生時代力を入れたこと' => 'gakutika',
-      '自己PR' => 'self-pr',
-      '長所・短所' => 'strong-weak',
-      '志望動機' => 'motivation',
-      '最近のニュース' => 'news',
-      '就活無双塾' => 'musojyuku'
-    );
-  return $es_url;
-}
 
 //管理画面に添削(true or falseを追加)
 function add_entry_sheet_column( $defaults ) {
@@ -812,7 +686,12 @@ add_filter('manage_entry_sheet_posts_columns', 'add_entry_sheet_column');
 
 function add_custom_column_id($column_name, $id) {
   if( $column_name == 'correction' ) {
-    echo get_post_meta($id, 'correction', true);
+    $correction = get_post_meta($id, 'correction', true);
+    if($correction == 'true'){
+      echo 'true';
+    }else{
+      echo 'false';
+    }
   }
 }
 add_action('manage_entry_sheet_posts_custom_column', 'add_custom_column_id', 10, 2);
@@ -829,3 +708,125 @@ function post_unpublished( $new_status, $old_status, $post ) {
   }
 }
 add_action( 'transition_post_status', 'post_unpublished', 10, 3 );
+
+//過去のESを取得する($user_idと$correctionで場合わけ)
+function get_past_es($user_id,$correction){
+  if($user_id == 'all' && $correction == 'all'){
+    $args = array(
+      'post_type' => 'entry_sheet',
+      'post_status' => array('publish'),
+      'posts_per_page' => 100,
+      'orderby'          => 'date',
+    );
+  }elseif($user_id == 'all' && $correction != 'all'){
+    $args = array(
+      'post_type' => 'entry_sheet',
+      'post_status' => array('publish'),
+      'posts_per_page' => 100,
+      'orderby'          => 'date',
+      'meta_query' => array(
+        array(
+          'key' => 'correction',
+          'value' => $correction
+        )
+      )
+    );
+  }elseif($user_id != 'all' && $correction == 'all'){
+    $args = array(
+      'post_type' => 'entry_sheet',
+      'post_status' => array('publish'),
+      'posts_per_page' => 100,
+      'orderby'          => 'date',
+      'meta_query' => array(
+        array(
+          'key' => 'author_id',
+          'value' => $user_id
+        )
+      )
+    );
+  }else{
+    $args = array(
+      'post_type' => 'entry_sheet',
+      'post_status' => array('publish'),
+      'posts_per_page' => 100,
+      'orderby'          => 'date',
+      'meta_query' => array(
+        array(
+          'key' => 'author_id',
+          'value' => $user_id
+        ),
+        array(
+          'key' => 'correction',
+          'value' => $correction
+        )
+      )
+    );
+  }
+  $es = get_posts($args);
+}
+
+/**
+ * 管理画面の投稿一覧にカスタムフィールドの絞り込み選択機能を追加します。
+ */
+function restrict_manage_posts_custom_field() {
+	// 投稿タイプが投稿の場合 (カスタム投稿タイプのみに適用したい場合は 'post' をカスタム投稿タイプの内部名に変更してください)
+	if ( 'entry_sheet' == get_current_screen()->post_type ) {
+		// カスタムフィールドのキー(名称例)
+		$meta_key = 'correction';
+
+		// カスタムフィールドの値の一覧(例。「=>」の左側が保存されている値、右側がプルダウンに表示する名称です。)
+		$items = array( '' => 'すべてのES', 'true' => '〇', 'false' => '-' );
+		// Advanced Custom Fields を導入してフィールドタイプをセレクトボックスなど
+		// 選択肢のあるタイプにしている場合は下記のような形でも可です。
+		// $field = get_field_object($meta_key);
+		// $items = array_merge( array( '' => 'すべての色' ), $field['choices'] );
+
+		// 選択されている値
+		// ( query_vars フィルタでカスタムフィールドのキーを登録している場合は get_query_var( $meta_key ) でも可です )
+		$selected_value = filter_input( INPUT_GET, $meta_key );
+
+		// プルダウンのHTML
+		$output = '';
+		$output .= '<select name="' . esc_attr($meta_key) . '">';
+		foreach ( $items as $value => $text ) {
+			$selected = selected( $selected_value, $value, false );
+			$output .= '<option value="' . esc_attr($value) . '"' . $selected . '>' . esc_html($text) . '</option>';
+		}
+		$output .= '</select>';
+
+		echo $output;
+	}
+}
+add_action( 'restrict_manage_posts', 'restrict_manage_posts_custom_field' );
+
+/**
+ * 管理画面の投稿一覧に追加したカスタムフィールドの絞り込みの選択値を反映させます。
+ * (絞り込みが必要なカスタムフィールドが1つの場合)]
+ * $query クエリオブジェクト
+ */
+function pre_get_posts_admin_custom_field( $query ) {
+	// 管理画面 / 投稿タイプが投稿 / メインクエリ、のすべての条件を満たす場合
+	// (カスタム投稿タイプのみに適用したい場合は 'post' をカスタム投稿タイプの内部名に変更してください)
+	if ( is_admin() && 'entry_sheet' == get_current_screen()->post_type && $query->is_main_query() ) {
+		// カスタムフィールドのキー(名称例)
+		$meta_key = 'correction';
+		// 選択されている値
+		// ( query_vars フィルタでカスタムフィールドのキーを登録している場合は get_query_var( $meta_key ) でも可です )
+		$meta_value = filter_input( INPUT_GET, $meta_key );
+
+		// クエリの検索条件に追加
+		// (すでに他のカスタムフィールドの条件がセットされている場合は条件を引き継いで新しい条件を追加する形になります)
+		if ( strlen( $meta_value ) ) {
+			$meta_query = $query->get( 'meta_query' );
+			if ( ! is_array( $meta_query ) ) $meta_query = array();
+
+			$meta_query[] = array(
+				'key' => $meta_key,
+				'value' => $meta_value
+			);
+
+			$query->set( 'meta_query', $meta_query );
+		}
+	}
+}
+add_action( 'pre_get_posts', 'pre_get_posts_admin_custom_field' );
