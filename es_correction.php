@@ -314,19 +314,19 @@ function new_es_form_challenge(){
       </div>
       '.$points_html.'
       <form action="" method="POST" enctype="multipart/form-data">
-        <p>ESのテーマ*</p>
-        <div class="select_box select_box_01">
-          <select name="es_category" required>
-              <option value=""></option>
-              <option value="学生時代力を入れたこと">学生時代力を入れたこと</option>
-              <option value="自己PR">自己PR</option>
-              <option value="短所">短所</option>
-              <option value="志望動機">志望動機</option>
-              <option value="最近のニュース">最近のニュース</option>
-          </select>
-        </div>
         <div class="es-content-box">
           <h3>実際にESを書いてみよう！</h3>
+          <p>ESのテーマ*</p>
+          <div class="select_box select_box_01">
+            <select name="es_category" required>
+                <option value=""></option>
+                <option value="学生時代力を入れたこと">学生時代力を入れたこと</option>
+                <option value="自己PR">自己PR</option>
+                <option value="短所">短所</option>
+                <option value="志望動機">志望動機</option>
+                <option value="最近のニュース">最近のニュース</option>
+            </select>
+          </div>
           <textarea class="es-content-textarea" name="es_content" placeholder="上記のフレームワークを活かしてESを書いてみよう!" height="100px" rows="4" required>'.$es_content.'</textarea>
         </div>
         '.$post_button_html.'

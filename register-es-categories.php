@@ -18,7 +18,7 @@ function get_es_categories($type){
     );
   }else{
     $es_categories = array(
-      'musojyuku' => array('就活無双塾','【3/◯◯~3/◯◯開催】<br>元JPMorgan新卒採用担当者によるエントリーシート添削企画開催！<br>※抽選で10名限定','2020/03/max-bender-FuxYvi-hcWQ-unsplash-e1583138722808.jpg')
+      'musojyuku' => array('就活無双塾','【3/9~3/31開催】<br>元JPMorgan新卒採用担当者によるエントリーシート添削企画開催！<br>※抽選で10名限定','2020/03/max-bender-FuxYvi-hcWQ-unsplash-e1583138722808.jpg')
     );
   }
   return $es_categories;
