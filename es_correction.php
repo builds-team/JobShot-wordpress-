@@ -211,10 +211,8 @@ function new_es_form_practice(){
       </div>
       <div class="es-framework-main">
           <div class="es-framework-main-text">
-              <h2 class="sc-ifAKCX hOCPBR">デザインのコツ : そろえる</h2>
-              <div>
-                '.$es_point.'
-              </div>
+            <h2 class="sc-ifAKCX hOCPBR">'.$es_point['title'].'</h2>
+            <div>'.$es_point['text'].'</div>
           </div>
       </div>
     </div>
@@ -299,10 +297,8 @@ function new_es_form_challenge(){
       </div>
       <div class="es-framework-main">
           <div class="es-framework-main-text">
-              <h2 class="sc-ifAKCX hOCPBR">デザインのコツ : そろえる</h2>
-              <div>
-                '.$es_point.'
-              </div>
+            <h2 class="sc-ifAKCX hOCPBR">'.$es_point['title'].'</h2>
+            <div>'.$es_point['text'].'</div>
           </div>
       </div>
     </div>
@@ -324,7 +320,7 @@ function new_es_form_challenge(){
               <option value=""></option>
               <option value="学生時代力を入れたこと">学生時代力を入れたこと</option>
               <option value="自己PR">自己PR</option>
-              <option value="長所・短所">長所・短所</option>
+              <option value="短所">短所</option>
               <option value="志望動機">志望動機</option>
               <option value="最近のニュース">最近のニュース</option>
           </select>
