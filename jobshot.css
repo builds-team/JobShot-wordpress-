@@ -7221,6 +7221,11 @@ font-size: 13px !important;
   border: 1px solid #f2f2f2;
   border-radius: 4px;
 }
+.es-text__eyecatch img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 .es-text__title{
   margin-bottom: 8px;
   font-weight: 700;

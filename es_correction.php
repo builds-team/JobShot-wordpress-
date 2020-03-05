@@ -56,11 +56,10 @@ function view_es_type_func(){
   <div class="es-cards">';
   foreach ($es_practice_categories as $es_get_param => $es_contents) {
     $practice_card_html .= '
+    <a href="'.$home_url.'/entry-sheet/practice?category='.$es_get_param.'">
       <div class="es-card">
         <div class="es-card__image-holder">
-          <a href="'.$home_url.'/entry-sheet/practice?category='.$es_get_param.'">
-            <img class="card__image" src="'.$home_url.'/wp-content/uploads/'.$es_contents[2].'" alt="wave" />
-          </a>
+          <img class="card__image" src="'.$home_url.'/wp-content/uploads/'.$es_contents[2].'" alt="wave" />
         </div>
         <div class="card-title">
           <h2>'.$es_contents[0].'<small><i class="fas fa-book-open"></i>基礎から学ぶ</small></h2>
@@ -74,9 +73,11 @@ function view_es_type_func(){
           </div>
         </div>
       </div>
+    </a>
     ';
   }
   $practice_card_html .= '</div>';
+
   $challenge_card_html = '
   <div class="es-title-container">
     <p class="es-title-sub">\ 実際にチャレンジしてみよう /</p>
@@ -85,11 +86,10 @@ function view_es_type_func(){
   <div class="es-cards">';
   foreach ($es_challenge_categories as $es_get_param => $es_contents) {
     $challenge_card_html .= '
+    <a href="'.$home_url.'/entry-sheet/challenge?category='.$es_get_param.'">
       <div class="es-card">
         <div class="es-card__image-holder">
-          <a href="'.$home_url.'/entry-sheet/challenge?category='.$es_get_param.'">
-            <img class="card__image" src="'.$home_url.'/wp-content/uploads/'.$es_contents[2].'" alt="wave" />
-          </a>
+          <img class="card__image" src="'.$home_url.'/wp-content/uploads/'.$es_contents[2].'" alt="wave" />
         </div>
         <div class="card-title">
           <h2>'.$es_contents[0].'<small><i class="fas fa-user-tie"></i>実践チャレンジ</small></h2>
@@ -103,6 +103,7 @@ function view_es_type_func(){
           </div>
         </div>
       </div>
+    </a>
     ';
   }
   $challenge_card_html .= '</div>';
@@ -121,7 +122,7 @@ function view_es_type_func(){
 }
 add_shortcode('view_es_type','view_es_type_func');
 
-//練習用のESフォーム
+//項目別練習用のESフォーム(新規投稿・編集)
 function new_es_form_practice(){
   if(isset($_GET['category'])){
     $category=$_GET['category'];
@@ -132,7 +133,7 @@ function new_es_form_practice(){
   $es_categories = get_es_categories('practice');
   $es_points = get_es_points('practice');
 
-  //ボタン
+  //投稿ボタン
   $post_button_html = '
   <div class="es-submit-box">
     <input type="hidden" name="es_category" value="'.$es_categories[$category][0].'">
@@ -141,13 +142,16 @@ function new_es_form_practice(){
     <input type="hidden" name="correction" value="false">
     <input type="submit" name="publish" id="publish" class="es-submit-button" value="保存する">
   </div>';
+
   $es_content = '';
-  //ESを見るで編集ボタンが押されたときの処理
+  //項目別練習のESを見るで編集ボタンが押されたときの処理
   if(!empty($_GET['post_id']) && !empty($_GET['action'])){
     $post_id = $_GET["post_id"];
-    $es = get_post($post_id);
+    $post = get_post($post_id);
+    $post_user_id = get_userdata($post->post_author)->ID;
+    $user_profile_image = get_user_profile_image($post_user_id);
     $uploaded_date = get_the_modified_date('Y/n/j',$post_id);
-    if($es->post_author == $user_id){
+    if($post->post_author == $user_id){
       $es_content = get_field("投稿内容",$post_id);
       $post_button_html = '
         <div class="es-submit-box">
@@ -164,7 +168,7 @@ function new_es_form_practice(){
               <div class="es-timeline_footer_icon">
                 <a href="/nagatasaori" class="a-link">
                   <div class="es-avatar">
-                    <img src="https://source.unsplash.com/random/200x200">
+                    <img src="'.$user_profile_image.'">
                   </div>
                 </a>
               </div>
@@ -188,7 +192,7 @@ function new_es_form_practice(){
             <form action="" method="POST" enctype="multipart/form-data">
               <div class="es-content-box">
                 <h3>'.$es_categories[$category][0].'</h3>
-                <textarea class="es-content-textarea" name="es_content" placeholder="上記のフレームワークを活かしてESを書いてみよう!" height="100px" rows="4" required>'.$es_content.'</textarea>
+                <textarea class="es-content-textarea" name="es_content" placeholder="" height="100px" rows="4" required>'.$es_content.'</textarea>
               </div>
               '.$post_button_html.'
             </form>
@@ -411,7 +415,7 @@ function new_es_post(){
 }
 add_action('template_redirect', 'new_es_post');
 
-//ESを見るページ
+//ESを見るページ(一覧・詳細ページ)
 function view_past_es(){
   $home_url =esc_url( home_url( ));
   $user = wp_get_current_user();
@@ -421,7 +425,9 @@ function view_past_es(){
   //詳細を見るボタンが押された時の表示
   if(!empty($_GET["post_id"]) && !empty($_GET["action"])){
     $post_id = $_GET["post_id"];
-    $es = get_post($post_id);
+    $post = get_post($post_id);
+    $post_user_id = get_userdata($post->post_author)->ID;
+    $user_profile_image = get_user_profile_image($post_user_id);
     $uploaded_date = get_the_modified_date('Y/n/j',$post_id);
     $post_status = get_post_meta($post_id,'correction',true);
     if($post_status == 'true'){
@@ -431,7 +437,7 @@ function view_past_es(){
       $es_categories = get_es_categories('practice');
       $es_points = get_es_points('practice');
     }
-    if($es->post_author == $user_id){
+    if($post->post_author == $user_id){
       $es_category = get_field("投稿テーマ",$post_id);
 
       //実践チャレンジの時は$es_categoryに企業名を代入、subに５つのカテゴリの中の１つを代入
@@ -454,7 +460,7 @@ function view_past_es(){
                     <div class="es-timeline_footer_icon">
                         <a href="/nagatasaori" class="a-link">
                         <div class="es-avatar">
-                            <img src="https://source.unsplash.com/random/200x200">
+                            <img src="'.$user_profile_image.'">
                         </div>
                         </a>
                     </div>
@@ -519,7 +525,7 @@ function view_past_es(){
                     <div class="es-timeline_footer_icon">
                         <a href="/nagatasaori" class="a-link">
                         <div class="es-avatar">
-                            <img src="https://source.unsplash.com/random/200x200">
+                            <img src="'.$user_profile_image.'">
                         </div>
                         </a>
                     </div>
@@ -565,6 +571,9 @@ function view_past_es(){
     $es_total = get_past_es($user_id,'all');
     foreach($es_total as $es){
       $post_id = $es->ID;
+      $post = get_post($post_id);
+      $post_user_id = get_userdata($post->post_author)->ID;
+      $user_profile_image = get_user_profile_image($post_user_id);
       $post_status = get_post_meta($post_id,'correction',true);
       $uploaded_date = get_the_modified_date('Y/n/j',$post_id);
       $es_content = get_field("投稿内容",$post_id);
@@ -607,7 +616,7 @@ function view_past_es(){
                 <div class="es-timeline_footer_avatar">
                   <div class="es-timeline_footer_icon">
                     <div class="es-avatar">
-                      <img src="https://source.unsplash.com/random/200x200">
+                      <img src="'.$user_profile_image.'">
                     </div>
                   </div>
                   <div class="es-timeline_footer_name">
@@ -763,6 +772,7 @@ function get_past_es($user_id,$correction){
     );
   }
   $es = get_posts($args);
+  return $es;
 }
 
 /**
@@ -830,3 +840,14 @@ function pre_get_posts_admin_custom_field( $query ) {
 	}
 }
 add_action( 'pre_get_posts', 'pre_get_posts_admin_custom_field' );
+
+// プロフィール写真を取得する関数
+function get_user_profile_image($user_id){
+  $upload_dir = wp_upload_dir();
+  $upload_file_name = $upload_dir['basedir'] . "/" .'profile_photo'.$user_id.'.png';
+  if(!file_exists($upload_file_name)){
+    $attachment_id=2632;
+    $upload_file_name = wp_get_attachment_image_src($attachment_id)[0];
+  }
+  return $upload_file_name;
+}
