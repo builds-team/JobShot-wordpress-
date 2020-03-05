@@ -310,7 +310,7 @@ function new_es_form_challenge(){
   }
   $es_practice_cate = get_es_categories('practice');
   $es_categories_val= array_values($es_practice_cate);
-  $selection_html = '<option value=""></option>';
+  $selection_html = '<option value="">---下記からお選びください---</option>';
   foreach($es_categories_val as $es_category_val){
     $selection_html .= '<option value="'.$es_category_val[0].'">'.$es_category_val[0].'</option>';
   }
