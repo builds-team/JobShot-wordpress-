@@ -589,8 +589,10 @@ function view_past_es(){
       }
       if($post_status == 'true'){
         $es_category = $es->post_title;
+        $es_type = '実践チャレンジ';
       }else{
         $es_category = get_field("投稿テーマ",$post_id);
+        $es_type = '項目別練習';
       }
       $es_card_html .= '
         <div class="es-timeline__item">
@@ -609,7 +611,7 @@ function view_past_es(){
                     </div>
                     <div class="es-fav_status_label">42</div>
                   </div>
-                  <div class="es-category_item">実践チャレンジ</div>
+                  <div class="es-category_item">'.$es_type.'</div>
                 </div>
               </div>
               <div class="es-timeline_footer">
