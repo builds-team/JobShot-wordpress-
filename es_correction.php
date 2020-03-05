@@ -308,6 +308,12 @@ function new_es_form_challenge(){
     </div>
     ';
   }
+  $es_practice_cate = get_es_categories('practice');
+  $es_categories_val= array_values($es_practice_cate);
+  $selection_html = '<option value=""></option>';
+  foreach($es_categories_val as $es_category_val){
+    $selection_html .= '<option value="'.$es_category_val[0].'">'.$es_category_val[0].'</option>';
+  }
   $new_html =  '
     <div class="es-framework-container">
       <div class="es-framework-head-container">
@@ -321,12 +327,7 @@ function new_es_form_challenge(){
         <p>ESのテーマ*</p>
         <div class="select_box select_box_01">
           <select name="es_category" required>
-              <option value=""></option>
-              <option value="学生時代力を入れたこと">学生時代力を入れたこと</option>
-              <option value="自己PR">自己PR</option>
-              <option value="長所・短所">長所・短所</option>
-              <option value="志望動機">志望動機</option>
-              <option value="最近のニュース">最近のニュース</option>
+              '.$selection_html.'
           </select>
         </div>
         <div class="es-content-box">
@@ -456,6 +457,38 @@ function view_past_es(){
       $es_correction = get_field("添削内容",$post_id);
       $es_kansei = get_field("完成es",$post_id);
       if($post_status == 'true'){
+        if(!empty($es_correction)){
+          $correction_html = '
+            <hr>
+            <div>
+                <div class="es-timeline_footer_avatar">
+                    <div class="es-timeline_footer_icon">
+                      <div class="es-avatar">
+                          <img src="'.$es_corrector_image.'">
+                      </div>
+                    </div>
+                    <div class="es-timeline_footer_name">
+                        <span>'.$es_corrector.'</span>
+                    </div>
+                    <div class="es-timeline_footer_date">
+                        <span>'.$es_corrector_team.'</span>
+                    </div>
+                </div>
+                <div class="es-content-box">
+                <div class="es-content-box-text">'.$es_correction.'</div>
+                </div>
+            </div>
+            <hr>
+            <div>
+                <div class="es-framework-head-container margin-buttom-0">
+                    <h3 class="es-framework-head-title">完成ES</h3>
+                </div>
+                <div class="es-content-box">
+                <div class="es-content-box-text">'.$es_kansei.'</div>
+                </div>
+            </div>
+          ';
+        }
         $html = '
           <div class="es-framework-container">
             <div class="es-content-main">
@@ -486,34 +519,7 @@ function view_past_es(){
                     <div class="es-content-box-text">'.$es_content.'</div>
                 </div>
             </div>
-            <hr>
-            <div>
-                <div class="es-timeline_footer_avatar">
-                    <div class="es-timeline_footer_icon">
-                      <div class="es-avatar">
-                          <img src="'.$es_corrector_image.'">
-                      </div>
-                    </div>
-                    <div class="es-timeline_footer_name">
-                        <span>'.$es_corrector.'</span>
-                    </div>
-                    <div class="es-timeline_footer_date">
-                        <span>'.$es_corrector_team.'</span>
-                    </div>
-                </div>
-                <div class="es-content-box">
-                <div class="es-content-box-text">'.$es_correction.'</div>
-                </div>
-            </div>
-            <hr>
-            <div>
-                <div class="es-framework-head-container margin-buttom-0">
-                    <h3 class="es-framework-head-title">完成ES</h3>
-                </div>
-                <div class="es-content-box">
-                <div class="es-content-box-text">'.$es_kansei.'</div>
-                </div>
-            </div>
+            '.$correction_html.'
         </div>
         ';
       }else{
