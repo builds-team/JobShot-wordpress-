@@ -211,10 +211,8 @@ function new_es_form_practice(){
       </div>
       <div class="es-framework-main">
           <div class="es-framework-main-text">
-              <h2 class="sc-ifAKCX hOCPBR">デザインのコツ : そろえる</h2>
-              <div>
-                '.$es_point.'
-              </div>
+            <h2 class="sc-ifAKCX hOCPBR">'.$es_point['title'].'</h2>
+            <div>'.$es_point['text'].'</div>
           </div>
       </div>
     </div>
@@ -299,10 +297,8 @@ function new_es_form_challenge(){
       </div>
       <div class="es-framework-main">
           <div class="es-framework-main-text">
-              <h2 class="sc-ifAKCX hOCPBR">デザインのコツ : そろえる</h2>
-              <div>
-                '.$es_point.'
-              </div>
+            <h2 class="sc-ifAKCX hOCPBR">'.$es_point['title'].'</h2>
+            <div>'.$es_point['text'].'</div>
           </div>
       </div>
     </div>
@@ -329,7 +325,7 @@ function new_es_form_challenge(){
           <p>ESのテーマ*</p>
           <div class="select_box select_box_01">
             <select name="es_category" required>
-                '.$selection_html.'
+              '.$selection_html.'
             </select>
           </div>
           <textarea class="es-content-textarea" name="es_content" placeholder="上記のフレームワークを活かしてESを書いてみよう!" height="100px" rows="4" required>'.$es_content.'</textarea>
