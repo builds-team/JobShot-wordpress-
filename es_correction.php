@@ -575,6 +575,7 @@ function view_past_es(){
       $uploaded_date = get_the_modified_date('Y/n/j',$post_id);
       $es_content = get_field("投稿内容",$post_id);
       $es_corrector = get_field("添削者",$post_id);
+      $es_category_ja = get_field("投稿先",$post_id);
       $es_correction = get_field("添削内容",$post_id);
       if(mb_strlen($es_content) > 100){
         $es_content = mb_substr($es_content, 0,100);
@@ -587,7 +588,10 @@ function view_past_es(){
       if($post_status == 'true'){
         $es_category = $es->post_title;
         $es_type = '実践チャレンジ';
-        $es_description_image = '2020/03/max-bender-FuxYvi-hcWQ-unsplash-e1583138722808.jpg';
+        $es_url = get_es_url();
+        $es_categories = get_es_categories("challenge");
+        $es_category_en = $es_url[$es_category_ja];
+        $es_description_image = $es_categories[$es_category_en][2];
       }else{
         $es_category = get_field("投稿テーマ",$post_id);
         $es_type = '項目別練習';
