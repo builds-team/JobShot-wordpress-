@@ -166,11 +166,9 @@ function new_es_form_practice(){
           <div class="es-content-main">
             <div class="es-timeline_footer_avatar">
               <div class="es-timeline_footer_icon">
-                <a href="/nagatasaori" class="a-link">
-                  <div class="es-avatar">
-                    <img src="'.$user_profile_image.'">
-                  </div>
-                </a>
+                <div class="es-avatar">
+                  <img src="'.$user_profile_image.'">
+                </div>
               </div>
               <div class="es-timeline_footer_name">
                   <span>'.$user_name.'</span>
@@ -450,6 +448,11 @@ function view_past_es(){
 	    $es_url = $es_urls[$es_category];
       $es_content = get_field("投稿内容",$post_id);
       $es_corrector = get_field("添削者",$post_id);
+      $es_corrector_image = get_field("添削者イメージ画像",$post_id);
+      if(empty($es_corrector_image)){
+        $es_corrector_image = 'https://source.unsplash.com/random/200x200';
+      }
+      $es_corrector_team = get_field("添削者所属",$post_id);
       $es_correction = get_field("添削内容",$post_id);
       $es_kansei = get_field("完成es",$post_id);
       if($post_status == 'true'){
@@ -458,11 +461,9 @@ function view_past_es(){
             <div class="es-content-main">
                 <div class="es-timeline_footer_avatar">
                     <div class="es-timeline_footer_icon">
-                        <a href="/nagatasaori" class="a-link">
-                        <div class="es-avatar">
-                            <img src="'.$user_profile_image.'">
-                        </div>
-                        </a>
+                      <div class="es-avatar">
+                          <img src="'.$user_profile_image.'">
+                      </div>
                     </div>
                     <div class="es-timeline_footer_name">
                         <span>'.$user_name.'</span>
@@ -489,17 +490,15 @@ function view_past_es(){
             <div>
                 <div class="es-timeline_footer_avatar">
                     <div class="es-timeline_footer_icon">
-                        <a href="/nagatasaori" class="a-link">
-                        <div class="es-avatar">
-                            <img src="https://source.unsplash.com/random/200x200">
-                        </div>
-                        </a>
+                      <div class="es-avatar">
+                          <img src="'.$es_corrector_image.'">
+                      </div>
                     </div>
                     <div class="es-timeline_footer_name">
                         <span>'.$es_corrector.'</span>
                     </div>
                     <div class="es-timeline_footer_date">
-                        <span>'.$es_category.'</span>
+                        <span>'.$es_corrector_team.'</span>
                     </div>
                 </div>
                 <div class="es-content-box">
@@ -523,11 +522,9 @@ function view_past_es(){
             <div class="es-content-main">
                 <div class="es-timeline_footer_avatar">
                     <div class="es-timeline_footer_icon">
-                        <a href="/nagatasaori" class="a-link">
-                        <div class="es-avatar">
-                            <img src="'.$user_profile_image.'">
-                        </div>
-                        </a>
+                      <div class="es-avatar">
+                          <img src="'.$user_profile_image.'">
+                      </div>
                     </div>
                     <div class="es-timeline_footer_name">
                         <span>'.$user_name.'</span>
@@ -590,9 +587,14 @@ function view_past_es(){
       if($post_status == 'true'){
         $es_category = $es->post_title;
         $es_type = '実践チャレンジ';
+        $es_description_image = '2020/03/max-bender-FuxYvi-hcWQ-unsplash-e1583138722808.jpg';
       }else{
         $es_category = get_field("投稿テーマ",$post_id);
         $es_type = '項目別練習';
+        $es_url = get_es_url();
+        $es_categories = get_es_categories("practice");
+        $es_category_en = $es_url[$es_category];
+        $es_description_image = $es_categories[$es_category_en][2];
       }
       $es_card_html .= '
         <div class="es-timeline__item">
@@ -600,7 +602,7 @@ function view_past_es(){
             <section class="es-text-box">
               <div class="es-text__body">
                 <div class="es-text__eyecatch">
-                  <img src="https://source.unsplash.com/random/200x200">
+                  <img src="'.$home_url.'/wp-content/uploads/'.$es_description_image.'">
                 </div>
                 <h3 class="es-text__title">'.$es_category.'</h3>
                 <p class="es-text__description">'.$es_content.'</p>
