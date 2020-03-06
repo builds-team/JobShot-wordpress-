@@ -604,8 +604,7 @@ function view_past_es(){
       }
       $es_card_html .= '
         <div class="es-timeline__item">
-          <a href = "'.$home_url.'/entry-sheet/view?post_id='.$post_id.'&action=show">
-            <section class="es-text-box">
+            <a href = "'.$home_url.'/entry-sheet/view?post_id='.$post_id.'&action=show">
               <div class="es-text__body">
                 <div class="es-text__eyecatch">
                   <img src="'.$home_url.'/wp-content/uploads/'.$es_description_image.'">
@@ -622,26 +621,27 @@ function view_past_es(){
                   <div class="es-category_item">'.$es_type.'</div>
                 </div>
               </div>
-              <div class="es-timeline_footer">
-                <div class="es-timeline_footer_avatar">
-                  <div class="es-timeline_footer_icon">
-                    <div class="es-avatar">
-                      <img src="'.$user_profile_image.'">
-                    </div>
-                  </div>
-                  <div class="es-timeline_footer_name">
-                    <span>'.$user_name.'</span>
-                  </div>
-                  <div class="es-timeline_footer_date">
-                    <span>'.$uploaded_date.'</span>
+            </a>
+            <div class="es-timeline_footer">
+              <div class="es-timeline_footer_avatar">
+                <div class="es-timeline_footer_icon">
+                  <div class="es-avatar">
+                    <img src="'.$user_profile_image.'">
                   </div>
                 </div>
-                <div class="o-like">
-                  <button aria-label="heart"></button>
+                <div class="es-timeline_footer_name">
+                  <span>'.$user_name.'</span>
+                </div>
+                <div class="es-timeline_footer_date">
+                  <span>'.$uploaded_date.'</span>
                 </div>
               </div>
-            </section>
-          </a>
+              <div class="es-like">
+                <span id="favorite-button" onclick="favoriteAdd()" class="btn">
+                  <i class="fa fa-heart"></i>
+                </span>
+              </div>
+            </div>
         </div>
       ';
     }

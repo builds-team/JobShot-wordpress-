@@ -7181,6 +7181,7 @@ font-size: 13px !important;
   padding-top:0px !important;
 }
 .es-timeline__item{
+  position: relative;
   padding-bottom: 40px;
   margin-bottom: 40px;
   border-bottom: 1px solid #e6e6e6;
@@ -7191,10 +7192,9 @@ font-size: 13px !important;
 }
 .es-text-box{
   position: relative;
-  cursor: pointer;
   background: #fff;
 }
-.es-text-box:hover:before{
+.es-timeline__item:hover{
   position: absolute;
   top: -16px;
   right: -16px;
@@ -7204,10 +7204,6 @@ font-size: 13px !important;
   content: "";
   background-color: #f7f9f9;
   border-radius: 4px;
-}
-.es-text__body{
-  position: relative;
-  pointer-events: none;
 }
 .es-text__eyecatch{
   position: relative;
@@ -7279,12 +7275,12 @@ font-size: 13px !important;
   -webkit-box-pack: justify;
   justify-content: space-between;
   padding: 16px 0 0;
-  pointer-events: none;
   border-top: none;
+  width: 100%;
 }
 .es-timeline_footer_avatar{
   position: relative;
-  width: calc(100% - 40px);
+  width: calc(100% - 100px);
   min-height: 32px;
   padding-left: 40px;
   overflow: hidden;
@@ -7514,6 +7510,26 @@ font-size: 13px !important;
 }
 #es-delete:hover{
   color: rgb(237, 48, 92);
+}
+.es-like-container{
+  pointer-events:none;
+  cursor: default;
+}
+.es-like{
+  height: 32px;
+  left: 120px;
+  color: #e74c3c2e;
+}
+.es-like-active{
+  color: rgba(231, 76, 60, 1);
+}
+.es-like:hover{
+  color: rgba(231, 76, 60, 1);
+  transition-timing-function: ease-in-out;
+  transition: 0.3s;
+}
+#favorite-button{
+  font-size: 24px;
 }
 @media screen and (max-width: 480px) {
   .es-framework-container{
