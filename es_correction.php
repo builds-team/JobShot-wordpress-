@@ -1,12 +1,26 @@
 <?php
-/*
 
-ログイン時のみesがかけるようにする(完了)
-user_idで取得することができるようにする(完了)
-ファイルの分割(完了)
-公開日の取得（完了）
-日付順に変更(完了、更新日時取得完了)
-*/
+//favoriteの更新関数
+function update_favorite_count(){
+  if(isset($_POST['post_id'])){
+  $post_id = $_POST['post_id'];
+  }
+  $user_id = get_current_user_id();
+  //favの配列
+  $fav_array = get_post_meta($post_id,'favorite',true);
+  //favを増やす時
+  if(!in_array($user_id,$fav_array)){
+    array_push( $fav_array,$user_id);
+  }else{
+    unset($fav_array[array_keys($fav_array, $user_id)[0]]);
+  }
+  update_post_meta($post_id,'favorite',$fav_array);
+  $result = '';
+  echo $result;
+  die();
+}
+add_action( 'wp_ajax_update_favorite_count', 'update_favorite_count' );
+add_action( 'wp_ajax_nopriv_update_favorite_count', 'update_favorite_count' );
 
 
 //ES用のサイドバーの追加
@@ -107,7 +121,11 @@ function view_es_type_func(){
     ';
   }
   $challenge_card_html .= '</div>';
-
+  if (!is_user_logged_in()){
+    $html = '<p class="text-align-center"><i class="fas fa-lock"></i>エントリーシート機能は会員限定です。JobShotに登録すると利用することができます。</p>';
+    $html .= apply_redirect();
+    return $html;
+  }
   //基礎から学ぶ、実践チャレンジの時はそれぞれ項目別練習、実践チャレンジのみを表示する
   if(isset($_GET['type'])){
     if($_GET['type'] == 'practice'){
@@ -151,6 +169,8 @@ function new_es_form_practice(){
     $post_user_id = get_userdata($post->post_author)->ID;
     $user_profile_image = get_user_profile_image($post_user_id);
     $uploaded_date = get_the_modified_date('Y/n/j',$post_id);
+    $fav_array = get_post_meta($post_id,'favorite',true);
+    $fav_count = count($fav_array);
     if($post->post_author == $user_id){
       $es_content = get_field("投稿内容",$post_id);
       $post_button_html = '
@@ -182,7 +202,7 @@ function new_es_form_practice(){
                   <div class="es-fav_status_icon">
                       <i class="far fa-heart"></i>
                   </div>
-                  <div class="es-fav_status_label">42</div>
+                  <div class="es-fav_status_label" id="fav_count_'.$post_id.'">'.$fav_count.'</div>
               </div>
               <div class="es-category_item">項目別練習</div>
               <div class="es-category_item">'.$es_categories[$category][0].'</div>
@@ -235,6 +255,10 @@ function new_es_form_practice(){
         '.$post_button_html.'
       </form>
     </div>';
+  if (!is_user_logged_in()){
+    $new_html = '<p class="text-align-center"><i class="fas fa-lock"></i>エントリーシート機能は会員限定です。JobShotに登録すると利用することができます。</p>';
+    $new_html .= apply_redirect();
+  }
   return $new_html;
 }
 add_shortcode('new_es_form_practice','new_es_form_practice');
@@ -333,6 +357,11 @@ function new_es_form_challenge(){
         '.$post_button_html.'
       </form>
     </div>';
+
+  if (!is_user_logged_in()){
+    $new_html = '<p class="text-align-center"><i class="fas fa-lock"></i>エントリーシート機能は会員限定です。JobShotに登録すると利用することができます。</p>';
+    $new_html .= apply_redirect();
+  }
   return $new_html;
 }
 add_shortcode('new_es_form_challenge','new_es_form_challenge');
@@ -382,6 +411,7 @@ function new_es_post(){
       update_post_meta($insert_id, '投稿内容', $es_content);
       update_post_meta($insert_id,'correction',$correction);
       update_post_meta($insert_id,'author_id',$user_id);
+      update_post_meta($insert_id,'favorite',array());
 		  $home_url =esc_url( home_url( ));
       $insert_id2 = wp_insert_post($post_value);
       if($insert_id2) {
@@ -422,6 +452,8 @@ function view_past_es(){
     $post_id = $_GET["post_id"];
     $post = get_post($post_id);
     $post_user_id = get_userdata($post->post_author)->ID;
+    $post_user_info = get_userdata($post_user_id);
+    $post_user_name = $post_user_info->user_login;
     $user_profile_image = get_user_profile_image($post_user_id);
     $uploaded_date = get_the_modified_date('Y/n/j',$post_id);
     $post_status = get_post_meta($post_id,'correction',true);
@@ -452,6 +484,8 @@ function view_past_es(){
       $es_corrector_team = get_field("添削者所属",$post_id);
       $es_correction = get_field("添削内容",$post_id);
       $es_kansei = get_field("完成es",$post_id);
+      $fav_array = get_post_meta($post_id,'favorite',true);
+      $fav_count = count($fav_array);
       if($post_status == 'true'){
         if(!empty($es_correction)){
           $correction_html = '
@@ -495,7 +529,7 @@ function view_past_es(){
                       </div>
                     </div>
                     <div class="es-timeline_footer_name">
-                        <span>'.$user_name.'</span>
+                        <span>'.$post_user_name.'</span>
                     </div>
                     <div class="es-timeline_footer_date">
                         <span>'.$uploaded_date.'</span>
@@ -506,7 +540,7 @@ function view_past_es(){
                         <div class="es-fav_status_icon">
                             <i class="far fa-heart"></i>
                         </div>
-                        <div class="es-fav_status_label">42</div>
+                        <div class="es-fav_status_label" id="fav_count_'.$post_id.'">'.$fav_count.'</div>
                     </div>
                     <div class="es-category_item">実践チャレンジ</div>
                     <div class="es-category_item">'.$es_category_sub.'</div>
@@ -529,7 +563,7 @@ function view_past_es(){
                       </div>
                     </div>
                     <div class="es-timeline_footer_name">
-                        <span>'.$user_name.'</span>
+                        <span>'.$post_user_name.'</span>
                     </div>
                     <div class="es-timeline_footer_date">
                         <span>'.$uploaded_date.'</span>
@@ -552,7 +586,7 @@ function view_past_es(){
                         <div class="es-fav_status_icon">
                             <i class="far fa-heart"></i>
                         </div>
-                        <div class="es-fav_status_label">42</div>
+                        <div class="es-fav_status_label" id="fav_count_'.$post_id.'">'.$fav_count.'</div>
                     </div>
                     <div class="es-category_item">項目別練習</div>
                     <div class="es-category_item">'.$es_category.'</div>
@@ -572,6 +606,8 @@ function view_past_es(){
       $post_id = $es->ID;
       $post = get_post($post_id);
       $post_user_id = get_userdata($post->post_author)->ID;
+      $post_user_info = get_userdata($post_user_id);
+      $post_user_name = $post_user_info->user_login;
       $user_profile_image = get_user_profile_image($post_user_id);
       $post_status = get_post_meta($post_id,'correction',true);
       $uploaded_date = get_the_modified_date('Y/n/j',$post_id);
@@ -602,6 +638,13 @@ function view_past_es(){
         $es_category_en = $es_url[$es_category];
         $es_description_image = $es_categories[$es_category_en][2];
       }
+      $fav_array = get_post_meta($post_id,'favorite',true);
+      $fav_count = count($fav_array);
+      if(in_array($user_id,$fav_array)){
+        $fav_button_class = 'btn favorite-button es-like-active';
+      }else{
+        $fav_button_class='btn favorite-button';
+      }
       $es_card_html .= '
         <div class="es-timeline__item">
             <a href = "'.$home_url.'/entry-sheet/view?post_id='.$post_id.'&action=show">
@@ -616,7 +659,7 @@ function view_past_es(){
                     <div class="es-fav_status_icon">
                       <i class="far fa-heart"></i>
                     </div>
-                    <div class="es-fav_status_label">42</div>
+                    <div class="es-fav_status_label" id="fav_count_'.$post_id.'">'.$fav_count.'</div>
                   </div>
                   <div class="es-category_item">'.$es_type.'</div>
                 </div>
@@ -630,16 +673,16 @@ function view_past_es(){
                   </div>
                 </div>
                 <div class="es-timeline_footer_name">
-                  <span>'.$user_name.'</span>
+                  <span>'.$post_user_name.'</span>
                 </div>
                 <div class="es-timeline_footer_date">
                   <span>'.$uploaded_date.'</span>
                 </div>
               </div>
               <div class="es-like">
-                <span id="favorite-button" onclick="favoriteAdd()" class="btn">
-                  <i class="fa fa-heart"></i>
-                </span>
+                  <button class="'.$fav_button_class.'" id="fav_button_'.$post_id.'"value="'.$post_id.'">
+                    <i class="fa fa-heart"></i>
+                  </button>
               </div>
             </div>
         </div>
@@ -661,6 +704,10 @@ function view_past_es(){
           <p>過去のESがありません</br>基礎から学ぶや実践チャレンジに取り組みましょう</p>
         </div>';
     }
+  }
+  if (!is_user_logged_in()){
+    $html = '<p class="text-align-center"><i class="fas fa-lock"></i>エントリーシート機能は会員限定です。JobShotに登録すると利用することができます。</p>';
+    $html .= apply_redirect();
   }
   return $html;
 }
