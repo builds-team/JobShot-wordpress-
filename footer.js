@@ -755,3 +755,18 @@ jQuery(function($){
 		return false;
     });
 });
+
+jQuery(function($){
+	$('.es-text__body').hover(
+		function() {
+			//マウスカーソルが重なった時の処理
+			$(this).parents('.es-timeline__card').addClass('es-text__body_hover');
+                        $(this).parents('.es-timeline__card').find('button').addClass('es-text__body_hover');
+		},
+		function() {
+			//マウスカーソルが離れた時の処理
+			$(this).parents('.es-timeline__card').removeClass('es-text__body_hover');
+                        $(this).parents('.es-timeline__card').find('button').removeClass('es-text__body_hover');
+		}
+	);
+});

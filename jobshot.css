@@ -7578,3 +7578,8 @@ font-size: 13px !important;
     margin-left: 40px;
   }
 }
+
+.es-text__body_hover{
+	background-color:#F7F9F9;
+	border-radius:4px;
+  }

@@ -647,6 +647,7 @@ function view_past_es(){
       }
       $es_card_html .= '
         <div class="es-timeline__item">
+          <div class="es-timeline__card">
             <a href = "'.$home_url.'/entry-sheet/view?post_id='.$post_id.'&action=show">
               <div class="es-text__body">
                 <div class="es-text__eyecatch">
@@ -685,6 +686,7 @@ function view_past_es(){
                   </button>
               </div>
             </div>
+          </div>
         </div>
       ';
     }
