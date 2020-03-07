@@ -287,7 +287,7 @@ function new_es_form_challenge(){
 
   $points_html = '';
   $point_count = 0;
-  foreach($es_points[$category] as $es_point){
+  foreach($es_points[$category]['point'] as $es_point_each){
     $point_count += 1;
     $points_html .= '
     <div class="es-framework-box">
@@ -296,14 +296,27 @@ function new_es_form_challenge(){
         <div></div>
       </div>
       <div class="es-framework-main">
-          <div class="es-framework-main-text">
-            <h2 class="sc-ifAKCX hOCPBR">'.$es_point['title'].'</h2>
-            <div>'.$es_point['text'].'</div>
+          <div class="es-framework-main-text margin-5">
+            <h2 class="sc-ifAKCX hOCPBR">'.$es_point_each.'</h2>
           </div>
       </div>
-    </div>
-    ';
+    </div>';
   }
+  $profile_html = '
+    <div class="es-framework-head-container">
+      <h3 class="es-framework-head-title">添削者紹介</h3>
+    </div>
+    <section>
+      <div class="sectionVoice">
+          <div class="sectionVoice__img">
+              <img src="'.$home_url.'/wp-content/uploads/2020/02/1544077823-1.png" alt="">
+          </div>
+          <div class="sectionVoice__comment">
+              <p class="sectionVoice__ttl">'.$es_points[$category]['profile']['title'].'</p>
+              <p class="sectionVoice__txt">'.$es_points[$category]['profile']['text'].'</p>
+          </div>
+      </div>
+    </section>';
   $es_practice_cate = get_es_categories('practice');
   $es_categories_val= array_values($es_practice_cate);
   $selection_html = '<option value="">---下記からお選びください---</option>';
@@ -313,12 +326,10 @@ function new_es_form_challenge(){
   $new_html =  '
     <div class="es-framework-container">
       <div class="es-framework-head-container">
-          <h3 class="es-framework-head-title">'.$es_categories[$category][0].'のフレームワーク</h3>
-          <div class="es-framework-head-step-box">
-              <p color="#FFFFFF">'.count($es_points[$category]).'</p>
-          </div>
+          <h3 class="es-framework-head-title">'.$es_categories[$category][0].'チャレンジとは？</h3>
       </div>
       '.$points_html.'
+      '.$profile_html.'
       <form action="" method="POST" enctype="multipart/form-data">
         <div class="es-content-box">
           <h3>実際にESを書いてみよう！</h3>
@@ -328,7 +339,7 @@ function new_es_form_challenge(){
               '.$selection_html.'
             </select>
           </div>
-          <textarea class="es-content-textarea" name="es_content" placeholder="上記のフレームワークを活かしてESを書いてみよう!" height="100px" rows="4" required>'.$es_content.'</textarea>
+          <textarea class="es-content-textarea" name="es_content" placeholder="上記のテーマを選んでESを提出してみよう!" height="100px" rows="4" required>'.$es_content.'</textarea>
         </div>
         '.$post_button_html.'
       </form>

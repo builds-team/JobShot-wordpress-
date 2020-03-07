@@ -7181,7 +7181,6 @@ font-size: 13px !important;
   padding-top:0px !important;
 }
 .es-timeline__item{
-  position: relative;
   padding-bottom: 40px;
   margin-bottom: 40px;
   border-bottom: 1px solid #e6e6e6;
@@ -7194,7 +7193,7 @@ font-size: 13px !important;
   position: relative;
   background: #fff;
 }
-.es-timeline__item:hover{
+/* .es-text__body:hover:before{
   position: absolute;
   top: -16px;
   right: -16px;
@@ -7204,7 +7203,7 @@ font-size: 13px !important;
   content: "";
   background-color: #f7f9f9;
   border-radius: 4px;
-}
+} */
 .es-text__eyecatch{
   position: relative;
   float: right;
@@ -7452,6 +7451,9 @@ font-size: 13px !important;
   opacity: 0.8;
   border-color: #f9b539;
 }
+.margin-5{
+  margin: 5px;
+}
 .margin-10{
   margin: 10px;
 }
@@ -7572,4 +7574,7 @@ font-size: 13px !important;
   #pgc-9646-1-1 .siteorigin-widget-tinymce{
     margin-left: 40px;
   }
+}
+.es-framework-container .sectionVoice{
+  margin-top: 0px !important;
 }
