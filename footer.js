@@ -717,3 +717,56 @@ document.addEventListener('DOMContentLoaded', function() {
 		reader.readAsDataURL(file);
 	});
 });
+
+//favボタンのajax更新
+jQuery(function($){
+    $( '.favorite-button' ).click( function (){
+		// フォームデータから、サーバへ送信するデータを作成
+		var fd = new FormData();
+		//post_id取得
+		var post_id = $(this).val();
+		//カウントを示すhtmlのid
+		var count_id = "#fav_count_"+post_id;
+		//favのカウント
+		var count = (Number($(count_id).html()));
+		if($(this).hasClass("es-like-active")){
+			$(this).removeClass("es-like-active");
+			$(count_id).html(count-1);
+		}else{
+			$(this).addClass("es-like-active");
+			$(count_id).html(count+1);
+		}
+		fd.append("post_id",post_id);
+		// サーバー側で何の処理をするかを指定。
+		fd.append('action' ,'update_favorite_count' );
+		// ajaxの通信（fav数を更新）
+		$.ajax({
+			type: 'POST',
+			url: ajaxurl,
+			data: fd,
+			processData: false,
+			contentType: false,
+			success: function( response ){
+			},
+			error: function( response ){
+				console.log('miss');
+			}
+		});
+		return false;
+    });
+});
+
+jQuery(function($){
+	$('.es-text__body').hover(
+		function() {
+			//マウスカーソルが重なった時の処理
+			$(this).parents('.es-timeline__card').addClass('es-text__body_hover');
+                        $(this).parents('.es-timeline__card').find('button').addClass('es-text__body_hover');
+		},
+		function() {
+			//マウスカーソルが離れた時の処理
+			$(this).parents('.es-timeline__card').removeClass('es-text__body_hover');
+                        $(this).parents('.es-timeline__card').find('button').removeClass('es-text__body_hover');
+		}
+	);
+});

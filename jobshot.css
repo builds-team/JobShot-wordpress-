@@ -7523,15 +7523,20 @@ font-size: 13px !important;
   color: #e74c3c2e;
 }
 .es-like-active{
-  color: rgba(231, 76, 60, 1);
+  color: rgba(231, 76, 60, 1) !important;
 }
 .es-like:hover{
   color: rgba(231, 76, 60, 1);
   transition-timing-function: ease-in-out;
   transition: 0.3s;
 }
-#favorite-button{
+.favorite-button{
   font-size: 24px;
+  color: #e74c3c2e;;
+  background-color: white;
+  border: none;
+  font-size: 24px;
+  outline: none;
 }
 @media screen and (max-width: 480px) {
   .es-framework-container{
@@ -7577,4 +7582,8 @@ font-size: 13px !important;
 }
 .es-framework-container .sectionVoice{
   margin-top: 0px !important;
+}
+.es-text__body_hover{
+	background-color:#F7F9F9;
+	border-radius:4px;
 }
