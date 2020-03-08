@@ -362,102 +362,10 @@ function view_custom_search_func($atts){
         }
     }
     $html .= '<div class="cards-container">';
-    // 通常用ーーーここからーーー
-    // while ($cat_query->have_posts()): $cat_query->the_post();
-    //     $post_id = $post->ID;
-    //     $html .= view_card_func($post_id);
-    // endwhile;
-    // 通常用ーーーここまで「ーーー
-
-    // ベイカレント用変更ーーーここからーーー
-    if($item_type == "event"){
-        $post_id = 7554;
-        $post_title = get_the_title($post_id);
-        $image = get_field("イメージ画像",$post_id);
-        $image_url = $image["url"];
-        $event_date = get_field('開催日時1',$post_id)['日付'].' '.get_field('開催日時1',$post_id)['開始時刻'].'〜'.get_field('開催日時1',$post_id)['終了時刻'];
-        $event_day=get_field('開催日',$post_id);
-        $today=date("Y/m/d");
-        $area = get_the_terms($post_id,"area")[0]->name;
-        $event_target = get_field('募集対象_短文',$post_id);
-        $event_capacity = get_field('定員',$post_id);
-        $sankas=get_field('参加企業',$post_id);
-        $sanka_html='<div>';
-        foreach((array)$sankas as $sanka){
-            $sanka_html.=  '<div><a href="'.get_the_permalink($sanka->ID).'">'.$sanka->post_title.'</a></div>';
-        }
-        $sanka_html.='</div>';
-
-        $button_html = '<button class="button favorite innactive">'.get_favorites_button($post_id).'</button>';
-
-        $event_url=get_permalink($post_id);
-
-        $card_html = '
-        <div class="card full-card">
-            <div class="full-card-main">
-            <div class="full-card-img">
-                <img src="'.$image_url.'" alt>
-            </div>
-            <div class="full-card-text">';
-        if($event_day<$today){
-        $card_html.='
-                <div class="full-card-text-title">
-                <font color = "gray">'.$post_title.'【終了】</font>
-                </div>';
-        }else{
-        $card_html.='
-                <div class="full-card-text-title"><a href="'.esc_url($event_url).'">'.$post_title.'</a></div>';
-        }
-        $card_html .='
-                <table class="full-card-table">
-                <tbody>';
-        if(!empty($sankas)){
-        $card_html.='
-                    <tr>
-                    <th>参加企業</th>
-                    <td>'.$sankas.'</td>
-                    </tr>';
-        }
-        $card_html .='
-                    <tr>
-                    <th>開催場所</th>
-                    <td>株式会社ベイカレント・コンサルティング本社</td>
-                    </tr>
-                    <tr>
-                    <th>開催日時</th>
-                    <td>2019年2月1日〜2019年2月29日</td>
-                    </tr>
-                    <tr>
-                    <th>募集対象</th>
-                    <td>'.$event_target.'</td>
-                    </tr>
-                    <tr>
-                    <th>定員</th>
-                    <td>'.$event_capacity.'</td>
-                    </tr>
-                </tbody>
-                </table>
-            </div>
-            </div>
-            <div class="full-card-buttons">'
-            .$button_html.'
-            <a href = "'.esc_url(get_permalink($post_id)).'"><button class="button detail">詳細を見る</button></a>
-            </div>
-        </div>';
-        $html .= $card_html;
-    }
     while ($cat_query->have_posts()): $cat_query->the_post();
-        if($item_type == "event"){
-            $post_id = $post->ID;
-            if($post_id != 7554){
-                $html .= view_card_func($post_id);
-            }
-        }else{
-            $post_id = $post->ID;
-            $html .= view_card_func($post_id);
-        }
+        $post_id = $post->ID;
+        $html .= view_card_func($post_id);
     endwhile;
-    // ベイカレント用変更ーーーここまでーーー
   	$html .= '</div>';
     $html .= paginate($cat_query->max_num_pages, get_query_var( 'paged' ), $cat_query->found_posts, $posts_per_page);
    	wp_reset_postdata();

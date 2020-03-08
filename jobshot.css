@@ -7451,6 +7451,21 @@ font-size: 13px !important;
   opacity: 0.8;
   border-color: #f9b539;
 }
+.es-submit-box .es-submitted-button{
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.04) 0px 1px 7px 0px;
+  text-align: center;
+  background-color: #f9b53980;
+  color: white;
+  margin: 0px;
+  padding: 10px 32px;
+  border-width: 1px;
+  border-style: solid;
+  border-image: initial;
+  border-radius: 48px;
+}
 .margin-5{
   margin: 5px;
 }
@@ -7569,6 +7584,9 @@ font-size: 13px !important;
     padding: 20px 0px 0px;
   }
   .es-submit-box .es-submit-button{
+    padding: 0px 18px;
+  }
+  .es-submit-box .es-submitted-button{
     padding: 0px 18px;
   }
 }

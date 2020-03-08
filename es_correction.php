@@ -304,7 +304,7 @@ function new_es_form_challenge(){
   }else{
     $post_button_html = '
       <div class="es-submit-box">
-          <button type="submit" class="es-submit-button" disabled>投稿済み</button>
+          <button type="submit" class="es-submitted-button" disabled>投稿済み</button>
       </div>';
   }
 
