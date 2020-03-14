@@ -501,7 +501,8 @@ function new_mypage_func(){
                         <div class="um-field-label"><label for="graduate_year-6120">卒業年</label>
                             <div class="um-clear"></div>
                         </div>
-                        <div class="um-field-area"><select data-default="" name="graduate_year" id="graduate_year" data-validate="" data-key="graduate_year" class="um-form-field valid not-required um-s1  select2-hidden-accessible" style="width: 100%; display: block;" data-placeholder="" tabindex="-1" aria-hidden="true"><option value="2018">2018</option><option value="2019">2019</option><option value="2020">2020</option><option value="2021">2021</option><option value="2022">2022</option><option value="2023">2023</option><option value="2024">2024</option><option value="その他">その他</option></select>
+                        <div class="um-field-area"><select data-default="" name="graduate_year" id="graduate_year" data-validate="" data-key="graduate_year" class="um-form-field valid not-required um-s1  select2-hidden-accessible" style="width: 100%; display: block;" data-placeholder="" tabindex="-1" aria-hidden="true">
+                            <option value="2021">2021</option><option value="2022">2022</option><option value="2023">2023</option><option value="2024">2024</option><option value="その他">その他</option></select>
                         </div>
                     </div>
                     <div class="um-field um-field-seminar um-field-text um-field-type_text" data-key="seminar">

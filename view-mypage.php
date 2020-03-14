@@ -96,6 +96,9 @@ function get_user_meta_info_func($atts){
   if($graduate_year == 2023){
       $graduate_year = "23卒";
   }
+  if($graduate_year == 2024){
+    $graduate_year = "24卒";
+  }
 
   $info_html = '
   <td label="性別">
@@ -192,6 +195,9 @@ function get_user_graduate_year(){
   }
   if($graduate_year == 2023){
       $graduate_year = "23卒";
+  }
+  if($graduate_year == 2024){
+    $graduate_year = "24卒";
   }
   return $graduate_year;
 }
@@ -490,6 +496,9 @@ function get_user_graduate_year_func($atts){
   }
   if($graduate_year == 2023){
       $graduate_year = "23卒";
+  }
+  if($graduate_year == 2024){
+    $graduate_year = "24卒";
   }
 
   $info_html = '

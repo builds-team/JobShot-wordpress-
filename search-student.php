@@ -397,6 +397,12 @@ function student_search_form_func($atts) {
                             <input type="checkbox" name="university[]" value="東北大学" class="checkbox"><i class="fa fa-square-o fa-2x"></i><i class="fa fa-check-square-o fa-2x"></i><span> 東北大学</span>
                         </label>
                         <label class="btn active">
+                            <input type="checkbox" name="university[]" value="筑波大学" class="checkbox"><i class="fa fa-square-o fa-2x"></i><i class="fa fa-check-square-o fa-2x"></i><span> 筑波大学</span>
+                        </label>
+                        <label class="btn active">
+                            <input type="checkbox" name="university[]" value="千葉大学" class="checkbox"><i class="fa fa-square-o fa-2x"></i><i class="fa fa-check-square-o fa-2x"></i><span> 千葉大学</span>
+                        </label>
+                        <label class="btn active">
                             <input type="checkbox" name="university[]" value="339" class="checkbox"><i class="fa fa-square-o fa-2x"></i><i class="fa fa-check-square-o fa-2x"></i><span> 東京大学</span>
                         </label>
                         <label class="btn active">
@@ -523,9 +529,6 @@ function student_search_form_func($atts) {
                     <hr> 卒業年度:
                     <div class="btn-group btn-group" data-toggle="buttons">
                         <label class="btn active">
-                            <input type="checkbox" name="graduate_year[]" value="2020" class="checkbox"><i class="fa fa-square-o fa-2x"></i><i class="fa fa-check-square-o fa-2x"></i><span> 20卒</span>
-                        </label>
-                        <label class="btn active">
                             <input type="checkbox" name="graduate_year[]" value="2021" class="checkbox"><i class="fa fa-square-o fa-2x"></i><i class="fa fa-check-square-o fa-2x"></i><span> 21卒</span>
                         </label>
                         <label class="btn active">
@@ -533,6 +536,9 @@ function student_search_form_func($atts) {
                         </label>
                         <label class="btn active">
                             <input type="checkbox" name="graduate_year[]" value="2023" class="checkbox"><i class="fa fa-square-o fa-2x"></i><i class="fa fa-check-square-o fa-2x"></i><span> 23卒</span>
+                        </label>
+                        <label class="btn active">
+                            <input type="checkbox" name="graduate_year[]" value="2024" class="checkbox"><i class="fa fa-square-o fa-2x"></i><i class="fa fa-check-square-o fa-2x"></i><span> 24卒</span>
                         </label>
                     </div>
                     <hr> 職種:
@@ -1126,12 +1132,6 @@ function student_search_result_func($atts){
     // 卒業年度による絞り込み
     if (isset($_GET['graduate_year']) ) {
         $graduate_years = $_GET["graduate_year"];
-        if(in_array(2020,$graduate_years)){
-            $graduate_year_sub = "2020(2019年4月時点で大学4年生/大学院2年生)";
-            $graduate_year_sub_1 = "2020";
-            array_push($graduate_years,$graduate_year_sub);
-            array_push($graduate_years,$graduate_year_sub_1);
-        }
         if(in_array(2021,$graduate_years)){
             $graduate_year_sub = "2021(2019年4月時点で大学3年生/大学院1年生)";
             $graduate_year_sub_1 = "2021";
@@ -1147,6 +1147,12 @@ function student_search_result_func($atts){
         if(in_array(2023,$graduate_years)){
             $graduate_year_sub = "2023(2019年4月時点で大学1年生)";
             $graduate_year_sub_1 = "2023";
+            array_push($graduate_years,$graduate_year_sub);
+            array_push($graduate_years,$graduate_year_sub_1);
+        }
+        if(in_array(2024,$graduate_years)){
+            $graduate_year_sub = "2024(2020年4月時点で大学1年生)";
+            $graduate_year_sub_1 = "2024";
             array_push($graduate_years,$graduate_year_sub);
             array_push($graduate_years,$graduate_year_sub_1);
         }
