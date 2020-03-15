@@ -46,7 +46,7 @@ function dequeue_plugins_style() {
     wp_dequeue_style( 'addtoany' );
     wp_dequeue_style( 'jetpack_likes' );
     wp_dequeue_style( 'chronicle-style-lato-web' );
-    if( !is_page( array('apply','contact','published_contact','scout') )){
+    if( !is_page( array('apply','contact','published_contact','scout','mail_setteing') )){
         wp_dequeue_style( 'contact-form-7' );
     }
     if( !is_page( array('user','register','login','user_account','mypage_test','apply','interview_apply') )){

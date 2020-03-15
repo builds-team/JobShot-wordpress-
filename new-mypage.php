@@ -252,6 +252,7 @@ function new_mypage_func(){
                         <ul>
                             <li></li>
                             <li><a href="'.$home_url.'/user_account" class="real_url">マイアカウント</a></li>
+                            <li><a href="'.$home_url.'/mail_setteing" class="real_url">メール配信設定</a></li>
                             <li><a href="'.$home_url.'/?page_id=1603" class="real_url">ログアウト</a></li>
                             <li><a href="javascript:void(0);" class="um-dropdown-hide">キャンセル</a></li>
                         </ul>

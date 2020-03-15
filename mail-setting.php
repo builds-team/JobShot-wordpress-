@@ -20,8 +20,8 @@ function mail_setting_func(){
     <p>メール配信設定<p>
     <form action="" method="post">
     <p>
-        <input type="checkbox" name="mail_settings[]" value="Buildsからのメール配信を希望しない" '.$selected_1.'>Buildsからのメール配信を希望しない
-        <input type="checkbox" name="mail_settings[]" value="企業からのスカウトメールを希望しない" '.$selected_2.'>企業からのスカウトメールを希望しない
+        <label><input type="checkbox" name="mail_settings[]" value="Buildsからのメール配信を希望しない" '.$selected_1.'>Buildsからのメール配信を希望しない</label>
+        <label><input type="checkbox" name="mail_settings[]" value="企業からのスカウトメールを希望しない" '.$selected_2.'>企業からのスカウトメールを希望しない</label>
     </p>
     <p>
         <input type="submit" value="更新">
