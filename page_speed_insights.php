@@ -163,4 +163,30 @@ add_action( 'wp_footer', 'izimodal_function', 100 );
  * 詳細：https://www.understandard.net/wordpress/wp021.html
  */
 add_filter( 'show_admin_bar', '__return_false' );
+
+//表示崩れの修正
+function primary_content(){
+    $http = is_ssl() ? 'https' : 'http' . '://';
+    $url = $http . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"];
+	if(strpos($url, 'jobshot.jp/column/')){
+        echo "
+            <script>
+                jQuery(function($){
+                    $('.main-content').addClass('main-container');
+                    $('.main-container').removeClass('main-content');
+                });
+            </script>";
+	}else{
+        echo "
+            <script>
+                jQuery(function($){
+                    $('.main-content').addClass('main-container');
+                    $('.main-container').removeClass('main-content');
+                    $('.main-container').addClass('primary-content');
+                });
+            </script>";
+	}
+}
+add_action( 'wp_footer', 'primary_content', 100 );
+
 ?>

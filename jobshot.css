@@ -7637,3 +7637,10 @@ font-size: 13px !important;
 	background-color:#F7F9F9;
 	border-radius:4px;
 }
+
+@media screen and (max-width: 782px){
+	.column-template-default .container   .main .main-container{
+  width: 90% !important;
+  margin: 0 auto;
+}
+}
