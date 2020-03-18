@@ -301,10 +301,10 @@ footer#footer.container {
   margin: 0;
 }
 /* widget関連 */
-.home .main-content article {
+.home .main-container article {
   padding: 0 5px !important;
 }
-.singular .main-content article {
+.singular .main-container article {
     padding: 20px 5px;
   }
 #no-title .widget-title {
@@ -2923,7 +2923,7 @@ i.material-icons:hover {
     .big_icon{
         font-size: 4rem !important;;
     }
-    .singular .main-content .all_wrap h3 {
+    .singular .main-container .all_wrap h3 {
         font-weight: normal !important;
     }
 }
@@ -5709,7 +5709,7 @@ font-size: 13px !important;
 .job-template-default article {
   padding-top: 0 !important;
 }
-.job-template-default .main-content {
+.job-template-default .main-container {
   width: 100%;
   padding: 0 !important;
 }
@@ -5797,10 +5797,10 @@ font-size: 13px !important;
   bottom: -3px;
   width: 30%;
 }
-.job-template-default .main-content article .container section section {
+.job-template-default .main-container article .container section section {
   margin: 30px 0;
 }
-.job-template-default .main-content article .container section section h3 {
+.job-template-default .main-container article .container section section h3 {
   text-decoration: none;
   padding: 0.25em 0.5em;
   color: #666;
@@ -5820,13 +5820,13 @@ font-size: 13px !important;
     background-color: #ddd !important;
     padding-left: 0% !important;
   }
-  .job-template-default .main-content article {
+  .job-template-default .main-container article {
     padding: 0px 10% 10px 10%;
   }
   .job-template-default .recruit-img a p {
     display: none;
   }
-  .job-template-default .main-content article .container section section {
+  .job-template-default .main-container article .container section section {
     margin: 15px 0;
   }
   .job-template-default .recruit-img-container img {
@@ -5953,7 +5953,7 @@ font-size: 13px !important;
   .column-section:after {
       left: 25px;
   }
-  .singular .main-content h2 {
+  .singular .main-container h2 {
       margin-top: 10px;
   }
   #post-7767 .full-card + .full-card {
@@ -6156,7 +6156,7 @@ font-size: 13px !important;
 .column-template-default .container {
   max-width: 1040px;
 }
-.column-template-default .main-content {
+.column-template-default .main-container {
   width: 782px !important;
 }
 .column-template-default .sidebar-main {
@@ -7156,7 +7156,7 @@ font-size: 13px !important;
 .page-id-9741 .col-sidebar{
   display: none !important;
 }
-.page-id-9741 .main-content{
+.page-id-9741 .main-container{
 	width:100% !important;
 }
 .post-9745 {
@@ -7165,7 +7165,7 @@ font-size: 13px !important;
 .page-id-9745 .col-sidebar{
   display: none !important;
 }
-.page-id-9745 .main-content{
+.page-id-9745 .main-container{
 	width:100% !important;
 }
 .post-9745 {
@@ -7577,7 +7577,7 @@ font-size: 13px !important;
   }
 }
 @media only screen and (max-width: 782px) {
-  .singular .main-content .es-framework-head-title{
+  .singular .main-container .es-framework-head-title{
     margin-bottom: 0px;
   }
   .es-content-box{
