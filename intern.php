@@ -956,7 +956,7 @@ function update_internship_info(){
     $occupation = $_POST["occupation"];
     $salary = $_POST["salary"];
     $worktime = $_POST["worktime"];
-    $requirements = $_POST["requirements"];
+    $requirements = $_POST["day_requirements"];
     $require_person = $_POST["require_person"];
     $intern_contents = $_POST["intern_contents"];
     $intern_day = $_POST["intern_day"];
@@ -1000,7 +1000,7 @@ function update_internship_info(){
     if($_POST["worktime"]){
       update_post_meta($post_id, "勤務可能時間", $worktime);
     }
-    if($_POST["requirements"]){
+    if($_POST["day_requirements"]){
       update_post_meta($post_id, "勤務条件", $requirements);
     }
     if($_POST["require_person"]){
