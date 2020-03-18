@@ -25,6 +25,24 @@ html {
 }
 
 /* main parts */
+.main-container {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+@media only screen and (max-width: 782px){
+  .singular .main-container h1 {
+    font-size: 206.25%;
+    margin-bottom: 15px;
+  }
+  .singular .main-container h2 {
+    font-size: 137.49656249999998%;
+    margin-bottom: 15px;
+  }
+  .singular .main-container h3 {
+    font-size: 120.3159375%;
+    font-weight: bold;
+  }
+}
 .button {
   display: inline-block;
   padding: 0.5em 1.5em;
@@ -7157,7 +7175,7 @@ font-size: 13px !important;
   display: none !important;
 }
 .page-id-9741 .main-container{
-	width:100% !important;
+	/* width:100% !important; */
 }
 .post-9745 {
 	padding-top:0px !important;
@@ -7165,7 +7183,7 @@ font-size: 13px !important;
 .page-id-9745 .col-sidebar{
   display: none !important;
 }
-.page-id-9745 .main-container{
+/* .page-id-9745 .main-container{ */
 	width:100% !important;
 }
 .post-9745 {
