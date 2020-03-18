@@ -510,11 +510,11 @@ add_shortcode('view_company_pagelink_umuser','view_company_pagelink_umuser_func'
 #企業が送ったスカウトメールを企業ごとに表示する
 function view_company_scout_mail_func(){
     $company = wp_get_current_user();
-    $company_user_login=$company->data->display_name;
-    $scout_num = do_shortcode('[cfdb-count form="企業スカウトメール送信フォーム" filter="your-name='.$company_user_login.'"]');
+    $company_user_login=$company->user_login;
+    $scout_num = do_shortcode('[cfdb-count form="企業スカウトメール送信フォーム" filter="your-id='.$company_user_login.'"]');
     $result = '(全'.$scout_num.'件)<br>';
     $result .= 
-    do_shortcode('[cfdb-html form="企業スカウトメール送信フォーム" show="Submitted,partner-id,your-subject,your-message" filter="your-name='.$company_user_login.'" orderby="Submitted desc"]
+    do_shortcode('[cfdb-html form="企業スカウトメール送信フォーム" show="Submitted,partner-id,your-subject,your-message" filter="your-id='.$company_user_login.'" orderby="Submitted desc"]
     {{BEFORE}}
       <table class="tbl02">
           <thead>
