@@ -29,6 +29,20 @@ html {
   padding-left: 15px;
   padding-right: 15px;
 }
+/* .error404.themes-sidebar3-inactive.themes-sidebar1-active .main-container:not(.full-width), .search-results.themes-sidebar3-inactive.themes-sidebar1-active .main-container:not(.full-width), .search-no-results.themes-sidebar3-inactive.themes-sidebar1-active .main-container:not(.full-width), .singular.themes-sidebar3-inactive.themes-sidebar1-active .main-container:not(.full-width) {
+  box-sizing: border-box;
+  float: left;
+  width: 75%;
+  min-height: 1px;
+}
+.error404 .main-container, .search-results .main-container, .search-no-results .main-container, .singular .main-container {
+  box-sizing: border-box;
+  float: left;
+  width: 58.33333333%;
+  padding: 0 15px;
+  min-height: 1px;
+  padding-top: 30px;
+} */
 @media only screen and (max-width: 782px){
   .singular .main-container h1 {
     font-size: 206.25%;
