@@ -248,6 +248,10 @@ function my_form_tag_filter($tag){
             $tag['values'] = (array) $_GET['jobname'];
         }
     }
+    if( $tag['name'] == 'apply-profile'){
+        $user_url = 'https://jobshot.jp/user?um_user='.$user->user_login;
+        $tag['values'] = (array) $user_url;
+    }
     if( $tag['name'] == 'your-name'){
         $tag['values'] = (array)  ( $user ->last_name  .' '.$user -> first_name);
     }
