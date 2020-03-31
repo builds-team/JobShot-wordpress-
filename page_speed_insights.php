@@ -164,7 +164,8 @@ add_action( 'wp_footer', 'izimodal_function', 100 );
  */
 add_filter( 'show_admin_bar', '__return_false' );
 
-//表示崩れの修正
+//表示崩れの修正（現在不使用）
+/*
 function primary_content(){
     $http = is_ssl() ? 'https' : 'http' . '://';
     $url = $http . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"];
@@ -188,5 +189,5 @@ function primary_content(){
 	}
 }
 add_action( 'wp_footer', 'primary_content', 100 );
-
+*/
 ?>

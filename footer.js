@@ -770,3 +770,10 @@ jQuery(function($){
 		}
 	);
 });
+
+jQuery(function($) {
+	if($('.col-sidebar').length){
+		$('.col-sidebar').addClass('fix-sidebar');
+		$('.hfeed').children('.main').addClass('fix-main');
+	}
+});
