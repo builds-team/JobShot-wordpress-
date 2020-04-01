@@ -339,6 +339,20 @@ function add_sidebar_column(){
                     </ul>
                 </li>
                 <li class="column-section">
+                    <p>就活初心者向け</p>
+                    <ul>
+                        <li>
+                            <a href="'.$home_url.'/column?first_category=beginner">就活初心者向け一覧</a>
+                        </li>
+                        <li>
+                            <a href="'.$home_url.'/column?second_category=basic_knowledge">就活の基礎知識</a>
+                        </li>
+                        <li>
+                            <a href="'.$home_url.'/column?second_category=schedule">就活スケジュール</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="column-section">
                     <p>選考ステップ別対策</p>
                     <ul>
                         <li>
@@ -408,6 +422,49 @@ function add_sidebar_column(){
                         </li>
                         <li>
                             <a href="'.$home_url.'/column?second_category=others_industry">その他</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="column-section">
+                    <p>自分にあったコンテンツ</p>
+                    <ul>
+                        <li>
+                            <a href="'.$home_url.'/column?first_category=your_contents">コンテンツ一覧</a>
+                        </li>
+                        <li>
+                            <a href="'.$home_url.'/column?second_category=science">理系学生</a>
+                        </li>
+                        <li>
+                            <a href="'.$home_url.'/column?second_category=female_student">女子学生</a>
+                        </li>
+                        <li>
+                            <a href="'.$home_url.'/column?second_category=athlete">体育会系</a>
+                        </li>
+                        <li>
+                            <a href="'.$home_url.'/column?second_category=graduate">大学院生</a>
+                        </li>
+                        <li>
+                            <a href="'.$home_url.'/column?second_category=aboroad">留学経験者</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="column-section">
+                    <p>キャリアプランを考える</p>
+                    <ul>
+                        <li>
+                            <a href="'.$home_url.'/column?first_category=career_plan">キャリアプラン一覧</a>
+                        </li>
+                        <li>
+                            <a href="'.$home_url.'/column?second_category=foreign_capital">外資系キャリア</a>
+                        </li>
+                        <li>
+                            <a href="'.$home_url.'/column?second_category=japanese_company">日系大手のキャリア</a>
+                        </li>
+                        <li>
+                            <a href="'.$home_url.'/column?second_category=venture">ベンチャー企業のキャリア</a>
+                        </li>
+                        <li>
+                            <a href="'.$home_url.'/column?second_category=others">その他のキャリア</a>
                         </li>
                     </ul>
                 </li>
@@ -569,6 +626,20 @@ function add_sidebar_column(){
                     </ul>
                 </li>
                 <li class="column-section">
+                    <p>就活初心者向け</p>
+                    <ul>
+                        <li>
+                            <a href="'.$home_url.'/column?first_category=beginner">就活初心者向け一覧</a>
+                        </li>
+                        <li>
+                            <a href="'.$home_url.'/column?second_category=basic_knowledge">就活の基礎知識</a>
+                        </li>
+                        <li>
+                            <a href="'.$home_url.'/column?second_category=schedule">就活スケジュール</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="column-section">
                     <p>選考ステップ別対策</p>
                     <ul>
                         <li>
@@ -638,6 +709,49 @@ function add_sidebar_column(){
                         </li>
                         <li>
                             <a href="'.$home_url.'/column?second_category=others_industry">その他</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="column-section">
+                    <p>自分にあったコンテンツ</p>
+                    <ul>
+                        <li>
+                            <a href="'.$home_url.'/column?first_category=your_contents">コンテンツ一覧</a>
+                        </li>
+                        <li>
+                            <a href="'.$home_url.'/column?second_category=science">理系学生</a>
+                        </li>
+                        <li>
+                            <a href="'.$home_url.'/column?second_category=female_student">女子学生</a>
+                        </li>
+                        <li>
+                            <a href="'.$home_url.'/column?second_category=athlete">体育会系</a>
+                        </li>
+                        <li>
+                            <a href="'.$home_url.'/column?second_category=graduate">大学院生</a>
+                        </li>
+                        <li>
+                            <a href="'.$home_url.'/column?second_category=aboroad">留学経験者</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="column-section">
+                    <p>キャリアプランを考える</p>
+                    <ul>
+                        <li>
+                            <a href="'.$home_url.'/column?first_category=career_plan">キャリアプラン一覧</a>
+                        </li>
+                        <li>
+                            <a href="'.$home_url.'/column?second_category=foreign_capital">外資系キャリア</a>
+                        </li>
+                        <li>
+                            <a href="'.$home_url.'/column?second_category=japanese_company">日系大手のキャリア</a>
+                        </li>
+                        <li>
+                            <a href="'.$home_url.'/column?second_category=venture">ベンチャー企業のキャリア</a>
+                        </li>
+                        <li>
+                            <a href="'.$home_url.'/column?second_category=others">その他のキャリア</a>
                         </li>
                     </ul>
                 </li>
