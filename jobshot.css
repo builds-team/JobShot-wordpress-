@@ -4237,15 +4237,6 @@ body.home .testimonials-wrapper .testimonial {
   .main-content {
     margin: 0 0 1px 0;
   }
-  .main-content nav {
-    width: 160px;
-    margin-left: -80px;
-  }
-  .main-content nav a {
-    width: 12px;
-    margin: 0 5px;
-    border-radius: 3px;
-  }
   nav.menu-primary .menu {
     background: transparent;
     width: 100%;
