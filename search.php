@@ -362,9 +362,24 @@ function view_custom_search_func($atts){
         }
     }
     $html .= '<div class="cards-container">';
+    //損保ジャパンのイベントを先頭に持っていく
+    if($item_type == "event"){
+        $post_id = '11779';
+        $status = get_post_status($post_id);
+        //公開中のときに、１ページ目の一番上に表示
+        if($status == 'publish'  && get_query_var( 'paged' ) == ''){
+            try {
+                $html .= view_card_func($post_id);
+            } catch (Exception $e) {
+                $html .= '';
+            } 
+        }
+    }
     while ($cat_query->have_posts()): $cat_query->the_post();
         $post_id = $post->ID;
-        $html .= view_card_func($post_id);
+        if($post_id != '11779'){
+            $html .= view_card_func($post_id);
+        }
     endwhile;
   	$html .= '</div>';
     $html .= paginate($cat_query->max_num_pages, get_query_var( 'paged' ), $cat_query->found_posts, $posts_per_page);
