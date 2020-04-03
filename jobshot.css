@@ -4121,9 +4121,7 @@ body.home .testimonials-wrapper .testimonial {
     -webkit-box-ordinal-group: 8;
             order: 7;
   }
-  .main > *:not(.main-content) {
-    width: 100% !important;
-  }
+  
   .main .sidebar-category-summaries .item h4 {
     width: 100%;
     float: left;
@@ -12217,16 +12215,35 @@ font-size: 13px !important;
 	.column-template-default .container   .main .main-content{
   width: 90% !important;
   margin: 0 auto;
-}
+  }
 }
 
 @media screen and (min-width: 783px){
-  .fix-sidebar {
-  }
   .fix-main {
     float:left;
-    width:75%
+    width:75%;
   }
+  .internship-template-default .container .main {
+    float:left;
+    width:75%;
+  }
+  .event-template-default .container .main {
+    float:left;
+    width:75%;
+  }
+  .company-template-default .container .main {
+    float:left;
+    width:75%;
+  }
+  .page-id-1062 .container .main {
+    float:left;
+    width:75%;
+  }
+  .column-template-default .container .main {
+    float:left;
+    width:75%;
+  }
+}
 
   @media screen and (max-width: 782px){
     .extendedwopts-show {
