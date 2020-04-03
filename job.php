@@ -110,11 +110,18 @@ function template_job2_func($content){
       </div>';
     }
 
-
-    $entry_html = '
-        <a href="[get_form_address formtype=apply form_id=3220 post_id='.$post_id.' title='.$post_title.']">
-            <button class="button button-apply">話を聞きに行きたい</button>
-        </a>';
+    $recruit_url = nl2br(get_field("採用サイトURL",$post_id));
+    if(!empty($recruit_url)){
+      $entry_html = '
+      <a href="'.$recruit_url.'">
+          <button class="button button-apply">話を聞きに行きたい</button>
+      </a>';
+    }else{
+      $entry_html = '
+          <a href="[get_form_address formtype=apply form_id=3220 post_id='.$post_id.' title='.$post_title.']">
+              <button class="button button-apply">話を聞きに行きたい</button>
+          </a>';
+    }
 
     $current_user = wp_get_current_user();
     $current_user_name = $current_user->data->display_name;
