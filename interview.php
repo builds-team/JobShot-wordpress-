@@ -66,7 +66,7 @@ function about_interview(){
                 <tr>
                     <th>場所</th>
                     <td>
-                        <div>オンライン</div>
+                        <div>オンラインにて開催いたします</div>
                     </td>
                 </tr>
                 <tr>
@@ -79,7 +79,7 @@ function about_interview(){
                 </tr>
                 <tr>
                     <th>備考</th>
-                    <td>コロナウイルスの影響により、安全面を考慮し、オンラインで開催いたします。</br>使用ツール　Zoom</td>
+                    <td>コロナウイルスの影響により、安全面を考慮し、オンラインで開催いたします</br>オンライン面談ではZoom(※インストール不要)を使用する予定です</td>
                 </tr>
             </tbody>
         </table>
