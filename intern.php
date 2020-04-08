@@ -1172,7 +1172,7 @@ function new_internship_form(){
                             </div>
                             <div>
                               <label>住所</label>
-                              <input type="text" name="address" size="60">
+                              <input type="text" class="input-width" min="0" name="address">
                             </div>
                           </div>
                       </td>

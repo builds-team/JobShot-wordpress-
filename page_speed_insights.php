@@ -46,6 +46,7 @@ function dequeue_plugins_style() {
     wp_dequeue_style( 'addtoany' );
     wp_dequeue_style( 'jetpack_likes' );
     wp_dequeue_style( 'chronicle-style-lato-web' );
+    wp_deregister_style( 'broadsheet-style' );
     if( !is_page( array('apply','contact','published_contact','scout','mail_setteing') )){
         wp_dequeue_style( 'contact-form-7' );
     }
@@ -164,7 +165,8 @@ add_action( 'wp_footer', 'izimodal_function', 100 );
  */
 add_filter( 'show_admin_bar', '__return_false' );
 
-//表示崩れの修正
+//表示崩れの修正（現在不使用）
+/*
 function primary_content(){
     $http = is_ssl() ? 'https' : 'http' . '://';
     $url = $http . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"];
@@ -188,5 +190,5 @@ function primary_content(){
 	}
 }
 add_action( 'wp_footer', 'primary_content', 100 );
-
+*/
 ?>
