@@ -66,10 +66,7 @@ function about_interview(){
                 <tr>
                     <th>場所</th>
                     <td>
-                        <div>カレッジワークススタジオ</div>
-                        <div>渋谷区神南1-11-1</div>
-                        <div><i class="fas fa-train"></i>渋谷駅徒歩8分</div>
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3241.5970616463133!2d139.6990004153449!3d35.66229558019869!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188ca880f4b6e7%3A0x6598c977001c85b3!2z44CSMTUwLTAwNDEg5p2x5Lqs6YO95riL6LC35Yy656We5Y2X77yR5LiB55uu77yR77yR4oiS77yR!5e0!3m2!1sja!2sjp!4v1560310092730!5m2!1sja!2sjp" width="100%" height="auto" frameborder="0" style="border:0" allowfullscreen=""></iframe>
+                        <div>オンラインにて開催いたします</div>
                     </td>
                 </tr>
                 <tr>
@@ -82,7 +79,7 @@ function about_interview(){
                 </tr>
                 <tr>
                     <th>備考</th>
-                    <td>スカイプでの相談も可能です！</td>
+                    <td>コロナウイルスの影響により、安全面を考慮し、オンラインで開催いたします</br>オンライン面談ではZoom(※インストール不要)を使用する予定です</td>
                 </tr>
             </tbody>
         </table>
@@ -96,4 +93,13 @@ function about_interview(){
     return $html;
 }
 add_shortcode("about_interview","about_interview");
+
+/*カレッジワークスの場所
+
+<div>カレッジワークススタジオ</div>
+<div>渋谷区神南1-11-1</div>
+<div><i class="fas fa-train"></i>渋谷駅徒歩8分</div>
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3241.5970616463133!2d139.6990004153449!3d35.66229558019869!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188ca880f4b6e7%3A0x6598c977001c85b3!2z44CSMTUwLTAwNDEg5p2x5Lqs6YO95riL6LC35Yy656We5Y2X77yR5LiB55uu77yR77yR4oiS77yR!5e0!3m2!1sja!2sjp!4v1560310092730!5m2!1sja!2sjp" width="100%" height="auto" frameborder="0" style="border:0" allowfullscreen=""></iframe>
+
+*/
 ?>
