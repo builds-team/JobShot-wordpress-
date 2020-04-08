@@ -46,6 +46,7 @@ function dequeue_plugins_style() {
     wp_dequeue_style( 'addtoany' );
     wp_dequeue_style( 'jetpack_likes' );
     wp_dequeue_style( 'chronicle-style-lato-web' );
+    wp_deregister_style( 'broadsheet-style' );
     if( !is_page( array('apply','contact','published_contact','scout','mail_setteing') )){
         wp_dequeue_style( 'contact-form-7' );
     }
