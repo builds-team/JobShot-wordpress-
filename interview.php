@@ -94,6 +94,99 @@ function about_interview(){
 }
 add_shortcode("about_interview","about_interview");
 
+function recruit_interview(){
+    $home_url =esc_url( home_url( ));
+    $html='
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+    <style>
+        .datalist dt:before {
+            font-family: "Font Awesome 5 Free";
+            content: "\f00c";
+            padding-right: 15px;
+            color: #03c4b0;
+            }
+            .table th {
+            width: 25%;
+            text-align: left
+        }
+        .table td, .table th {
+            border-bottom: 2px solid #f0f0f0
+        }
+        .table td {
+            padding: 12px 0 13px
+        }
+        @media screen and (min-width:768px) {
+            .table {
+                width: 100%
+            }
+        }
+        .widget {
+            font-size: 1.0em;
+        }
+        footer .widget {
+            font-size: 0.8em;
+        }
+        .gmap {
+            height: 0;
+            overflow: hidden;
+            padding-bottom: 56.25%;
+            position: relative;
+        }
+        .gmap iframe {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 100%;
+        }
+    </style>
+    <section>
+        <img src="'.$home_url.'/wp-content/uploads/2020/04/63423c476da69f145e9f241166a3c8f5.png">
+        <div class="card-category-container event">
+            <div class="card-category">就活相談や面接対策＆ES添削が可能</div><br>
+            <div class="card-category">優秀者には大手企業へご紹介</div><br>
+        </div>
+    </section>
+    <section>
+        <table class="demo01">
+            <tbody>
+                <tr>
+                    <th>開催日時</th>
+                    <td>
+                        <div><a href="'.$home_url.'/interview/apply">こちらからお選びください</a></div>
+                    </td>
+                </tr>
+                <tr>
+                    <th>場所</th>
+                    <td>
+                        <div>オンラインにて開催いたします</div>
+                    </td>
+                </tr>
+                <tr>
+                    <th>参加費</th>
+                    <td>無料</td>
+                </tr>
+                <tr>
+                    <th>持ち物</th>
+                    <td>メモ帳・筆記用具</td>
+                </tr>
+                <tr>
+                    <th>備考</th>
+                    <td>コロナウイルスの影響により、安全面を考慮し、オンラインで開催いたします</br>オンライン面談ではZoom(※インストール不要)を使用する予定です</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+    <div class="fixed-buttom">
+        <a href="'.$home_url.'/interview/apply">
+            <button class="button button-apply">申し込みはこちらから</button>
+        </a>
+    </div>';
+
+    return $html;
+}
+add_shortcode("recruit_interview","recruit_interview");
+
 /*カレッジワークスの場所
 
 <div>カレッジワークススタジオ</div>
