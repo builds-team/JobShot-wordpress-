@@ -54,6 +54,8 @@ function view_fullwidth_card_func($post_id){
       return view_fullwidth_company_card_func($post_id);
     case 'autumn_internship':
       return view_fullwidth_autumn_intern_card_func($post_id);
+    case 'summer_internship':
+      return view_fullwidth_summer_intern_card_func($post_id);
     break;
   }
   return;
