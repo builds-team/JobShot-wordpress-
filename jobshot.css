@@ -12240,3 +12240,7 @@ font-size: 13px !important;
       display: none !important;
     }
   }
+
+  .column .entry .tax-categories {
+    display:none;
+  }
