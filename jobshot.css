@@ -12244,3 +12244,14 @@ font-size: 13px !important;
   .column .entry .tax-categories {
     display:none;
   }
+
+.page-id-12228 .um-editor{
+    display:block !important;
+}
+.page-id-12228 .um-field-area input{
+	  width:100% !important;
+}
+
+.page-id-12228 .um-editor-btn{
+	  width:50px !important;
+}
