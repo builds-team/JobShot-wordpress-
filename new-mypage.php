@@ -8,6 +8,20 @@ function add_defer($tag, $handle) {
 }
 
 function new_mypage_func(){
+    $user = wp_get_current_user();
+    $user_id = $user->data->ID;
+    $register_day = $user->data->user_registered;
+    $register_day = strtotime($register_day);
+    $update_day = strtotime("2020-04-01 00:00:00");
+    $updated_profile = get_user_meta($user_id, 'profile_update_2020',false)[0];
+    $graduate_year = get_user_meta($user_id,'graduate_year',false)[0];
+    if(current_user_can('student') && $updated_profile == 0 && $register_day < $update_day){
+        if($graduate_year == 2020 || $graduate_year == 2021){
+            $home_url = esc_url( home_url( ));
+            wp_safe_redirect($home_url.'/profile_update');
+            exit();
+        }
+    }
     $user_id = um_profile_id();
     $user_array = array(
         "都道府県"  =>  "region",

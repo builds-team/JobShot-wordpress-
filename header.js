@@ -477,3 +477,40 @@ jQuery(function($){
   $('.button-nonactive').parent('.post-es-example').css('background-color','#AAA');
   $('.button-nonactive').parent('.post-es-example').css('box-shadow','#none');
 });
+
+jQuery(function($){
+    // formの送信ボタンが押されたときの処理
+    $( '#testform10' ).submit( function(event){
+        // クリックイベントをこれ以上伝播させない
+        event.preventDefault();
+        // フォームデータから、サーバへ送信するデータを作成
+        var fd = new FormData( this );
+        // サーバー側で何の処理をするかを指定。後ほどphp側で実装する
+        fd.append('action'  , 'ajax_univ' );
+        // ajaxの通信
+        $.ajax({
+            type: 'POST',
+            url: ajaxurl,
+            data: fd,
+            processData: false,
+            contentType: false,
+            success: function( response ){
+                $("#univ").html(response[0]);
+                $("#resultarea10").html("学歴を更新しました");
+                $(".user_profile_score_value").html(response[1]);
+                $(".score-area p").html(response[1]);
+                $("#resultarea10").css('display','block');
+                $(".um-editor-univ").removeClass("active");
+                $(".um-edit-btn-univ").removeClass("active");
+                $(".um-field-area-univ").removeClass("inactive");
+                setTimeout(function(){
+                    window.location.href = '/user';
+                 }, 100);
+            },
+            error: function( response ){
+                $("#univ").html( "error" );
+            }
+        });
+        return false;
+    });
+});
