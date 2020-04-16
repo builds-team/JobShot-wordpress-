@@ -141,7 +141,7 @@ function recruit_interview(){
         }
     </style>
     <section>
-        <img src="'.$home_url.'/wp-content/uploads/2020/04/63423c476da69f145e9f241166a3c8f5.png">
+        <img src="'.$home_url.'/wp-content/uploads/2020/04/99df0b5ee83a50b1c98a06ba7146e8bd.png">
         <div class="card-category-container event">
             <div class="card-category">就活相談や面接対策＆ES添削が可能</div><br>
             <div class="card-category">優秀者には大手企業へご紹介</div><br>
