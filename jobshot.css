@@ -12240,3 +12240,550 @@ font-size: 13px !important;
       display: none !important;
     }
   }
+/* LP(ランディングページ) */
+.page-id-11953 .main-content {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+#post-11953{
+  padding: 0px;
+}
+.page-id-11953 .container{
+  max-width: none;
+}
+.corp-contact-wrapper .corp-contact-cover {
+height: 600px;
+margin-bottom: 0;
+color: #fff;
+background-size: cover;
+background-repeat: no-repeat;
+background-position: 50%;
+}
+.row {
+margin-left: auto;
+margin-right: auto;
+margin-bottom: 20px;
+}
+.row {
+margin-left: auto;
+margin-right: auto;
+margin-bottom: 20px;
+}
+.corp-contact-wrapper .corp-contact-cover .corp-contact-cover-inner {
+width: 1000px;
+height: 600px;
+margin: 0 auto;
+}
+.corp-contact-wrapper .corp-contact-cover .corp-contact-cover-left {
+text-align: left;
+}
+.corp-contact-wrapper .corp-contact-cover .corp-contact-cover-logo {
+margin-bottom: 12px;
+height: 48px;
+}
+.corp-contact-wrapper .corp-contact-cover .corp-contact-cover-heading {
+margin: 0 0 24px;
+font-size: 28px;
+line-height: 160%;
+font-weight: 700;
+letter-spacing: 2px;
+color: #fff;
+}
+.corp-contact-btn{
+font-family: Muli,sans-serif;
+font-style: normal;
+font-weight: 700;
+text-decoration: none;
+background-color: rgba(25,204,163,1.0);
+border: 1px solid #19cca3;
+border-radius: 32px;
+color: #fff;
+fill: #fff;
+font-size: 16px;
+padding: 10px 50px;
+text-transform: none;
+}
+.corp-contact-cover{
+background-color: rgba(25,204,163,0.02);
+background-blend-mode:lighten;
+}
+.corp-contact-wrapper .corp-contact-main-contents .corp-contact-each-content-inner {
+max-width: 1000px;
+margin: 0 auto;
+padding: 80px 0;
+}
+.corp-contact-wrapper .corp-contact-main-contents .corp-contact-main-heading {
+margin-bottom: 40px;
+font-size: 28px;
+font-weight: 700;
+text-align: center;
+}
+.corp-contact-wrapper .corp-contact-main-contents .student-future .student-future-item:not(:last-child) {
+margin-bottom: 80px;
+}
+.corp-contact-wrapper .corp-contact-main-contents .student-future .rural-student {
+margin-top: 80px;
+}
+.corp-contact-wrapper .corp-contact-main-contents .student-future .student-future-item {
+display: -webkit-box;
+display: -ms-flexbox;
+display: flex;
+-webkit-box-align: center;
+-ms-flex-align: center;
+align-items: center;
+}
+.corp-contact-wrapper .corp-contact-main-contents .student-future .rural-student-img {
+width: 50%;
+margin-right: 40px;
+}
+.corp-contact-wrapper .corp-contact-main-contents .student-future .student-future-img {
+display: inline-block;
+vertical-align: middle;
+}
+.corp-contact-wrapper .corp-contact-main-contents .student-future .hiring-feature-text {
+width: calc(100% - 580px);
+}
+.corp-contact-wrapper .corp-contact-main-contents .student-future .student-future-text {
+text-align: left;
+display: inline-block;
+vertical-align: middle;
+}
+.student-future-text h2{
+margin-bottom: 20px;
+font-size: 28px;
+font-weight: 700;
+}
+.corp-contact-wrapper .corp-contact-main-contents .student-future{
+  counter-reset: number 0;           /* number のカウンタを 0 にセット */
+}
+.student-future-text h2::before{
+  counter-increment: number 1;      /* number カウンタの増加数をセット */
+  content: counter(number) ". ";      /* 表示形式を指定 */
+  margin-right: 10px;
+}
+.student-future-text p{
+line-height: 2;
+}
+.corp-contact-wrapper .corp-contact-main-contents .student-future .top-college-img-for-mobile {
+display: none;
+}
+.corp-contact-wrapper .corp-contact-main-contents .student-future .top-college-img-for-pc {
+width: 500px;
+margin-left: 40px;
+right: -50px;
+}
+.corp-contact-wrapper .corp-contact-main-contents .service-future {
+max-width: 1000px;
+margin: 120px auto 0;
+}
+.corp-contact-wrapper .corp-contact-main-contents .service-future .service-future-content {
+display: -webkit-box;
+display: -ms-flexbox;
+display: flex;
+-ms-flex-wrap: wrap;
+flex-wrap: wrap;
+-webkit-box-pack: center;
+-ms-flex-pack: center;
+justify-content: center;
+}
+.corp-contact-wrapper .corp-contact-main-contents .service-future .service-future-item {
+width: 25%;
+padding: 0 24px;
+vertical-align: top;
+text-align: left;
+box-sizing: border-box;
+}
+.corp-contact-wrapper .corp-contact-main-contents .service-future .service-future-img {
+width: 100%;
+}
+.corp-contact-wrapper .corp-contact-main-contents .service-future .servise-future-text {
+text-align: left;
+margin-top: 16px;
+}
+.corp-contact-wrapper .corp-contact-main-contents .student-service-future-text .cmp {
+font-size: 16px;
+font-weight: 700;
+}
+.corp-contact-wrapper .corp-contact-main-contents .inner-link-to-contact-form {
+margin-top: 80px;
+text-align: center;
+}
+.corp-contact-wrapper .corp-contact-main-contents .inner-link-to-contact-form-description {
+margin: 16px 0 0;
+font-size: 13px;
+font-weight: 700;
+line-height: 140%;
+color: #616161;
+}
+.corp-contact-wrapper .odd {
+background-color: #f5f5f5;
+}
+.corp-contact-wrapper .corp-contact-main-contents .corp-contact-each-content-inner {
+max-width: 1000px;
+margin: 0 auto;
+padding: 80px 0;
+}
+.corp-contact-wrapper .corp-contact-main-contents .corp-contact-main-heading {
+margin-bottom: 40px;
+font-size: 28px;
+font-weight: 700;
+text-align: center;
+}
+.corp-contact-wrapper .corp-contact-main-contents .corp-contact-posted-company-list {
+text-align: center;
+}
+.corp-contact-wrapper .corp-contact-main-contents .corp-contact-posted-company-img {
+width: 120px;
+margin: 0 24px;
+-webkit-box-shadow: 0 2px 12px rgba(33,33,33,.2);
+box-shadow: 0 2px 12px rgba(33,33,33,.2);
+}
+.corp-contact-wrapper .corp-contact-main-contents .company-success {
+margin-bottom: 58px;
+}
+.corp-contact-wrapper .corp-contact-main-contents .company-student-success {
+text-align: center;
+margin-top: 80px;
+}
+.corp-contact-wrapper .corp-contact-main-contents .corp-contact-main-heading {
+margin-bottom: 40px;
+font-size: 28px;
+font-weight: 700;
+text-align: center;
+}
+.corp-contact-wrapper .corp-contact-main-contents .company-student-success .company-student-success-inner {
+display: -webkit-box;
+display: -ms-flexbox;
+display: flex;
+}
+.corp-contact-wrapper .corp-contact-main-contents .company-student-success .company-student-success-item {
+width: calc(33.3% - 32px);
+vertical-align: top;
+text-align: left;
+margin: 0 auto;
+}
+.corp-contact-wrapper .corp-contact-main-contents .company-student-success .company-student-success-img {
+width: 320px;
+height: 200px;
+-o-object-fit: cover;
+object-fit: cover;
+}
+.corp-contact-wrapper .corp-contact-main-contents .company-student-success .company-student-success-text {
+color: #333;
+max-width: 280px;
+text-align: left;
+margin: 16px;
+}
+.corp-contact-wrapper .corp-contact-main-contents .company-student-success .company-student-success-text .ttl {
+color: #616161;
+font-size: 14px;
+line-height: 24px;
+}
+.corp-contact-wrapper .corp-contact-main-contents .corp-contact-description-under-heading {
+margin: -20px 0 40px;
+text-align: center;
+color: #616161;
+font-size: 14px;
+}
+.testimonials__bg {
+position: absolute;
+left: calc( calc(1200px / 2) - 100px );
+background-repeat: no-repeat;
+background-size: 100%;
+background-position: bottom 25% left -100px;
+background-image: url(https://cdn2.hubspotqa.net/hubfs/101074995/Martech/testimonial-shapes.png);
+z-index: -1;
+height: 500px;
+width: 500px;
+}
+.tns-item {
+padding: 0px 0px 35px;
+text-align: left;
+}
+.testimonial__module {
+padding: 50px 50px;
+border-radius: 15px;
+border: 1px solid #ddf0ea;
+box-shadow: 0px 2px 20px 0px rgba(0,0,0,0.12);
+display: flex;
+background-color: white;
+}
+.testimonial__module__image {
+margin-left: -100px;
+margin-right: 50px;
+height: 300px;
+width: 300px;
+border-radius: 15px;
+flex-shrink: 0;
+background-position: center center;
+padding-top: -20px;
+background-color: #fff;
+z-index: 2;
+background-size: cover;
+border: 1px solid #ddf0ea;
+}
+.testimonial__module__text {
+max-width: 700px;
+}
+.blockquote-icon {
+fill: #19CCA3;
+}
+.testimonial__module__text--quote blockquote {
+border-left: 7px solid rgba(25,204,163,1);
+padding-left: 15px;
+margin-top: .5rem;
+margin-bottom: .5rem;
+margin: 15px 40px !important;
+margin-right: 0 !important;
+line-height: 2;
+background: none;
+border-left: 7px solid #19cca3;
+padding-left: 15px;
+}
+.testimonial__module__text--author {
+font-weight: 300;
+}
+.testimonial__module__text--subtitle {
+font-weight: 300;
+padding-top: 10px;
+}
+.corp-contact-form{
+background: #f5f5f5;
+}
+.corp-contact-form-wrapper{
+max-width: 800px;
+margin: 0 auto;
+}
+.page-id-11953 .corp-contact-form-wrapper form{
+background-color: rgba(255,255,255,1.0);
+border: 1px solid #f5f5f5;
+border-radius: 4px;
+padding: 45px 45px;
+}
+.page-id-11953 .corp-contact-form-wrapper form p{
+margin-bottom: 20px !important;
+}
+.page-id-11953 .corp-contact-form-wrapper form p:last-of-type{
+text-align: center;
+margin-bottom: 0px !important;
+}
+.page-id-11953 .corp-contact-form-wrapper form p>label {
+font-family: Muli,sans-serif;
+font-style: normal;
+font-weight: 300;
+text-decoration: none;
+font-size: px;
+padding: 0px 0px;
+}
+.page-id-11953 input[type=text],.page-id-11953 input[type=email],.page-id-11953 input[type=password],.page-id-11953 input[type=tel],.page-id-11953 input[type=number],.page-id-11953 input[type=file],.page-id-11953 select,.page-id-11953 textarea {
+font-family: Muli,sans-serif;
+font-style: normal;
+font-weight: 300;
+text-decoration: none;
+background-color: #f5f5f5;
+border: 1px none #d0d0d0;
+border-radius: 4px;
+color: #3d3e40;
+font-size: px;
+padding: 18px 20px;
+margin-top: 8px;
+width: 100% !important;
+}
+.page-id-11953 input[type=submit],.page-id-11953  button[type=submit]{
+font-family: Muli,sans-serif;
+font-style: normal;
+font-weight: 700;
+text-decoration: none;
+background-color: rgba(25,204,163,1.0);
+border: 1px solid #19cca3;
+border-radius: 32px;
+color: #fff;
+fill: #fff;
+font-size: 16px;
+padding: 10px 50px;
+text-transform: none;
+}
+@media only screen and (min-width: 1201px){
+.row .col.l6 {
+width: 50%;
+}
+.row .col.l5, .row .col.l6 {
+margin-left: auto;
+left: auto;
+right: auto;
+}
+.corp-contact-wrapper .corp-contact-cover .corp-contact-cover-inner {
+display: -webkit-box;
+display: -ms-flexbox;
+display: flex;
+-webkit-box-align: center;
+-ms-flex-align: center;
+align-items: center;
+}
+}
+@media only screen and (max-width: 1200px){
+.corp-contact-wrapper {
+background-color: #f5f5f5;
+}
+.corp-contact-wrapper .corp-contact-cover .corp-contact-cover-inner {
+width: inherit;
+display: inherit;
+}
+.corp-contact-wrapper .corp-contact-cover .corp-contact-cover-left {
+  text-align: center;
+  margin: 0px auto;
+  padding-top: 70px;
+}
+.corp-contact-wrapper .corp-contact-cover .corp-contact-cover-logo {
+height: 60px;
+width: auto;
+}
+.corp-contact-wrapper .corp-contact-cover .corp-contact-cover-description {
+font-size: 14px;
+}
+.corp-contact-wrapper .corp-contact-cover .corp-contact-cover-heading {
+font-size: 20px;
+margin-bottom: 20px;
+}
+.corp-contact-wrapper .corp-contact-cover  .corp-contact-cover-right{
+  text-align: center;
+}
+.corp-contact-wrapper .corp-contact-cover .corp-contact-cover-right-img {
+width: 354px;
+margin-bottom: 30px;
+}
+.corp-contact-wrapper .corp-contact-main-contents .corp-contact-each-content-inner {
+max-width: inherit;
+padding: 40px 0;
+}
+.corp-contact-wrapper .corp-contact-main-contents .student-future {
+padding-bottom: 10px;
+}
+.corp-contact-wrapper .corp-contact-main-contents .inner-link-to-contact-form {
+margin-top: 35px;
+}
+.corp-contact-wrapper .corp-contact-main-contents .corp-contact-main-heading {
+font-size: 22px;
+line-height: 34px;
+margin-bottom: 30px;
+}
+.corp-contact-wrapper .corp-contact-main-contents .student-future .rural-student:not(:first-child) {
+margin-top: 40px;
+}
+.corp-contact-wrapper .corp-contact-main-contents .student-future .student-future-item:not(:last-child) {
+margin-bottom: 40px;
+}
+.corp-contact-wrapper .corp-contact-main-contents .student-future .rural-student {
+margin-bottom: 10px;
+}
+.corp-contact-wrapper .corp-contact-main-contents .student-future .student-future-item {
+max-width: 80%;
+margin: 0 auto 10px;
+-webkit-box-orient: vertical;
+-webkit-box-direction: normal;
+-ms-flex-direction: column;
+flex-direction: column;
+}
+.corp-contact-wrapper .corp-contact-main-contents .student-future .rural-student-img {
+width: 100%;
+border: none;
+}
+.corp-contact-wrapper .corp-contact-main-contents .student-future .student-future-img {
+margin: 0 0 20px!important;
+}
+.corp-contact-wrapper .corp-contact-main-contents .student-future .hiring-feature-text {
+width: 100%;
+}
+/* .corp-contact-wrapper .corp-contact-main-contents .student-service-future-text {
+margin: 0 auto;
+width: 280px;
+} */
+.corp-contact-wrapper .corp-contact-main-contents .student-future .top-college-img-for-mobile {
+display: inline-block;
+width: 100%;
+}
+.corp-contact-wrapper .corp-contact-main-contents .student-future .top-college-img-for-pc {
+display: none;
+}
+.tns-item{
+  margin: 20px;
+}
+.testimonial__module__image {
+  margin: 0 auto;
+  padding: 0;
+}
+.mobile-col {
+flex-direction: column;
+}
+.testimonial__module__image {
+margin: 0 auto;
+padding: 0;
+}
+.testimonials__bg{
+  display: none;
+}
+}
+@media screen and (max-width: 767px){
+.corp-contact-wrapper .corp-contact-main-contents .service-future .service-future-content {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  margin: 0;
+}
+.corp-contact-wrapper .corp-contact-main-contents .service-future .service-future-item:not(:last-child) {
+  margin-bottom: 30px;
+}
+.corp-contact-wrapper .corp-contact-main-contents .service-future .service-future-item{
+  width: 100%;
+  text-align: center;
+}
+.corp-contact-wrapper .corp-contact-main-contents .service-future .service-future-img {
+  margin-bottom: 16px;
+}
+.corp-contact-wrapper .corp-contact-main-contents .student-service-future-text .cmp{
+  margin-bottom: 5px;
+}
+.corp-contact-wrapper .corp-contact-main-contents .company-student-success .company-student-success-inner {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  margin: 0;
+}
+.corp-contact-wrapper .corp-contact-main-contents .company-student-success .company-student-success-item {
+  width: 80%;
+  max-width: none;
+  margin-bottom: 40px;
+}
+.corp-contact-wrapper .corp-contact-main-contents .company-student-success .company-student-success-img{
+  width: 100%;
+  height: auto;
+}
+.corp-contact-wrapper .corp-contact-main-contents .company-student-success .company-student-success-text{
+  max-width: none;
+}
+.corp-contact-wrapper .corp-contact-main-contents .service-future .servise-future-text{
+  margin-top: 0;
+}
+}
+@media only screen and (max-width: 479px){
+  .testimonial__module__image{
+    width: 200px;
+    height: 200px;
+  }
+}
+.column .entry .tax-categories {
+	display:none;
+}
+
+.page-id-12228 .um-editor{
+    display:block !important;
+  }
+.page-id-12228 .um-field-area input{
+	width:100% !important;
+}
+
+.page-id-12228 .um-editor-btn{
+	width:50px !important;
+}
