@@ -32,7 +32,7 @@ function add_landing_page(){
                         <div class="student-future-item">
                             <img class="student-future-img top-college-img-for-mobile" src="https://jobshot.jp/wp-content/uploads/2020/04/76401249838723d302b52ecc7d864dd2-e1586322941310.png" alt="">
                             <div class="student-service-future-text student-future-text hiring-feature-text">
-                                <h2>東大就活生(22卒)のうち5人の1人が登録</h2>
+                                <h2>東大学部就活生(22卒)のうち5人の1人が登録</h2>
                                 <p>JobShotは22卒東大就活生のうち5人の1人に利用されており、東京大学・慶應大学・早稲田大学の学生が全ユーザーの50％以上を占めます。優秀層の中でも特に優秀な学生を採用できる可能性が高まります。</p>
                             </div>
                             <img class="student-future-img top-college-img-for-pc" src="https://jobshot.jp/wp-content/uploads/2020/04/76401249838723d302b52ecc7d864dd2-e1586322941310.png" alt="">
