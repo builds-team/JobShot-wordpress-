@@ -114,7 +114,7 @@ function template_company_info2_func($content){
           </div>'.$edit_event_html.'
       </div>';
   }else{
-    $tab_title_html = '<input id="tab-company" type="radio" name="tab_item" checked><label class="tab_item" for="tab-company">会社情報</label><input id="tab-job" type="radio" name="tab_item"><label class="tab_item" for="tab-job">新卒</label><input id="tab-internship" type="radio" name="tab_item"><label class="tab_item" for="tab-internship">インターン</label><input id="tab-event" type="radio" name="tab_item"><label class="tab_item" for="tab-event">秋インターン</label>';
+    $tab_title_html = '<input id="tab-company" type="radio" name="tab_item" checked><label class="tab_item" for="tab-company">会社情報</label><input id="tab-job" type="radio" name="tab_item"><label class="tab_item" for="tab-job">新卒</label><input id="tab-internship" type="radio" name="tab_item"><label class="tab_item" for="tab-internship">インターン</label><input id="tab-event" type="radio" name="tab_item"><label class="tab_item" for="tab-event">サマーインターン</label>';
     $tab_contents_html= '
       <div class="tab_content" id="tab-job_content">
           <div class="tab_content_description">
