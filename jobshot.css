@@ -12802,3 +12802,10 @@ padding: 0;
 .page-id-12228 .um-editor-btn{
 	  width:50px !important;
 }
+
+.um-profile-nav{
+	display:none;
+}
+.um-profile-nav-block{
+	display:block;
+}

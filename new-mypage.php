@@ -7,6 +7,40 @@ function add_defer($tag, $handle) {
   return str_replace(' src=', ' defer src=', $tag);
 }
 
+function profile_tab($user_name){
+    $html = '
+    <div class="um-profile-nav um-profile-nav-block">		
+        <div class="um-profile-nav-item um-profile-nav-main ">
+            <a href="https://jobshot.jp/user?um_user='.$user_name.'&um_tab=main" class="uimob800-show uimob500-show uimob340-show um-tip-n" original-title="紹介">
+                <i class="um-faicon-user"></i>
+                <span class="uimob800-hide uimob500-hide uimob340-hide title">紹介</span>
+            </a>
+            <a href="https://jobshot.jp/user?um_user='.$user_name.'&um_tab=main" class="uimob800-hide uimob500-hide uimob340-hide" title="紹介">
+                <i class="um-faicon-user"></i>
+                <span class="title">紹介</span>
+            </a>
+        </div>
+        <div class="um-profile-nav-item um-profile-nav-favorites">
+            <a href="https://jobshot.jp/user?um_user='.$user_name.'&um_tab=favorites" class="uimob800-show uimob500-show uimob340-show um-tip-n" original-title="お気に入り">
+                <i class="um-faicon-star"></i>
+                <span class="uimob800-hide uimob500-hide uimob340-hide title">お気に入り</span>
+            </a>
+            <a href="https://jobshot.jp/user?um_user='.$user_name.'&um_tab=favorites" class="uimob800-hide uimob500-hide uimob340-hide" title="お気に入り">
+                <i class="um-faicon-star"></i>
+                <span class="title">お気に入り</span>
+            </a>
+        </div>
+        <div class="um-clear"></div>
+    </div>';
+    if($_GET['um_tab'] == 'favorites'){
+        $html = str_replace('um-profile-nav-favorites', 'um-profile-nav-favorites active',$html);
+        $html = str_replace('um-profile-nav-main  active', 'um-profile-nav-main', $html);
+    }else{
+        $html = str_replace('um-profile-nav-main', 'um-profile-nav-main active',$html);
+    }
+    return $html;
+}
+
 function new_mypage_func(){
     $user = wp_get_current_user();
     $user_id = $user->data->ID;
@@ -421,10 +455,18 @@ function new_mypage_func(){
     }
     if($login_user_id == $user_id){
       $html .= $upload_html;
+      if(in_array("student", $user_roles){
+          $nav_html = profile_tab($user_name);
+      }
     }
     $html .= $cover_html;
     $html .= $header_html;
-    //$html .= $nav_html;
+    $html .= $nav_html;
+    if($_GET['um_tab'] == 'favorites'){
+        $html .= '<h3>企業情報</h3>'.do_shortcode('[show_favorites item_type=company]').'<h3>イベント</h3>'.do_shortcode('[show_favorites item_type=event]').'
+        <h3>インターンシップ</h3>'.do_shortcode('[show_favorites item_type=internship]');
+        return $html;
+    }
     $html.='
     <!-- これより上はclassとdivが被っているので不要 -->
     <div class="um-profile-infomation">
