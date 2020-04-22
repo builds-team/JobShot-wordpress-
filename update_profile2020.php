@@ -53,8 +53,8 @@
         $graduate_year = get_user_meta($user_id,'graduate_year',false)[0];
         $seminar = get_user_meta($user_id,'seminar',false)[0];
         update_user_meta( $user_id, 'profile_update_2020', 1);
-        $html = '  
-        <h3 class="widget-title">プロフィール更新のお願い</h3>         
+        $html = '
+        <h3 class="widget-title">プロフィール更新のお願い</h3>
         <div class="um-editor um-editor-univ">
             <p>学年更新時期になりましたので、変更がある場合には以下のプロフィールの更新をお願いいたします。</p>
             <form method="post" id="testform10">
