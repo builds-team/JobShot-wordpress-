@@ -30,14 +30,27 @@ function profile_tab($user_name){
                 <span class="title">お気に入り</span>
             </a>
         </div>
+        <div class="um-profile-nav-item um-profile-nav-attend">
+            <a href="https://jobshot.jp/user?um_user='.$user_name.'&um_tab=attend" class="uimob800-show uimob500-show uimob340-show um-tip-n" original-title="応募済み一覧">
+                <i class="um-faicon-graduation-cap"></i>
+                <span class="uimob800-hide uimob500-hide uimob340-hide title">応募済み一覧</span>
+            </a>
+            <a href="https://jobshot.jp/user?um_user='.$user_name.'&um_tab=attend" class="uimob800-hide uimob500-hide uimob340-hide" title="応募済み一覧">
+                <i class="um-faicon-graduation-cap"></i>
+                <span class="title">応募済み一覧</span>
+            </a>
+        </div>
         <div class="um-clear"></div>
     </div>';
     if($_GET['um_tab'] == 'favorites'){
         $html = str_replace('um-profile-nav-favorites', 'um-profile-nav-favorites active',$html);
         $html = str_replace('um-profile-nav-main  active', 'um-profile-nav-main', $html);
+    }elseif($_GET['um_tab'] == 'attend'){
+        $html = str_replace('um-profile-nav-attend', 'um-profile-nav-attend active',$html);
+		  $html = str_replace('um-profile-nav-main  active', 'um-profile-nav-main', $html);
     }else{
-        $html = str_replace('um-profile-nav-main', 'um-profile-nav-main active',$html);
-    }
+		  $html = str_replace('um-profile-nav-main', 'um-profile-nav-main active',$html);
+	}
     return $html;
 }
 
@@ -465,6 +478,9 @@ function new_mypage_func(){
     if($_GET['um_tab'] == 'favorites'){
         $html .= '<h3>企業情報</h3>'.do_shortcode('[show_favorites item_type=company]').'<h3>イベント</h3>'.do_shortcode('[show_favorites item_type=event]').'
         <h3>インターンシップ</h3>'.do_shortcode('[show_favorites item_type=internship]');
+        return $html;
+    }elseif($_GET['um_tab'] == 'attend'){
+        $html .= do_shortcode('[view_applied_list]');
         return $html;
     }
     $html.='
