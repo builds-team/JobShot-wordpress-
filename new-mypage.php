@@ -7,28 +7,55 @@ function add_defer($tag, $handle) {
   return str_replace(' src=', ' defer src=', $tag);
 }
 
-function account_reset_func(){
-    if(!empty($_POST["account_delete"]) && !empty($_POST["user_id"])){
-        require 'wp-includes/class-phpass.php'; //もしくは別途保存したPasswordHashへのパス
-        $user_id = $_POST["user_id"];
-        $home_url =esc_url( home_url( ));
-        $user_info = get_userdata($user_id);
-        $user_password = $_POST["user_password"];
-        $pass_checker = new PasswordHash(8, true);
-        $result = $pass_checker->CheckPassword($user_password, $user_info->user_pass); // → false
-        if($result){
-            wp_delete_user($user_id);
-            header('Location: '.$home_url).'/column');
-            die();
-        }else{
-            header('Location: '.$home_url.'/column');
-            die();
-        }
+function profile_tab($user_name){
+    $html = '
+    <div class="um-profile-nav um-profile-nav-block">		
+        <div class="um-profile-nav-item um-profile-nav-main ">
+            <a href="https://jobshot.jp/user?um_user='.$user_name.'&um_tab=main" class="uimob800-show uimob500-show uimob340-show um-tip-n" original-title="紹介">
+                <i class="um-faicon-user"></i>
+                <span class="uimob800-hide uimob500-hide uimob340-hide title">紹介</span>
+            </a>
+            <a href="https://jobshot.jp/user?um_user='.$user_name.'&um_tab=main" class="uimob800-hide uimob500-hide uimob340-hide" title="紹介">
+                <i class="um-faicon-user"></i>
+                <span class="title">紹介</span>
+            </a>
+        </div>
+        <div class="um-profile-nav-item um-profile-nav-favorites">
+            <a href="https://jobshot.jp/user?um_user='.$user_name.'&um_tab=favorites" class="uimob800-show uimob500-show uimob340-show um-tip-n" original-title="お気に入り">
+                <i class="um-faicon-star"></i>
+                <span class="uimob800-hide uimob500-hide uimob340-hide title">お気に入り</span>
+            </a>
+            <a href="https://jobshot.jp/user?um_user='.$user_name.'&um_tab=favorites" class="uimob800-hide uimob500-hide uimob340-hide" title="お気に入り">
+                <i class="um-faicon-star"></i>
+                <span class="title">お気に入り</span>
+            </a>
+        </div>
+        <div class="um-clear"></div>
+    </div>';
+    if($_GET['um_tab'] == 'favorites'){
+        $html = str_replace('um-profile-nav-favorites', 'um-profile-nav-favorites active',$html);
+        $html = str_replace('um-profile-nav-main  active', 'um-profile-nav-main', $html);
+    }else{
+        $html = str_replace('um-profile-nav-main', 'um-profile-nav-main active',$html);
     }
-}
-add_action('template_redirect', 'account_reset_func');
+    return $html;
+
 
 function new_mypage_func(){
+    $user = wp_get_current_user();
+    $user_id = $user->data->ID;
+    $register_day = $user->data->user_registered;
+    $register_day = strtotime($register_day);
+    $update_day = strtotime("2020-04-01 00:00:00");
+    $updated_profile = get_user_meta($user_id, 'profile_update_2020',false)[0];
+    $graduate_year = get_user_meta($user_id,'graduate_year',false)[0];
+    if(current_user_can('student') && $updated_profile == 0 && $register_day < $update_day){
+        if($graduate_year == 2020 || $graduate_year == 2021){
+            $home_url = esc_url( home_url( ));
+            wp_safe_redirect($home_url.'/profile_update');
+            exit();
+        }
+    }
     $user_id = um_profile_id();
     $user_info = get_userdata(1657);
     if ($user_id == 1657){
@@ -453,10 +480,18 @@ function new_mypage_func(){
     }
     if($login_user_id == $user_id){
       $html .= $upload_html;
+      if(in_array("student", $user_roles){
+          $nav_html = profile_tab($user_name);
+      }
     }
     $html .= $cover_html;
     $html .= $header_html;
-    //$html .= $nav_html;
+    $html .= $nav_html;
+    if($_GET['um_tab'] == 'favorites'){
+        $html .= '<h3>企業情報</h3>'.do_shortcode('[show_favorites item_type=company]').'<h3>イベント</h3>'.do_shortcode('[show_favorites item_type=event]').'
+        <h3>インターンシップ</h3>'.do_shortcode('[show_favorites item_type=internship]');
+        return $html;
+    }
     $html.='
     <!-- これより上はclassとdivが被っているので不要 -->
     <div class="um-profile-infomation">

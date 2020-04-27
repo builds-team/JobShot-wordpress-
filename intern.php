@@ -33,6 +33,16 @@ function template_internship2_func($content){
   $area = get_the_terms($post_id,"area")[0]->name;
   $occupation = get_the_terms($post_id,"occupation")[0]->name;
   $business_type = get_the_terms($company_id,"business_type")[0]->name;
+  $card_category_html = '';
+  if(!empty($area)){
+    $card_category_html .= '<div class="card-category">'.$area.'</div>';
+  }
+  if(!empty($occupation)){
+    $card_category_html .= '<div class="card-category">'.$occupation.'</div>';
+  }
+  if(!empty($business_type)){
+    $card_category_html .= '<div class="card-category">'.$business_type.'</div>';
+  }
 
   $post_title = get_field("募集タイトル",$post_id);
   $salary = nl2br(get_field("給与",$post_id));
@@ -301,11 +311,7 @@ function template_internship2_func($content){
           <div class="full-card-text">
             <div class="full-card-text-caption">
               <div class="full-card-text-company"><a href="'.esc_url($company_url).'"><b>'.$company_name.'</b></a></div>
-              <div class="card-category-container">
-                <div class="card-category">'.$area.'</div>
-                <div class="card-category">'.$occupation.'</div>
-                <div class="card-category">'.$business_type.'</div>
-              </div>
+              <div class="card-category-container">'.$card_category_html.'</div>
               <div class="card_company_square_logo">
                 <img src="'.$company_logo_square.'" alt="" scale="0">
               </div>
@@ -324,10 +330,7 @@ function template_internship2_func($content){
           <div class="full-card-text-title">'.$post_title.'</div>
           <div class="full-card-text-caption">
             <div class="full-card-text-company"><a href="'.esc_url($company_url).'"><b>'.$company_name.'</b></a></div>
-            <div class="card-category-container">
-                <div class="card-category">'.$area.'</div>
-                <div class="card-category">'.$occupation.'</div>
-            </div>
+            <div class="card-category-container">'.$card_category_html.'</div>
           </div>
           <table class="full-card-table">
             <tbody>

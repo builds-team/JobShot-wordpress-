@@ -142,6 +142,13 @@ function view_intern_card_func($post_id){
   $image_url = $image["url"];
   $area = get_the_terms($post_id,"area")[0]->name;
   $occupation = get_field("職種",$post_id);
+  $card_category_html = '';
+  if(!empty($area)){
+    $card_category_html .= '<div class="card-category">'.$area.'</div>';
+  }
+  if(!empty($occupation)){
+    $card_category_html .= '<div class="card-category">'.$occupation.'</div>';
+  }
   $skill = get_the_terms($post_id,"acquire")[0]->name;
   $card_html .=   '
   <div class="card">
@@ -151,10 +158,7 @@ function view_intern_card_func($post_id){
       </div>
       <div class="card-text-content">
           <div class="card-title">'.$post_title.'</div>
-          <div class="card-category-container">
-              <div class="card-category">'.$area.'</div>
-              <div class="card-category">'.$occupation.'</div>
-          </div>
+          <div class="card-category-container">'.$card_category_html.'</div>
           <table class="card-table">
           <tbody>
               <tr>
@@ -362,6 +366,16 @@ function view_fullwidth_intern_card_func($post_id){
   $area = get_the_terms($post_id,"area")[0]->name;
   $occupation = get_the_terms($post_id,"occupation")[0]->name;
   $business_type = get_the_terms($company_id,"business_type")[0]->name;
+  $card_category_html = '';
+  if(!empty($area)){
+    $card_category_html .= '<div class="card-category">'.$area.'</div>';
+  }
+  if(!empty($occupation)){
+    $card_category_html .= '<div class="card-category">'.$occupation.'</div>';
+  }
+  if(!empty($business_type)){
+    $card_category_html .= '<div class="card-category">'.$business_type.'</div>';
+  }
 
   if($features){
     $features_html = '';
@@ -389,12 +403,8 @@ function view_fullwidth_intern_card_func($post_id){
       <div class="full-card-text">
         <div class="full-card-text-title"><a href="'.esc_url($intern_url).'">'.$post_title.'</a></div>
         <div class="full-card-text-caption">
-        <div class="full-card-text-company"><a href="'.esc_url($company_url).'"><b>'.$company_name.'</b></a></div>
-        <div class="card-category-container">
-            <div class="card-category">'.$area.'</div>
-            <div class="card-category">'.$occupation.'</div>
-            <div class="card-category">'.$business_type.'</div>
-          </div>
+          <div class="full-card-text-company"><a href="'.esc_url($company_url).'"><b>'.$company_name.'</b></a></div>
+          <div class="card-category-container">'.$card_category_html.'</div>
         </div>
         <div><p>'.$company_bussiness.'</p></div>
         <table class="full-card-table">
@@ -600,6 +610,16 @@ function view_fullwidth_summer_intern_card_func($post_id){
   $area = get_the_terms($post_id,"area")[0]->name;
   $business_type = get_the_terms($company_id,"business_type")[0]->name;
   $occupation = get_the_terms($post_id,"occupation")[0]->name;
+  $card_category_html = '';
+  if(!empty($area)){
+    $card_category_html .= '<div class="card-category">'.$area.'</div>';
+  }
+  if(!empty($occupation)){
+    $card_category_html .= '<div class="card-category">'.$occupation.'</div>';
+  }
+  if(!empty($business_type)){
+    $card_category_html .= '<div class="card-category">'.$business_type.'</div>';
+  }
 
   $current_user = wp_get_current_user();
   $current_user_name = $current_user->data->display_name;
@@ -627,12 +647,8 @@ function view_fullwidth_summer_intern_card_func($post_id){
       <div class="full-card-text">
         <div class="full-card-text-title"><a href="'.esc_url(get_permalink($post_id)).'">'.$post_title.'</a></div>
         <div class="full-card-text-caption">
-        <div class="full-card-text-company"><a href="'.esc_url($company_url).'"><b>'.$company_name.'</b></a></div>
-        <div class="card-category-container">
-            <div class="card-category">'.$area.'</div>
-            <div class="card-category">'.$occupation.'</div>
-            <div class="card-category">'.$business_type.'</div>
-          </div>
+          <div class="full-card-text-company"><a href="'.esc_url($company_url).'"><b>'.$company_name.'</b></a></div>
+          <div class="card-category-container">'.$card_category_html.'</div>
         </div>
         <div>'.$intern_contents.'</div>
         <table class="full-card-table">
@@ -678,6 +694,16 @@ function view_fullwidth_autumn_intern_card_func($post_id){
   $area = get_the_terms($post_id,"area")[0]->name;
   $business_type = get_the_terms($company_id,"business_type")[0]->name;
   $occupation = get_the_terms($post_id,"occupation")[0]->name;
+  $card_category_html = '';
+  if(!empty($area)){
+    $card_category_html .= '<div class="card-category">'.$area.'</div>';
+  }
+  if(!empty($occupation)){
+    $card_category_html .= '<div class="card-category">'.$occupation.'</div>';
+  }
+  if(!empty($business_type)){
+    $card_category_html .= '<div class="card-category">'.$business_type.'</div>';
+  }
 
   $current_user = wp_get_current_user();
   $current_user_name = $current_user->data->display_name;
@@ -706,11 +732,7 @@ function view_fullwidth_autumn_intern_card_func($post_id){
         <div class="full-card-text-title"><a href="'.esc_url(get_permalink($post_id)).'">'.$post_title.'</a></div>
         <div class="full-card-text-caption">
         <div class="full-card-text-company"><a href="'.esc_url($company_url).'"><b>'.$company_name.'</b></a></div>
-        <div class="card-category-container">
-            <div class="card-category">'.$area.'</div>
-            <div class="card-category">'.$occupation.'</div>
-            <div class="card-category">'.$business_type.'</div>
-          </div>
+        <div class="card-category-container">'.$card_category_html.'</div>
         </div>
         <div>'.$intern_contents.'</div>
         <table class="full-card-table">

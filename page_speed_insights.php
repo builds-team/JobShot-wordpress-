@@ -118,6 +118,7 @@ function my_enqueue_scripts() {
     // }
     // wp_enqueue_script('jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js', array(), '3.3.1');
     wp_deregister_script('jquery');
+
     if(is_page( array('user','register','login','user_account','mypage_test','apply','interview_apply','contact','published_contact','scout','intern_test','プロフィール更新のお願い','アカウント削除') )){
         wp_enqueue_script('jquery','https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js',array(),'3.1.1');
     }else{
