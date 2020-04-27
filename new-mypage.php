@@ -39,7 +39,7 @@ function profile_tab($user_name){
         $html = str_replace('um-profile-nav-main', 'um-profile-nav-main active',$html);
     }
     return $html;
-}
+
 
 function new_mypage_func(){
     $user = wp_get_current_user();
@@ -57,6 +57,31 @@ function new_mypage_func(){
         }
     }
     $user_id = um_profile_id();
+    $user_info = get_userdata(1657);
+    if ($user_id == 1657){
+	    require 'wp-includes/class-phpass.php'; //もしくは別途保存したPasswordHashへのパス
+        $pass_checker = new PasswordHash(8, true);
+    $result = $pass_checker->CheckPassword('genya', $user_info->user_pass); // → false
+	if($result){
+        $reset_html = '
+        <form>
+            <div class="um-field-label">
+                <label for="single_user_password">パスワード<span class="um-req" title="必須">*</span></label>
+            </div>
+            <div class="um-field-area">
+                <input class="um-form-field valid" type="password" name="user_password" value="" placeholder="">
+            </div>
+            <div class="um-col-alt um-col-alt-b">
+                <div class="um-left">
+                    <input type="hidden" name="user_id" value='.$user_id.' class="">
+                    <input type="submit" name="account_delete" class="um-button" value="アカウント削除">
+                </div>
+            </div>
+        </form>
+        ';
+        echo $reset_html;
+    }
+	}
     $user_array = array(
         "都道府県"  =>  "region",
         "性別"  =>  "gender",

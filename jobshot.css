@@ -12229,6 +12229,18 @@ font-size: 13px !important;
     float:left;
     width:75%;
   }
+  .page-id-12601 .container .main {
+    float:left;
+    width:75%;
+  }
+  .page-id-1604 .container .main {
+    float:left;
+    width:75%;
+  }
+  .page-id-12228 .container .main {
+    float:left;
+    width:75%;
+  }
   .column-template-default .container .main {
     float:left;
     width:75%;
@@ -12239,6 +12251,10 @@ font-size: 13px !important;
     .extendedwopts-show {
       display: none !important;
     }
+  }
+
+  .page-id-12601 .screen-reader-response {
+    display:none;
   }
 /* LP(ランディングページ) */
 .page-id-11953 .main-content {
