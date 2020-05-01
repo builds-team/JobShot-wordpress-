@@ -12829,3 +12829,11 @@ padding: 0;
   background-color: #ffffff;
   border: none;
 }
+.form__reproduction {
+	display:inline-block;
+}
+
+.submit__reproduction {
+	color:#03c4b0 !important;
+	background-color:white !important;
+}

@@ -635,6 +635,14 @@ function view_company_contents_func_test(){
     $home_url =esc_url( home_url( ));
     foreach ($post_ids as $post_id) {
         $edit_link = '<a href="'.$home_url.'/edit_'.$post_type.'?post_id='.$post_id.'">編集</a>';
+        if($post_type=='internship'){
+            $reproduction_button = '
+            <form action="'.$home_url.'/manage_post?posttype=internship" method="POST" enctype="multipart/form-data" class="form__reproduction">
+                <input type="hidden" name="post_id" value="'.$post_id.'">
+                <input type="submit" name="reproduction_intern"  value="複製" class="submit__reproduction">
+            </form>
+            ';
+        }
         $applylist=do_shortcode(' [cfdb-table form="/'.$formname.'.*/" filter="job-id='.$post_id.'"]');
         $applycnt=do_shortcode(' [cfdb-value form="/'.$formname.'.*/" filter="job-id='.$post_id.'" function="count"]');
         $occupation = get_the_terms($post_id,"occupation")[0]->name;
