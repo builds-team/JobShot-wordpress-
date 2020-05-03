@@ -309,11 +309,11 @@ code {
   font-family: monospace;
 }
 blockquote {
-  background: #f2f2f2;
+  background: rgba(109, 209, 180, 0.1);
   padding: 10px 20px;
   margin: 0 0 30px 0;
   position: relative;
-  border-left: 0.1em solid #C0392B;
+  /* border-left: 0.1em solid #C0392B; */
   overflow: hidden;
 }
 blockquote p {
@@ -322,6 +322,118 @@ blockquote p {
 blockquote p:last-child {
   margin-bottom: 0;
 }
+blockquote:before{
+  display: inline-block;
+  position: absolute;
+  top: 5px;
+  left: 8px;
+  vertical-align: middle;
+  content: "\f10d";
+  font-family: FontAwesome;
+  color: rgba(109, 209, 180, 0.5);
+  font-size: 25px;
+  line-height: 1;
+}
+blockquote:after{
+  display: inline-block;
+  position: absolute;
+  bottom: 8px;
+  right: 18px;
+  vertical-align: middle;
+  text-align: center;
+  content: "\f10e";
+  font-family: FontAwesome;
+  color: rgba(109, 209, 180, 0.5);
+  font-size: 25px;
+  line-height: 1;
+}
+blockquote p {
+  position: relative;
+  padding: 0;
+  margin: 10px 0;
+  z-index: 3;
+  font-size: 15px;
+  line-height: 1.5;
+}
+/* blockquote {
+  position: relative;
+  padding: 5px 12px 5px 56px;
+  box-sizing: border-box;
+  font-style: italic;
+  color: #464646;
+  background: rgba(109, 209, 180, 0.1);
+}
+blockquote:before{
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  width: 36px;
+  height: 36px;
+  -ms-transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  text-align: center;
+  content: "\f10d";
+  font-family: FontAwesome;
+  color: #FFF;
+  font-size: 20px;
+  line-height: 36px;
+  background: rgba(109, 209, 180, 0.5);
+  border-radius: 50%;
+  font-weight: 900;
+}
+blockquote p {
+  position: relative;
+  padding: 0;
+  margin: 10px 0;
+  z-index: 3;
+  line-height: 1.7;
+}
+blockquote cite {
+  display: block;
+  text-align: right;
+  color: #888888;
+  font-size: 0.9em;
+} */
+/* blockquote {
+  position: relative;
+  padding: 0px 10px 5px 40px;
+  box-sizing: border-box;
+  font-style: italic;
+  color: #464646;
+  background: rgba(109, 209, 180, 0.1);
+  border-top: solid 3px rgba(109, 209, 180, 0.5);
+}
+blockquote:before{
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 32px;
+  height: 30px;
+  text-align: center;
+  content: "\f10d";
+  font-family: FontAwesome;
+  color: #FFF;
+  font-size: 18px;
+  line-height: 30px;
+  background: rgba(109, 209, 180, 0.5);
+  font-weight: 900;
+}
+blockquote p {
+  position: relative;
+  padding: 0;
+  margin: 10px 0;
+  z-index: 3;
+  line-height: 1.7;
+}
+blockquote cite {
+  display: block;
+  text-align: right;
+  color: #888888;
+  font-size: 0.9em;
+} */
 address {
   margin-bottom: 30px;
 }
