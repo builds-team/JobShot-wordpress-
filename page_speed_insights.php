@@ -76,8 +76,8 @@ function dequeue_plugins_style() {
     // wp_dequeue_style( 'admin-bar' );
     // wp_dequeue_style( 'broadsheet-style' );
     if(!is_page(array('カレンダー'))){
-        wp_deregister_style('mec-fronted-style');
-        wp_deregister_script('mec-fronted-script');
+        wp_deregister_style('mec-frontend-style');
+        wp_deregister_script('mec-frontend-script');
         wp_deregister_script('mec-select2-script');
         wp_deregister_script('mec-owl-carousel-script');
         wp_deregister_script('mec-tooltip-script');
@@ -86,8 +86,10 @@ function dequeue_plugins_style() {
     }
 
     if( !is_page( array('user','register','login','user_account','mypage_test','apply','interview_apply') )){
-        wp_deregister_script('um_picker');
-        wp_deregister_script('um_picker_date');
+        wp_deregister_script('um_pickadate');
+        wp_deregister_script('um_pickadate_picker');
+        wp_deregister_script('um_pickadate_picker.date');
+        wp_deregister_script('um_pickadate_picker_time');
         wp_deregister_script('um_featherlight');
         wp_deregister_script('um_picker_time');
     }
