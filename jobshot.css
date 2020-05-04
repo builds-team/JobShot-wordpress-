@@ -11106,7 +11106,7 @@ font-size: 13px !important;
 /* コラム会員限定コンテンツメニュー */
 .listup__contents__menu {
   display: inline-block;
-  /* padding: 30px 30px 0; */
+  padding: 30px 30px 0;
 }
 .listup__contents__head>p {
   display: inline-block;
@@ -11125,7 +11125,7 @@ font-size: 13px !important;
 .listup__contents__list {
   padding: 0;
   margin: 0;
-  height: 430px;
+  height: 530px;
 }
 .listup__contents__ele {
   list-style: none;
@@ -11135,11 +11135,11 @@ font-size: 13px !important;
   margin-bottom: 30px;
 }
 .listup__contents__menu .listup__contents__ele .listup__contents__icon {
-  height: 87px;
-  line-height: 87px;
+  height: 150px;
+  line-height: 150px;
 }
 .listup__contents__icon__details  {
-  font-size: 87px;
+  font-size: 150px;
 }
 .google-icon {
   font-family: "Material Icons";
@@ -11158,10 +11158,10 @@ font-size: 13px !important;
 .listup__contents__column::before {
   content: "\e8ec";
 }
-.listup__contents__title {
+.listup__contents__ele p.listup__contents__title {
   font-weight: bold;
   margin-bottom: 10px;
-  font-size: 115%
+  font-size: 40px;
 }
 .listup__contents__menu .listup__contents__ele .listup__contents__description {
   line-height: 25px;
