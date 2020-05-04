@@ -7510,7 +7510,6 @@ i.material-icons:hover {
 }
 @media screen and (max-width: 782px) {
     .scholarship-feature li{
-        width: calc(100%/3) !important;
         margin: 1.5em 0 !important;
     }
     .big_icon{
@@ -7521,7 +7520,7 @@ i.material-icons:hover {
     }
 }
 .scholarship-feature li{
-  /* width: calc(100%/3); */
+  width: 100%;
   text-align: center;
   color: #666666;
   margin: 1.5em 1em;
