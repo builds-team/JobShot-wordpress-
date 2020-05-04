@@ -565,6 +565,14 @@ function view_company_contents_func_test(){
         'author' => $company_user_login
     );
     $posts = get_posts($args);
+    $args_published = array(
+        'post_type' => array($post_type),
+        'post_status' => array( 'publish'),
+        'author' => $company_user_login
+    );
+    if($post_type == 'internship'){
+        $posts_published = count(get_posts($args_published));
+    }
     $post_ids=array();
     foreach($posts as $post){
         array_push($post_ids,$post->ID);
@@ -664,31 +672,60 @@ function view_company_contents_func_test(){
             $image_url = $company_image_url;
         }
         $favorite_count = get_favorites_count($post_id);
-        switch(get_ja_post_status($post_id)){
-            case '下書き':
-                $status_html = '
-                    <select name="post_status">
-                        <option value="draft" selected>下書き</option>
-                        <option value="publish">公開済</option>
-                        <option value="private">非公開</option>
-                    </select>';
-                break;
-            case '公開済':
-                $status_html = '
-                    <select name="post_status">
-                        <option value="draft">下書き</option>
-                        <option value="publish" selected>公開済</option>
-                        <option value="private">非公開</option>
-                    </select>';
-                break;
-            case '非公開':
-                $status_html = '
-                    <select name="post_status">
-                        <option value="draft">下書き</option>
-                        <option value="publish">公開済</option>
-                        <option value="private" selected>非公開</option>
-                    </select>';
-                break;
+        if($posts_published <= 3){
+            switch(get_ja_post_status($post_id)){
+                case '下書き':
+                    $status_html = '
+                        <select name="post_status">
+                            <option value="draft" selected>下書き</option>
+                            <option value="publish">公開済</option>
+                            <option value="private">非公開</option>
+                        </select>';
+                    break;
+                case '公開済':
+                    $status_html = '
+                        <select name="post_status">
+                            <option value="draft">下書き</option>
+                            <option value="publish" selected>公開済</option>
+                            <option value="private">非公開</option>
+                        </select>';
+                    break;
+                case '非公開':
+                    $status_html = '
+                        <select name="post_status">
+                            <option value="draft">下書き</option>
+                            <option value="publish">公開済</option>
+                            <option value="private" selected>非公開</option>
+                        </select>';
+                    break;
+            }
+        }else{
+            switch(get_ja_post_status($post_id)){
+                case '下書き':
+                    $status_html = '
+                        <select name="post_status">
+                            <option value="draft" selected>下書き</option>
+                            <option value="publish" disabled>公開済(公開済は最大４つです)</option>
+                            <option value="private">非公開</option>
+                        </select>';
+                    break;
+                case '公開済':
+                    $status_html = '
+                        <select name="post_status">
+                            <option value="draft">下書き</option>
+                            <option value="publish" selected>公開済</option>
+                            <option value="private">非公開</option>
+                        </select>';
+                    break;
+                case '非公開':
+                    $status_html = '
+                        <select name="post_status">
+                            <option value="draft">下書き</option>
+                            <option value="publish" disabled>公開済(公開済は最大４つです)</option>
+                            <option value="private" selected>非公開</option>
+                        </select>';
+                    break;
+            }
         }
         $relate_html.='
             <tr>
@@ -751,4 +788,6 @@ function update_intern_status(){
     }
 }
 add_action('template_redirect', 'update_intern_status');
+
+function get_post_count($)
 ?>
