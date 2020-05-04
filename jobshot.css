@@ -11122,6 +11122,9 @@ font-size: 13px !important;
 .listup__contents__head>hr {
   border: 1px dashed rgb(109, 209, 180);
 }
+.listup__contents__head-fontsize {
+  font-size: 20px;
+}
 .listup__contents__list {
   padding: 0;
   margin: 0;
@@ -11160,39 +11163,39 @@ font-size: 13px !important;
 }
 .listup__contents__ele p.listup__contents__title {
   font-weight: bold;
-  margin-bottom: 10px;
-  font-size: 40px;
+  font-size: 20px;
 }
-.listup__contents__menu .listup__contents__ele .listup__contents__description {
+.listup__contents__menu p.listup__contents__description {
   line-height: 25px;
 }
 .listup__contents__link {
   background-color: rgb(109, 209, 180);
+  margin: 30 -30px 0 -30px;
 }
 .listup__contents__link__text {
   position: relative;
   display: block;
   text-align: center;
   width: 100%;
-  height: 50px;
-  line-height: 50px;
+  height: 60px;
+  line-height: 60px;
   font-weight: bold;
   font-size: 20px;
   color: #fff;
-  margin-bottom: 40px;
+  margin-bottom: 50px;
 }
 .listup__contents__link__icon {
   position: absolute;
   height: 100%;
   vertical-align: middle;
   right: 5px;
-  font-size: 40px;
+  font-size: 45px;
 }
 .next-sign-icon:after {
   content: "\e5cc";
 }
 @media screen and (max-width: 480px) {
-  .listup__contents__menu .listup__contents__ele .listup__contents__description {
+  .listup__contents__menu p.listup__contents__description {
     line-height: 20px;
     font-size: 8px;
   }
