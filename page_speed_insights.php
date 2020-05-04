@@ -82,6 +82,9 @@ function dequeue_plugins_style() {
         wp_deregister_script('mec-owl-carousel-script');
         wp_deregister_script('mec-tooltip-script');
         wp_deregister_script('mec-featherlight-script');
+        wp_deregister_style('mec-font-icons');
+        wp_deregister_style('mec-select2-style');
+        wp_deregister_script('mec-events');
 
     }
 
@@ -92,6 +95,9 @@ function dequeue_plugins_style() {
         wp_deregister_script('um_pickadate_picker_time');
         wp_deregister_script('um_featherlight');
         wp_deregister_script('um_picker_time');
+        wp_deregister_script('um_select2');
+        wp_deregister_style('um_fonticons_ii');
+        wp_deregister_style('um_styles');
     }
 }
 add_action( 'wp_enqueue_scripts', 'dequeue_plugins_style', 9999);
