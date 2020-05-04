@@ -11120,7 +11120,7 @@ font-size: 13px !important;
   font-weight: bold;
 }
 .listup__contents__head>hr {
-  border: 1px dashed rgb(109, 209, 180);
+  border: 2px dashed rgb(109, 209, 180);
 }
 .listup__contents__head-fontsize {
   font-size: 20px;
@@ -11172,6 +11172,9 @@ font-size: 13px !important;
   background-color: rgb(109, 209, 180);
   margin: 30 -30px 0 -30px;
 }
+.listup__contents__link:hover {
+  background-color: rgba(109, 209, 180, 0.5);
+}
 .listup__contents__link__text {
   position: relative;
   display: block;
@@ -11184,6 +11187,9 @@ font-size: 13px !important;
   color: #fff;
   margin-bottom: 50px;
 }
+.listup__contents__link__text:hover {
+  color: #fff;
+}
 .listup__contents__link__icon {
   position: absolute;
   height: 100%;
@@ -11195,9 +11201,45 @@ font-size: 13px !important;
   content: "\e5cc";
 }
 @media screen and (max-width: 480px) {
+  .listup__contents__menu {
+    padding: 0;
+  }
+  .listup__contents__head>p {
+    left: 25%;
+    width: 50%;
+  }
+  .listup__contents__head-fontsize {
+    font-size: initial;
+  }
+  .listup__contents__list {
+    height: 370px;
+  }
+  .listup__contents__menu .listup__contents__ele .listup__contents__icon {
+    height: 87px;
+    line-height: 87px;
+  }
+  .listup__contents__icon__details  {
+    font-size: 87px;
+  }
+  .listup__contents__ele p.listup__contents__title {
+    font-size: initial;
+  }
   .listup__contents__menu p.listup__contents__description {
     line-height: 20px;
     font-size: 8px;
+  }
+  .listup__contents__link {
+    margin: 0;
+  }
+  .listup__contents__link__text {
+    height: 50px;
+    line-height: 50px;
+    font-size: initial;
+    margin-bottom: 50px;
+  }
+  .listup__contents__link__icon {
+    right: -5px;
+    font-size: 40px;
   }
 }
 
