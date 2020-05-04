@@ -84,7 +84,14 @@ function dequeue_plugins_style() {
         wp_deregister_script('mec-featherlight-script');
         wp_deregister_style('mec-font-icons');
         wp_deregister_style('mec-select2-style');
-        wp_deregister_script('mec-events');
+        wp_deregister_style('mec-events');
+        wp_deregister_style('mec-tooltip-style');
+        wp_deregister_style('mec-tooltip-shadow-style');
+        wp_deregister_style('mec-featherlight-style');
+        wp_deregister_style('mec-lity-style');
+        wp_deregister_style('um_default_css');
+        wp_deregister_script('mec-events-script');
+        wp_deregister_script('mec-lity-script');
 
     }
 
@@ -98,6 +105,7 @@ function dequeue_plugins_style() {
         wp_deregister_script('um_select2');
         wp_deregister_style('um_fonticons_ii');
         wp_deregister_style('um_styles');
+        wp_deregister_style('um_misc');
     }
 }
 add_action( 'wp_enqueue_scripts', 'dequeue_plugins_style', 9999);
