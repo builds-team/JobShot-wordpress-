@@ -11112,18 +11112,17 @@ font-size: 13px !important;
   display: inline-block;
   position: relative;
   top: -20px;
-  left: 35%;
+  left: 25%;
+  width: 50%;
   padding: 5px;
-  width: 30%;
   text-align: center;
-  background: #ffffff;
-  font-weight: bold;
 }
 .listup__contents__head>hr {
   border: 2px dashed rgb(109, 209, 180);
 }
-.listup__contents__head-fontsize {
+.listup__contents__web-fontsize {
   font-size: 20px;
+  font-weight: bold;
 }
 .listup__contents__list {
   padding: 0;
@@ -11153,7 +11152,6 @@ font-size: 13px !important;
 }
 .listup__contents__carrer::before {
   content: "\e7fb";
-  /* content: "\e0b7"; */
 }
 .listup__contents__es::before {
   content: "\e873";
@@ -11182,8 +11180,6 @@ font-size: 13px !important;
   width: 100%;
   height: 60px;
   line-height: 60px;
-  font-weight: bold;
-  font-size: 20px;
   color: #fff;
   margin-bottom: 50px;
 }
@@ -11204,11 +11200,7 @@ font-size: 13px !important;
   .listup__contents__menu {
     padding: 0;
   }
-  .listup__contents__head>p {
-    left: 25%;
-    width: 50%;
-  }
-  .listup__contents__head-fontsize {
+  .listup__contents__web-fontsize {
     font-size: initial;
   }
   .listup__contents__list {
@@ -11234,7 +11226,6 @@ font-size: 13px !important;
   .listup__contents__link__text {
     height: 50px;
     line-height: 50px;
-    font-size: initial;
     margin-bottom: 50px;
   }
   .listup__contents__link__icon {
