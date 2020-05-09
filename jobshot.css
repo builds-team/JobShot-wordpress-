@@ -5082,7 +5082,7 @@ footer#footer.container {
 .hero__title {
   text-align: center;
   color: #fff;
-  font-size: 2rem !important;
+  font-size: 2.5rem !important;
   margin: 0 !important;
   padding: 45px 0 30px 0;
 	font-family: serif !important;
@@ -5092,6 +5092,33 @@ footer#footer.container {
   display: block;
   font-size: 0.4em;
 	padding-top: 8px;
+}
+.hero__guide {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  padding: 20px 0 40px 0;
+}
+.hero__guide__each {
+  text-align: center;
+  margin: 0 5rem;
+}
+.hero__guide__each__text {
+  display: block;
+  padding: 5px;
+  color: #fff;
+}
+.hero__guide__each__btn {
+  border-radius: 5px;
+  padding: 0.65em 1.5em;
+  width: 210px;
+}
+.button-white {
+  background-color: #fff;
+  color: #03c4b0;
+}
+.button-white:hover {
+  background-color: rgb(230, 230, 230);
 }
 .hero__strength {
   color: #fff;
@@ -5139,7 +5166,13 @@ footer#footer.container {
 	 position: absolute;
 	 width: 100%;
 	 text-align: center;
-	}
+  }
+  .hero__guide {
+    display: none;
+  }
+  .hero__title {
+    font-size: 2rem !important;
+  }
   .hero__strength {
     width: 100vw;
     padding: 0;
