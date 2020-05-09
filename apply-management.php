@@ -142,6 +142,10 @@ function apply_management_func($atts){
 add_shortcode('apply_management', 'apply_management_func');
 
 function view_applylist_func ( $atts ) {
+  if(!current_user_can('administrator') && !current_user_can('company')){
+    header('Location: '.$home_url.'/');
+    die();
+  }
   $home_url =esc_url( home_url( ));
   extract(shortcode_atts(array(
     'type' => '',
