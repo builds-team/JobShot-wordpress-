@@ -5082,7 +5082,7 @@ footer#footer.container {
 .hero__title {
   text-align: center;
   color: #fff;
-  font-size: 2rem !important;
+  font-size: 2.5rem !important;
   margin: 0 !important;
   padding: 45px 0 30px 0;
 	font-family: serif !important;
@@ -5092,6 +5092,33 @@ footer#footer.container {
   display: block;
   font-size: 0.4em;
 	padding-top: 8px;
+}
+.hero__guide {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  padding: 20px 0 40px 0;
+}
+.hero__guide__each {
+  text-align: center;
+  margin: 0 5rem;
+}
+.hero__guide__each__text {
+  display: block;
+  padding: 5px;
+  color: #fff;
+}
+.hero__guide__each__btn {
+  border-radius: 5px;
+  padding: 0.65em 1.5em;
+  width: 210px;
+}
+.button-white {
+  background-color: #fff;
+  color: #03c4b0;
+}
+.button-white:hover {
+  background-color: rgb(230, 230, 230);
 }
 .hero__strength {
   color: #fff;
@@ -5139,7 +5166,13 @@ footer#footer.container {
 	 position: absolute;
 	 width: 100%;
 	 text-align: center;
-	}
+  }
+  .hero__guide {
+    display: none;
+  }
+  .hero__title {
+    font-size: 2rem !important;
+  }
   .hero__strength {
     width: 100vw;
     padding: 0;
@@ -11136,6 +11169,138 @@ font-size: 13px !important;
   color: white;
   min-width: 70px;
 }
+
+/* コラム会員限定コンテンツメニュー */
+.listup__contents__menu {
+  display: inline-block;
+  padding: 30px 30px 0;
+}
+.listup__contents__head>p {
+  display: inline-block;
+  position: relative;
+  top: -20px;
+  left: 25%;
+  width: 50%;
+  padding: 5px;
+  text-align: center;
+}
+.listup__contents__head>hr {
+  border: 2px dashed rgb(109, 209, 180);
+}
+.listup__contents__web-fontsize {
+  font-size: 20px;
+  font-weight: bold;
+}
+.listup__contents__list {
+  padding: 0;
+  margin: 0;
+  height: 530px;
+}
+.listup__contents__ele {
+  list-style: none;
+  float: left;
+  width: 50%;
+  text-align: center;
+  margin-bottom: 30px;
+}
+.listup__contents__menu .listup__contents__ele .listup__contents__icon {
+  height: 150px;
+  line-height: 150px;
+}
+.listup__contents__icon__details  {
+  font-size: 150px;
+}
+.google-icon {
+  font-family: "Material Icons";
+  font-style: normal;
+}
+.listup__contents__calendar::before {
+  content: "\e616";
+}
+.listup__contents__carrer::before {
+  content: "\e7fb";
+}
+.listup__contents__es::before {
+  content: "\e873";
+}
+.listup__contents__column::before {
+  content: "\e8ec";
+}
+.listup__contents__ele p.listup__contents__title {
+  font-weight: bold;
+  font-size: 20px;
+}
+.listup__contents__menu p.listup__contents__description {
+  line-height: 25px;
+}
+.listup__contents__link {
+  background-color: rgb(109, 209, 180);
+  margin: 30 -30px 0 -30px;
+}
+.listup__contents__link:hover {
+  background-color: rgba(109, 209, 180, 0.5);
+}
+.listup__contents__link__text {
+  position: relative;
+  display: block;
+  text-align: center;
+  width: 100%;
+  height: 60px;
+  line-height: 60px;
+  color: #fff;
+  margin-bottom: 50px;
+}
+.listup__contents__link__text:hover {
+  color: #fff;
+}
+.listup__contents__link__icon {
+  position: absolute;
+  height: 100%;
+  vertical-align: middle;
+  right: 5px;
+  font-size: 45px;
+}
+.next-sign-icon:after {
+  content: "\e5cc";
+}
+@media screen and (max-width: 480px) {
+  .listup__contents__menu {
+    padding: 0;
+  }
+  .listup__contents__web-fontsize {
+    font-size: initial;
+  }
+  .listup__contents__list {
+    height: 370px;
+  }
+  .listup__contents__menu .listup__contents__ele .listup__contents__icon {
+    height: 87px;
+    line-height: 87px;
+  }
+  .listup__contents__icon__details  {
+    font-size: 87px;
+  }
+  .listup__contents__ele p.listup__contents__title {
+    font-size: initial;
+  }
+  .listup__contents__menu p.listup__contents__description {
+    line-height: 20px;
+    font-size: 8px;
+  }
+  .listup__contents__link {
+    margin: 0;
+  }
+  .listup__contents__link__text {
+    height: 50px;
+    line-height: 50px;
+    margin-bottom: 50px;
+  }
+  .listup__contents__link__icon {
+    right: -5px;
+    font-size: 40px;
+  }
+}
+
 /* イベントページ追加 */
 #post-1993{
     padding-top: 0;
@@ -12862,4 +13027,18 @@ padding: 0;
 #post-12228 .um-editor{
   background-color: #ffffff;
   border: none;
+}
+.form__reproduction {
+	display:inline-block;
+}
+
+.submit__reproduction {
+	color:#03c4b0 !important;
+	background-color:white !important;
+	height: 14px;
+  text-align: center;
+  line-height: 0px !important;
+  vertical-align: unset;
+  font-weight: 100 !important;
+	font-size:1em !important;
 }

@@ -1481,4 +1481,117 @@ function get_company_id($company){
   return $company_id;
 }
 
+function get_company_id($company){
+  $args = array(
+    'posts_per_page'   => 5,
+    'offset'           => 0,
+    'category'         => '',
+    'category_name'    => '',
+    'orderby'          => 'date',
+    'order'            => 'DESC',
+    'include'          => '',
+    'exclude'          => '',
+    'meta_key'         => '',
+    'meta_value'       => '',
+    'post_type'        => 'company',
+    'post_mime_type'   => '',
+    'post_parent'      => '',
+    'author'	         => $company->ID,
+    'post_status'      => 'publish',
+    'suppress_filters' => true,
+  );
+  $posts_array = get_posts( $args );
+  $company_id = $posts_array[0]->ID;
+  return $company_id;
+}
+
+function reproduction_intern(){
+  if(!empty($_POST["reproduction_intern"]) && !empty($_POST["post_id"])){
+    $post_id = $_POST["post_id"];
+    $post = get_post($post_id);
+    $company = get_userdata($post->post_author);
+    $company_id = get_current_user_id();
+    $post_title = get_field("募集タイトル",$post_id);
+    $es = get_field('ES',$post_id);
+    $day_requirements = get_field('勤務条件',$post_id);
+    $features = get_field('特徴',$post_id);
+    $selection_flows = get_field("選考フロー",$post_id);
+    $area = get_the_terms($post_id,"area")[0]->name;
+    $occupation = get_the_terms($post_id,"occupation")[0]->name;
+    $company_bussiness = get_the_terms($company_id,"business_type")[0]->name;
+    $image = get_field("イメージ画像",$post_id);
+    $image2 = get_field("イメージ画像2",$post_id);
+    $image3 = get_field("イメージ画像3",$post_id);
+    $image4 = get_field("イメージ画像4",$post_id);
+    $post_title = get_field("募集タイトル",$post_id);
+    $salary = nl2br(get_field("給与",$post_id));
+    $requirements = nl2br(get_field("勤務条件",$post_id));
+    $intern_contents = (get_field("業務内容",$post_id));
+    $skills = (get_field("身につくスキル",$post_id));
+    $address = get_field("勤務地",$post_id);
+    $stations=get_time_to_station(Array($address));
+    preg_match("/(東京都|北海道|(?:京都|大阪)府|.{6,9}県)((?:四日市|廿日市|野々市|臼杵|かすみがうら|つくばみらい|いちき串木野)市|(?:杵島郡大町|余市郡余市|高市郡高取)町|.{3,12}市.{3,12}区|.{3,9}区|.{3,15}市(?=.*市)|.{3,15}市|.{6,27}町(?=.*町)|.{6,27}町|.{9,24}村(?=.*村)|.{9,24}村)(.*)/",$address,$result);
+    $prefecture = $result[1];
+    $intern_days = get_field('1日の流れ',$post_id);
+    $worktime = nl2br(get_field('勤務可能時間',$post_id));
+    $require_person = (get_field('求める人物像',$post_id));
+    $skill_requirements = (get_field('応募資格',$post_id));
+    $prospective_employer = (get_field('インターン卒業生の内定先',$post_id));
+    $intern_student_voice = (get_field('働いているインターン生の声',$post_id));
+    $salesman_name = CFS()->get('salesman_name',$post_id);
+    $salesman_picture = CFS()->get('salesman_picture',$post_id);
+    $salesman_voice = CFS()->get('salesman_voice',$post_id);
+
+    
+    $post_value = array(
+      'post_author' => $company_id,
+      'post_title' => $post_title,
+      'post_type' => 'internship',
+      'post_status' => 'draft'
+    );
+    $insert_id = wp_insert_post($post_value); //下書き投稿。
+      if($insert_id) {
+          //配列$post_valueに上書き用の値を追加、変更
+          $post_value['ID'] = $insert_id; // 下書きした記事のIDを渡す。
+          $post_status = "draft";
+          $post_value['post_status'] = $post_status; // 公開ステータスを$post_statusで
+          update_field( 'salesman_picture',$salesman_picture, $post_id );
+          update_field( 'salesman_name',$salesman_name, $post_id );
+          update_field(  'salesman_voice',$salesman_voice, $post_id );
+          update_post_meta($insert_id, '事業内容', $company_bussiness);
+          update_post_meta($insert_id, '募集タイトル', $post_title);
+          update_post_meta($insert_id, '給与', $salary);
+          update_post_meta($insert_id, '勤務可能時間', $worktime);
+          update_post_meta($insert_id, '勤務条件', $day_requirements);
+          update_post_meta($insert_id, '求める人物像', $require_person);
+          update_post_meta($insert_id, '業務内容', $intern_contents);
+          update_post_meta($insert_id, '1日の流れ', $intern_day);
+          update_post_meta($insert_id, '身につくスキル', $skills);
+          update_post_meta($insert_id, '勤務地', $address);
+          update_post_meta($insert_id, 'station', $stations);
+          update_post_meta($insert_id, '応募資格', $skill_requirements);
+          update_post_meta($insert_id, 'インターン卒業生の内定先', $prospective_employer);
+          update_post_meta($insert_id, '働いているインターン生の声', $intern_student_voice);
+          update_post_meta($insert_id, '特徴', $features);
+          update_post_meta($insert_id, 'イメージ画像', $image);
+          update_post_meta($insert_id, 'イメージ画像2', $image2);
+          update_post_meta($insert_id, 'イメージ画像3', $image3);
+          update_post_meta($insert_id, 'イメージ画像4', $image4);
+          update_post_meta($insert_id, '選考フロー', $selection_flows);
+          update_post_meta($insert_id, '1日の流れ', $intern_days);
+          update_post_meta($insert_id,'ES',$es);
+          wp_set_object_terms( $insert_id, $occupation, 'occupation');
+		  $home_url =esc_url( home_url( ));
+          if($prefecture == "東京都"){
+              wp_set_object_terms( $insert_id, $area, 'area');
+          }else{
+              wp_set_object_terms( $insert_id, $prefecture, 'area');
+          }
+		header('Location: '.$home_url.'/manage_post?posttype=internship');
+		 die();
+	  }
+  }
+
+}
+add_action('template_redirect', 'reproduction_intern');
 ?>

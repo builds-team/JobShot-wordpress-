@@ -565,6 +565,14 @@ function view_company_contents_func_test(){
         'author' => $company_user_login
     );
     $posts = get_posts($args);
+    $args_published = array(
+        'post_type' => array($post_type),
+        'post_status' => array( 'publish'),
+        'author' => $company_user_login
+    );
+    if($post_type == 'internship'){
+        $posts_published = count(get_posts($args_published));
+    }
     $post_ids=array();
     foreach($posts as $post){
         array_push($post_ids,$post->ID);
@@ -635,6 +643,14 @@ function view_company_contents_func_test(){
     $home_url =esc_url( home_url( ));
     foreach ($post_ids as $post_id) {
         $edit_link = '<a href="'.$home_url.'/edit_'.$post_type.'?post_id='.$post_id.'">編集</a>';
+        if($post_type=='internship'){
+            $reproduction_button = '
+            <form action="'.$home_url.'/manage_post?posttype=internship" method="POST" enctype="multipart/form-data" class="form__reproduction">
+                <input type="hidden" name="post_id" value="'.$post_id.'">
+                <input type="submit" name="reproduction_intern"  value="複製" class="submit__reproduction">
+            </form>
+            ';
+        }
         $applylist=do_shortcode(' [cfdb-table form="/'.$formname.'.*/" filter="job-id='.$post_id.'"]');
         $applycnt=do_shortcode(' [cfdb-value form="/'.$formname.'.*/" filter="job-id='.$post_id.'" function="count"]');
         $occupation = get_the_terms($post_id,"occupation")[0]->name;
@@ -656,38 +672,67 @@ function view_company_contents_func_test(){
             $image_url = $company_image_url;
         }
         $favorite_count = get_favorites_count($post_id);
-        switch(get_ja_post_status($post_id)){
-            case '下書き':
-                $status_html = '
-                    <select name="post_status">
-                        <option value="draft" selected>下書き</option>
-                        <option value="publish">公開済</option>
-                        <option value="private">非公開</option>
-                    </select>';
-                break;
-            case '公開済':
-                $status_html = '
-                    <select name="post_status">
-                        <option value="draft">下書き</option>
-                        <option value="publish" selected>公開済</option>
-                        <option value="private">非公開</option>
-                    </select>';
-                break;
-            case '非公開':
-                $status_html = '
-                    <select name="post_status">
-                        <option value="draft">下書き</option>
-                        <option value="publish">公開済</option>
-                        <option value="private" selected>非公開</option>
-                    </select>';
-                break;
+        if($posts_published <= 3){
+            switch(get_ja_post_status($post_id)){
+                case '下書き':
+                    $status_html = '
+                        <select name="post_status">
+                            <option value="draft" selected>下書き</option>
+                            <option value="publish">公開済</option>
+                            <option value="private">非公開</option>
+                        </select>';
+                    break;
+                case '公開済':
+                    $status_html = '
+                        <select name="post_status">
+                            <option value="draft">下書き</option>
+                            <option value="publish" selected>公開済</option>
+                            <option value="private">非公開</option>
+                        </select>';
+                    break;
+                case '非公開':
+                    $status_html = '
+                        <select name="post_status">
+                            <option value="draft">下書き</option>
+                            <option value="publish">公開済</option>
+                            <option value="private" selected>非公開</option>
+                        </select>';
+                    break;
+            }
+        }else{
+            switch(get_ja_post_status($post_id)){
+                case '下書き':
+                    $status_html = '
+                        <select name="post_status">
+                            <option value="draft" selected>下書き</option>
+                            <option value="publish" disabled>公開済(公開済は最大４つです)</option>
+                            <option value="private">非公開</option>
+                        </select>';
+                    break;
+                case '公開済':
+                    $status_html = '
+                        <select name="post_status">
+                            <option value="draft">下書き</option>
+                            <option value="publish" selected>公開済</option>
+                            <option value="private">非公開</option>
+                        </select>';
+                    break;
+                case '非公開':
+                    $status_html = '
+                        <select name="post_status">
+                            <option value="draft">下書き</option>
+                            <option value="publish" disabled>公開済(公開済は最大４つです)</option>
+                            <option value="private" selected>非公開</option>
+                        </select>';
+                    break;
+            }
         }
         $relate_html.='
             <tr>
                 <td label="タイトル" class="manage_post_title">
                     <div>
                         <p><img src="'.$image_url.'"></p>
-                        <div><strong><a href="'.get_permalink( $post_id ).'">'.get_the_title( $post_id ).'</a></strong><br><div class="card-category">'.$occupation.'</div>'.$edit_link.'</div>
+                        <div><strong><a href="'.get_permalink( $post_id ).'">'.get_the_title( $post_id ).'</a></strong><br><div class="card-category">'.$occupation.'</div>'.$edit_link.$reproduction_button。'</div>
                     </div>
                 </td>
                 <td label="ステータス" class="manage_post_status">
@@ -743,4 +788,6 @@ function update_intern_status(){
     }
 }
 add_action('template_redirect', 'update_intern_status');
+
+function get_post_count($)
 ?>
