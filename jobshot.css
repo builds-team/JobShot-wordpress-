@@ -12863,3 +12863,17 @@ padding: 0;
   background-color: #ffffff;
   border: none;
 }
+.form__reproduction {
+	display:inline-block;
+}
+
+.submit__reproduction {
+	color:#03c4b0 !important;
+	background-color:white !important;
+	height: 14px;
+  text-align: center;
+  line-height: 0px !important;
+  vertical-align: unset;
+  font-weight: 100 !important;
+	font-size:1em !important;
+}
