@@ -776,4 +776,47 @@ function add_top_bar_column(){
 }
 add_shortcode("add_top_bar_column","add_top_bar_column");
 
+function add_coulmn_merit(){
+    $home_url =esc_url( home_url());
+    if (is_user_logged_in()){
+        $link = $home_url;
+    }else{
+        $link = $home_url.'/regist';
+    }
+    $html = '
+    <div class="listup__contents__menu">
+        <div class="listup__contents__head">
+            <hr>
+            <p><span class="listup__contents__web-fontsize">会員限定コンテンツ</span></p>
+        </div>
+        <ul class="listup__contents__list">
+            <li class="listup__contents__ele">
+                <p class="listup__contents__icon"><i class="listup__contents__icon__details google-icon listup__contents__calendar"></i></p>
+                <p class="listup__contents__title">就活カレンダー</p>
+                <p class="listup__contents__description">インターン・本選考を含めた就活<br>スケジュールを一括管理できる</p>
+            </li>
+            <li class="listup__contents__ele">
+                <p class="listup__contents__icon"><i class="listup__contents__icon__details google-icon listup__contents__carrer"></i></p>
+                <p class="listup__contents__title">無料キャリア相談</p>
+                <p class="listup__contents__description">GAFAをはじめとした難関企業の<br>内定者に就活相談ができる</p>
+            </li>
+            <li class="listup__contents__ele">
+                <p class="listup__contents__icon"><i class="listup__contents__icon__details google-icon listup__contents__es"></i></p>
+                <p class="listup__contents__title">ES保管庫</p>
+                <p class="listup__contents__description">ES（エントリーシート）の回答を<br>質問別に整理して保存できる</p>
+            </li>
+            <li class="listup__contents__ele">
+                <p class="listup__contents__icon"><i class="listup__contents__icon__details google-icon listup__contents__column"></i></p>
+                <p class="listup__contents__title">限定コラム</p>
+                <p class="listup__contents__description">トップ企業内定者や有名経営者の<br>キャリア観・就活観がわかる</p>
+            </li>
+        </ul>
+        <div class="listup__contents__link">
+            <p><a href="'.$link.'" class="listup__contents__link__text listup__contents__web-fontsize">今すぐ会員限定コンテンツを受け取る<i class="listup__contents__link__icon google-icon next-sign-icon"></i></a></p>
+        </div>
+    </div>';
+    return $html;
+}
+add_shortcode("add_column_merit", "add_column_merit");
+
 ?>
