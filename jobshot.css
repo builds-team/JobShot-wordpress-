@@ -10591,6 +10591,9 @@ font-size: 13px !important;
 .column-search {
   display: none;
 }
+.column div.sharedaddy h3.sd-title:before {
+  display: none;
+}
 @media screen and (max-width: 480px) {
   .singular .column-navi h2{
       text-align: center;
