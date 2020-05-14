@@ -11271,17 +11271,17 @@ font-size: 13px !important;
     padding: 0;
   }
   .listup__contents__web-fontsize {
-    font-size: initial;
+    font-size: 1.2rem;
   }
   .listup__contents__list {
     height: 370px;
   }
   .listup__contents__menu .listup__contents__ele .listup__contents__icon {
-    height: 87px;
-    line-height: 87px;
+    height: 80px;
+    line-height: 80px;
   }
   .listup__contents__icon__details  {
-    font-size: 87px;
+    font-size: 80px;
   }
   .listup__contents__ele p.listup__contents__title {
     font-size: initial;
@@ -11302,6 +11302,24 @@ font-size: 13px !important;
     right: -5px;
     font-size: 40px;
   }
+}
+@media screen and (max-width: 320px) {
+  .listup__contents__menu p.listup__contents__description {
+    font-size: 12px;
+    display: block;
+    width: 140%;
+    transform: scale(0.72);
+    margin-left: -20%;
+}
+.listup__contents__list {
+  height: 330px;
+}
+.listup__contents__ele {
+  margin-bottom: 10px;
+}
+.listup__contents__web-fontsize {
+  font-size: 1.1rem;
+}
 }
 
 /* イベントページ追加 */
