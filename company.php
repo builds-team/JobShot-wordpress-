@@ -789,5 +789,87 @@ function update_intern_status(){
 }
 add_action('template_redirect', 'update_intern_status');
 
-function get_post_count($)
+function set_company_email(){
+    $user = wp_get_current_user();
+    $user_id = $user->data->ID;
+    $user_roles = $user->roles;
+    if(in_array("company", $user_roles)){
+        if($user_id == 40){
+            $company_email = $user->data->user_email;
+            $sub_email1 = get_user_meta($user_id,'sub_email1',false)[0];
+            $sub_email2 = get_user_meta($user_id,'sub_email2',false)[0];
+            if($_GET['error']){
+                echo '有効でないメールアドレスが含まれていたため、更新できませんでした。';
+              }
+            $html = '
+            <h3 class="widget-title">サブメールアドレス追加</h3>
+            <div class="um-editor um-editor-univ">
+                <p>最大３つのメールアドレスを登録することができます（学生ユーザーが新卒応募またはインターン応募をした際に全てのアドレスにメールが送信されます）</p>
+                <form method="post" action="">
+                    <div class="um-field um-field-university um-field-text um-field-type_text">
+                        <div class="um-field-label"><label for="university-1597">メールアドレス<span class="um-req" title="必須">*</span></label>
+                            <div class="um-clear"></div>
+                        </div>
+                        <div class="um-field-area"><input autocomplete="off" class="um-form-field valid" type="text" name="user_email" value="'.$company_email.'" placeholder=""></div>
+                    </div>
+                    <div class="um-field um-field-university um-field-text um-field-type_text">
+                        <div class="um-field-label"><label for="university-1597">サブメールアドレス1</label>
+                            <div class="um-clear"></div>
+                        </div>
+                        <div class="um-field-area"><input autocomplete="off" class="um-form-field valid" type="text" name="sub_email1" value="'.$sub_email1.'" placeholder=""></div>
+                    </div>
+                    <div class="um-field um-field-university um-field-text um-field-type_text">
+                        <div class="um-field-label"><label for="university-1597">サブメールアドレス2</label>
+                            <div class="um-clear"></div>
+                        </div>
+                        <div class="um-field-area"><input autocomplete="off" class="um-form-field valid" type="text" name="sub_email2" value="'.$sub_email2.'" placeholder=""></div>
+                    </div>
+                    <div class="um-editor-btn">
+                        <input type="hidden" name="user_id" value="'.$user_id.'">
+                        <input type="hidden" name="update_company_email" value="update_company_email">
+                        <input type="submit" value="更新" class="um-editor-update2">
+                    </div>
+                </form>
+            </div>';
+            return $html;
+        }
+    }
+}
+add_shortcode('set_company_email','set_company_email');
+
+function update_company_email(){
+    if(!empty($_POST["update_company_email"]) && !empty($_POST["user_id"])){
+	  if(!email_check($_POST['user_email'])){
+		   header('Location: '.$home_url.'/set_company_email?error=true');
+        die();
+		 }elseif(!empty($_POST["sub_email1"])&&!email_check($_POST["sub_email1"])){
+		   header('Location: '.$home_url.'/set_company_email?error=true');
+        die();
+		 }elseif(!empty($_POST["sub_email2"])&&!email_check($_POST["sub_email2"])){
+		   header('Location: '.$home_url.'/set_company_email?error=true');
+        die();
+		 }else{
+        $home_url =esc_url( home_url());
+        $user_id = $_POST["user_id"];
+        $user = get_user_by( 'id', $user_id ); 
+        $company_name = $user->data->display_name;
+        $args = array(
+            'ID'         => $user_id,
+            'user_email' => esc_attr( $_POST['user_email'] )
+        );
+        wp_update_user( $args );
+        update_user_meta($user_id, 'sub_email1',$_POST["sub_email1"]);
+        update_user_meta($user_id, 'sub_email2',$_POST["sub_email2"]);
+        header('Location: '.$home_url.'/?company='.$company_name);
+        die();
+    }
+	}
+}
+add_action('template_redirect', 'update_company_email');
+function email_check($email){
+    $arr = explode("@", $email);
+    $domain = str_replace(array('[', ']'), "", array_pop($arr));
+    return filter_var($email, FILTER_VALIDATE_EMAIL) &&
+        (checkdnsrr($domain, 'MX') || checkdnsrr($domain, 'A') || checkdnsrr($domain, 'AAAA'));
+}
 ?>
