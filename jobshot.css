@@ -13063,3 +13063,10 @@ padding: 0;
   font-weight: 100 !important;
 	font-size:1em !important;
 }
+
+/* コンテンツ順番入れ替え */
+@media (max-width: 780px)
+#pgc-24-1-0 {
+    margin-bottom: 30px;
+    order: 2;
+}
