@@ -9964,6 +9964,10 @@ font-size: 13px !important;
   font-family: "Material Icons";
   content: "\e8b8";
 }
+#sow-editor-3 .navigation-section:nth-child(5) .link-section:nth-child(2) .link-title:before {
+  font-family: "Material Icons";
+  content: "\e89c";
+}
 #sow-editor-3 .navigation-section:nth-child(5) .link-section:last-child .link-title:before {
   font-family: "Material Icons";
   content: "\e879";
@@ -13057,6 +13061,32 @@ padding: 0;
 
 .page-id-12228 .um-editor-btn{
 	  width:50px !important;
+}
+
+.page-id-12957 .um-editor{
+  display:block !important;
+}
+.page-id-12957 .um-field-area input{
+width:100% !important;
+}
+
+.page-id-12957 .um-editor-btn{
+width:50px !important
+}
+
+.page-id-12957 .um-editor{
+  display:block !important;
+}
+.page-id-12957 .um-field-area input{
+  width:100% !important;
+}
+
+.page-id-12957 .um-editor-btn{
+  width:50px !important;
+}
+.page-id-12957 .um-editor{
+  background-color: #ffffff;
+  border: none;
 }
 
 .um-profile-nav{

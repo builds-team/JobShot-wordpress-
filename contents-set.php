@@ -221,6 +221,36 @@ function my_form_tag_filter($tag){
                 $tag['values'] = (array)'jobshot+forward-author-companies@builds.ventures';
             }
         }
+        if($tag['name'] == 'company-sub-email1'){
+            $post = get_post($post_id);
+                if ($post){
+                    $author = get_userdata($post->post_author);
+                    $author_id = $author->data->ID;
+                    $sub_email1 = get_user_meta($author_id,'sub_email1',false)[0];
+                    $company_email = $author->data->user_email;
+                    if(empty($sub_email1)){
+                        $sub_email1 = $company_email;
+                    }
+                    $tag['values'] = (array) $sub_email1;
+                }else{
+                      $tag['values'] = (array)'jobshot+forward-author-companies@builds.ventures';
+                }
+        }
+        if($tag['name'] == 'company-sub-email2'){
+            $post = get_post($post_id);
+                if ($post){
+                    $author = get_userdata($post->post_author);
+                    $author_id = $author->data->ID;
+                    $sub_email2 = get_user_meta($author_id,'sub_email2',false)[0];
+                    $company_email = $author->data->user_email;
+                    if(empty($sub_email2)){
+                        $sub_email2 = $company_email;
+                    }
+                    $tag['values'] = (array) $sub_email2;
+                }else{
+                          $tag['values'] = (array)'jobshot+forward-author-companies@builds.ventures';
+                }
+        }
     }
 
     // if(isset($_GET['company-email'])){

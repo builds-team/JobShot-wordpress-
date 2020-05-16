@@ -51,6 +51,7 @@ function company_side_bar_func($content){
             <div class="navigation-section-head">アカウント情報</div>
             <div class="navigation-section-container">
                 <a class="link-section" href="'.$home_url.'/user_account"><div class="link-title">マイアカウント</div></a>
+                <a class="link-section" href="'.$home_url.'/set_company_email"><div class="link-title">サブメールアドレス追加</div></a>
                 <a class="link-section" href="'.$home_url.'/?page_id=1603"><div class="link-title">ログアウト</div></a>
             </div>
         </div>
