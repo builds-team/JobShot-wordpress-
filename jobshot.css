@@ -5160,7 +5160,12 @@ footer#footer.container {
 @media screen and (max-width: 680px) {
   .hero__img {
     position: relative;
-		height: 150px;
+		height: 270px;
+  }
+  .hero__img img {
+    width: auto;
+    max-width: initial;
+    height: 270px;
   }
   .hero__img h2{
 	 position: absolute;
@@ -5168,7 +5173,10 @@ footer#footer.container {
 	 text-align: center;
   }
   .hero__guide {
-    display: none;
+    margin-top: -150px;
+  }
+  .hero__guide__each__text {
+    padding: 0;
   }
   .hero__title {
     font-size: 2rem !important;
