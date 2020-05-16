@@ -194,7 +194,7 @@ function view_custom_search_func($atts){
                 $args += array('meta_key' => 'week_views_count','orderby' => 'meta_value_num',);
                 break;
             case 'new':
-                $args += array('order'   => 'DESC',);
+                $args += array('order'   => 'DESC','orderby' => 'modified',);
                 break;
             case 'recommend':
             	unset($args['posts_per_page']);
@@ -202,6 +202,10 @@ function view_custom_search_func($atts){
                 	'posts_per_page' => -1,
             	);
                 break;
+        }
+    }else{
+        if($item_type == 'internship'){
+            $args += array('order'   => 'DESC','orderby' => 'modified',);
         }
     }
 

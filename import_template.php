@@ -28,13 +28,6 @@ function import_Google_Search_Console(){
 }
 add_action( 'wp_head', 'import_Google_Search_Console');
 
-function import_Chat_bot(){
-  if(is_page( array('top') )){
-    echo "<script type='text/javascript' src='https://ws.cv-agaru.com/client/5e2f9213afaac.js'></script>";
-  }
-}
-add_action( 'wp_footer', 'import_Chat_bot');
-
 function navigation_tab(){
   $home_url =esc_url( home_url());
   if ( is_user_logged_in() ){

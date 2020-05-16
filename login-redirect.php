@@ -100,13 +100,59 @@ function apply_redirect(){
                 </form>
             </div>
         </div>
-        <style type="text/css">
+        ';
+    $html = '<style type="text/css">
         .um-1596.um {
         max-width: 450px;
         }
-        </style>
-        ';
-    $html = do_shortcode('[ultimatemember form_id="1596"]');
+        .um-alt {
+            line-height: 40px;
+            color: #666666 !important;
+            background:#eeeeee !important;
+        }
+        .um-right {
+            width: 48%;
+            display: inline-block;
+            height: 30px;
+            text-align: center;
+            background: #eeeeee;
+            height:40px;
+            border-radius: 3px;
+        }
+        .um-left {
+            width: 48%;
+            display: inline-block;
+            float: left;
+            margin-right: 4%;
+            height:40px;
+        }
+        input[type="text"] {
+            width:100% !important;
+            height:40px;
+        }
+        input[type="submit"]{
+            width:100% !important;
+            height:40px;
+        }
+        input[type="password"] {
+            width:100% !important;
+            height:40px;
+        }
+        .um-link-alt {
+            line-height: 22px;
+            color: #888 !important;
+            display: block !important;
+            text-decoration: none !important;
+            font-weight: normal;
+            text-align: center;
+            border-bottom: none !important;
+        }
+        label {
+            font: normal !important;
+        }
+        
+        </style>';
+        $html .= do_shortcode('[ultimatemember form_id="1596"]');
     return $html;
 }
 add_shortcode('view_apply_redirect','apply_redirect');
