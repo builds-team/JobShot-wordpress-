@@ -13085,8 +13085,9 @@ padding: 0;
 }
 
 /* コンテンツ順番入れ替え */
-@media (max-width: 780px)
+@media (max-width: 780px){
 #pgc-24-1-0 {
     margin-bottom: 30px;
-    order: 2;
+    order:2;
+}
 }

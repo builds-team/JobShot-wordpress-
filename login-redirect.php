@@ -104,6 +104,7 @@ function apply_redirect(){
     $html = '<style type="text/css">
         .um-1596.um {
         max-width: 450px;
+        margin:auto;
         }
         .um-alt {
             line-height: 40px;
@@ -118,6 +119,7 @@ function apply_redirect(){
             background: #eeeeee;
             height:40px;
             border-radius: 3px;
+            cursor: pointer;
         }
         .um-left {
             width: 48%;
@@ -149,6 +151,9 @@ function apply_redirect(){
         }
         label {
             font: normal !important;
+        }
+        .tax-categories{
+            display:none;
         }
         
         </style>';
