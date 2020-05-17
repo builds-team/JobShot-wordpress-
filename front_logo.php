@@ -59,4 +59,28 @@
         return $html;
     }
     add_shortcode("toppage_button","toppage_button");
+
+    function toppage_button_mobile(){
+        $home_url = esc_url(home_url());
+        if (is_user_logged_in()){
+            $html = '
+            <div class="hero__guide">
+                <div class="hero__guide__each">
+                    <p class="hero__guide__each__text">企業選びから内定まで無料でプロがサポート</p>
+                    <a href="'.$home_url.'/interview"><button class="button detail button-white hero__guide__each__btn">個別相談会に参加する</button></a>
+                </div>
+            </div>';
+        }else{
+            $html = '
+            <div class="hero__guide">
+                <div class="hero__guide__each">
+                    <p class="hero__guide__each__text">無料登録して会員限定コンテンツを受け取る</p>
+                    <a href="'.$home_url.'/regist"><button class="button detail hero__guide__each__btn">新規登録をする</button></a>
+                </div>
+            </div>';
+        }
+        return $html;
+    }
+    add_shortcode("toppage_button_mobile","toppage_button_mobile");
+
 ?>
