@@ -7488,7 +7488,7 @@ i.material-icons:hover {
 }
 @media only screen and (min-width: 1024px){
   .scholarship-feature-1:after{
-    position: absolute;
+    /* position: inherit;
     content: "";
     display: block;
     width: 12px;
@@ -7497,9 +7497,39 @@ i.material-icons:hover {
     border-left: 12px solid #666666;
     top: 16%;
     left: 16.5%;
+    margin:auto;
+    margin-top:45px; */
+
+    position: inherit;
+    content: "";
+    display: block;
+    width: 12px;
+    border-top: 12px solid transparent;
+    border-bottom: 12px solid transparent;
+    border-left: 12px solid #666666;
+    top: 16%;
+    left: 16.5%;
+    margin: auto;
+    margin-top: 45px;
+    text-align: center;
+    /* transform: rotate(90deg); */
+    margin-left:180px
+
+
+  }
+  .scholarship-feature-floating{
+    float:left;
+    /* padding:10px 10px; */
+  }
+
+  .clear{
+    clear:left;
+  }
+  .alignment-6-feature{
+    padding-left: 20px;
   }
   .scholarship-feature-2:after{
-    position: absolute;
+    position: inherit;
     content: "";
     display: block;
     width: 12px;
@@ -7508,9 +7538,13 @@ i.material-icons:hover {
     border-left: 12px solid #666666;
     top: 16%;
     left: 33%;
+    margin:auto;
+    /* transform: rotate(90deg); */
+    margin-top: 45px;
+    margin-left:180px
   }
   .scholarship-feature-3:after{
-    position: absolute;
+    position: inherit;
     content: "";
     display: block;
     width: 12px;
@@ -7519,9 +7553,13 @@ i.material-icons:hover {
     border-left: 12px solid #666666;
     top: 16%;
     left: 49.5%;
+    margin:auto;
+    /* transform: rotate(90deg); */
+    margin-top: 45px;
+    margin-left:180px
   }
   .scholarship-feature-4:after{
-    position: absolute;
+    position: inherit;
     content: "";
     display: block;
     width: 12px;
@@ -7530,9 +7568,13 @@ i.material-icons:hover {
     border-left: 12px solid #666666;
     top: 16%;
     left: 66%;
+    margin:auto;
+    /* transform: rotate(90deg); */
+    margin-top: 45px;
+    margin-left:180px
   }
   .scholarship-feature-5:after{
-    position: absolute;
+    position: inherit;
     content: "";
     display: block;
     width: 12px;
@@ -7541,6 +7583,10 @@ i.material-icons:hover {
     border-left: 12px solid #666666;
     top: 16%;
     left: 82.5%;
+    margin:auto;
+    /* transform: rotate(90deg); */
+    margin-top: 45px;
+    margin-left:180px
   }
 }
 @media screen and (max-width: 782px) {
@@ -7555,10 +7601,11 @@ i.material-icons:hover {
     }
 }
 .scholarship-feature li{
-  width: 100%;
+  width: 30%;
   text-align: center;
   color: #666666;
   margin: 1.5em 1em;
+  float:left;
 }
 .scholarship-flow-figure-text{
   margin-top: 1em !important;
