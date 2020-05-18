@@ -42,28 +42,28 @@ function scholarship_index(){
             <h3 class="scholarship-flow-title">〜お祝い金支給までの流れ〜</h3>
             <p class="scholarship-flow-sub-title">最大10,000円プレゼント</p>
             <div class="scholarship-flow-figure">
-              <ul class="scholarship-feature">
-                <li class="scholarship-feature-1 gift">
+              <ul class="scholarship-feature gift">
+                <li class="scholarship-feature-1">
                   <p><i class="fas fa-pencil-alt big_icon"></i></p>
                   <p class="scholarship-flow-figure-text"><span class="emphasis-text">【STEP1】<br>長期インターンに応募</span></p>
                 </li>
-                <li class="scholarship-feature-2 gift">
+                <li class="scholarship-feature-2">
                   <p><i class="far fa-calendar-alt big_icon"></i></p>
                   <p class="scholarship-flow-figure-text"><span class="emphasis-text">【STEP2】<br>企業と面接日程の決定</span></p>
                 </li>
-                <li class="scholarship-feature-3 gift">
+                <li class="scholarship-feature-3>
                   <p><i class="far fa-handshake big_icon"></i></p>
                   <p class="scholarship-flow-figure-text"><span class="emphasis-text">【STEP3】<br>当日企業と面接を実施</span></p>
                 </li>
-                <li class="scholarship-feature-4 gift">
+                <li class="scholarship-feature-4">
                   <p><i class="fas fa-address-card big_icon"></i></p>
                   <p class="scholarship-flow-figure-text"><span class="emphasis-text">【STEP4】<br>採用、初出勤日を報告</span></p>
                 </li>
-                <li class="scholarship-feature-5 gift">
+                <li class="scholarship-feature-5">
                   <p><i class="fas fa-file-alt big_icon"></i></p>
                   <p class="scholarship-flow-figure-text"><span class="emphasis-text">【STEP5】<br>3ヶ月後体験記を記入</span></p>
                 </li>
-                <li class="scholarship-feature-6 gift">
+                <li class="scholarship-feature-6">
                   <p><i class="fas fa-coins big_icon"></i></p>
                   <p class="scholarship-flow-figure-text"><span class="emphasis-text">【STEP6】<br>お祝い金を獲得！</span></p>
                 </li>

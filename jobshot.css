@@ -7547,9 +7547,6 @@ i.material-icons:hover {
     border-top: 12px solid transparent;
     border-bottom: 12px solid transparent;
     border-left: 12px solid #666666;
-    top: 16%;
-    left: 16.5%;
-    margin: auto;
     margin-top: -69px;
     margin-left:235px;
 
@@ -7559,7 +7556,7 @@ i.material-icons:hover {
     float:left;
     /* padding:10px 10px; */
   }
-  .gift{
+  .gift li{
     height:110px;
   }
 
