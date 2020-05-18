@@ -7552,8 +7552,6 @@ i.material-icons:hover {
     left: 16.5%;
     margin: auto;
     margin-top: -69px;
-    text-align: center;
-    /* transform: rotate(90deg); */
     margin-left:235px;
 
 
@@ -7563,7 +7561,7 @@ i.material-icons:hover {
     /* padding:10px 10px; */
   }
   .gift{
-    height:110px
+    height:110px;
   }
 
   .clear{
@@ -7585,7 +7583,7 @@ i.material-icons:hover {
     margin:auto;
     /* transform: rotate(90deg); */
     margin-top: -69px;
-    margin-left:235px
+    margin-left:235px;
   }
   .scholarship-feature-3:after{
     position: inherit;
@@ -7600,7 +7598,7 @@ i.material-icons:hover {
     margin:auto;
     /* transform: rotate(90deg); */
     margin-top: -69px;
-    margin-left:235px
+    margin-left:235px;
   }
   .scholarship-feature-4:after{
     position: inherit;
@@ -7615,7 +7613,7 @@ i.material-icons:hover {
     margin:auto;
     /* transform: rotate(90deg); */
     margin-top: -69px;
-    margin-left:235px
+    margin-left:235px;
   }
   .scholarship-feature-5:after{
     position: inherit;
@@ -7630,7 +7628,7 @@ i.material-icons:hover {
     margin:auto;
     /* transform: rotate(90deg); */
     margin-top: -69px;
-    margin-left:235px
+    margin-left:235px;
   }
 }
 @media screen and (max-width: 782px) {
