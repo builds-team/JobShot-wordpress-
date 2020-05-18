@@ -7488,18 +7488,6 @@ i.material-icons:hover {
 }
 @media only screen and (min-width: 1024px){
   .scholarship-feature-1:after{
-    /* position: inherit;
-    content: "";
-    display: block;
-    width: 12px;
-    border-top: 12px solid transparent;
-    border-bottom: 12px solid transparent;
-    border-left: 12px solid #666666;
-    top: 16%;
-    left: 16.5%;
-    margin:auto;
-    margin-top:45px; */
-
     position: inherit;
     content: "";
     display: block;
@@ -7510,16 +7498,19 @@ i.material-icons:hover {
     top: 16%;
     left: 16.5%;
     margin: auto;
-    margin-top: 45px;
+    margin-top: -69px;
     text-align: center;
     /* transform: rotate(90deg); */
-    margin-left:180px
+    margin-left:235px
 
 
   }
   .scholarship-feature-floating{
     float:left;
     /* padding:10px 10px; */
+  }
+  .gift{
+    height:110px
   }
 
   .clear{
@@ -7540,8 +7531,8 @@ i.material-icons:hover {
     left: 33%;
     margin:auto;
     /* transform: rotate(90deg); */
-    margin-top: 45px;
-    margin-left:180px
+    margin-top: -69px;
+    margin-left:235px
   }
   .scholarship-feature-3:after{
     position: inherit;
@@ -7555,8 +7546,8 @@ i.material-icons:hover {
     left: 49.5%;
     margin:auto;
     /* transform: rotate(90deg); */
-    margin-top: 45px;
-    margin-left:180px
+    margin-top: -69px;
+    margin-left:235px
   }
   .scholarship-feature-4:after{
     position: inherit;
@@ -7570,8 +7561,8 @@ i.material-icons:hover {
     left: 66%;
     margin:auto;
     /* transform: rotate(90deg); */
-    margin-top: 45px;
-    margin-left:180px
+    margin-top: -69px;
+    margin-left:235px
   }
   .scholarship-feature-5:after{
     position: inherit;
@@ -7585,8 +7576,8 @@ i.material-icons:hover {
     left: 82.5%;
     margin:auto;
     /* transform: rotate(90deg); */
-    margin-top: 45px;
-    margin-left:180px
+    margin-top: -69px;
+    margin-left:235px
   }
 }
 @media screen and (max-width: 782px) {
@@ -7604,7 +7595,7 @@ i.material-icons:hover {
   width: 30%;
   text-align: center;
   color: #666666;
-  margin: 1.5em 1em;
+  margin: auto;
   float:left;
 }
 .scholarship-flow-figure-text{
