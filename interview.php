@@ -94,8 +94,15 @@ function about_interview(){
 }
 add_shortcode("about_interview","about_interview");
 
-function recruit_interview(){
+function recruit_interview($atts){
     $home_url =esc_url( home_url( ));
+    extract(shortcode_atts(array(
+        'graduate_year' => '',
+    ), $atts));
+    $top_image = array(
+        '21'    =>  '/wp-content/uploads/2020/04/99df0b5ee83a50b1c98a06ba7146e8bd.png',
+        '22'    =>  '/wp-content/uploads/2020/05/image-2.png'
+    );
     $html='
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
     <style>
@@ -141,7 +148,7 @@ function recruit_interview(){
         }
     </style>
     <section>
-        <img src="'.$home_url.'/wp-content/uploads/2020/04/99df0b5ee83a50b1c98a06ba7146e8bd.png">
+        <img src="'.$home_url.$top_image[$graduate_year].'">
         <div class="card-category-container event">
             <div class="card-category">就活相談や面接対策＆ES添削が可能</div><br>
             <div class="card-category">優秀者には大手企業へご紹介</div><br>
