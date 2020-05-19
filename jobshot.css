@@ -13153,3 +13153,30 @@ width:50px !important
     order:2;
 }
 }
+
+/* 長期インターン個別相談会 */
+#post-5511 {
+  padding-top: 0;
+}
+.hr-consult {
+  margin: 0 -20px;
+}
+.consult__worry {
+  margin: 20px 10% 0 10%;
+}
+.consult__worry__figure {
+  margin: 20px 0;
+}
+.consult__worry__feature {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  padding-left: 0px;
+}
+.consult__worry__feature li {
+  width: 30%;
+  text-align: center;
+  color: #666666;
+  margin: auto;
+  float: left;
+}
