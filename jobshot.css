@@ -5157,15 +5157,18 @@ footer#footer.container {
   text-align: justify;
   margin: 0;
 }
+@media screen and (max-width: 880px) {
+  .hero__img img {
+    height: 100%;
+  }
+}
 @media screen and (max-width: 680px) {
   .hero__img {
     position: relative;
 		height: 300px;
   }
   .hero__img img {
-    width: auto;
-    max-width: initial;
-    height: 300px;
+    height: auto;
   }
   .hero__img h2{
 	 position: absolute;
@@ -5239,6 +5242,13 @@ footer#footer.container {
 @media screen and (max-width: 320px) {
   .hero__title {
     transform: scale(1);
+  }
+}
+@media screen and (max-width: 480px) {
+  .hero__img img {
+    width: auto;
+    max-width: initial;
+    height: 300px;
   }
 }
 @media screen and (max-width: 680px) {
