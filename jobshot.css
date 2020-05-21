@@ -13161,8 +13161,22 @@ width:50px !important
 #post-5511 {
   padding-top: 0;
 }
+#post-5511 .background-img-container:before {
+  display: none;
+}
 .hr-consult {
   /* margin: 0 -20px; */
+}
+.consult__top__img {
+  position: relative;
+  /* height: 400px; */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  overflow: hidden;
+}
+.consult__top__img img {
+  width: 100vw;
 }
 .consult__block {
   margin: 0 -20px;
@@ -13331,7 +13345,12 @@ width:50px !important
 .consult__example__margin {
   margin-bottom: 30px;
 }
+.consult__example__voice__student {
+  height: 140px;
+  width: 140px;
+}
 .consult__example__voice__img {
   border-radius: 50%;
   border: 1px solid #bbb;
+  background-color: #fff;
 }
