@@ -13155,17 +13155,30 @@ width:50px !important
 }
 
 /* 長期インターン個別相談会 */
+.page-id-5511 .container {
+  max-width: initial;
+}
 #post-5511 {
   padding-top: 0;
 }
 .hr-consult {
   /* margin: 0 -20px; */
 }
-.consult__worry {
-  margin: 20px 5% 0 5%;
+.consult__block {
+  margin: 0 -20px;
+  padding: 30px 12% 30px 12%;
+}
+@media (max-width: 1280px) {
+  .consult__block {
+    padding: 30px 10% 30px 10%;
+  }
+}
+.consult__block-color {
+  background-color: #f7f7f7;
 }
 .consult__title {
   color: #555;
+  font-size: 2rem;
 }
 .consult__worry__container {
   margin: 20px 0;
@@ -13183,8 +13196,8 @@ width:50px !important
   margin: auto;
   float: left;
 }
-.consult__worry__icon {
-
+.consult__worry__feature p {
+  font-size: 1rem;
 }
 .consult__worry__first:before {
   content: "\e8fd";
@@ -13198,16 +13211,13 @@ width:50px !important
 .worry-big-icon {
   font-size: 5rem;
 }
-.consult__solve {
-  margin: 20px 10% 0 10%;
-}
-.consult__solve__container {
+.consult__flex__container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
-.consult__solve__consultant {
-  width: 250px;
+.consult__univ__consultant {
+  width: 25vw;
   /* margin: 0 5% 0 0; */
 }
 .consult-font-name {
@@ -13215,21 +13225,26 @@ width:50px !important
   text-align: center;
   font-size: 1.2rem;
 }
-.consult__solve__consultant_img {
+.consult-font-bold {
+  font-weight: bold;
+}
+.consult__univ__consultant_img {
   margin: 10px 0;
+  text-align: center;
 }
-.consult__solve__consultant_img img{
-  width: 250px;
-	height: 250px;
+.consult__univ__consultant_img img{
+  width: 20vw;
+	height: 20vw;
 	object-fit:cover;
-	border-radius:50%;
+  border-radius:50%;
+  /* border: 5px solid #03c4b0; */
 }
-.consult__solve__comment {
+.consult__univ__comment {
   width: 40%;
-  margin: 0 0 0 15%;
+  margin: 0 0 0 10%;
   font-size: 1.2rem;
-  border-radius: 5px;
-  border: 2px dashed #03c4b0;
+  border-radius: 15px;
+  border: 3px dashed #03c4b0;
   padding: 20px;
 }
 .consult__solve__reason {
@@ -13238,6 +13253,7 @@ width:50px !important
 }
 .consult__solve__reason .consult__solve__reason__title {
   margin-bottom: 40px;
+  font-size: 1.4rem;
 }
 .consult__solve__reason__title {
   text-align: left;
@@ -13254,7 +13270,7 @@ width:50px !important
   width: 30%;
 }
 .consult__solve__reason__ele {
-  font-size: 1.3rem;
+  font-size: 1.6rem;
   list-style: none;
 }
 .consult__solve__details {
@@ -13262,21 +13278,60 @@ width:50px !important
   margin: 0 0 0 5%;
 }
 .consult__solve__details table {
-  border-radius: 5px;
+  border-radius: 15px;
 }
 .consult__solve__reason__ele {
   margin-bottom: 30px;
 }
 .consult__solve__reason__icon {
-  margin-left: -25px;
+  margin-left: -30px;
+  margin-top: -2px;
   float: left;
 }
 .consult__solve__reason__icon__first:before {
-  content: "\e834";
+  content: "\e400";
 }
 .consult__solve__reason__icon__second:before {
-  content: "\e834";
+  content: "\e401";
 }
 .consult__solve__reason__icon__third:before {
-  content: "\e834";
+  content: "\e3fb";
+}
+.consult__example__voice {
+  margin: 50px 5%;
+}
+.consult__example__voice__comment {
+  background-color: #fff;
+  border: 1px solid #bbb;
+}
+.consult__example__voice__comment:before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -24px;
+  margin-top: -12px;
+  border: 12px solid transparent;
+  border-right: 12px solid #FFF;
+  z-index: 2;
+}
+
+.consult__example__voice__comment:after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -28px;
+  margin-top: -14px;
+  border: 14px solid transparent;
+  border-right: 14px solid #bbb;
+  z-index: 1;
+}
+/* .consult__example__voice__comment:after {
+  border-right: 50px solid #fff;
+} */
+.consult__example__margin {
+  margin-bottom: 30px;
+}
+.consult__example__voice__img {
+  border-radius: 50%;
+  border: 1px solid #bbb;
 }
