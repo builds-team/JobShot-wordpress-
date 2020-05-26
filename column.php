@@ -791,8 +791,12 @@ function add_coulmn_merit(){
         </div>
         <ul class="listup__contents__list">
             <li class="listup__contents__ele">
+            <a>
+                <div class="listup__contents_li">
                 <p class="listup__contents__icon"><i class="listup__contents__icon__details google-icon listup__contents__calendar"></i></p>
                 <p class="listup__contents__title">就活カレンダー</p>
+                </div>
+            </a>
                 <p class="listup__contents__description">インターン・本選考を含めた就活<br>スケジュールを一括管理できる</p>
             </li>
             <li class="listup__contents__ele">
