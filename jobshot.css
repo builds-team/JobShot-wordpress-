@@ -11265,6 +11265,11 @@ font-size: 13px !important;
   margin: 0;
   height: 530px;
 }
+
+.listup__contents_li{
+  color:#666666;
+}
+
 .listup__contents__ele {
   list-style: none;
   float: left;
@@ -11278,6 +11283,14 @@ font-size: 13px !important;
 }
 .listup__contents__icon__details  {
   font-size: 150px;
+}
+
+.list__contents__ele_div{
+  color:#555;
+}
+
+a .list__contents__ele_div:hover{
+  color:#03c4b0;
 }
 .google-icon {
   font-family: "Material Icons";
