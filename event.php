@@ -173,6 +173,22 @@ function template_event2_func($content){
             </a>
         </div>';
     }
+
+    $area_html = '';
+    if(!empty(get_field('開催場所名',$post_id))){
+        $area_html .= '<div>'.get_field('開催場所名',$post_id).'</div>';
+    }
+    if(!empty(get_field('開催場所住所',$post_id))){
+        $area_html .= '<div>'.get_field('開催場所住所',$post_id).'</div>';
+    }
+    if(!empty($access_html)){
+        $area_html .= $access_html;
+    }
+    $map_html = do_shortcode('[acf type=area name=開催場所の地図]');
+    if(!empty($map_html)){
+        $area_html .= '<div class="respiframe">'.$map_html.'</div>';
+    }
+
     $user = wp_get_current_user();
     $user_login = $user->data->user_login;
     $event_apply_value = do_shortcode('[cfdb-count form="/イベント応募.*/" filter="job-id='.$post_id.'&&your-id='.$user_login.'"]');
@@ -187,7 +203,7 @@ function template_event2_func($content){
         $table_body_html .= add_to_table('開催日時', '<div>'.$event_date.'</div>');
     }
     if(!empty(get_field('開催場所名',$post_id))){
-        $table_body_html.=add_to_table('場所', '<div>'.get_field('開催場所名',$post_id).'</div><div>'.get_field('開催場所住所',$post_id).'</div>'.$access_html.'<div class="respiframe">[acf type=area name=開催場所の地図]</div>');
+        $table_body_html.=add_to_table('場所', $area_html);
     }
     if(!empty(get_field('募集対象',$post_id))){
         $table_body_html.=add_to_table('募集対象', get_field('募集対象',$post_id));
