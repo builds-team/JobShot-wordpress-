@@ -50,6 +50,7 @@ function builds_slack($content, $attachment = [], $channel = '#2-1-jobshot事業
  * @param string $old_status
  * @param object $post
  */
+// テスト
 add_action('transition_post_status', function ($new_status, $old_status, $post) {
     if ('internship' === $post->post_type && 'publish' === $new_status) {
         $string = sprintf('インターンが公開されました: <%s|%s>', get_permalink($post), get_the_title($post));
