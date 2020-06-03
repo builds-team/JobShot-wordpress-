@@ -1,6 +1,6 @@
 <?php
 
-define("SLACK_ENDPOINT", "https://hooks.slack.com/services/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");
+define("SLACK_ENDPOINT", "https://hooks.slack.com/services/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");
 /**
  * Slackに投稿する
  *
@@ -79,8 +79,42 @@ add_action('wpcf7_mail_sent', function ($contact_form) {
         $post_type = get_post_type($post_id);
         $user_name = $data["your-name"];
         if ('internship' === $post_type) {
-            $string = sprintf($user_name.'さんよりインターンの応募がありました: <%s|%s>', get_permalink($post), get_the_title($post));
+            $string = sprintf($user_name . 'さんよりインターンの応募がありました: <%s|%s>', get_permalink($post), get_the_title($post));
             builds_slack($string, [], '#2-1-jobshot事業部bot');
         }
     }
 });
+
+/**
+ * 毎日のレポートの報告
+ */
+add_action('jobshot_bot_daily_report_cron', function () {
+    $yesterday = date('Y/m/d', strtotime('-1 day'));
+    // 新規ユーザーの取得
+    $args = [
+        'fields'     => 'ID',
+        'number'     => 8,
+        'date_query' => [
+            ['before' => strtotime('today')],
+            ['after'  => strtotime('yesterday'), 'inclusive' => true],
+        ]
+    ];
+    $users = get_users($args);
+    $new_user_num = count($users);
+    // インターン応募数
+    $formname = 'インターン応募';
+    $apply_date = date('Y-m-d', strtotime('-1 day'));
+    $intern_apply_num = do_shortcode(' [cfdb-count form="/'.$formname.'.*/" filter="Submitted='.$apply_date.'*/"]');
+    $string = $yesterday . 'のレポートを報告します';
+    $string .= '```';
+    $string .= sprintf('新規登録者数：%d人', $new_user_num);
+    $string .= sprintf('インターン応募数：%d', $intern_apply_num);
+    $string .= '```';
+    builds_slack($string, [], '#2-1-jobshot事業部bot');
+});
+
+// cron登録処理
+if (!wp_next_scheduled('jobshot_bot_daily_report_cron')) {  // 何度も同じcronが登録されないように
+    date_default_timezone_set('Asia/Tokyo');  // タイムゾーンの設定
+    wp_schedule_event(strtotime('2017-06-29 17:00:00'), 'daily', 'jobshot_bot_daily_report_cron');
+}
