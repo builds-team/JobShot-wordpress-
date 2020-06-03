@@ -1,6 +1,6 @@
 <?php
 
-define("SLACK_ENDPOINT", "https://hooks.slack.com/services/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");
+define("SLACK_ENDPOINT", "https://hooks.slack.com/services/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");
 /**
  * Slackに投稿する
  *
