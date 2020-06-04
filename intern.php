@@ -125,7 +125,7 @@ function template_internship2_func($content){
           $access_text.=$ln.'/';
         }
         $access_text = rtrim($access_text, '/');
-        $access_text.=' '.$access['name'].' 徒歩'.$access['time'].'・'.$access['distance'].'\n';
+        $access_text.=' '.$access['name'].' 徒歩'.$access['time'].'・'.$access['distance'].'<br>';
     }
     update_post_meta($post_id, "アクセス", $access_text);
   }
@@ -639,10 +639,11 @@ function edit_internship_info(){
             $access_text.=$ln.'/';
           }
           $access_text = rtrim($access_text, '/');
-          $access_text.=' '.$access['name'].' 徒歩'.$access['time'].'・'.$access['distance'].'\n';
+          $access_text.=' '.$access['name'].' 徒歩'.$access['time'].'・'.$access['distance'].'<br>';
       }
       update_post_meta($post_id, "アクセス", $access_text);
     }
+	  $access_text = str_replace(array("<br>"), '&#13;', $access_text); //テキストエリア内の改行文字を適切な改行コードに変換
     $skill_requirements = get_field('応募資格',$post_id);
 	  $skill_requirements = str_replace(array("\r\n", "\r","\n"), '&#13;', $skill_requirements); //テキストエリア内の改行文字を適切な改行コードに変換
     $prospective_employer = get_field('インターン卒業生の内定先',$post_id);
@@ -822,7 +823,7 @@ function edit_internship_info(){
                     <tr>
                         <th align="left" nowrap="nowrap">アクセス</th>
                         <td>
-                            <div class="access"><textarea name="access" id="" cols="5" rows="12" >'.$access_text.'</textarea><input type="textarea" class="input-width" name="address" id="" value="'.$access_text.'"></div>
+                            <div class="access"><textarea name="access" id="" cols="5" rows="12" >'.$access_text.'</textarea></div>
                         </td>
                     </tr>
                     <tr>
@@ -980,7 +981,7 @@ function update_internship_info(){
     $intern_day = $_POST["intern_day"];
     $skills = $_POST["skills"];
     $address = $_POST["address"];
-    $access=$_POST["access"];
+    $access=nl2br($_POST['access']);
     $skill_requirements = $_POST["skill_requirements"];
     $prospective_employer = $_POST["prospective_employer"];
     $intern_student_voice = $_POST["intern_student_voice"];
@@ -1370,7 +1371,7 @@ function new_company_post_internship(){
             $access_text.=$ln.'/';
           }
           $access_text = rtrim($access_text, '/');
-          $access_text.=' '.$access['name'].' 徒歩'.$access['time'].'・'.$access['distance'].'\n';
+          $access_text.=' '.$access['name'].' 徒歩'.$access['time'].'・'.$access['distance'].'<br>';
       }
       preg_match("/(東京都|北海道|(?:京都|大阪)府|.{6,9}県)((?:四日市|廿日市|野々市|臼杵|かすみがうら|つくばみらい|いちき串木野)市|(?:杵島郡大町|余市郡余市|高市郡高取)町|.{3,12}市.{3,12}区|.{3,9}区|.{3,15}市(?=.*市)|.{3,15}市|.{6,27}町(?=.*町)|.{6,27}町|.{9,24}村(?=.*村)|.{9,24}村)(.*)/",$_POST["address"],$result);
       $prefecture = $result[1];
@@ -1537,7 +1538,7 @@ function reproduction_intern(){
           $access_text.=$ln.'/';
         }
         $access_text = rtrim($access_text, '/');
-        $access_text.=' '.$access['name'].' 徒歩'.$access['time'].'・'.$access['distance'].'\n';
+        $access_text.=' '.$access['name'].' 徒歩'.$access['time'].'・'.$access['distance'].'<br>';
     }
     preg_match("/(東京都|北海道|(?:京都|大阪)府|.{6,9}県)((?:四日市|廿日市|野々市|臼杵|かすみがうら|つくばみらい|いちき串木野)市|(?:杵島郡大町|余市郡余市|高市郡高取)町|.{3,12}市.{3,12}区|.{3,9}区|.{3,15}市(?=.*市)|.{3,15}市|.{6,27}町(?=.*町)|.{6,27}町|.{9,24}村(?=.*村)|.{9,24}村)(.*)/",$address,$result);
     $prefecture = $result[1];
