@@ -981,7 +981,7 @@ function update_internship_info(){
     $intern_day = $_POST["intern_day"];
     $skills = $_POST["skills"];
     $address = $_POST["address"];
-    $access=nl2br($_POST['access']);
+    $access=nl2br($_POST['access'], false);
     $skill_requirements = $_POST["skill_requirements"];
     $prospective_employer = $_POST["prospective_employer"];
     $intern_student_voice = $_POST["intern_student_voice"];
