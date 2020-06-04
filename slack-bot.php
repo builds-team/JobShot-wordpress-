@@ -51,7 +51,9 @@ function builds_slack($content, $attachment = [], $channel = '#2-1-jobshot事業
  */
 add_action('transition_post_status', function ($new_status, $old_status, $post) {
     if ('internship' === $post->post_type && 'publish' === $new_status) {
-        $string = sprintf('インターンが公開されました: <%s|%s>', get_permalink($post), get_the_title($post));
+        $company = get_userdata($post->post_author);
+        $company_name = $company->data->display_name;
+        $string = sprintf($company_name . 'のインターンが公開されました: <%s|%s>', get_permalink($post), get_the_title($post));
         builds_slack($string, [], '#2-1-jobshot事業部bot');
     } elseif ('column' === $post->post_type && 'publish' === $new_status) {
         $string = sprintf('就活記事が公開されました: <%s|%s>', get_permalink($post), get_the_title($post));
@@ -91,23 +93,23 @@ add_action('jobshot_bot_daily_report_cron', function () {
     $yesterday = date('Y/m/d', strtotime('-1 day'));
     // 新規ユーザーの取得
     $args = [
-        'fields'     => 'ID',
-        'number'     => 8,
+        'role'         => 'student',
         'date_query' => [
-            ['before' => strtotime('today')],
-            ['after'  => strtotime('yesterday'), 'inclusive' => true],
+            ['before' => date('Y/m/d', strtotime('today'))],
+            ['after'  => date('Y/m/d', strtotime('yesterday')), 'inclusive' => true],
         ]
     ];
     $users = get_users($args);
     $new_user_num = count($users);
     // インターン応募数
     $formname = 'インターン応募';
-    $apply_date = date('Y-m-d', strtotime('-1 day'));
-    $intern_apply_num = do_shortcode(' [cfdb-count form="/'.$formname.'.*/" filter="Submitted='.$apply_date.'*/"]');
+    $apply_date_after = date('Y-m-d', strtotime('-1 day'));
+    $apply_date_before = date('Y-m-d');
+    $intern_apply_num = do_shortcode(' [cfdb-count form="/' . $formname . '.*/" filter="submit_time>' . $apply_date_after . '"] ');
     $string = $yesterday . 'のレポートを報告します';
-    $string .= '```';
-    $string .= sprintf('新規登録者数：%d人', $new_user_num);
-    $string .= sprintf('インターン応募数：%d', $intern_apply_num);
+    $string .= '\n\n``` ';
+    $string .= sprintf(' 新規登録者数：%d人', $new_user_num);
+    $string .= sprintf('\n ' . $apply_date_after . 'から' . $apply_date_before . 'の9:00までのインターン応募数：%d', $intern_apply_num);
     $string .= '```';
     builds_slack($string, [], '#2-1-jobshot事業部bot');
 });
@@ -117,5 +119,3 @@ if (!wp_next_scheduled('jobshot_bot_daily_report_cron')) {  // 何度も同じcr
     date_default_timezone_set('Asia/Tokyo');  // タイムゾーンの設定
     wp_schedule_event(strtotime('2017-06-29 17:00:00'), 'daily', 'jobshot_bot_daily_report_cron');
 }
-
-?>
