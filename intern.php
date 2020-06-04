@@ -117,22 +117,19 @@ function template_internship2_func($content){
   $image2 = get_field("イメージ画像2",$post_id);
   $image3 = get_field("イメージ画像3",$post_id);
   $image4 = get_field("イメージ画像4",$post_id);
-  $accesses=get_post_meta($post_id, 'station', true);
-  if(empty($accesses) && !empty($address)){
+  $access_text=get_post_meta($post_id, 'アクセス', true);
+  if(empty($access_text) && !empty($address)){
     $accesses=get_time_to_station(Array($address));
-    update_post_meta($post_id, "station", $accesses);
+    foreach($accesses as $access){
+        foreach($access['line'] as $ln){
+          $access_text.=$ln.'/';
+        }
+        $access_text = rtrim($access_text, '/');
+        $access_text.=' '.$access['name'].' 徒歩'.$access['time'].'・'.$access['distance'].'\n';
+    }
+    update_post_meta($post_id, "アクセス", $access_text);
   }
-  $access_html='<div>';
-  foreach($accesses as $access){
-      $access_html.=  '<div><i class="fas fa-train"></i>';
-      foreach($access['line'] as $ln){
-        $access_html.=$ln.'/';
-      }
-      $access_html = rtrim($access_html, '/');
-      $access_html.=' '.$access['name'].' 徒歩'.$access['time'].'・'.$access['distance'];
-      $access_html.='</div>';
-  }
-  $access_html.='</div>';
+  $access_html='<div>'.$access_text.'</div>';
   if(is_array($image)){
     $image_url = $image["url"];
   }else{
@@ -525,7 +522,7 @@ function template_internship2_func($content){
       <td><p>'.$address.'</p></td>
     </tr>';
     }
-    if(!empty($accesses)){
+    if(!empty($access_text)){
       $html.='<tr>
       <th>アクセス</th>
       <td><p>'.$access_html.'</p></td>
@@ -634,18 +631,17 @@ function edit_internship_info(){
     $skills = get_field("身につくスキル",$post_id);
 	  $skills = str_replace(array("\r\n", "\r","\n"), '&#13;', $skills); //テキストエリア内の改行文字を適切な改行コードに変換
     $address = get_field("勤務地",$post_id);
-    $accesses=get_post_meta($post_id, 'station', true);
-    if(empty($accesses) && !empty($address)){
+    $access_text=get_post_meta($post_id, 'アクセス', true);
+    if(empty($access_text) && !empty($address)){
       $accesses=get_time_to_station(Array($address));
-      update_post_meta($post_id, "station", $accesses);
-    }
-    $access_text='';
-    foreach($accesses as $access){
-        foreach($access['line'] as $ln){
-          $access_text.=$ln.'/';
-        }
-        $access_text = rtrim($access_text, '/');
-        $access_text.=' '.$access['name'].' 徒歩'.$access['time'].'・'.$access['distance'];
+      foreach($accesses as $access){
+          foreach($access['line'] as $ln){
+            $access_text.=$ln.'/';
+          }
+          $access_text = rtrim($access_text, '/');
+          $access_text.=' '.$access['name'].' 徒歩'.$access['time'].'・'.$access['distance'].'\n';
+      }
+      update_post_meta($post_id, "アクセス", $access_text);
     }
     $skill_requirements = get_field('応募資格',$post_id);
 	  $skill_requirements = str_replace(array("\r\n", "\r","\n"), '&#13;', $skill_requirements); //テキストエリア内の改行文字を適切な改行コードに変換
@@ -826,7 +822,7 @@ function edit_internship_info(){
                     <tr>
                         <th align="left" nowrap="nowrap">アクセス</th>
                         <td>
-                            <div class="access"><input type="text" class="input-width" min="0" name="address" id="" value="'.$access_text.'" required></div>
+                            <div class="access"><textarea name="access" id="" cols="5" rows="12" >'.$access_text.'</textarea><input type="textarea" class="input-width" name="address" id="" value="'.$access_text.'"></div>
                         </td>
                     </tr>
                     <tr>
@@ -1039,7 +1035,6 @@ function update_internship_info(){
     }
     if($_POST["address"]){
       update_post_meta($post_id, "勤務地", $address);
-      update_post_meta($post_id, "station", $stations);
       preg_match("/(東京都|北海道|(?:京都|大阪)府|.{6,9}県)((?:四日市|廿日市|野々市|臼杵|かすみがうら|つくばみらい|いちき串木野)市|(?:杵島郡大町|余市郡余市|高市郡高取)町|.{3,12}市.{3,12}区|.{3,9}区|.{3,15}市(?=.*市)|.{3,15}市|.{6,27}町(?=.*町)|.{6,27}町|.{9,24}村(?=.*村)|.{9,24}村)(.*)/",$_POST["address"],$result);
       $prefecture = $result[1];
       $area = $result[2];
@@ -1050,7 +1045,7 @@ function update_internship_info(){
       }
     }
     if($_POST["access"]){
-      update_post_meta($post_id, "station", $access);
+      update_post_meta($post_id, "アクセス", $access);
     }
     if($_POST["skill_requirements"]){
       update_post_meta($post_id, "応募資格", $skill_requirements);
@@ -1368,7 +1363,15 @@ function new_company_post_internship(){
       $intern_contents = $_POST["intern_contents"];
       $skills = $_POST["skills"];
       $address = $_POST["address"];
-      $stations=get_time_to_station(Array($address));
+      $accesses=get_time_to_station(Array($address));
+      $access_text='';
+      foreach($accesses as $access){
+          foreach($access['line'] as $ln){
+            $access_text.=$ln.'/';
+          }
+          $access_text = rtrim($access_text, '/');
+          $access_text.=' '.$access['name'].' 徒歩'.$access['time'].'・'.$access['distance'].'\n';
+      }
       preg_match("/(東京都|北海道|(?:京都|大阪)府|.{6,9}県)((?:四日市|廿日市|野々市|臼杵|かすみがうら|つくばみらい|いちき串木野)市|(?:杵島郡大町|余市郡余市|高市郡高取)町|.{3,12}市.{3,12}区|.{3,9}区|.{3,15}市(?=.*市)|.{3,15}市|.{6,27}町(?=.*町)|.{6,27}町|.{9,24}村(?=.*村)|.{9,24}村)(.*)/",$_POST["address"],$result);
       $prefecture = $result[1];
       $area = $result[2];
@@ -1432,7 +1435,7 @@ function new_company_post_internship(){
           update_post_meta($insert_id, '1日の流れ', $intern_day);
           update_post_meta($insert_id, '身につくスキル', $skills);
           update_post_meta($insert_id, '勤務地', $address);
-          update_post_meta($insert_id, 'station', $stations);
+          update_post_meta($insert_id, 'アクセス', $access_text);
           update_post_meta($insert_id, '応募資格', $skill_requirements);
           update_post_meta($insert_id, 'インターン卒業生の内定先', $prospective_employer);
           update_post_meta($insert_id, '働いているインターン生の声', $intern_student_voice);
@@ -1503,30 +1506,6 @@ function get_company_id($company){
   return $company_id;
 }
 
-function get_company_id($company){
-  $args = array(
-    'posts_per_page'   => 5,
-    'offset'           => 0,
-    'category'         => '',
-    'category_name'    => '',
-    'orderby'          => 'date',
-    'order'            => 'DESC',
-    'include'          => '',
-    'exclude'          => '',
-    'meta_key'         => '',
-    'meta_value'       => '',
-    'post_type'        => 'company',
-    'post_mime_type'   => '',
-    'post_parent'      => '',
-    'author'	         => $company->ID,
-    'post_status'      => 'publish',
-    'suppress_filters' => true,
-  );
-  $posts_array = get_posts( $args );
-  $company_id = $posts_array[0]->ID;
-  return $company_id;
-}
-
 function reproduction_intern(){
   if(!empty($_POST["reproduction_intern"]) && !empty($_POST["post_id"])){
     $post_id = $_POST["post_id"];
@@ -1551,7 +1530,15 @@ function reproduction_intern(){
     $intern_contents = (get_field("業務内容",$post_id));
     $skills = (get_field("身につくスキル",$post_id));
     $address = get_field("勤務地",$post_id);
-    $stations=get_time_to_station(Array($address));
+    $accesses=get_time_to_station(Array($address));
+    $access_text='';
+    foreach($accesses as $access){
+        foreach($access['line'] as $ln){
+          $access_text.=$ln.'/';
+        }
+        $access_text = rtrim($access_text, '/');
+        $access_text.=' '.$access['name'].' 徒歩'.$access['time'].'・'.$access['distance'].'\n';
+    }
     preg_match("/(東京都|北海道|(?:京都|大阪)府|.{6,9}県)((?:四日市|廿日市|野々市|臼杵|かすみがうら|つくばみらい|いちき串木野)市|(?:杵島郡大町|余市郡余市|高市郡高取)町|.{3,12}市.{3,12}区|.{3,9}区|.{3,15}市(?=.*市)|.{3,15}市|.{6,27}町(?=.*町)|.{6,27}町|.{9,24}村(?=.*村)|.{9,24}村)(.*)/",$address,$result);
     $prefecture = $result[1];
     $intern_days = get_field('1日の流れ',$post_id);
@@ -1590,7 +1577,7 @@ function reproduction_intern(){
           update_post_meta($insert_id, '1日の流れ', $intern_day);
           update_post_meta($insert_id, '身につくスキル', $skills);
           update_post_meta($insert_id, '勤務地', $address);
-          update_post_meta($insert_id, 'station', $stations);
+          update_post_meta($insert_id, 'アクセス', $access_text);
           update_post_meta($insert_id, '応募資格', $skill_requirements);
           update_post_meta($insert_id, 'インターン卒業生の内定先', $prospective_employer);
           update_post_meta($insert_id, '働いているインターン生の声', $intern_student_voice);
