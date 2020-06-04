@@ -634,6 +634,19 @@ function edit_internship_info(){
     $skills = get_field("身につくスキル",$post_id);
 	  $skills = str_replace(array("\r\n", "\r","\n"), '&#13;', $skills); //テキストエリア内の改行文字を適切な改行コードに変換
     $address = get_field("勤務地",$post_id);
+    $accesses=get_post_meta($post_id, 'station', true);
+    if(empty($accesses) && !empty($address)){
+      $accesses=get_time_to_station(Array($address));
+      update_post_meta($post_id, "station", $accesses);
+    }
+    $access_text='';
+    foreach($accesses as $access){
+        foreach($access['line'] as $ln){
+          $access_text.=$ln.'/';
+        }
+        $access_text = rtrim($access_text, '/');
+        $access_text.=' '.$access['name'].' 徒歩'.$access['time'].'・'.$access['distance'];
+    }
     $skill_requirements = get_field('応募資格',$post_id);
 	  $skill_requirements = str_replace(array("\r\n", "\r","\n"), '&#13;', $skill_requirements); //テキストエリア内の改行文字を適切な改行コードに変換
     $prospective_employer = get_field('インターン卒業生の内定先',$post_id);
@@ -811,6 +824,12 @@ function edit_internship_info(){
                         </td>
                     </tr>
                     <tr>
+                        <th align="left" nowrap="nowrap">アクセス</th>
+                        <td>
+                            <div class="access"><input type="text" class="input-width" min="0" name="address" id="" value="'.$access_text.'" required></div>
+                        </td>
+                    </tr>
+                    <tr>
                         <th align="left" nowrap="nowrap">給与*</th>
                         <td>
                             <div class="company-established"><input class="input-width" type="text" min="0" name="salary" id="" value="'.$salary.'" placeholder="(例) 時給1000円" required></div>
@@ -965,7 +984,7 @@ function update_internship_info(){
     $intern_day = $_POST["intern_day"];
     $skills = $_POST["skills"];
     $address = $_POST["address"];
-    $stations=get_time_to_station(Array($address));
+    $access=$_POST["access"];
     $skill_requirements = $_POST["skill_requirements"];
     $prospective_employer = $_POST["prospective_employer"];
     $intern_student_voice = $_POST["intern_student_voice"];
@@ -1029,6 +1048,9 @@ function update_internship_info(){
       }else{
         wp_set_object_terms( $post_id, $prefecture, 'area');
       }
+    }
+    if($_POST["access"]){
+      update_post_meta($post_id, "station", $access);
     }
     if($_POST["skill_requirements"]){
       update_post_meta($post_id, "応募資格", $skill_requirements);
