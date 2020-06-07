@@ -173,4 +173,74 @@ function get_es_url(){
   return $es_url;
 }
 
+function get_es_example($category){
+  $es_examples = array(
+    'gakutika' => array('〜月間売り上げ10万円→340万円達成〜私はIT企業の営業部でインターン生として働いてた。<br>営業経験がない私は当初売り上げを全く上げることができなかった。<br>そこで、私は以下の施策を実施し、社内で【No1セールス】になることができた。<br>
+    1 契約を取れている先輩方の同行回数を増やし、商談音声を録音し、隙間時間に録音をひたすら聴いた<br>
+    2 契約率が低い原因は、提案力が低いからだと考え、商品理解を深めることはもちろんのこと、相手の企業の担当者の趣味や企業分析を事前に行った<br>
+    3 質問に対しての答えが明確になっていなかったので、予想質問集などを作成し、模範解答を用意した。また、商談で新たに出た質問もストックした。<br>上記の3つの施策を実施することで、提案力高まり、契約率が上昇し、売り上げが徐々に上げることができた。インターンを始めて1年経った今では月間340万円の売り上げを上げることができ、【社内 No1セールス】になった。'),
+    'self-pr' => array('私の強みはどんな状況でも粘り強く頑張れることです。<br>この強みが発揮できたのはインターン先での営業経験です。<br>私は営業する際に、「お客さまが本当に欲しているのは何か」を知るために、「相手の話をじ っくり聞く」営業を徹底して行ってきました。アイスブレイクなどの何気ない会話やちょっとしたお客さまの仕草などから、商品のどこに興味を持っているのかを判断していました。
+    少しでも興味を持っていそうと判断したお客さまには、商談を何回も重ねアフターフォローをきめ細かく行うことを徹底して成果を上げてきました。<br>例えば、セミナーでお話ししたお客さまが見込みがありそうだったので、何度もお客さまの元に足を運び、昇段を重ね、新規でお取引をいただけるようになりました。<br>そのお客さまからは「こちらのニーズをしっかり聞いてくれていいご提案でした」というお言葉をいただきました。<br>貴社に入社後もこの粘り強い営業スタイルを生かして、お客さまのニーズを満たす提案をしていきたいです。'),
+    'weak' => array('私の短所は、頑固なことです。自分の中で「こうあるべき」という考え方からなかなか考え方を変えることができませんでした。しかし、インターン先にて仕事でこだわるべきは自分の基準でないと気づき、さまざまな視点から物事を見る、同僚や先輩にこまめに意見を聞くなど優先すべき基準を見極め、目標達成のために最良の方法を取れるように注意しています。')
+  );
+  if($category == 'gakutika' || $category == 'self-pr' || $category == 'weak'){
+    $es_content = $es_examples[$category][0];
+    $home_url =esc_url( home_url( ));
+    $es_categories = get_es_categories('practice');
+    $es_category = $es_categories[$category][0];
+    $es_description_image = $es_categories[$category][2];
+    $es_example = '
+    <div class="es-title-container">
+      <h2 class="es-title">ES例</h1>
+    </div>
+    <div class="es-cards-container">
+      <div class="es-timeline__item">
+        <div class="es-timeline__card">
+          <div class="es-text__body">
+            <div class="es-text__eyecatch">
+              <img src="'.$home_url.'/wp-content/uploads/'.$es_description_image.'">
+            </div>
+            <h3 class="es-text__title">'.$es_category.'</h3>
+            <p class="es-text__description">'.$es_content.'</p>
+          </div>
+        </div>
+      </div>
+    </div>';
+  }else{
+    $es_total = get_past_es('all','all','publish');
+    foreach($es_total as $es){
+      $post_id = $es->ID;
+      $user_id = get_current_user_id();
+      $es_categories = get_es_categories('practice');
+      $es_category = get_field("投稿テーマ",$post_id);
+      if($es_category == $es_categories[$category][0]){
+        $es_example = '
+          <div class="es-title-container">
+            <h2 class="es-title">ES例</h1>
+          </div>
+          <div class="es-cards-container">'.view_other_es($es,$user_id,1000).'</div>';
+        break;
+      }
+    }
+  }
+  return $es_example;
+}
+function get_es_company($category){
+  $es_companies = array(
+    'gakutika' => array('三菱商事・ボストンコンサルティング・野村総合研究所・リクルート・丸紅など'),
+    'self-pr' => array('伊藤忠商事・アビームコンサルティング・KPMG・J.P.モルガン・JR東海など'),
+    'weak' => array('伊藤忠商事・デロイトトーマツコンサルティング・ANA・ゴールドマンサックス・富士フィルムなど'),
+    'motivation' => array('三井物産・アクセンチュア・マッキンゼー・P&G・ベインアンドカンパニーなど'),
+    'news' => array('ボストンコンサルティング・野村総合研究所・ローランド・ベルガー・A.T.カーニー・ソニーなど')
+  );
+  $es_company = $es_companies[$category][0];
+  $es_categories = get_es_categories('practice');
+  $es_category = $es_categories[$category][0];
+  $es_company_html = '
+  <div class="es-title-container">
+    <h2 class="es-title">ESにおいて'.$es_category.'を使用する主な企業</h1>
+  </div>
+  <div class="es-cards-container"><p>'.$es_company.'</p></div>';
+  return $es_company_html;
+}
 ?>
