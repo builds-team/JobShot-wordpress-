@@ -31,6 +31,7 @@ function add_sidebar_es(){
     '/entry-sheet?type=practice' =>  '<i class="fas fa-book-open"></i>基礎から学ぶ',
     '/entry-sheet?type=challenge'  =>  '<i class="fas fa-user-tie"></i>実践チャレンジ',
     '/entry-sheet/view'  =>  '<i class="far fa-address-card"></i>あなたのES',
+    '/entry-sheet/view/favorite' => '<i class="far fa-heart"></i>お気に入りのES'
   );
   foreach($category_array as $category_each_key =>  $category_each_value){
     $url = $_SERVER["REQUEST_URI"];
@@ -62,6 +63,22 @@ function view_es_type_func(){
   $home_url =esc_url( home_url());
   $es_practice_categories = get_es_categories('practice');
   $es_challenge_categories = get_es_categories('challenge');
+  $user_id = get_current_user_id();
+  $es_total = get_past_es('all','all','publish');
+  $es_timeline_html = '
+    <div class="es-title-container">
+      <h2 class="es-title">みんなのES</h1>
+    </div>';
+  $paged = get_query_var( 'paged' );
+  $paged = $paged ?: 1;
+  for($i=($paged-1)*5;$i<$paged*5;$i++){
+	if($i<count($es_total)){
+		$es_card_html .= view_other_es($es_total[$i],$user_id,100);
+	}else{
+	  break;
+	}
+  }
+  $es_timeline_html .= '<div class="es-cards-container">'.$es_card_html.'</div>'.paginate(ceil(count($es_total)/5), get_query_var( 'paged' ), count($es_total), 5);
   $practice_card_html = '
   <div class="es-title-container">
     <p class="es-title-sub">\ 基礎からはじめよう /</p>
@@ -135,7 +152,8 @@ function view_es_type_func(){
     }
   }
   //一覧ページ
-  $html = $practice_card_html.$challenge_card_html;
+  
+  $html .= $es_timeline_html.$practice_card_html.$challenge_card_html;
   return $html;
 }
 add_shortcode('view_es_type','view_es_type_func');
@@ -147,7 +165,8 @@ function new_es_form_practice(){
   }
   $user = wp_get_current_user();
   $user_id = get_current_user_id();
-  $user_name = $user->data->display_name;
+  $user_info = get_userdata($user_id);
+  $user_name = $user_info->user_login;
   $es_categories = get_es_categories('practice');
   $es_points = get_es_points('practice');
 
@@ -158,7 +177,14 @@ function new_es_form_practice(){
     <input type="hidden" name="new_es_practice" value="new_es_practice">
     <input type="hidden" name="user_id" value="'.$user_id.'">
     <input type="hidden" name="correction" value="false">
-    <input type="submit" name="publish" id="publish" class="es-submit-button" value="保存する">
+    <input type="submit" name="publish" id="publish" class="es-submit-button" value="公開する">
+  </div>
+  <div class="es-submit-box">
+    <input type="hidden" name="es_category" value="'.$es_categories[$category][0].'">
+    <input type="hidden" name="new_es_practice" value="new_es_practice">
+    <input type="hidden" name="user_id" value="'.$user_id.'">
+    <input type="hidden" name="correction" value="false">
+    <input type="submit" name="save" id="save" class="es-submit-button es__save" value="下書き保存する">
   </div>';
 
   $es_content = '';
@@ -171,6 +197,13 @@ function new_es_form_practice(){
     $uploaded_date = get_the_modified_date('Y/n/j',$post_id);
     $fav_array = get_post_meta($post_id,'favorite',true);
     $fav_count = count($fav_array);
+    $comment_array = get_post_meta($post_id,'コメント',false)[0];
+    $comment_count = count($comment_array);
+    if(in_array($user_id,$fav_array)){
+      $fav_button_class = 'btn favorite-button es-like-active';
+    }else{
+      $fav_button_class='btn favorite-button';
+    }
     if($post->post_author == $user_id){
       $es_content = get_field("投稿内容",$post_id);
       $post_button_html = '
@@ -179,8 +212,16 @@ function new_es_form_practice(){
           <input type="hidden" name="edit_es_practice" value="edit_es_practice">
           <input type="hidden" name="user_id" value="'.$user_id.'">
           <input type="hidden" name="post_id" value="'.$post_id.'">
-          <input type="submit" name="publish" id="publish" class="es-submit-button" value="保存する">
-        </div>';
+          <input type="submit" name="publish" id="publish" class="es-submit-button" value="公開する">
+        </div>
+        <div class="es-submit-box">
+          <input type="hidden" name="es_category" value="'.$es_categories[$category][0].'">
+          <input type="hidden" name="edit_es_practice" value="edit_es_practice">
+          <input type="hidden" name="user_id" value="'.$user_id.'">
+          <input type="hidden" name="post_id" value="'.$post_id.'">
+          <input type="submit" name="save" id="save" class="es-submit-button es__save" value="下書き保存する">
+        </div>
+        ';
       $new_html =  '
         <div class="es-framework-container">
           <div class="es-content-main">
@@ -200,12 +241,25 @@ function new_es_form_practice(){
             <div class="es-fav_status margin-10">
               <div class="es-fav_status_item">
                   <div class="es-fav_status_icon">
+                    <button class="btn favorite-button_sub" value="'.$post_id.'">
                       <i class="far fa-heart"></i>
+                    </button>
                   </div>
                   <div class="es-fav_status_label" id="fav_count_'.$post_id.'">'.$fav_count.'</div>
               </div>
+              <div class="es-fav_status_item">
+                <div class="comment__count">
+                  <i class="far fa-comments"></i>
+                </div>
+                <div class="es-fav_status_label">'.$comment_count.'</div>
+              </div>
               <div class="es-category_item">項目別練習</div>
               <div class="es-category_item">'.$es_categories[$category][0].'</div>
+              <div class="es-like" style="margin:3px; height:24px;">
+                <button class="'.$fav_button_class.'" id="fav_button_'.$post_id.'"value="'.$post_id.'">
+                  <i class="fa fa-heart"></i>
+                </button>
+              </div>
             </div>
             <form action="" method="POST" enctype="multipart/form-data">
               <div class="es-content-box">
@@ -219,6 +273,8 @@ function new_es_form_practice(){
       return $new_html;
     }
   }
+  $es_company = get_es_company($category);
+  $es_example = get_es_example($category);
   $points_html = '';
   $point_count = 0;
   foreach($es_points[$category] as $es_point){
@@ -246,7 +302,7 @@ function new_es_form_practice(){
               <p color="#FFFFFF">'.count($es_points[$category]).'</p>
           </div>
       </div>
-      '.$points_html.'
+      '.$points_html.$es_company.$es_example.'
       <form action="" method="POST" enctype="multipart/form-data">
         <div class="es-content-box">
           <h3>実際にESを書いてみよう！</h3>
@@ -270,7 +326,8 @@ function new_es_form_challenge(){
     }
   $user = wp_get_current_user();
   $user_id = get_current_user_id();
-  $user_name = $user->data->display_name;
+  $user_info = get_userdata($user_id);
+  $user_name = $user_info->user_login;
   $es_categories = get_es_categories('challenge');
   $es_points = get_es_points('challenge');
 
@@ -300,7 +357,8 @@ function new_es_form_challenge(){
         <input type="hidden" name="user_id" value="'.$user_id.'">
         <input type="hidden" name="correction" value="true">
         <input type="submit" name="publish" id="publish" class="es-submit-button" value="投稿する">
-      </div>';
+      </div>
+      ';
   }else{
     $post_button_html = '
       <div class="es-submit-box">
@@ -463,9 +521,25 @@ function view_past_es(){
     $post_id = $_GET["post_id"];
     $post = get_post($post_id);
     $post_user_id = get_userdata($post->post_author)->ID;
+    if($user_id != $post_user_id){
+      $post_user_graduate_year = get_user_meta($post_user_id,'graduate_year',false)[0];
+      if(!empty($post_user_graduate_year)){
+        $post_user_graduate_year = substr(strval($post_user_graduate_year),2,2).'年卒・';
+      }
+      $post_user_gender = get_user_meta($post_user_id,'gender',false)[0][0];
+      $post_user_university = get_user_meta($post_user_id,'university',false)[0].'・';
+      if($post_user_gender == '男性'){
+        $user_profile_image = wp_get_attachment_image_src(9343)[0];
+      }else{
+        $user_profile_image = wp_get_attachment_image_src(9344)[0];
+      }
+    }else{
+      $user_profile_image = get_user_profile_image($post_user_id);
+    }
+      
+    
     $post_user_info = get_userdata($post_user_id);
     $post_user_name = $post_user_info->user_login;
-    $user_profile_image = get_user_profile_image($post_user_id);
     $uploaded_date = get_the_modified_date('Y/n/j',$post_id);
     $post_status = get_post_meta($post_id,'correction',true);
     if($post_status == 'true'){
@@ -475,7 +549,7 @@ function view_past_es(){
       $es_categories = get_es_categories('practice');
       $es_points = get_es_points('practice');
     }
-    if($post->post_author == $user_id){
+    
       $es_category = get_field("投稿テーマ",$post_id);
 
       //実践チャレンジの時は$es_categoryに企業名を代入、subに５つのカテゴリの中の１つを代入
@@ -497,6 +571,95 @@ function view_past_es(){
       $es_kansei = get_field("完成es",$post_id);
       $fav_array = get_post_meta($post_id,'favorite',true);
       $fav_count = count($fav_array);
+      $comment_array = get_post_meta($post_id,'コメント',false)[0];
+      $comment_count = count($comment_array);
+      if(in_array($user_id,$fav_array)){
+        $fav_button_class = 'btn favorite-button es-like-active';
+      }else{
+        $fav_button_class='btn favorite-button';
+      }
+      $user_roles = $user->roles;
+      if($post->post_author == $user_id){
+        $edit_html = '                <div class="es-content-edit">
+        <i class="fas fa-pen-fancy"></i>
+        <a href="/entry-sheet/practice?post_id='.$post_id.'&category='.$es_url.'&action=edit">編集</a>
+      </div>
+      <div class="es-content-edit-delete-between">|</div>
+      <div class="es-content-delete">
+        <form action="" method="POST" enctype="multipart/form-data">
+          <i class="fas fa-trash"></i>
+          <input type="hidden" name="post_id" value="'.$post_id.'">
+          <input type="submit" name="es-delete" id="es-delete" class="" value="削除">
+        </form>
+      </div>';
+      }
+
+
+      if($post->post_author != $user_id  && !in_array("company", $user_roles)){
+        $comment_button_html = '
+          <div class="es-submit-box">
+            <input type="hidden" name="user_id" value="'.$user_id.'">
+            <input type="hidden" name="post_id" value="'.$post_id.'">
+            <input type="submit" name="comment_es" class="es-submit-button" value="コメントする">
+          </div>
+        ';
+        $comment_html = '
+          <div class="es-framework-container">
+            <div class="es-content-main">
+              <form action="" method="POST" enctype="multipart/form-data">
+                <div class="es-content-box">
+                  <textarea class="es-content-textarea" name="comment" placeholder="" height="100px" rows="4" required></textarea>
+                </div>
+                '.$comment_button_html.'
+              </form>
+            </div>
+          </div>
+        ';
+      }
+
+      $comment_array = get_post_meta($post_id,'コメント',false)[0];
+      if(!empty($comment_array)){
+        $commented_html = '
+          <div class="es-title-container">
+            <h2 class="es-title">みんなからのコメント</h1>
+          </div>
+        ';
+		  
+        foreach($comment_array as $comment_set){
+          $comment_user_id = $comment_set[0];
+          $comment = $comment_set[1];
+          $comment_user_graduate_year = get_user_meta($comment_user_id,'graduate_year',false)[0];
+          if(!empty($comment_user_graduate_year)){
+            $comment_user_graduate_year = substr(strval($comment_user_graduate_year),2,2).'年卒・';
+          }
+          $comment_user_gender = get_user_meta($comment_user_id,'gender',false)[0][0];
+          $comment_user_university = get_user_meta($comment_user_id,'university',false)[0].'・';
+          if($comment_user_gender == '男性'){
+            $comment_user_profile_image = wp_get_attachment_image_src(9343)[0];
+          }else{
+            $comment_user_profile_image = wp_get_attachment_image_src(9344)[0];
+          }
+          $commented_html .= '
+          <div class="es-framework-container">
+              <div class="es-content-main">
+                  <div class="es-timeline_footer_avatar">
+                      <div class="es-timeline_footer_icon">
+                        <div class="es-avatar">
+                          <img src="'.$comment_user_profile_image.'">
+                        </div>
+                      </div>
+                      <div class="es-timeline_footer_name">
+                          <span>'.$comment_user_university.$comment_user_graduate_year.$comment_user_gender.'</span>
+                      </div>
+                  </div>
+                  <div class="es-detail-content-box">
+                    <div class="es-content-box-text">'.$comment.'</div>
+                  </div>
+              </div>
+            </div>
+        ';
+        }
+      }
       if($post_status == 'true'){
         if(!empty($es_correction)){
           $correction_html = '
@@ -528,7 +691,7 @@ function view_past_es(){
                 <div class="es-content-box-text">'.$es_kansei.'</div>
                 </div>
             </div>
-          ';
+          '.$commented_html.$comment_html;
         }
         $html = '
           <div class="es-framework-container">
@@ -536,11 +699,11 @@ function view_past_es(){
                 <div class="es-timeline_footer_avatar">
                     <div class="es-timeline_footer_icon">
                       <div class="es-avatar">
-                          <img src="'.$user_profile_image.'">
+                        <img src="'.$user_profile_image.'">
                       </div>
                     </div>
                     <div class="es-timeline_footer_name">
-                        <span>'.$post_user_name.'</span>
+                        <span>'.$post_user_university.$post_user_graduate_year.$post_user_gender.'</span>
                     </div>
                     <div class="es-timeline_footer_date">
                         <span>'.$uploaded_date.'</span>
@@ -549,12 +712,25 @@ function view_past_es(){
                 <div class="es-fav_status margin-10">
                     <div class="es-fav_status_item">
                         <div class="es-fav_status_icon">
+                          <button class="btn favorite-button_sub" value="'.$post_id.'">
                             <i class="far fa-heart"></i>
+                          </button>
                         </div>
                         <div class="es-fav_status_label" id="fav_count_'.$post_id.'">'.$fav_count.'</div>
                     </div>
+                    <div class="es-fav_status_item">
+                      <div class="comment__count">
+                        <i class="far fa-comments"></i>
+                      </div>
+                      <div class="es-fav_status_label">'.$comment_count.'</div>
+                    </div>
                     <div class="es-category_item">実践チャレンジ</div>
                     <div class="es-category_item">'.$es_category_sub.'</div>
+                    <div class="es-like" style="margin:3px; height:24px;">
+                      <button class="'.$fav_button_class.'" id="fav_button_'.$post_id.'"value="'.$post_id.'">
+                        <i class="fa fa-heart"></i>
+                      </button>
+                    </div>
                 </div>
                 <div class="es-detail-content-box">
                     <div class="es-content-box-text">'.$es_content.'</div>
@@ -562,7 +738,7 @@ function view_past_es(){
             </div>
             '.$correction_html.'
         </div>
-        ';
+        '.$commented_html.$comment_html;
       }else{
         $html = '
           <div class="es-framework-container">
@@ -574,46 +750,53 @@ function view_past_es(){
                       </div>
                     </div>
                     <div class="es-timeline_footer_name">
-                        <span>'.$post_user_name.'</span>
+                        <span>'.$post_user_university.$post_user_graduate_year.$post_user_gender.'</span>
                     </div>
                     <div class="es-timeline_footer_date">
                         <span>'.$uploaded_date.'</span>
                     </div>
                 </div>
-                <div class="es-content-edit">
-                  <i class="fas fa-pen-fancy"></i>
-                  <a href="/entry-sheet/practice?post_id='.$post_id.'&category='.$es_url.'&action=edit">編集</a>
-                </div>
-                <div class="es-content-edit-delete-between">|</div>
-                <div class="es-content-delete">
-                  <form action="" method="POST" enctype="multipart/form-data">
-                    <i class="fas fa-trash"></i>
-                    <input type="hidden" name="post_id" value="'.$post_id.'">
-                    <input type="submit" name="es-delete" id="es-delete" class="" value="削除">
-                  </form>
-                </div>
+                '.$edit_html.'
                 <div class="es-fav_status margin-10">
                     <div class="es-fav_status_item">
                         <div class="es-fav_status_icon">
+                          <button class="btn favorite-button_sub" value="'.$post_id.'">
                             <i class="far fa-heart"></i>
+                          </button>
                         </div>
                         <div class="es-fav_status_label" id="fav_count_'.$post_id.'">'.$fav_count.'</div>
                     </div>
+                    <div class="es-fav_status_item">
+                      <div class="comment__count">
+                        <i class="far fa-comments"></i>
+                      </div>
+                      <div class="es-fav_status_label">'.$comment_count.'</div>
+                    </div>
                     <div class="es-category_item">項目別練習</div>
                     <div class="es-category_item">'.$es_category.'</div>
+                    <div class="es-like" style="margin:3px; height:24px;">
+                      <button class="'.$fav_button_class.'" id="fav_button_'.$post_id.'"value="'.$post_id.'">
+                        <i class="fa fa-heart"></i>
+                      </button>
+                    </div>
                 </div>
                 <div class="es-detail-content-box">
-                <div class="es-content-box-text">'.$es_content.'</div>
+                  <div class="es-content-box-text">'.$es_content.'</div>
                 </div>
             </div>
           </div>
-      ';
+      '.$commented_html.$comment_html;
       }
-    }
+    //}
   }else{
     //ESを見るの一覧ページ
-    $es_total = get_past_es($user_id,'all');
+    $es_total = get_past_es($user_id,'all','publish');
+    $es_draft = get_past_es($user_id,'all','draft');
+    $published_count = count($es_total);
+    $count = 0;
+    $es_total = array_merge($es_total,$es_draft);
     foreach($es_total as $es){
+      $count += 1;
       $post_id = $es->ID;
       $post = get_post($post_id);
       $post_user_id = get_userdata($post->post_author)->ID;
@@ -651,10 +834,33 @@ function view_past_es(){
       }
       $fav_array = get_post_meta($post_id,'favorite',true);
       $fav_count = count($fav_array);
+      $comment_array = get_post_meta($post_id,'コメント',false)[0];
+      $comment_count = count($comment_array);
       if(in_array($user_id,$fav_array)){
         $fav_button_class = 'btn favorite-button es-like-active';
       }else{
         $fav_button_class='btn favorite-button';
+      }
+      if ($count == $published_count+1){
+        $es_card_html .= '<div class="es-title-container"><h2 class="es-title">あなたのES(下書き)</h2></div>';
+      }
+      if($count > $published_count){
+        $post_button_html = '
+        <div class="es-submit-box">
+          <input type="hidden" name="es_category" value="'.$es_categories[$es_category_en][0].'">
+          <input type="hidden" name="edit_es_practice" value="edit_es_practice">
+          <input type="hidden" name="user_id" value="'.$user_id.'">
+          <input type="hidden" name="post_id" value="'.$post_id.'">
+          <input type="submit" name="publish" id="publish" class="es-submit-button" value="公開する">
+        </div>
+        ';
+        $publish_html = '
+          <div style="height:25px">
+            <form action="" method="POST" enctype="multipart/form-data">
+              <textarea class="es-content-textarea" name="es_content" placeholder="" height="100px" rows="4" required style="display:none;">'.$es_content.'</textarea>
+            '.$post_button_html.'
+            </form>
+          </div>';
       }
       $es_card_html .= '
         <div class="es-timeline__item">
@@ -669,9 +875,17 @@ function view_past_es(){
                 <div class="es-fav_status">
                   <div class="es-fav_status_item">
                     <div class="es-fav_status_icon">
-                      <i class="far fa-heart"></i>
+                      <button class="btn favorite-button_sub" value="'.$post_id.'">
+                        <i class="far fa-heart"></i>
+                      </button>
                     </div>
                     <div class="es-fav_status_label" id="fav_count_'.$post_id.'">'.$fav_count.'</div>
+                  </div>
+                  <div class="es-fav_status_item">
+                    <div class="comment__count">
+                      <i class="far fa-comments"></i>
+                    </div>
+                    <div class="es-fav_status_label">'.$comment_count.'</div>
                   </div>
                   <div class="es-category_item">'.$es_type.'</div>
                 </div>
@@ -698,6 +912,7 @@ function view_past_es(){
               </div>
             </div>
           </div>
+          '.$publish_html.'
         </div>
       ';
     }
@@ -705,7 +920,7 @@ function view_past_es(){
     if($es_count>0){
       $html = '
         <div class="es-title-container">
-          <h2 class="es-title">あなたのES</h2>
+          <h2 class="es-title">あなたのES（公開済み）</h2>
         </div>
         <div class="es-cards-container">'.$es_card_html.'</div>';
     }else{
@@ -748,6 +963,16 @@ function edit_es_post(){
     $es_type = 'entry_sheet';
 	  $post_id = $_POST['post_id'];
     update_post_meta($post_id, '投稿内容', $es_content);
+    if(!empty($_POST["save"])){
+      $post_status = "draft";
+    }
+    if(!empty($_POST["publish"])){
+      $post_status = "publish";
+    }
+    wp_update_post(array(
+      'ID'    =>  $post_id,
+      'post_status'   =>  $post_status,
+    ));
 		$home_url =esc_url( home_url( ));
 	  header('Location: '.$home_url.'/entry-sheet/view');
     die();
@@ -789,20 +1014,22 @@ function post_unpublished( $new_status, $old_status, $post ) {
 add_action( 'transition_post_status', 'post_unpublished', 10, 3 );
 
 //過去のESを取得する($user_idと$correctionで場合わけ)
-function get_past_es($user_id,$correction){
+function get_past_es($user_id,$correction,$post_status){
   if($user_id == 'all' && $correction == 'all'){
     $args = array(
       'post_type' => 'entry_sheet',
       'post_status' => array('publish'),
       'posts_per_page' => 100,
-      'orderby'          => 'date',
+	    'paged' => 1,
+      'orderby'          => 'modified',
     );
   }elseif($user_id == 'all' && $correction != 'all'){
     $args = array(
       'post_type' => 'entry_sheet',
       'post_status' => array('publish'),
       'posts_per_page' => 100,
-      'orderby'          => 'date',
+	  'paged' => 1,
+      'orderby'          => 'modified',
       'meta_query' => array(
         array(
           'key' => 'correction',
@@ -815,7 +1042,8 @@ function get_past_es($user_id,$correction){
       'post_type' => 'entry_sheet',
       'post_status' => array('publish'),
       'posts_per_page' => 100,
-      'orderby'          => 'date',
+	  'paged' => 1,
+      'orderby'          => 'modified',
       'meta_query' => array(
         array(
           'key' => 'author_id',
@@ -828,7 +1056,8 @@ function get_past_es($user_id,$correction){
       'post_type' => 'entry_sheet',
       'post_status' => array('publish'),
       'posts_per_page' => 100,
-      'orderby'          => 'date',
+	  'paged' => 1,
+      'orderby'          => 'modified',
       'meta_query' => array(
         array(
           'key' => 'author_id',
@@ -837,6 +1066,21 @@ function get_past_es($user_id,$correction){
         array(
           'key' => 'correction',
           'value' => $correction
+        )
+      )
+    );
+  }
+  if($post_status == 'draft'){
+    $args = array(
+      'post_type' => 'entry_sheet',
+      'post_status' => array('draft'),
+      'posts_per_page' => 100,
+      'paged' => 1,
+      'orderby'          => 'modified',
+      'meta_query' => array(
+        array(
+          'key' => 'author_id',
+          'value' => $user_id
         )
       )
     );
@@ -921,3 +1165,290 @@ function get_user_profile_image($user_id){
   }
   return $upload_file_name;
 }
+
+//postメタからuser_idがあるものだけを取得して表示する
+function view_fav_es($user_id){
+  $home_url =esc_url( home_url( ));
+  $user = wp_get_current_user();
+  $user_id = get_current_user_id();
+  $user_info = get_userdata($user_id);
+  $user_name = $user_info->user_login;
+  //ESを見るの一覧ペー
+  $es_total = get_past_es('all','all','published');
+  foreach($es_total as $es){
+    //$es_card_html .= view_other_es($es,$user_id);
+    $post_id = $es->ID;
+    $post = get_post($post_id);
+    $post_user_id = get_userdata($post->post_author)->ID;
+    $post_user_info = get_userdata($post_user_id);
+    $post_user_name = $post_user_info->user_login;
+    if ($post_user_id != $user_id){
+      $post_user_graduate_year = get_user_meta($post_user_id,'graduate_year',false)[0];
+      if(!empty($post_user_graduate_year)){
+        $post_user_graduate_year = substr(strval($post_user_graduate_year),2,2).'年卒・';
+      }
+      $post_user_gender = get_user_meta($post_user_id,'gender',false)[0][0];
+      $post_user_university = get_user_meta($post_user_id,'university',false)[0].'・';
+    }
+    if($user_id == $post_user_id){
+      $user_profile_image = get_user_profile_image($post_user_id);
+    }else{
+      if($post_user_gender == '男性'){
+        $user_profile_image = wp_get_attachment_image_src(9343)[0];
+      }else{
+        $user_profile_image = wp_get_attachment_image_src(9344)[0];
+      }
+    }
+    $post_status = get_post_meta($post_id,'correction',true);
+    $uploaded_date = get_the_modified_date('Y/n/j',$post_id);
+    $es_content = get_field("投稿内容",$post_id);
+    $es_corrector = get_field("添削者",$post_id);
+    $es_category_ja = get_field("投稿先",$post_id);
+    $es_correction = get_field("添削内容",$post_id);
+    if(mb_strlen($es_content) > 100){
+      $es_content = mb_substr($es_content, 0,100);
+      $es_content .= '...';
+    }
+    if(mb_strlen($es_correction) > 100){
+      $es_correction = mb_substr($es_correction, 0,100);
+      $es_correction .= '...';
+    }
+    if($post_status == 'true'){
+      $es_category = $es->post_title;
+      $es_type = '実践チャレンジ';
+      $es_url = get_es_url();
+      $es_categories = get_es_categories("challenge");
+      $es_category_en = $es_url[$es_category_ja];
+      $es_description_image = $es_categories[$es_category_en][2];
+    }else{
+      $es_category = get_field("投稿テーマ",$post_id);
+      $es_type = '項目別練習';
+      $es_url = get_es_url();
+      $es_categories = get_es_categories("practice");
+      $es_category_en = $es_url[$es_category];
+      $es_description_image = $es_categories[$es_category_en][2];
+    }
+    $fav_array = get_post_meta($post_id,'favorite',true);
+    $fav_count = count($fav_array);
+    $comment_array = get_post_meta($post_id,'コメント',false)[0];
+    $comment_count = count($comment_array);
+    if(in_array($user_id,$fav_array)){
+      $fav_button_class = 'btn favorite-button es-like-active';
+      $es_card_html .= '
+        <div class="es-timeline__item">
+          <div class="es-timeline__card">
+            <a href = "'.$home_url.'/entry-sheet/view?post_id='.$post_id.'&action=show">
+              <div class="es-text__body">
+                <div class="es-text__eyecatch">
+                  <img src="'.$home_url.'/wp-content/uploads/'.$es_description_image.'">
+                </div>
+                <h3 class="es-text__title">'.$es_category.'</h3>
+                <p class="es-text__description">'.$es_content.'</p>
+                <div class="es-fav_status">
+                  <div class="es-fav_status_item">
+                    <div class="es-fav_status_icon">
+                      <button class="btn favorite-button_sub" value="'.$post_id.'">
+                        <i class="far fa-heart"></i>
+                      </button>
+                    </div>
+                    <div class="es-fav_status_label" id="fav_count_'.$post_id.'">'.$fav_count.'</div>
+                  </div>
+                  <div class="es-category_item">'.$es_type.'</div>
+                  <div class="es-fav_status_item">
+                    <div class="comment__count">
+                      <i class="far fa-comments"></i>
+                    </div>
+                    <div class="es-fav_status_label">'.$comment_count.'</div>
+                  </div>
+                </div>
+              </div>
+            </a>
+            <div class="es-timeline_footer">
+              <div class="es-timeline_footer_avatar">
+                <div class="es-timeline_footer_icon">
+                  <div class="es-avatar">
+                    <img src="'.$user_profile_image.'">
+                  </div>
+                </div>
+                <div class="es-timeline_footer_name">
+                  <span>'.$post_user_university.$post_user_graduate_year.$post_user_gender.'</span>
+                </div>
+                <div class="es-timeline_footer_date">
+                  <span>'.$uploaded_date.'</span>
+                </div>
+              </div>
+              <div class="es-like">
+                  <button class="'.$fav_button_class.'" id="fav_button_'.$post_id.'"value="'.$post_id.'">
+                    <i class="fa fa-heart"></i>
+                  </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      ';
+    }
+  }
+  $es_count =  count($es_total);
+  if($es_count>0){
+    $html = '
+      <div class="es-title-container">
+        <h2 class="es-title">お気に入りのES</h2>
+      </div>
+      <div class="es-cards-container">'.$es_card_html.'</div>';
+  }else{
+    $html = '
+      <div class="es-title-container">
+        <h2 class="es-title">お気に入りのES</h2>
+      </div>
+      <div class="es-title-container">
+        <p>お気にいりのESはありません</p>
+      </div>';
+  }
+  if (!is_user_logged_in()){
+    $html = '<p class="text-align-center"><i class="fas fa-lock"></i>エントリーシート機能は会員限定です。JobShotに登録すると利用することができます。</p>';
+    $html .= apply_redirect();
+  }
+return $html;
+}
+add_shortcode('view_fav_es','view_fav_es');
+
+function view_other_es($es,$user_id,$num_content){
+  $home_url =esc_url( home_url( ));
+  $post_id = $es->ID;
+  $user_info = get_userdata($user_id);
+  $user_name = $user_info->user_login;
+  $post = get_post($post_id);
+  $post_user_id = get_userdata($post->post_author)->ID;
+  $post_user_info = get_userdata($post_user_id);
+  $post_user_name = $post_user_info->user_login;
+  if ($post_user_id != $user_id){
+    $post_user_graduate_year = get_user_meta($post_user_id,'graduate_year',false)[0];
+    if(!empty($post_user_graduate_year)){
+      $post_user_graduate_year = substr(strval($post_user_graduate_year),2,2).'年卒・';
+    }
+    $post_user_gender = get_user_meta($post_user_id,'gender',false)[0][0];
+    $post_user_university = get_user_meta($post_user_id,'university',false)[0].'・';
+  }
+  if($user_id == $post_user_id){
+    $user_profile_image = get_user_profile_image($post_user_id);
+  }else{
+    if($post_user_gender == '男性'){
+      $user_profile_image = wp_get_attachment_image_src(9343)[0];
+    }else{
+      $user_profile_image = wp_get_attachment_image_src(9344)[0];
+    }
+  }
+  $post_status = get_post_meta($post_id,'correction',true);
+  $uploaded_date = get_the_modified_date('Y/n/j',$post_id);
+  $es_content = get_field("投稿内容",$post_id);
+  $es_corrector = get_field("添削者",$post_id);
+  $es_category_ja = get_field("投稿先",$post_id);
+  $es_correction = get_field("添削内容",$post_id);
+  if(mb_strlen($es_content) > $num_content){
+    $es_content = mb_substr($es_content, 0,$num_content);
+    $es_content .= '...';
+  }
+  if(mb_strlen($es_correction) > $num_content){
+    $es_correction = mb_substr($es_correction, 0,$num_content);
+    $es_correction .= '...';
+  }
+  if($post_status == 'true'){
+    $es_category = $es->post_title;
+    $es_type = '実践チャレンジ';
+    $es_url = get_es_url();
+    $es_categories = get_es_categories("challenge");
+    $es_category_en = $es_url[$es_category_ja];
+    $es_description_image = $es_categories[$es_category_en][2];
+  }else{
+    $es_category = get_field("投稿テーマ",$post_id);
+    $es_type = '項目別練習';
+    $es_url = get_es_url();
+    $es_categories = get_es_categories("practice");
+    $es_category_en = $es_url[$es_category];
+    $es_description_image = $es_categories[$es_category_en][2];
+  }
+  $fav_array = get_post_meta($post_id,'favorite',true);
+  $fav_count = count($fav_array);
+  if(in_array($user_id,$fav_array)){
+    $fav_button_class = 'btn favorite-button es-like-active';
+  }else{
+    $fav_button_class='btn favorite-button';
+  }
+  $comment_array = get_post_meta($post_id,'コメント',false)[0];
+  $comment_count = count($comment_array);
+  $es_card_html = '';
+    $es_card_html = '
+      <div class="es-timeline__item">
+        <div class="es-timeline__card">
+          <a href = "'.$home_url.'/entry-sheet/view?post_id='.$post_id.'&action=show">
+            <div class="es-text__body">
+              <div class="es-text__eyecatch">
+                <img src="'.$home_url.'/wp-content/uploads/'.$es_description_image.'">
+              </div>
+              <h3 class="es-text__title">'.$es_category.'</h3>
+              <p class="es-text__description">'.$es_content.'</p>
+              <div class="es-fav_status">
+                <div class="es-fav_status_item">
+                  <div class="es-fav_status_icon">
+                    <button class="btn favorite-button_sub" value="'.$post_id.'">
+                      <i class="far fa-heart"></i>
+                    </button>
+                  </div>
+                  <div class="es-fav_status_label" id="fav_count_'.$post_id.'">'.$fav_count.'</div>
+                </div>
+                <div class="es-fav_status_item">
+                  <div class="comment__count">
+                    <i class="far fa-comments"></i>
+                  </div>
+                  <div class="es-fav_status_label">'.$comment_count.'</div>
+                </div>
+                <div class="es-category_item">'.$es_type.'</div>
+              </div>
+            </div>
+          </a>
+          <div class="es-timeline_footer">
+            <div class="es-timeline_footer_avatar">
+            <div class="es-timeline_footer_icon">
+                <div class="es-avatar">
+                  <img src="'.$user_profile_image.'">
+                </div>
+              </div>
+              <div class="es-timeline_footer_name">
+                <span>'.$post_user_university.$post_user_graduate_year.$post_user_gender.'</span>
+              </div>
+              <div class="es-timeline_footer_date">
+                <span>'.$uploaded_date.'</span>
+              </div>
+            </div>
+            <div class="es-like">
+                <button class="'.$fav_button_class.'" id="fav_button_'.$post_id.'"value="'.$post_id.'">
+                  <i class="fa fa-heart"></i>
+                </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    ';
+  return $es_card_html;
+}
+
+function comment_es(){
+  if(!empty($_POST["comment_es"])){
+    $user = wp_get_current_user();
+    $user_id = $_POST["user_id"];
+    $post_id = $_POST["post_id"];
+    $comment = $_POST["comment"];
+    $comment_array = [$user_id,$comment];
+    $original_comment_array = get_post_meta($post_id,'コメント',false)[0];
+    if(!empty($original_comment_array)){
+      $original_comment_array[] = $comment_array;
+    }else{
+      $original_comment_array = [$comment_array];
+    }
+    update_post_meta($post_id, 'コメント', $original_comment_array);
+		$home_url =esc_url( home_url( ));
+	  header('Location: '.$home_url.'/entry-sheet/view?post_id='.$post_id.'&action=show');
+    die();
+  }
+}
+add_action('template_redirect', 'comment_es');

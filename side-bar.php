@@ -98,6 +98,8 @@ function side_bar_widget_func(){
         <br>
         <a href="'.$home_url.'/recruit_interview_22"><img class="special_contents_img wp-image-5404 aligncenter" src="'.$home_url.'/wp-content/uploads/2020/05/image-2.png"></a>
         <br>
+        <a href="'.$home_url.'/entry-sheet"><img class="special_contents_img wp-image-5404 aligncenter" src="'.$home_url.'/wp-content/uploads/2020/05/81fb133bd948ad01f183d9d7a00b1e88.png"></a>
+        <br>
         <a href="'.$home_url.'/interview"><img class="special_contents_img wp-image-5404 aligncenter" src="'.$home_url.'/wp-content/uploads/2020/02/9628bacf8cc0154c6bec8a8ac88ced35.png"></a>
         <br>
         <a href="'.$home_url.'/gift_money"><img class="special_contents_img wp-image-5404 aligncenter" src="'.$home_url.'/wp-content/uploads/2019/10/0cc52848b5f9663458606f357ee63b46.png"></a>

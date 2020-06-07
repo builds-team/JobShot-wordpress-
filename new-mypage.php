@@ -7,42 +7,96 @@ function add_defer($tag, $handle) {
   return str_replace(' src=', ' defer src=', $tag);
 }
 
-function profile_tab($user_name){
-    $html = '
-    <div class="um-profile-nav um-profile-nav-block">		
-        <div class="um-profile-nav-item um-profile-nav-main ">
-            <a href="https://jobshot.jp/user?um_user='.$user_name.'&um_tab=main" class="uimob800-show uimob500-show uimob340-show um-tip-n" original-title="紹介">
-                <i class="um-faicon-user"></i>
-                <span class="uimob800-hide uimob500-hide uimob340-hide title">紹介</span>
-            </a>
-            <a href="https://jobshot.jp/user?um_user='.$user_name.'&um_tab=main" class="uimob800-hide uimob500-hide uimob340-hide" title="紹介">
-                <i class="um-faicon-user"></i>
-                <span class="title">紹介</span>
-            </a>
-        </div>
-        <div class="um-profile-nav-item um-profile-nav-favorites">
-            <a href="https://jobshot.jp/user?um_user='.$user_name.'&um_tab=favorites" class="uimob800-show uimob500-show uimob340-show um-tip-n" original-title="お気に入り">
-                <i class="um-faicon-star"></i>
-                <span class="uimob800-hide uimob500-hide uimob340-hide title">お気に入り</span>
-            </a>
-            <a href="https://jobshot.jp/user?um_user='.$user_name.'&um_tab=favorites" class="uimob800-hide uimob500-hide uimob340-hide" title="お気に入り">
-                <i class="um-faicon-star"></i>
-                <span class="title">お気に入り</span>
-            </a>
-        </div>
-        <div class="um-clear"></div>
-    </div>';
-    if($_GET['um_tab'] == 'favorites'){
-        $html = str_replace('um-profile-nav-favorites', 'um-profile-nav-favorites active',$html);
-        $html = str_replace('um-profile-nav-main  active', 'um-profile-nav-main', $html);
+function profile_tab($user_name,$login_user_roles){
+    if(in_array("company", $login_user_roles)){
+        $html = '
+            <div class="um-profile-nav um-profile-nav-block">		
+                <div class="um-profile-nav-item um-profile-nav-main  active">
+                    <a href="https://jobshot.jp/user?um_user='.$user_name.'&um_tab=main" class="uimob800-show uimob500-show uimob340-show um-tip-n" original-title="紹介">
+                        <i class="um-faicon-user"></i>
+                        <span class="uimob800-hide uimob500-hide uimob340-hide title">紹介</span>
+                    </a>
+                    <a href="https://jobshot.jp/user?um_user='.$user_name.'&um_tab=main" class="uimob800-hide uimob500-hide uimob340-hide" title="紹介">
+                        <i class="um-faicon-user"></i>
+                        <span class="title">紹介</span>
+                    </a>
+                </div>
+                <div class="um-profile-nav-item um-profile-nav-entry-sheet">
+                    <a href="https://jobshot.jp/user?um_user='.$user_name.'&um_tab=entry-sheet" class="uimob800-show uimob500-show uimob340-show um-tip-n" original-title="エントリーシート">
+                        <i class="um-faicon-pencil"></i>
+                        <span class="uimob800-hide uimob500-hide uimob340-hide title">エントリーシート</span>
+                    </a>
+                    <a href="https://jobshot.jp/user?um_user='.$user_name.'&um_tab=entry-sheet" class="uimob800-hide uimob500-hide uimob340-hide" title="エントリーシート">
+                        <i class="um-faicon-pencil"></i>
+                        <span class="title">エントリーシート</span>
+                    </a>
+                </div>
+                <div class="um-clear"></div>
+            </div>';
     }else{
-        $html = str_replace('um-profile-nav-main', 'um-profile-nav-main active',$html);
-    }
+        $html = '
+            <div class="um-profile-nav um-profile-nav-block">		
+                <div class="um-profile-nav-item um-profile-nav-main  active">
+                    <a href="https://jobshot.jp/user?um_user='.$user_name.'&um_tab=main" class="uimob800-show uimob500-show uimob340-show um-tip-n" original-title="紹介">
+                        <i class="um-faicon-user"></i>
+                        <span class="uimob800-hide uimob500-hide uimob340-hide title">紹介</span>
+                    </a>
+                    <a href="https://jobshot.jp/user?um_user='.$user_name.'&um_tab=main" class="uimob800-hide uimob500-hide uimob340-hide" title="紹介">
+                        <i class="um-faicon-user"></i>
+                        <span class="title">紹介</span>
+                    </a>
+                </div>
+                <div class="um-profile-nav-item um-profile-nav-favorites ">
+                    <a href="https://jobshot.jp/user?um_user='.$user_name.'&um_tab=favorites" class="uimob800-show uimob500-show uimob340-show um-tip-n" original-title="お気に入り">
+                        <i class="um-faicon-star"></i>
+                        <span class="uimob800-hide uimob500-hide uimob340-hide title">お気に入り</span>
+                    </a>
+                    <a href="https://jobshot.jp/user?um_user='.$user_name.'&um_tab=favorites" class="uimob800-hide uimob500-hide uimob340-hide" title="お気に入り">
+                        <i class="um-faicon-star"></i>
+                        <span class="title">お気に入り</span>
+                    </a>
+                </div>
+                        <div class="um-profile-nav-item um-profile-nav-attend">
+                    <a href="https://jobshot.jp/user?um_user='.$user_name.'&um_tab=attend" class="uimob800-show uimob500-show uimob340-show um-tip-n" original-title="応募済み一覧">
+                        <i class="um-faicon-graduation-cap"></i>
+                        <span class="uimob800-hide uimob500-hide uimob340-hide title">応募済み一覧</span>
+                    </a>
+                    <a href="https://jobshot.jp/user?um_user='.$user_name.'&um_tab=attend" class="uimob800-hide uimob500-hide uimob340-hide" title="応募済み一覧">
+                        <i class="um-faicon-graduation-cap"></i>
+                        <span class="title">応募済み一覧</span>
+                    </a>
+                </div>
+                <div class="um-profile-nav-item um-profile-nav-entry-sheet">
+                    <a href="https://jobshot.jp/user?um_user='.$user_name.'&um_tab=entry-sheet" class="uimob800-show uimob500-show uimob340-show um-tip-n" original-title="エントリーシート">
+                        <i class="um-faicon-pencil"></i>
+                        <span class="uimob800-hide uimob500-hide uimob340-hide title">エントリーシート</span>
+                    </a>
+                    <a href="https://jobshot.jp/user?um_user='.$user_name.'&um_tab=entry-sheet" class="uimob800-hide uimob500-hide uimob340-hide" title="エントリーシート">
+                        <i class="um-faicon-pencil"></i>
+                        <span class="title">エントリーシート</span>
+                    </a>
+                </div>
+                <div class="um-clear"></div>
+            </div>';
+        }
+        if($_GET['um_tab'] == 'favorites'){
+        $html = str_replace('um-profile-nav-favorites', 'um-profile-nav-favorites active',$html);
+		$html = str_replace('um-profile-nav-main  active', 'um-profile-nav-main', $html);
+    }elseif($_GET['um_tab'] == 'attend'){
+        $html = str_replace('um-profile-nav-attend', 'um-profile-nav-attend active',$html);
+		$html = str_replace('um-profile-nav-main  active', 'um-profile-nav-main', $html);
+    }elseif($_GET['um_tab'] == 'entry-sheet'){
+        $html = str_replace('um-profile-nav-entry-sheet', 'um-profile-nav-entry-sheet active',$html);
+		$html = str_replace('um-profile-nav-main  active', 'um-profile-nav-main', $html);
+    }else{
+		  $html = str_replace('um-profile-nav-main', 'um-profile-nav-main active',$html);
+		}
     return $html;
-
+}
 
 function new_mypage_func(){
-    $user = wp_get_current_user();
+  
+     $user = wp_get_current_user();
     $user_id = $user->data->ID;
     $register_day = $user->data->user_registered;
     $register_day = strtotime($register_day);
@@ -56,31 +110,11 @@ function new_mypage_func(){
             exit();
         }
     }
-    $user_id = um_profile_id();
-    $user_info = get_userdata(1657);
-    if ($user_id == 1657){
-	    require 'wp-includes/class-phpass.php'; //もしくは別途保存したPasswordHashへのパス
-        $pass_checker = new PasswordHash(8, true);
-    $result = $pass_checker->CheckPassword('genya', $user_info->user_pass); // → false
-	if($result){
-        $reset_html = '
-        <form>
-            <div class="um-field-label">
-                <label for="single_user_password">パスワード<span class="um-req" title="必須">*</span></label>
-            </div>
-            <div class="um-field-area">
-                <input class="um-form-field valid" type="password" name="user_password" value="" placeholder="">
-            </div>
-            <div class="um-col-alt um-col-alt-b">
-                <div class="um-left">
-                    <input type="hidden" name="user_id" value='.$user_id.' class="">
-                    <input type="submit" name="account_delete" class="um-button" value="アカウント削除">
-                </div>
-            </div>
-        </form>
-        ';
-        echo $reset_html;
-    }
+  
+     $user_id = um_profile_id();
+  
+    $user_info = get_userdata($user_id);
+    if($user_id == 1657){
 	}
     $user_array = array(
         "都道府県"  =>  "region",
@@ -244,7 +278,7 @@ function new_mypage_func(){
     $upload_dir = wp_upload_dir();
     $login_user = wp_get_current_user();
     $login_user_id = $login_user->data->ID;
-    $user_roles = $login_user->roles;
+    $login_user_roles = $login_user->roles;
     $user_info = get_userdata($user_id);
     $user_name = $user_info->user_login;
     $image_date = date("YmdHis");
@@ -374,7 +408,7 @@ function new_mypage_func(){
         ';
 
     }
-    elseif(in_array("administrator", $user_roles)){
+    elseif(in_array("administrator", $login_user_roles)){
         $header_html =
         '<div class="um-header">
             <div class="um-profile-edit um-profile-headericon um-trigger-menu-on-click">
@@ -434,7 +468,7 @@ function new_mypage_func(){
         </div>
         ';
     }
-    elseif(in_array("company", $user_roles)){
+    elseif(in_array("company", $login_user_roles)){
         $header_html = '
         <div class="um-header">
             <div class="um-profile-photo um-trigger-menu-on-click" data-user_id="'.$user_id.'">
@@ -480,17 +514,34 @@ function new_mypage_func(){
     }
     if($login_user_id == $user_id){
       $html .= $upload_html;
-      if(in_array("student", $user_roles){
-          $nav_html = profile_tab($user_name);
-      }
     }
+    $nav_html = profile_tab($user_name,$login_user_roles);
     $html .= $cover_html;
     $html .= $header_html;
     $html .= $nav_html;
-    if($_GET['um_tab'] == 'favorites'){
+        if($_GET['um_tab'] == 'favorites'){
         $html .= '<h3>企業情報</h3>'.do_shortcode('[show_favorites item_type=company]').'<h3>イベント</h3>'.do_shortcode('[show_favorites item_type=event]').'
         <h3>インターンシップ</h3>'.do_shortcode('[show_favorites item_type=internship]');
         return $html;
+    }elseif($_GET['um_tab'] == 'attend'){
+        $html .= do_shortcode('[view_applied_list]');
+        return $html;
+    }elseif($_GET['um_tab'] == 'entry-sheet'){
+        $es_total = get_past_es($user_id,'all','published');
+        if(!empty($es_total)){
+            foreach($es_total as $es){
+                $es_card_html .= view_other_es($es,$login_user_id,1000);
+            }
+            $html .= '<div class="es-cards-container">'.$es_card_html.'</div>';
+            return $html;
+        }else{
+            $html .= '
+            <div class="es-title-container">
+                <p>公開されたESはまだありません</p>
+            </div>';
+            return $html;
+        }
+        
     }
     $html.='
     <!-- これより上はclassとdivが被っているので不要 -->
@@ -1348,7 +1399,7 @@ function profilepage(){
         $user_id = $user->data->ID;
         $user_info = get_userdata($user_id);
         $user_name = $user_info->user_login;
-        if(!in_array("company", $user_roles)){
+        if(!in_array("company", $login_user_roles)){
             header('Location: https://jobshot.jp/user?um_user='.$user_name);
             exit;
         }else{
