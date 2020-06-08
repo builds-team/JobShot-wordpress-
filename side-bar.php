@@ -91,18 +91,25 @@ function side_bar_widget_func(){
     if(in_array("company", $current_user_roles)){
         return;
     }
+
+    $soudan_url = wp_get_attachment_image_src(9542,array(400,400))[0];
+    $soudan21_url = wp_get_attachment_image_src(12311,array(400,400))[0];
+    $soudan22_url = wp_get_attachment_image_src(13371,array(400,400))[0];
+    $es_url = wp_get_attachment_image_src(13411,array(400,400))[0];
+    $oiwai_url = wp_get_attachment_image_src(6204,array(400,400))[0];
+
     $html = '
     <h3 class="widgettitle">特別コンテンツ</h3>
     <p>
-        <a href="'.$home_url.'/recruit_interview"><img class="special_contents_img wp-image-5404 aligncenter" src="'.$home_url.'/wp-content/uploads/2020/04/99df0b5ee83a50b1c98a06ba7146e8bd.png"></a>
+        <a href="'.$home_url.'/interview"><img class="special_contents_img wp-image-5404 aligncenter" src="'.$soudan_url.'"></a>
         <br>
-        <a href="'.$home_url.'/recruit_interview_22"><img class="special_contents_img wp-image-5404 aligncenter" src="'.$home_url.'/wp-content/uploads/2020/05/image-2.png"></a>
+        <a href="'.$home_url.'/recruit_interview"><img class="special_contents_img wp-image-5404 aligncenter" src="'.$soudan21_url.'"></a>
         <br>
-        <a href="'.$home_url.'/entry-sheet"><img class="special_contents_img wp-image-5404 aligncenter" src="'.$home_url.'/wp-content/uploads/2020/05/81fb133bd948ad01f183d9d7a00b1e88.png"></a>
+        <a href="'.$home_url.'/recruit_interview_22"><img class="special_contents_img wp-image-5404 aligncenter" src="'.$soudan22_url.'"></a>
         <br>
-        <a href="'.$home_url.'/interview"><img class="special_contents_img wp-image-5404 aligncenter" src="'.$home_url.'/wp-content/uploads/2020/02/9628bacf8cc0154c6bec8a8ac88ced35.png"></a>
+        <a href="'.$home_url.'/entry-sheet"><img class="special_contents_img wp-image-5404 aligncenter" src="'.$es_url.'"></a>
         <br>
-        <a href="'.$home_url.'/gift_money"><img class="special_contents_img wp-image-5404 aligncenter" src="'.$home_url.'/wp-content/uploads/2019/10/0cc52848b5f9663458606f357ee63b46.png"></a>
+        <a href="'.$home_url.'/gift_money"><img class="special_contents_img wp-image-5404 aligncenter" src="'.$oiwai_url.'"></a>
         <br>';
     $args = array(
         'post_type' => array( 'event'),
