@@ -13161,9 +13161,9 @@ width:50px !important
 #post-5511 {
   padding-top: 0;
 }
-#post-5511 .background-img-container:before {
+/* #post-5511 .background-img-container:before {
   display: none;
-}
+} */
 .hr-consult {
   /* margin: 0 -20px; */
 }
@@ -13177,6 +13177,26 @@ width:50px !important
 }
 .consult__top__img img {
   width: 100vw;
+}
+.consult__bg-img__text {
+  top: 0;
+  position: relative;
+}
+.consult__bg-img__ele {
+  text-align: left;
+  width: 100%;
+}
+.consult__bg-img__ele__first {
+
+}
+.consult__bg-img__text .consult__bg-img__ele__second {
+  padding: 0;
+}
+.consult__bg-img__ele__third {
+  
+}
+.consult__bg-img__ele__four {
+
 }
 .consult__block {
   margin: 0 -20px;
@@ -13192,7 +13212,22 @@ width:50px !important
 }
 .consult__title {
   color: #555;
-  font-size: 2rem;
+  font-size: 1.8rem;
+  position: relative;
+}
+.consult__title::before {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+  content: "";
+  width: 80px;
+  height: 3px;
+  background: #ffc778;
 }
 .consult__worry__container {
   margin: 20px 0;
@@ -13210,20 +13245,8 @@ width:50px !important
   margin: auto;
   float: left;
 }
-.consult__worry__feature p {
-  font-size: 1rem;
-}
-.consult__worry__first:before {
-  content: "\e8fd";
-}
-.consult__worry__second:before {
-  content: "\e814";
-}
-.consult__worry__third:before {
-  content: "\e811";
-}
-.worry-big-icon {
-  font-size: 5rem;
+.consult__worry__icon-size img {
+  max-width: 70%;
 }
 .consult__flex__container {
   display: flex;
@@ -13243,33 +13266,42 @@ width:50px !important
   font-weight: bold;
 }
 .consult__univ__consultant_img {
-  margin: 10px 0;
+  margin: 2rem 0;
   text-align: center;
 }
 .consult__univ__consultant_img img{
   width: 20vw;
 	height: 20vw;
 	object-fit:cover;
-  border-radius:50%;
+  border-radius: 50%;
   /* border: 5px solid #03c4b0; */
 }
 .consult__univ__comment {
   width: 40%;
   margin: 0 0 0 10%;
   font-size: 1.2rem;
-  border-radius: 15px;
-  border: 3px dashed #03c4b0;
+  border-radius: 8px;
+  /* border: 1px solid #03c4b0; */
+  box-shadow: 0 .125rem .25rem rgba(0,0,0,.075);
   padding: 20px;
+  background-color: #fff;
+}
+.consult__solve {
+  padding: 30px 5%;
 }
 .consult__solve__reason {
-  width: 40%;
-  margin: 0 5% 0 0;
+  /* width: 40%;
+  margin: 0 5% 0 0; */
+}
+.consult__solve__reason__text {
+  padding: 0;
 }
 .consult__solve__reason .consult__solve__reason__title {
-  margin-bottom: 40px;
+  /* margin-bottom: 40px; */
   font-size: 1.4rem;
+  width: 45%;
 }
-.consult__solve__reason__title {
+/* .consult__solve__reason__title {
   text-align: left;
   font-weight: bold;
   border-bottom: solid 3px #03c4b0;
@@ -13282,17 +13314,56 @@ width:50px !important
   border-bottom: solid 3px #ffc778;
   bottom: -3px;
   width: 30%;
+} */
+.consult__solve__reason__ele {
+  font-size: 1.2rem;
+  list-style: none;
+  width: 25%;
+  float: left;
 }
 .consult__solve__reason__ele {
+  position: relative;
+  margin: 2em 1.5%;
+  padding: 2.5em 1em;
+  border: solid 3px #ffc778;
+  border-radius: 8px;
+}
+.consult__solve__reason__ele__title {
+  position: absolute;
+  display: inline-block;
+  top: -13px;
+  left: 10px;
+  padding: 0 9px;
+  line-height: 1;
   font-size: 1.6rem;
-  list-style: none;
+  background: #FFF;
+  color: #ffc778;
+  font-weight: bold;
+}
+.consult__solve__reason__ele__num {
+  color: #555;
+}
+.consult__solve__reason__ele p {
+  margin: 0;
+  padding: 0;
+  line-height: 2rem;
 }
 .consult__solve__details {
-  width: 50%;
-  margin: 0 0 0 5%;
+  /* width: 50%;
+  margin: 0 0 0 5%; */
 }
 .consult__solve__details table {
-  border-radius: 15px;
+  border-radius: 8px;
+  font-weight: bold;
+}
+.consult__solve__details .demo01 th {
+  background-color: #f7f7f7;
+}
+.consult__solve__details .demo01 th:before {
+  height: 2px;
+}
+.consult__solve__details table.demo01 {
+  border: 2px solid #03c4b0;
 }
 .consult__solve__reason__ele {
   margin-bottom: 30px;
