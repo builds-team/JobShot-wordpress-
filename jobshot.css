@@ -13174,38 +13174,28 @@ width:50px !important
 .consult__bg-img__text {
   top: 0;
 }
-/* .consult__bg-img__ele {
-  text-align: left;
-  width: 100%;
-} */
 .background-img-container .consult__bg-img__text p,.background-img-container .consult__bg-img__text h1 {
   margin: 0;
   padding: 0;
   position: absolute;
 }
 .background-img-container .consult__bg-img__text .consult__bg-img__ele__first {
-  /* padding: 0 0 0 10%; */
-  /* margin: 0 auto 0 10%; */
   font-size: 30px;
-  /* width: initial; */
   top: 60px;
   left: 10%;
   border-bottom: 3px solid #ffc778;
 }
 .background-img-container .consult__bg-img__text .consult__bg-img__ele__second {
-  /* padding: 0 0 0 10%; */
   font-size: 50px;
   top: 140px;
   left: 10%;
 }
 .background-img-container .consult__bg-img__text .consult__bg-img__ele__third {
-  /* padding: 0 0 0 10%; */
   font-size: 30px;
   top: 250px;
   left: 15%;
 }
 .background-img-container .consult__bg-img__text .consult__bg-img__ele__four {
-  /* padding: 0 0 0 10%; */
   font-size: 30px;
   top: 300px;
   left: 15%;
@@ -13215,12 +13205,12 @@ width:50px !important
 }
 .consult__block {
   margin: 0 -20px;
-  padding: 120px 12%;
+  padding: 120px 12% 0 12%;
   font-size: 1.2rem;
 }
 @media (max-width: 1280px) {
   .consult__block {
-    padding: 120px 10%;
+    padding: 120px 10% 0 10%;
   }
 }
 .consult__block-color {
@@ -13273,10 +13263,13 @@ width:50px !important
 }
 .consult__univ__consultant {
   width: 25vw;
+  margin: auto 0;
 }
 .consult-font-name {
+  display: block;
   width: 100%;
   text-align: center;
+  padding-top: 20px;
 }
 .consult-font-size {
   font-size: 1.2rem;
@@ -13284,26 +13277,26 @@ width:50px !important
 .consult-font-bold {
   font-weight: bold;
 }
-.consult__univ__consultant_img {
-  margin: 2rem 0;
+.consult__univ__consultant__img {
   text-align: center;
 }
-.consult__univ__consultant_img img{
+.consult__univ__consultant__img img{
   width: 20vw;
 	height: 20vw;
 	object-fit:cover;
   border-radius: 50%;
 }
 .consult__univ__comment {
-  width: 40%;
-  margin: 0 0 0 10%;
+  width: 40vw;
+  margin: 0 0 0 5%;
   border-radius: 8px;
   box-shadow: 0 .125rem .25rem rgba(0,0,0,.075);
   padding: 20px;
-  background-color: #fff;
+  background-color: #f7f7f7;
+  height: fit-content;
 }
 .consult__solve {
-  padding: 120px 5%;
+  padding: 120px 5% 0 5%;
 }
 .consult__solve__reason__text {
   padding: 0;
@@ -13332,7 +13325,6 @@ width:50px !important
   color: #03c4b0;
   font-weight: bold;
 }
-/* #ffc778 */
 .consult__solve__reason__ele__num {
   color: #555;
 }
@@ -13340,19 +13332,6 @@ width:50px !important
   margin: 0;
   padding: 0;
   line-height: 2rem;
-}
-.consult__solve__details table.demo01 {
-  border-radius: 8px;
-  font-size: 1.2rem;
-}
-.consult__solve__details .demo01 th {
-  background-color: #f7f7f7;
-}
-.consult__solve__details .demo01 th:before {
-  height: 2px;
-}
-.consult__solve__details table.demo01 {
-  border: 2px solid #03c4b0;
 }
 .consult__solve__reason__ele {
   margin-bottom: 30px;
@@ -13373,6 +13352,9 @@ width:50px !important
 }
 .consult__example__voice {
   margin: 50px 5%;
+}
+.consult__example__voice:last-child {
+  margin: 50px 5% 0 5%;
 }
 .consult__example__voice__comment {
   background-color: #fff;
@@ -13400,9 +13382,6 @@ width:50px !important
   border-right: 14px solid #bbb;
   z-index: 1;
 }
-.consult__example__margin {
-  margin-bottom: 30px;
-}
 .consult__example__voice__student {
   height: 140px;
   width: 140px;
@@ -13411,4 +13390,17 @@ width:50px !important
   border-radius: 50%;
   border: 1px solid #bbb;
   background-color: #fff;
+}
+.consult__solve__details table.demo01 {
+  border-radius: 8px;
+  font-size: 1.2rem;
+}
+.consult__solve__details .demo01 th:before {
+  height: 2px;
+}
+.consult__solve__details table.demo01 {
+  border: 2px solid #03c4b0;
+}
+.consult__solve__info__margin {
+  margin-bottom: 64px;
 }
