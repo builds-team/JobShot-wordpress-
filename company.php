@@ -803,25 +803,25 @@ function set_company_email(){
         $html = '
         <h3 class="widget-title">サブメールアドレス追加</h3>
         <div class="um-editor um-editor-univ">
-            <p>最大３つのメールアドレスを登録することができます（学生ユーザーが新卒応募またはインターン応募をした際に全てのアドレスにメールが送信されます）</p>
+            <p class="um-editor-p-element">最大３つのメールアドレスを登録することができます（学生ユーザーが新卒応募またはインターン応募をした際に全てのアドレスにメールが送信されます）</p>
             <form method="post" action="">
                 <div class="um-field um-field-university um-field-text um-field-type_text">
                     <div class="um-field-label"><label for="university-1597">メールアドレス<span class="um-req" title="必須">*</span></label>
                         <div class="um-clear"></div>
                     </div>
-                    <div class="um-field-area"><input autocomplete="off" class="um-form-field valid" type="text" name="user_email" value="'.$company_email.'" placeholder=""></div>
+                    <div class="um-field-area"><input autocomplete="off" class="um-form-field valid um-field-area-bottom-margin" type="text" name="user_email" value="'.$company_email.'" placeholder=""></div>
                 </div>
                 <div class="um-field um-field-university um-field-text um-field-type_text">
                     <div class="um-field-label"><label for="university-1597">サブメールアドレス1</label>
                         <div class="um-clear"></div>
                     </div>
-                    <div class="um-field-area"><input autocomplete="off" class="um-form-field valid" type="text" name="sub_email1" value="'.$sub_email1.'" placeholder=""></div>
+                    <div class="um-field-area"><input autocomplete="off" class="um-form-field valid um-field-area-bottom-margin" type="text" name="sub_email1" value="'.$sub_email1.'" placeholder=""></div>
                 </div>
                 <div class="um-field um-field-university um-field-text um-field-type_text">
                     <div class="um-field-label"><label for="university-1597">サブメールアドレス2</label>
                         <div class="um-clear"></div>
                     </div>
-                    <div class="um-field-area"><input autocomplete="off" class="um-form-field valid" type="text" name="sub_email2" value="'.$sub_email2.'" placeholder=""></div>
+                    <div class="um-field-area"><input autocomplete="off" class="um-form-field valid um-field-area-bottom-margin" type="text" name="sub_email2" value="'.$sub_email2.'" placeholder=""></div>
                 </div>
                 <div class="um-editor-btn">
                     <input type="hidden" name="user_id" value="'.$user_id.'">
