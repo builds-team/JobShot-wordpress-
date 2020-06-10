@@ -9085,6 +9085,13 @@ font-size: 12px;
  display: block;
 }
 
+.um-editor p.um-editor-p-element{
+  margin-bottom: 30px;
+  margin-top:30px
+}
+
+
+
 .um-field-area-base {
  display: block;
 }
@@ -9098,6 +9105,11 @@ font-size: 12px;
 .um-field-area-univ.inactive {
  display: none;
 }
+input.um-field-area-bottom-margin{
+  margin-bottom: 30px;
+  height: 35px;
+}
+
 
 
 .um-field-area-community {
