@@ -555,9 +555,13 @@ function update_job_info(){
     if(!empty($_POST["publish"])){
       $post_status = "publish";
     }
+    $occupation_name = get_the_terms($post_id,"occupation")[0]->name;
+    if($occupation_name == '総合職'){
+      $occupation_name = '総合';
+    }
     $post_value = array(
       'post_author' => get_current_user_id(),
-      'post_title' => $post_title,
+      'post_title' => $company_name.' '.$occupation_name.'職',
       'post_type' => 'job',
       'post_status' => $post_status,
       'ID' => $post_id,
@@ -862,6 +866,12 @@ function new_company_post_job(){
           }
           update_post_meta($insert_id, "社員名2", $worker_name2);
           update_post_meta($insert_id, "紹介文2", $worker_voice2);
+
+          $occupation_name = get_the_terms($insert_id,"occupation")[0]->name;
+          if($occupation_name == '総合職'){
+            $occupation_name = '総合';
+          }
+          $post_value['post_title'] = $company_name.' '.$occupation_name.'職';
 
           $insert_id2 = wp_insert_post($post_value); //上書き（投稿ステータスを公開に）
 
