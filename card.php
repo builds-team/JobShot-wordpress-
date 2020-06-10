@@ -610,6 +610,9 @@ function view_fullwidth_summer_intern_card_func($post_id){
   $area = get_the_terms($post_id,"area")[0]->name;
   $business_type = get_the_terms($company_id,"business_type")[0]->name;
   $occupation = get_the_terms($post_id,"occupation")[0]->name;
+  if($occupation == '総合職'){
+      $occupation = '総合';
+  }
   $card_category_html = '';
   if(!empty($area)){
     $card_category_html .= '<div class="card-category">'.$area.'</div>';
