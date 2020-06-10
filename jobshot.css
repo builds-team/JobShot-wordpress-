@@ -5247,7 +5247,7 @@ footer#footer.container {
   }
 }
 @media screen and (min-width: 681px) {
-.only-sp {
+  .only-sp {
     display: none !important;
   }
 }
@@ -13403,4 +13403,112 @@ width:50px !important
 }
 .consult__solve__info__margin {
   margin-bottom: 64px;
+}
+@media screen and (max-width: 782px) {
+  .background-img-container .consult__bg-img__text .consult__bg-img__ele__first {
+    font-size: 16px;
+    top: 20px;
+    left: 10%;
+    border-bottom: 3px solid #ffc778;
+  }
+  .background-img-container .consult__bg-img__text .consult__bg-img__ele__second {
+    font-size: 24px;
+    top: 70px;
+    left: 10%;
+  }
+  .background-img-container .consult__bg-img__text .consult__bg-img__ele__third {
+    font-size: 16px;
+    top: 120px;
+    left: 15%;
+  }
+  .background-img-container .consult__bg-img__text .consult__bg-img__ele__four {
+    font-size: 16px;
+    top: 150px;
+    left: 15%;
+  }
+  .consult__block {
+    padding: 30px 5% 0 5%;
+  }
+  .consult__block h2.consult__title {
+    margin: 0 0 40px 0;
+  }
+}
+@media screen and (max-width: 480px) {
+  .consult__block {
+    padding: 30px 0;
+    margin: initial;
+    font-size: 16px;
+  }
+  .consult__worry__feature li {
+    width: 100%;
+    margin: 20px 0 0 0;
+  }
+  .consult__worry__feature li:first-child {
+    margin: 0;
+  }
+  .consult__worry__icon.consult__worry__icon-size {
+    height: initial;
+  }
+  .consult__worry__icon-size img {
+    max-width: 50%;
+  }
+  .consult__univ__consultant {
+    width: 100%;
+  }
+  .consult__univ__consultant__img img {
+    width: 50vw;
+    height: 50vw;
+  }
+  .consult-font-name {
+    padding: 10px 0 20px 0;
+  }
+  .consult__univ__comment {
+    width: 100%;
+    margin: 0;
+  }
+  .consult__solve__reason__ele {
+    width: 100%;
+  }
+  .consult__example__voice {
+    display: block;
+    margin: 0;
+  }
+  .consult__example__voice:last-child {
+    margin: 0;
+  }
+  .consult__example__voice__student {
+    /* height: 140px;
+    width: 140px; */
+    margin: 30px auto 30px auto;
+  }
+  .consult__example__voice__comment {
+    margin: 0;
+    width: 90%;
+  }
+  .consult__example__voice__comment:before {
+    content: "";
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    margin-left: -12px;
+    border: 12px solid transparent;
+    border-bottom: 12px solid #FFF;
+    z-index: 2;
+  }
+  .consult__example__voice__comment:after {
+    content: "";
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    margin-left: -14px;
+    border: 14px solid transparent;
+    border-bottom: 14px solid #bbb;
+    z-index: 1;
+  }
+  .consult-font-size {
+    font-size: 16px;
+  }
+  .consult__solve__details table.demo01 {
+    font-size: 16px;
+  }
 }
