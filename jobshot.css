@@ -13219,7 +13219,6 @@ width:50px !important;
 /* トップページインターンとは */
 .intern__intro {
   font-size: 16px;
-  /* color: #555; */
 }
 .intern__intro .intern__intro__head {
   margin-top: 30px;
@@ -13238,12 +13237,10 @@ width:50px !important;
 }
 .intern__intro__title span {
   margin-right: 5px;
-  /* font-weight: bold; */
 }
 .intern__intro__title h4 {
   margin: 0;
   color: #03c4b0;
-  /* font-weight: bold; */
 }
 .intern__intro__title__icon:before {
   content: "\e5ca";
