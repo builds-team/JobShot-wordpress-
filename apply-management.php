@@ -512,6 +512,7 @@ function view_intern_all_applylist_func ( $atts ) {
               <th>応募案件名</th>
               <th>連絡先</th>
               <th>選考状況</th>
+              <th style="width:10%;">面接対策</th>
             </tr>
           </thead>
           <tbody>
@@ -545,6 +546,9 @@ function view_intern_all_applylist_func ( $atts ) {
                     <input type="submit" value="更新" class="status-update-button">
                   </div>
                 </form>
+              </td>
+              <td label="面接対策">
+                <p>${interview_practice}</p>
               </td>
             </tr>
           {{AFTER}}
