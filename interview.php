@@ -88,7 +88,143 @@ function about_interview(){
         <a href="'.$home_url.'/interview/apply">
             <button class="button button-apply">申し込みはこちらから</button>
         </a>
-    </div>';
+    </div>
+
+
+    <div class="siteorigin-widget-tinymce textwidget">
+    <div class="background-img-container">
+        <noscript><img src="https://i1.wp.com/jobshot.jp/wp-content/uploads/2020/02/photo-1555443712-22cd30585e5c.jpeg?w=1905&#038;ssl=1" alt data-recalc-dims="1"></noscript><img src="'.$home_url.'/wp-content/uploads/2020/06/charles-deluvio-Lks7vei-eAg-unsplash.jpg" alt="" data-src="https://jobshot.jp/wp-content/uploads/2020/02/photo-1555443712-22cd30585e5c.jpeg" class=" lazyloaded">
+        <div class="background-img-text consult__bg-img__text">
+            <p class="consult__bg-img__ele consult__bg-img__ele__first">講師　外コン・GAFA内定者</p>
+            <h1 class="font-serif consult__bg-img__ele consult__bg-img__ele__second">長期インターン個別相談会</h1>
+            <p class="consult__bg-img__ele consult__bg-img__ele__third">企業選びから<span class="consult-emphasis-color">内定</span>までサポート</p>
+            <p class="consult__bg-img__ele consult__bg-img__ele__four">参加者限定　<span class="consult-emphasis-color">特別推薦</span>あり</p>
+        </div>
+    </div>
+    <div class="consult__block consult__worry">
+        <h2 class="menu_title consult__title">長期インターンでよくある悩み</h2>
+        <div class="consult__worry__container">
+          <ul class="consult__worry__feature">
+            <li>
+              <div class="consult__worry__icon consult__worry__icon-size"><img src="'.$home_url.'/wp-content/uploads/2020/06/consult__first.png" alt=""></div>
+              <p class="menu_text consult-font-bold consult-font-size">自分に合う企業の選び方がわからない…</p>
+            </li>
+            <li>
+              <div class="consult__worry__icon consult__worry__icon-size"><img src="'.$home_url.'/wp-content/uploads/2020/06/consult__second.png" alt=""></div>
+              <p class="menu_text consult-font-bold consult-font-size">いきなり多忙になるのは大変そうかも…</p>
+            </li>
+            <li>
+              <div class="consult__worry__icon consult__worry__icon-size"><img src="'.$home_url.'/wp-content/uploads/2020/06/consult__third.png" alt=""></div>
+              <p class="menu_text consult-font-bold consult-font-size">スキル・経験が全くないので少し不安…</p>
+            </li>
+          </ul>
+        </div>
+    </div>
+    <div class="consult__block consult__univ">
+        <h2 class="menu_title consult__title only-pc">Jobshotの無料相談なら解決できます</h2>
+        <h2 class="menu_title consult__title only-sp">Jobshotの無料相談なら解決</h2>
+        <div class="consult__univ__container consult__flex__container">
+            <div class="consult__univ__consultant">
+                <div class="consult__univ__consultant__img"><img src="'.$home_url.'/wp-content/uploads/2020/06/takazawa.jpg" alt=""></div>
+                <p class="consult-font-name consult-font-bold">JobShot事業部長 高澤優（21）</p>
+            </div>
+            <div class="consult__univ__comment">
+                <p class="consult-font-bold">実績：</p>
+                <p>中央大学法学部３年生。これまで数多くの学生のキャリア設計・長期インターン選びを支え、就活まで徹底したサポートを続けてきた。<br>自身も長期インターン経験を持ち、就職活動では外資IT、外資コンサルの内定実績有り。</p>
+                <br>
+                <p class="consult-font-bold">一言：</p>
+                <p>良い学生生活が送れるよう、最適なインターン探しをお手伝いします！</p>
+            </div>
+        </div>
+    </div>
+    <div class="consult__block consult__solve">
+        <h2 class="menu_title consult__title only-pc">JobShotの無料相談を学生が選ぶ理由</h2>
+        <h2 class="menu_title consult__title only-sp">JobShotの無料相談を選ぶ理由</h2>
+        <div class="consult__solve__reason">
+            <ul class="consult__solve__reason__text consult__flex__container">
+                <li class="consult__solve__reason__ele">
+                    <span class="consult__solve__reason__ele__title">POINT<span class="consult__solve__reason__ele__num">1</span></span>
+                    <p>相談してくれる学生の目標から逆算し、自分に合った<span class="consult-font-bold">ベストなキャリア設計</span>ができる！</p></li>
+                <li class="consult__solve__reason__ele">
+                    <span class="consult__solve__reason__ele__title">POINT<span class="consult__solve__reason__ele__num">2</span></span>
+                    <p><span class="consult-font-bold">相談実績600件</span>の学生が自分と同じ目線で相談を受けてくれるから、サポートの質が高い！</p></li>
+                <li class="consult__solve__reason__ele">
+                    <span class="consult__solve__reason__ele__title">POINT<span class="consult__solve__reason__ele__num">3</span></span>
+                    <p>求人の文章だけでは伝わらないことを説明するから、長期インターンを始めた時に<span class="consult-font-bold">後悔しない</span>！</p></li>
+            </ul>
+        </div>
+    </div>
+    <div class="consult__block consult__example">
+        <h2 class="menu_title consult__title">実際に受けた相談例</h2>
+        <div class="consult__example__container">
+            <div class="sectionVoice consult__example__voice">
+                <div class="sectionVoice__img consult__example__voice__student">
+                    <noscript><img src="https://i0.wp.com/jobshot.jp/wp-content/uploads/2020/02/kazuki.jpg?w=1300&#038;ssl=1" alt data-recalc-dims="1"></noscript><img src="'.$home_url.'/wp-content/uploads/2020/06/student__first.png" alt="" data-src="'.$home_url.'/wp-content/uploads/2020/06/student__first.png" class=" ls-is-cached lazyloaded consult__example__voice__img">
+                </div>
+                <div class="sectionVoice__comment consult__example__voice__comment consult-font-size">
+                    <p class="sectionVoice__ttl">国立文系・経済学部3年</p>
+                    <p class="sectionVoice__txt">長期インターンを始めてみたい気持ちはあるのですが、どんな職種が自分に合うのかよくわかりません…</p>
+                </div>
+            </div>
+            <div class="sectionVoice consult__example__voice">
+                <div class="sectionVoice__img consult__example__voice__student">
+                    <noscript><img src="https://i0.wp.com/jobshot.jp/wp-content/uploads/2020/02/kazuki.jpg?w=1300&#038;ssl=1" alt data-recalc-dims="1"></noscript><img src="'.$home_url.'/wp-content/uploads/2020/06/student__second.png" alt="" data-src="'.$home_url.'/wp-content/uploads/2020/06/student__second" class=" ls-is-cached lazyloaded consult__example__voice__img">
+                </div>
+                <div class="sectionVoice__comment consult__example__voice__comment consult-font-size">
+                    <p class="sectionVoice__ttl">私立文系・経済学部2年</p>
+                    <p class="sectionVoice__txt">将来、私はヘルスケアに関わっていきたいと思っているのですが、オススメの長期インターンってありますか…？</p>
+                </div>
+            </div>
+            <div class="sectionVoice consult__example__voice">
+                <div class="sectionVoice__img consult__example__voice__student">
+                    <noscript><img src="https://i0.wp.com/jobshot.jp/wp-content/uploads/2020/02/kazuki.jpg?w=1300&#038;ssl=1" alt data-recalc-dims="1"></noscript><img src="'.$home_url.'/wp-content/uploads/2020/06/student__third.png" alt="" data-src="'.$home_url.'/wp-content/uploads/2020/06/student__third.png" class=" ls-is-cached lazyloaded consult__example__voice__img">
+                </div>
+                <div class="sectionVoice__comment consult__example__voice__comment consult-font-size">
+                    <p class="sectionVoice__ttl">国立理系・工学部3年</p>
+                    <p class="sectionVoice__txt">自己PRや面接のやり方がわからず、自分が就活で志望する企業の内定を取る自信がありません…</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="consult__block consult__solve__info consult__solve__info__margin">
+        <h2 class="menu_title consult__title">申し込みはこちらから</h2>
+        <div class="consult__solve__details">
+            <table class="demo01">
+                <tbody>
+                    <tr>
+                        <th>開催日時</th>
+                        <td>
+                            <div><a href="https://jobshot.jp/interview/apply">こちらからお選びください</a></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>場所</th>
+                        <td>
+                            <div>オンラインにて開催いたします</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>参加費</th>
+                        <td>無料</td>
+                    </tr>
+                    <tr>
+                        <th>持ち物</th>
+                        <td>メモ帳・筆記用具</td>
+                    </tr>
+                    <tr>
+                        <th>備考</th>
+                        <td>コロナウイルスの影響により、安全面を考慮し、オンラインで開催いたしますオンライン面談ではZoom(※インストール不要)を使用する予定です</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="fixed-buttom">
+        <a href="https://jobshot.jp/interview/apply">
+            <button class="button button-apply">申し込みはこちらから</button>
+        </a>
+    </div>
+</div>';
 
     return $html;
 }
@@ -201,5 +337,49 @@ add_shortcode("recruit_interview","recruit_interview");
 <div><i class="fas fa-train"></i>渋谷駅徒歩8分</div>
 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3241.5970616463133!2d139.6990004153449!3d35.66229558019869!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188ca880f4b6e7%3A0x6598c977001c85b3!2z44CSMTUwLTAwNDEg5p2x5Lqs6YO95riL6LC35Yy656We5Y2X77yR5LiB55uu77yR77yR4oiS77yR!5e0!3m2!1sja!2sjp!4v1560310092730!5m2!1sja!2sjp" width="100%" height="auto" frameborder="0" style="border:0" allowfullscreen=""></iframe>
 
-*/
+
+<section>
+        <img src="'.$home_url.'/wp-content/uploads/2020/02/9628bacf8cc0154c6bec8a8ac88ced35.png">
+        <div class="card-category-container event">
+            <div class="card-category">将来の志望企業から逆算して最適なインターン選びをお手伝いします！</div><br>
+            <div class="card-category">ESを一緒に作成し、通過率を高めます！</div><br>
+            <div class="card-category">過去問による面接で採用率を高めます！</div><br>
+        </div>
+    </section>
+    <section>
+        <table class="demo01">
+            <tbody>
+                <tr>
+                    <th>開催日時</th>
+                    <td>
+                        <div><a href="'.$home_url.'/interview/apply">こちらからお選びください</a></div>
+                    </td>
+                </tr>
+                <tr>
+                    <th>場所</th>
+                    <td>
+                        <div>オンラインにて開催いたします</div>
+                    </td>
+                </tr>
+                <tr>
+                    <th>参加費</th>
+                    <td>無料</td>
+                </tr>
+                <tr>
+                    <th>持ち物</th>
+                    <td>メモ帳・筆記用具</td>
+                </tr>
+                <tr>
+                    <th>備考</th>
+                    <td>コロナウイルスの影響により、安全面を考慮し、オンラインで開催いたします</br>オンライン面談ではZoom(※インストール不要)を使用する予定です</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+    <div class="fixed-buttom">
+        <a href="'.$home_url.'/interview/apply">
+            <button class="button button-apply">申し込みはこちらから</button>
+        </a>
+    </div>';
+    */
 ?>
