@@ -268,6 +268,9 @@ function view_fullwidth_job_card_func($post_id){
   $company = get_userdata($post->post_author);
   $company_name = $company->data->display_name;
   $occupation = get_the_terms($post_id,"occupation")[0]->name;
+  if($occupation == '総合職'){
+    $occupation = '総合';
+ }
   $salary = nl2br(get_field("給与",$post_id));
   $requirements = nl2br(get_field("応募資格",$post_id));
   $work_contents = nl2br(get_field("業務内容",$post_id));
