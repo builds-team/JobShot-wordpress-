@@ -791,23 +791,39 @@ function add_coulmn_merit(){
         </div>
         <ul class="listup__contents__list">
             <li class="listup__contents__ele">
-                <p class="listup__contents__icon"><i class="listup__contents__icon__details google-icon listup__contents__calendar"></i></p>
-                <p class="listup__contents__title">就活カレンダー</p>
+                <a href="https://jobshot.jp">
+                    <div class="list__contents__ele_div">
+                        <p class="listup__contents__icon"><i class="listup__contents__icon__details google-icon listup__contents__calendar"></i></p>
+                        <p class="listup__contents__title">就活カレンダー</p>
+                    </div>
+                </a>
                 <p class="listup__contents__description">インターン・本選考を含めた就活<br>スケジュールを一括管理できる</p>
             </li>
             <li class="listup__contents__ele">
-                <p class="listup__contents__icon"><i class="listup__contents__icon__details google-icon listup__contents__carrer"></i></p>
-                <p class="listup__contents__title">無料キャリア相談</p>
+                <a href="https://jobshot.jp/interview">
+                    <div class="list__contents__ele_div">
+                        <p class="listup__contents__icon"><i class="listup__contents__icon__details google-icon listup__contents__carrer"></i></p>
+                        <p class="listup__contents__title">無料キャリア相談</p>
+                    </div>
+                </a>
                 <p class="listup__contents__description">GAFAをはじめとした難関企業の<br>内定者に就活相談ができる</p>
             </li>
             <li class="listup__contents__ele">
-                <p class="listup__contents__icon"><i class="listup__contents__icon__details google-icon listup__contents__es"></i></p>
-                <p class="listup__contents__title">ES保管庫</p>
-                <p class="listup__contents__description">ES（エントリーシート）の回答を<br>質問別に整理して保存できる</p>
+                <a href="https://jobshot.jp/entry-sheet" >
+                    <div class="list__contents__ele_div">
+                        <p class="listup__contents__icon"><i class="listup__contents__icon__details google-icon listup__contents__es"></i></p>
+                        <p class="listup__contents__title">ES保管庫</p>
+                    </div>
+                </a>
+                    <p class="listup__contents__description">ES（エントリーシート）の回答を<br>質問別に整理して保存できる</p>
             </li>
             <li class="listup__contents__ele">
-                <p class="listup__contents__icon"><i class="listup__contents__icon__details google-icon listup__contents__column"></i></p>
-                <p class="listup__contents__title">限定コラム</p>
+                <a href="https://jobshot.jp/column">
+                    <div class="list__contents__ele_div">
+                        <p class="listup__contents__icon"><i class="listup__contents__icon__details google-icon listup__contents__column"></i></p>
+                        <p class="listup__contents__title">限定コラム</p>
+                    </div>
+                </a>
                 <p class="listup__contents__description">トップ企業内定者や有名経営者の<br>キャリア観・就活観がわかる</p>
             </li>
         </ul>

@@ -103,16 +103,18 @@ function apply_redirect(){
         ';
     $html = '<style type="text/css">
         .um-1596.um {
-        max-width: 450px;
-        margin:auto;
-        }
+            max-width: 450px;
+            margin:auto;
+            
+            }
+        
         .um-alt {
             line-height: 40px;
             color: #666666 !important;
             background:#eeeeee !important;
         }
         .um-right {
-            width: 48%;
+        width: 48%;
             display: inline-block;
             height: 30px;
             text-align: center;
@@ -129,16 +131,16 @@ function apply_redirect(){
             height:40px;
         }
         input[type="text"] {
-            width:100% !important;
-            height:40px;
+        width:100% !important;
+        height:40px;
         }
         input[type="submit"]{
-            width:100% !important;
-            height:40px;
+        width:100% !important;
+        height:40px;
         }
         input[type="password"] {
-            width:100% !important;
-            height:40px;
+        width:100% !important;
+        height:40px;
         }
         .um-link-alt {
             line-height: 22px;
@@ -149,12 +151,63 @@ function apply_redirect(){
             text-align: center;
             border-bottom: none !important;
         }
-        label {
-            font: normal !important;
+        
+                .tax-categories{
+                    display:none;
+                }
+                .um-field {
+                padding:15px 0 0 0 !important;
+                }
+                .um-field-label label {
+            font-size: 15px !important;
+            line-height: 22px !important;
+            font-weight: 600 !important;
         }
-        .tax-categories{
-            display:none;
+        span.um-req {
+            margin: 0 0 0 8px;
+            font-size: 14px;
+            display: inline-block;
         }
+        .um-field-label {
+            display: block;
+            margin: 0 0 8px 0;
+        }
+        .um-field-checkbox:not(.um-field), .um-field-radio:not(.um-field) {
+            display: block;
+            margin: 8px 0;
+            position: relative;
+        }
+        .um-col-alt-b {
+            padding-top: 20px;
+        }
+        .um-field-checkbox-option{
+        font-size:15px;
+        }
+        .um-field-error {
+            width: auto;
+            max-width: 100%;
+            background: #C74A4A;
+            -moz-border-radius: 3px;
+            -webkit-border-radius: 3px;
+            border-radius: 3px;
+            color: #fff;
+            box-sizing: border-box;
+            position: relative;
+            padding: 12px;
+            font-size: 14px;
+            line-height: 20px !important;
+            margin: 12px 0 0 0;
+        }
+        .um-field-arrow {
+            top: -17px;
+            left: 10px;
+            position: absolute;
+            z-index: 1;
+            color: #C74A4A;
+            font-size: 28px;
+            line-height: 1em !important;
+        }
+        
         
         </style>';
         $html .= do_shortcode('[ultimatemember form_id="1596"]');

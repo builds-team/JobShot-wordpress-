@@ -50,7 +50,7 @@ function dequeue_plugins_style() {
     if( !is_page( array('apply','contact','published_contact','scout','mail_setteing','アカウント削除') )){
         wp_dequeue_style( 'contact-form-7' );
     }
-    if( !is_page( array('user','register','login','user_account','mypage_test','apply','interview_apply') )){
+    if( !is_page( array('user','register','login','user_account','mypage_test','apply','interview_apply','エントリーシート','エントリーシートを見る','エントリーシートを見る（お気に入り）') )){
         wp_deregister_style( 'um_crop' );
         wp_deregister_style( 'um_modal' );
         wp_deregister_style( 'um_datetime_date' );
@@ -93,7 +93,7 @@ function dequeue_plugins_style() {
 
     }
 
-    if( !is_page( array('user','register','login','user_account','mypage_test','apply','interview_apply') )){
+    if( !is_page( array('user','register','login','user_account','mypage_test','apply','interview_apply','エントリーシート','エントリーシートを見る','エントリーシートを見る（お気に入り）') )){
         wp_deregister_script('um_pickadate');
         wp_deregister_script('um_pickadate_picker');
         wp_deregister_script('um_pickadate_picker.date');

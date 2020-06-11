@@ -1,78 +1,81 @@
 <?php
 
-function import_template2_func( $content ) {
-    if( is_single() && ! empty( $GLOBALS['post'] ) ) {
-        if ( $GLOBALS['post']->ID == get_the_ID() ) {
-          if( get_post_type() =='event' ) {
-            $content = template_event2_func($content);
-            return $content;
-          }
-          if( get_post_type() == 'internship' ) {
-            if(is_user_logged_in()){
-              if( !is_bot() ){
-                setDayViews(get_the_ID());
-                setWeekViews(get_the_ID());
-                setPostViews(get_the_ID());
-              }
-              $content = template_internship2_func($content);
-              return $content;
-            }else{
-              return apply_redirect();
-            }
-          }
-          if( get_post_type() == 'job' ) {
-            if(is_user_logged_in()){
-              $content = template_job2_func($content);
-              return $content;
-            }else{
-              return apply_redirect();
-            }
-          }
-          if( get_post_type() == 'company' ) {
-            $content=template_company_info2_func($content);
-            return $content;
-          }
-          if( get_post_type() == 'summer_internship' ) {
-            $content=template_summer_internship2_func($content);
-            return $content;
-          }
-          if( get_post_type() == 'autumn_internship' ) {
-            $content=template_autumn_internship2_func($content);
-            return $content;
-          }
-          if( get_post_type() == 'column' ) {
-            $content=template_column2_func($content);
-            return $content;
-          }
+function import_template2_func($content)
+{
+  if (is_single() && !empty($GLOBALS['post'])) {
+    if ($GLOBALS['post']->ID == get_the_ID()) {
+      if (get_post_type() == 'event') {
+        $content = template_event2_func($content);
+        return $content;
+      }
+      if (get_post_type() == 'internship') {
+        // if(is_user_logged_in()){
+        if (!is_bot()) {
+          setDayViews(get_the_ID());
+          setWeekViews(get_the_ID());
+          setPostViews(get_the_ID());
         }
+        $content = template_internship2_func($content);
+        return $content;
+        // }else{
+        //   return apply_redirect();
+        // }
+      }
+      if (get_post_type() == 'job') {
+        if (is_user_logged_in()) {
+          $content = template_job2_func($content);
+          return $content;
+        } else {
+          return apply_redirect();
+        }
+      }
+      if (get_post_type() == 'company') {
+        $content = template_company_info2_func($content);
+        return $content;
+      }
+      if (get_post_type() == 'summer_internship') {
+        $content = template_summer_internship2_func($content);
+        return $content;
+      }
+      if (get_post_type() == 'autumn_internship') {
+        $content = template_autumn_internship2_func($content);
+        return $content;
+      }
+      if (get_post_type() == 'column') {
+        $content = template_column2_func($content);
+        return $content;
+      }
     }
-    return $content;
+  }
+  return $content;
 }
 add_filter('the_content', 'import_template2_func');
 
-function view_terms_func($pid, $tax_slugs,$before='',$sep='',$after=''){
-  $html='';
-  foreach($tax_slugs as $tax_slug){
-	 if ($tax_slug === reset($tax_slugs)) {
-	   $html.=$before;
-	 }
-   $term_list=get_the_term_list($pid, $tax_slug, '<span class="card-category">', '</span><span class="card-category">','</span>');
-	   $term_list=str_replace('/?', '/customsearch?sw=&itype='.get_post_type($pid).'&',$term_list);
-$html.=$term_list;
-		 if ($tax_slug === end($tax_slugs)) {
-		   $html.=$after;
-		 }else{
-		   $html.=$sep;
-		 }
+function view_terms_func($pid, $tax_slugs, $before = '', $sep = '', $after = '')
+{
+  $html = '';
+  foreach ($tax_slugs as $tax_slug) {
+    if ($tax_slug === reset($tax_slugs)) {
+      $html .= $before;
+    }
+    $term_list = get_the_term_list($pid, $tax_slug, '<span class="card-category">', '</span><span class="card-category">', '</span>');
+    $term_list = str_replace('/?', '/customsearch?sw=&itype=' . get_post_type($pid) . '&', $term_list);
+    $html .= $term_list;
+    if ($tax_slug === end($tax_slugs)) {
+      $html .= $after;
+    } else {
+      $html .= $sep;
+    }
   }
-return $html;
+  return $html;
 }
 
-function add_top_bar($atts){
+function add_top_bar($atts)
+{
   extract(shortcode_atts(array(
     'item_type' => '',
   ), $atts));
-  $home_url =esc_url( home_url());
+  $home_url = esc_url(home_url());
   $title_array = array(
     'internship'  =>  '長期インターン',
     'job' =>  '新卒情報',
@@ -99,14 +102,12 @@ function add_top_bar($atts){
   );
   $html = '
   <div class="background-img-container">
-      <img src="'.$home_url.'/wp-content/uploads/'.$img_array[$item_type].'" alt="">
+      <img src="' . $home_url . '/wp-content/uploads/' . $img_array[$item_type] . '" alt="">
       <div class="background-img-text">
-          <h1 class="font-serif">'.$title_array[$item_type].'</h1>
-          <p>'.$text_array[$item_type].'</p>
+          <h1 class="font-serif">' . $title_array[$item_type] . '</h1>
+          <p>' . $text_array[$item_type] . '</p>
       </div>
   </div>';
   return $html;
 }
-add_shortcode("add_top_bar","add_top_bar");
-
-?>
+add_shortcode("add_top_bar", "add_top_bar");
