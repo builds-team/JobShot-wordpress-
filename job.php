@@ -315,7 +315,7 @@ function edit_job_info(){
                     <tr>
                         <th align="left" nowrap="nowrap">キャッチコピー</th>
                         <td>
-                          <div class="company-name"><input class="input-width" type="text" min="0" name="job_title" id="'.$mission.'" value="" placeholder="(例) 圧倒的なスピードで成長する〇〇ベンチャー"></div>
+                          <div class="company-name"><input class="input-width" type="text" min="0" name="job_title" id="" value="'.$mission.'" placeholder="(例) 圧倒的なスピードで成長する〇〇ベンチャー"></div>
                         </td>
                     </tr>
                     <tr>
@@ -482,6 +482,7 @@ function update_job_info(){
     $picture2 = $_FILES["picture2"];
     $worker_name2 = $_POST["worker_name2"];
     $worker_voice2 = $_POST["worker_voice2"];
+    $mission = $_POST["job_title"];
 
     if($_POST["occupation"]){
       wp_set_object_terms( $post_id, $occupation, 'occupation');
@@ -506,6 +507,9 @@ function update_job_info(){
     }
     if($_POST["welfare"]){
       update_post_meta($post_id, "福利厚生", esc_html($welfare));
+    }
+    if($_POST["job_title"]){
+      update_post_meta($post_id, "募集タイトル", $mission);
     }
     if($_POST["address"]){
       update_post_meta($post_id, "勤務地", $address);

@@ -224,13 +224,19 @@ function template_event2_func($content){
         $table_body_html.=add_to_table('スケジュール', get_field('スケジュール',$post_id));
     }
     if(!empty(get_field('持ち物',$post_id))){
-        $table_body_html.=add_to_table('持ち物', get_field('持ち物'));
+        $table_body_html.=add_to_table('持ち物', get_field('持ち物',$post_id));
+    }
+    if(!empty(get_field('報酬',$post_id))){
+        $table_body_html.=add_to_table('報酬',get_field('報酬',$post_id));
+    }
+    if(!empty(get_field('開催期間',$post_id))){
+        $table_body_html.=add_to_table('開催期間',get_field('開催期間',$post_id));
     }
     if(!empty(get_field('申込締切日時',$post_id))){
         $table_body_html.=add_to_table('申込締切',get_field('申込締切日時',$post_id));
     }
     if(!empty(get_field('備考',$post_id))){
-        $table_body_html.=add_to_table('備考', get_field('備考'));
+        $table_body_html.=add_to_table('備考', get_field('備考',$post_id));
     }
 
     $html='
