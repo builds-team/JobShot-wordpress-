@@ -390,7 +390,7 @@ function view_custom_search_func($atts){
                 </div>
                 <div class="full-card-text">
                     <div class="full-card-text-title"><a href="'.esc_url($tech_build_url).'">【エンジニア未経験者必見！】たった二ヶ月で未経験からエンジニアに</a></div>
-                    <div><p>【広告】プログラミング学習は独学者の9割が挫折すると言われています。TECH-BUILDはプログラミング学習者がつまずきやすいポイントを押さえた有名IT企業所属の優秀な現役エンジニアコーチと伴走して実力を身につけていくプログラミングスクールです。</p></div>
+                    <div><p class="tech-build-detail" style="margin:15px 0;">【広告】プログラミング学習は独学者の9割が挫折すると言われています。TECH-BUILDはプログラミング学習者がつまずきやすいポイントを押さえた有名IT企業所属の優秀な現役エンジニアコーチと伴走して実力を身につけていくプログラミングスクールです。</p></div>
                     <div class="card-category" style="background-color:#f9b539;">プログラミング初心者</div>
                 </div>
             </div>
