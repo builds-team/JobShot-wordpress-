@@ -379,6 +379,26 @@ function view_custom_search_func($atts){
             } 
         }
     }
+    if($item_type == "internship"){
+        $tech_build_url = "https://techbuild.studio.design/";
+        $tech_build_img_url = wp_get_attachment_image_src(13899, array(400, 400))[0];
+        $html = '
+        <div class="card full-card">
+            <div class="full-card-main">
+                <div class="full-card-img">
+                    <img src="'.$tech_build_img_url.'" alt="">
+                </div>
+                <div class="full-card-text">
+                    <div class="full-card-text-title"><a href="'.esc_url($tech_build_url).'">【エンジニア未経験者必見！】たった二ヶ月で未経験からエンジニアに</a></div>
+                    <div><p class="tech-build-detail" style="margin:15px 0;">【広告】プログラミング学習は独学者の9割が挫折すると言われています。TECH-BUILDはプログラミング学習者がつまずきやすいポイントを押さえた有名IT企業所属の優秀な現役エンジニアコーチと伴走して実力を身につけていくプログラミングスクールです。</p></div>
+                    <div class="card-category" style="background-color:#f9b539;">プログラミング初心者</div>
+                </div>
+            </div>
+            <div class="full-card-buttons">
+            <a href = "'.esc_url($tech_build_url).'"><button class="button detail">詳細を見る</button></a>
+            </div>
+        </div>';
+    }
     while ($cat_query->have_posts()): $cat_query->the_post();
         $post_id = $post->ID;
         if($post_id != '11779'){
