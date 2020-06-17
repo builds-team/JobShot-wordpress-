@@ -34,6 +34,9 @@ function template_job2_func($content){
     }else{
       $title_html = '<h2 class="mainhead">'.$occupation.'職</h2>';
     }
+    if($occupation_name == '総合職'){
+      $occupation_name = '総合';
+    }
     $selection_html = '<ul class="flowchart flowchart_job">';
     $counter = 1;
     foreach($selection_flows as $selection_flow){
