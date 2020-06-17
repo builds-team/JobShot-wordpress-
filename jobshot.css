@@ -5152,7 +5152,7 @@ footer#footer.container {
   line-height: 1.3;
 }
 .hero__strength__each__description {
-  font-size: 0.8em;
+  font-size: 0.9rem;
   line-height: 1.7;
   text-align: justify;
   margin: 0;
@@ -5235,7 +5235,7 @@ footer#footer.container {
   .hero__strength__each__description {
     color: #999;
     line-height: 1.4;
-		font-size: 11px;
+		font-size: 1rem;
 		padding-top: 5px;
   }
 }
@@ -10331,6 +10331,7 @@ font-size: 13px !important;
 .column h1 {
   color: #333;
   font-weight: 590;
+  font-size: 35px;
 }
 .column .entry h2 {
   margin-top: 40px !important;
@@ -13567,7 +13568,7 @@ width:50px !important;
   .consult__solve__details table.demo01 {
     font-size: 16px;
   }
-
+}
 .es__save {
   background:#eeeeee;
   border-style:none;
@@ -13576,19 +13577,20 @@ width:50px !important;
 
 /* トップページインターンとは */
 .intern__intro {
-  font-size: 16px;
+  font-size: 1rem;
 }
 .intern__intro .intern__intro__head {
   margin-top: 30px;
 }
-.intern__intro__container {
-  max-width: initial;
-  width: initial;
+.intern__intro .intern__intro__container {
+  max-width: initial !important;
+  width: initial !important;
   margin: 30px 0;
   padding: 2em 1.5em;
 }
 .intern__intro__title {
-  font-size: 17px !important;
+  font-size: 16px !important;
+  line-height: 16px;
   color: #03c4b0;
   display: flex;
   margin-bottom: 7px;
@@ -13599,6 +13601,7 @@ width:50px !important;
 .intern__intro__title h4 {
   margin: 0;
   color: #03c4b0;
+  font-size: 16px !important;
 }
 .intern__intro__title__icon:before {
   content: "\e5ca";
@@ -13613,14 +13616,29 @@ width:50px !important;
   float: right;
   text-decoration: underline;
 }
-@media (max-width: 480px){
-  .intern__intro__title {
-    font-size: 16px !important;
-  }
+@media screen and (max-width: 480px){
   .intern__intro__container {
     padding: 1.5em 1.5em 2em 1.5em;
   }
   .intern__intro__container p.intern__intro__text {
     margin: 5px 0 25px 0;
   }
+}
+
+/* フォントサイズ調整 */
+/* トップページカード */
+.home .full-card-text {
+  font-size: 1rem;
+}
+.home .full-card-text-title {
+  font-size: 1.3rem;
+}
+.home .full-card-text-company {
+  font-size: 0.9rem;
+}
+.home .full-card-table {
+  font-size: 1rem;
+}
+.home .full-card-table th {
+  padding-right: 0;
 }
