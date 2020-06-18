@@ -7642,7 +7642,7 @@ i.material-icons:hover {
         margin: 1.5em 0 !important;
     }
     .big_icon{
-        font-size: 4rem !important;;
+        font-size: 4rem !important;
     }
     .singular .main-content .all_wrap h3 {
         font-weight: normal !important;
@@ -8806,7 +8806,7 @@ label[for="myModal_open"]:hover {
  color: #fff;
  display: inline-block;
  position: absolute;
- top: 25%;;
+ top: 25%;
  left: 5%;
 }
 
@@ -9431,7 +9431,7 @@ top: -1px;
 
  .tab_item .tab_item_icon:before{
      font-style: normal;
-     font-size: 2.2em;;
+     font-size: 2.2em;
  }
 
 
@@ -9910,7 +9910,7 @@ font-size: 13px !important;
 }
 .navi-menu-content {
   display: block;
-  color: #fff;;
+  color: #fff;
   text-decoration: none;
   height: 50px;
 }
