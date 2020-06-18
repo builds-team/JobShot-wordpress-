@@ -956,9 +956,9 @@ function show_tech_build_lp()
                         <div class="card">
                             <h3 class="price-title">3ヶ月継続コース</h3>
                             <div class="price">
-                                <h4>月額<span>13,330円</span>(税込)〜</h4>
+                                <h4>月額<span>16,690円</span>(税込)〜</h4>
                                 <p>一括料金</p>
-                                <p>165,000円(税込)</p>
+                                <p>200,000円(税込)</p>
                             </div>
                             <p class="price-notice">
                                 ※1ヶ月目は月々の月々の支払いとは別に入会金29,800円(税込)が必要となります。<br>※受講の延長も50,000円で承っております。<br>※年率はカード会社によって異なります異なります。支払い回数、最大12回
