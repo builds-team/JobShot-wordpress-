@@ -97,10 +97,14 @@ function side_bar_widget_func(){
     $soudan22_url = wp_get_attachment_image_src(13371,array(400,400))[0];
     $es_url = wp_get_attachment_image_src(13411,array(400,400))[0];
     $oiwai_url = wp_get_attachment_image_src(6204,array(400,400))[0];
+    $techbuild_url = wp_get_attachment_image_src(13898,array(400,400))[0];
+    $tech_build_url = "https://techbuild.studio.design/";
 
     $html = '
     <h3 class="widgettitle">特別コンテンツ</h3>
     <p>
+        <a href="'.$home_url.'/techbuild"><img class="special_contents_img wp-image-5404 aligncenter" src="'.$techbuild_url.'"></a>
+        <br>
         <a href="'.$home_url.'/interview"><img class="special_contents_img wp-image-5404 aligncenter" src="'.$soudan_url.'"></a>
         <br>
         <a href="'.$home_url.'/recruit_interview"><img class="special_contents_img wp-image-5404 aligncenter" src="'.$soudan21_url.'"></a>
