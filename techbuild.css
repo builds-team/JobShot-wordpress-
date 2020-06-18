@@ -1,14 +1,599 @@
-.techbuild-img-container{
-    height: 800px !important;
+#post-14004 {
+    padding-top: 0;
 }
-.main .techbuild-img-container::before{
-    background-color: rgba(0,0,0,0.5);
-    content: ' ';
+
+.techbuild-img-container {
+    position: relative;
+    height: 800px !important;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100vw;
+    overflow: hidden;
+}
+
+.techbuild-img-container img {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 100%;
-    height: 760px;
+}
+
+.techbuild-img-container::before {
+    background: linear-gradient( 135deg, rgba(3, 196, 176, 0.5), rgba(3, 98, 196, 0.5));
+    content: " ";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 800px;
     z-index: 1;
+}
+
+.techbuild-img-title {
+    letter-spacing: 0.5rem;
+    font-size: 48px;
+    font-weight: 700 !important;
+    margin-bottom: 40px;
+    line-height: 160%;
+}
+
+.techbuild-img-title-container {
+    width: 800px;
+    margin: 0px auto;
+    backdrop-filter: blur(3px);
+}
+
+.techbuild-img-title-container .techbuild-apply {
+    border-radius: 10em;
+    font-size: 1.2rem;
+    background-color: #f9b539;
+    box-shadow: #bb9 0 5px 22px;
+    margin: 40px 0 16px;
+}
+
+.techbuild-section-content {
+    max-width: 1200px;
+    margin: 80px auto;
+}
+
+.techbuild-section-title {
+    font-size: 2.5em !important;
+    line-height: 1.5;
+    letter-spacing: 0.1rem;
+    color: #3e3c3c;
+    font-weight: 700 !important;
+    text-align: center;
+}
+
+.techbuild-section-title::after {
+    position: absolute;
+    content: " ";
+    display: block;
+    background-color: #fff;
+    border-bottom: solid 5px;
+    border-image: linear-gradient(45deg, #03c4b0, #2CE3F1);
+    border-image-slice: 1;
+    width: 15%;
+    margin-top: 10px;
+    left: 42.5%;
+}
+
+.techbuild-section-main-container {
+    text-align: center;
+    max-width: 1200px;
+    margin: 60px auto;
+    font-size: 16px;
+    line-height: 2;
+}
+
+.techbuild-section-text-container {
+    text-align: left;
+    max-width: 762px;
+    margin: 40px auto;
+}
+
+.techbuild-feature-inner {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    margin: 40px 0;
+}
+
+.techbuild-feature-inner .card {
+    width: auto;
+    margin: auto;
+    text-align: center;
+}
+
+.techbuild-feature-inner .card .ttl {
+    font-weight: 700 !important;
+}
+
+.techbuild-feature-inner .text {
+    line-height: 200%;
+    text-align: left;
+    margin: 20px;
+}
+
+.techbuild-company-list {
+    text-align: center;
+    padding: 40px 0;
+}
+
+.techbuild-company-img {
+    width: 120px;
+    margin: 0 24px;
+    -webkit-box-shadow: 0 2px 12px rgba(33, 33, 33, .2);
+    box-shadow: 0 2px 12px rgba(33, 33, 33, .2);
+}
+
+.techbuild-support-content {
+    padding: 60px 0;
+    text-align: center;
+}
+
+.techbuild-support-title {
+    font-size: 2rem;
+    font-weight: 700 !important;
+    color: #03c4b0;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.techbuild-support-title .xx-small {
+    font-size: 0.4em;
+}
+
+.techbuild-support-title .xx-large {
+    font-size: 4rem;
+    margin-top: -5px;
+    margin-bottom: 30px;
+    font-weight: 700;
+}
+
+.techbuild-support-title .small {
+    font-size: 0.6em;
+    margin-bottom: 10px;
+}
+
+.techbuild-support-image {
+    max-width: 600px;
+    margin: auto;
+}
+
+.techbuild-support-image img {
+    width: 400px;
+}
+
+.techbuild-support-image p {
+    margin-top: 16px !important;
+    font-size: 16px;
+    text-align: center;
+}
+
+.techbuild-support-coach {
+    margin-top: 64px !important;
+    font-size: 1.5rem;
+    color: #03c4b0;
+    font-weight: 700 !important;
+}
+
+.techbuild-support-ex-title {
+    display: inline-block;
+    text-align: center;
+    color: #fff;
+    padding: 10px 20px;
+    margin-bottom: 40px;
+    border-radius: 25px;
+    background: linear-gradient(45deg, #03c4b0, #3decda);
+}
+
+.techbuild-support-ex-image {
+    max-width: 600px;
+    margin: auto;
+    text-align: left;
+}
+
+.techbuild-support-ex-image img {
+    margin: 0px 0 16px;
+    width: 600px;
+}
+
+.techbuild-support-ex-image p {
+    font-size: 16px;
+}
+
+.techbuild-section-flow {
+    max-width: 800px !important;
+}
+
+.techbuild-section-flow ul {
+    padding: 0;
+}
+
+.techbuild-section-flow li {
+    list-style-type: none;
+}
+
+.techbuild-section-flow dd {
+    margin-left: 0;
+}
+
+.techbuild-section-flow .flow>li {
+    position: relative;
+}
+
+.techbuild-section-flow .flow>li:not(:last-child) {
+    margin-bottom: 40px;
+}
+
+.techbuild-section-flow .flow>li:not(:first-child)::before {
+    content: "";
+    height: 60px;
+    display: block;
+    border-left: 4px dotted #e5e5e5;
+    position: absolute;
+    top: -40px;
+    left: -webkit-calc(10% + 30px - 2px);
+    left: calc(10% + 30px - 2px);
+    z-index: 10;
+}
+
+.techbuild-section-flow .flow>li dl {
+    width: 100%;
+    padding: 20px 30px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    border: 2px solid #03c4b0;
+    border-radius: 10px;
+    position: relative;
+}
+
+.techbuild-section-flow .flow>li:not(:last-child) dl::before, .techbuild-section-flow .flow>li:not(:last-child) dl::after {
+    content: "";
+    border: solid transparent;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+}
+
+.techbuild-section-flow .flow>li:not(:last-child) dl::before {
+    border-width: 22px;
+    border-top-color: #03c4b0;
+}
+
+.techbuild-section-flow .flow>li:not(:last-child) dl::after {
+    border-width: 20px;
+    border-top-color: #fff;
+}
+
+.techbuild-section-flow .flow>li dl dt {
+    font-size: 20px;
+    font-weight: 600;
+    color: #03c4b0;
+    -ms-flex-preferred-size: 20%;
+    flex-basis: 20%;
+    margin-right: 2vw;
+    text-align: center;
+}
+
+.techbuild-section-flow .flow>li dl dt .icon {
+    font-size: 12px;
+    color: #fff;
+    background: #03c4b0;
+    background: -moz-linear-gradient(left, #03c4b0, #3decda);
+    background: -webkit-linear-gradient(left, #03c4b0, #3decda);
+    background: linear-gradient(45deg, #03c4b0, #3decda);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="#6b90db", endColorstr="#66d5e9", GradientType=1);
+    padding: 5px 10px;
+    margin-bottom: 10px;
+    display: block;
+    border-radius: 20px;
+    position: relative;
+    z-index: 100;
+}
+
+.techbuild-section-merit-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 900px;
+    padding: 0 0 40px;
+    margin: 0 auto;
+}
+
+.techbuild-section-merit-each {
+    width: 400px;
+    height: 60px;
+    background: linear-gradient(45deg, #03c4b0, #3decda);
+    margin: 20px 10px;
+    padding: 20px 10px;
+    border-radius: 5px;
+    backdrop-filter: blur(3px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.techbuild-section-merit-each p {
+    font-size: 1.2em;
+    font-weight: 700;
+    letter-spacing: 0.1rem;
+    color: #fff;
+}
+
+.techbuild-price-inner {
+    margin: auto;
+    max-width: 800px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.price-title {
+    padding: 20px;
+    background: linear-gradient(45deg, #03c4b0, #3decda);
+    color: #fff;
+    text-align: center;
+}
+
+.techbuild-section-main-container .card {
+    border-radius: 10px;
+}
+
+.techbuild-price-inner .price {
+    text-align: center;
+    position: relative;
+}
+
+.techbuild-price-inner .price h4 {
+    font-size: 16px;
+    margin: 64px 0 40px;
+}
+
+.techbuild-price-inner .price h4 span {
+    font-size: 2em;
+    margin: 0 5px;
+}
+
+.techbuild-price-inner .price h4::after {
+    position: absolute;
+    content: " ";
+    display: block;
+    background-color: #fff;
+    border-bottom: solid 2px;
+    border-image: linear-gradient(45deg, #03c4b0, #2CE3F1);
+    border-image-slice: 1;
+    width: 60%;
+    margin-top: 10px;
+    left: 20%;
+}
+
+.techbuild-price-inner .price p:first-of-type {
+    position: relative;
+    border-bottom: solid 1px #666666;
+    width: 20%;
+    left: 40%;
+}
+
+.techbuild-price-inner .price p:last-of-type {
+    margin-top: 8px;
+    font-size: 1.2em;
+}
+
+.price-notice {
+    padding: 20px;
+    font-size: 10px;
+    text-align: left;
+}
+
+.cp_qa *, .cp_qa *:after, .cp_qa *:before {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.cp_qa {
+    overflow-x: hidden;
+    margin: 0 auto;
+    color: #666666;
+    text-align: left;
+    max-width: 800px;
+}
+
+.cp_qa .cp_actab {
+    padding: 20px 0;
+    border-bottom: 1px dotted #cccccc;
+}
+
+.cp_qa label {
+    font-size: 1.2em;
+    position: relative;
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 10px 10px 0 48px;
+    cursor: pointer;
+}
+
+.cp_qa .cp_actab-content {
+    font-size: 1em;
+    position: relative;
+    overflow: hidden;
+    height: 0;
+    margin: 0 40px;
+    padding: 0 14px;
+    -webkit-transition: 0.4s ease;
+    transition: 0.4s ease;
+    opacity: 0;
+}
+
+.cp_qa .cp_actab input[type=checkbox]:checked~.cp_actab-content {
+    height: auto;
+    padding: 14px;
+    opacity: 1;
+}
+
+.cp_qa .cp_plus {
+    font-size: 2.4em;
+    line-height: 100%;
+    position: absolute;
+    z-index: 5;
+    margin: 3px 0 0 10px;
+    -webkit-transition: 0.2s ease;
+    transition: 0.2s ease;
+}
+
+.cp_qa .cp_actab input[type=checkbox]:checked~.cp_plus {
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.cp_qa .cp_actab input[type=checkbox] {
+    display: none;
+}
+
+.techbuild-coach-inner {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 40px 0;
+}
+
+.techbuild-coach-inner .ttl::after {
+    position: relative;
+    content: " ";
+    display: block;
+    background-color: #fff;
+    border-bottom: solid 2px;
+    border-image: linear-gradient(45deg, #03c4b0, #2CE3F1);
+    border-image-slice: 1;
+    width: 40%;
+    margin-top: 10px;
+    left: 30%;
+}
+
+.techbuild-coach-inner .ttl {
+    margin-top: 20px;
+}
+
+.techbuild-coach-inner .text {
+    font-size: 12px;
+    line-height: 200%;
+    text-align: left;
+    margin: 20px;
+}
+
+.techbuild-contact-wrapper {
+    max-width: 480px;
+    text-align: left;
+    margin: auto;
+}
+
+.techbuild-contact-wrapper input[type=submit] {
+    width: 40%;
+    height: 40px;
+    border-radius: 20px;
+    position: relative;
+    left: 30%;
+    border-radius: 10em;
+    font-size: 1.2rem;
+    background-color: #f9b539;
+    box-shadow: #bb9 0 5px 22px;
+}
+
+@media only screen and (max-width: 1024px) {
+    .techbuild-img-title-container {
+        width: 100%;
+    }
+    .techbuild-section-flow .flow>li dl {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 782px) {
+    .techbuild-img-container .background-img-text {
+        top: 10%;
+    }
+    .techbuild-img-container {
+        height: 550px !important;
+    }
+    .techbuild-img-title-container {
+        padding: 100px 0;
+    }
+    .techbuild-img-title-container p {
+        text-align: left;
+        line-height: 200%;
+        padding: 0 15px;
+    }
+    .techbuild-section-main-container {
+        text-align: left;
+        font-size: 12px;
+    }
+    .techbuild-section-title {
+        font-size: 2em !important;
+    }
+    .techbuild-section-title::after {
+        border-bottom: solid 3px;
+        width: 30%;
+        margin-top: 10px;
+        left: 35%;
+    }
+    .techbuild-feature-inner {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        margin: 0;
+    }
+    .techbuild-feature-inner .ttl {
+        text-align: center;
+    }
+    .techbuild-company-img {
+        width: 80px;
+        margin: 0 8px;
+    }
+    .techbuild-support-content {
+        padding: 24px 0;
+    }
+    .techbuild-support-image p {
+        font-size: 12px;
+    }
+    .techbuild-support-ex-image p {
+        font-size: 12px;
+    }
+    .techbuild-section-flow .flow>li dl dt {
+        font-size: 14px;
+        flex-basis: 60%;
+    }
+    .techbuild-section-main-container {
+        margin: 40px auto;
+    }
+    .techbuild-support-title {
+        margin-bottom: 16px;
+    }
+    .techbuild-section-merit-container {
+        padding-bottom: 0;
+    }
+    .techbuild-section-merit-each {
+        margin: 10px;
+    }
+    .techbuild-company-list {
+        padding: 24px 0;
+    }
+    .techbuild-section-content {
+        margin: 60px auto;
+    }
+    .techbuild-support-ex-title {
+        margin-bottom: 24px;
+    }
 }
