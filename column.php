@@ -791,13 +791,13 @@ function add_coulmn_merit(){
         </div>
         <ul class="listup__contents__list">
             <li class="listup__contents__ele">
-                <a href="https://jobshot.jp">
+                <a href="https://jobshot.jp/event">
                     <div class="list__contents__ele_div">
                         <p class="listup__contents__icon"><i class="listup__contents__icon__details google-icon listup__contents__calendar"></i></p>
-                        <p class="listup__contents__title">就活カレンダー</p>
+                        <p class="listup__contents__title">限定イベント</p>
                     </div>
                 </a>
-                <p class="listup__contents__description">インターン・本選考を含めた就活<br>スケジュールを一括管理できる</p>
+                <p class="listup__contents__description">企業説明会から就活対策セミナーまで、<br>トップレベルの就活を体感できる</p>
             </li>
             <li class="listup__contents__ele">
                 <a href="https://jobshot.jp/interview">
