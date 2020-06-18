@@ -47,7 +47,7 @@ function dequeue_plugins_style() {
     wp_dequeue_style( 'jetpack_likes' );
     wp_dequeue_style( 'chronicle-style-lato-web' );
     wp_deregister_style( 'broadsheet-style' );
-    if( !is_page( array('apply','contact','published_contact','scout','mail_setteing','アカウント削除') )){
+    if( !is_page( array('apply','contact','published_contact','scout','mail_setteing','アカウント削除', 'jobshotxtech-build') )){
         wp_dequeue_style( 'contact-form-7' );
     }
     if( !is_page( array('user','register','login','user_account','mypage_test','apply','interview_apply','エントリーシート','エントリーシートを見る','エントリーシートを見る（お気に入り）') )){
