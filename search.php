@@ -380,7 +380,7 @@ function view_custom_search_func($atts){
         }
     }
     if($item_type == "internship"){
-        $tech_build_url = "https://techbuild.studio.design/";
+        $tech_build_url = "https://jobshot.jp/jobshot_tech-build";
         $tech_build_img_url = wp_get_attachment_image_src(13899, array(400, 400))[0];
         $html = '
         <div class="card full-card">

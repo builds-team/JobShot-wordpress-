@@ -88,7 +88,7 @@ add_shortcode("company_side_bar", "company_side_bar_func");
 function side_bar_widget_func()
 {
   $home_url = esc_url(home_url());
-  $tech_build_url = "https://techbuild.studio.design/";
+  $tech_build_url = "https://jobshot.jp/jobshot_tech-build";
   $current_user = wp_get_current_user();
   $current_user_roles = $current_user->roles;
   if (in_array("company", $current_user_roles)) {
