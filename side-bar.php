@@ -137,7 +137,8 @@ function side_bar_widget_func()
     $post_id = $post->ID;
     $event_url = get_permalink($post_id);
     $event_image = get_field("イメージ画像", $post_id);
-    $event_image_url = $event_image["url"];
+    $event_image_id = $event_image['id'];
+    $event_image_url = wp_get_attachment_image_src($event_image_id,array(400,400))[0];
     $event_day = get_field("開催日", $post_id);
     if ($event_day >= date("Y/m/d")) {
       $html .= '
