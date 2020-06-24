@@ -5877,7 +5877,7 @@ table.demo01, .table__base {
   box-sizing: border-box;
 }
 .full-card + .full-card {
-  margin-top: 20px;
+  margin-top: 40px;
 }
 .full-card-img {
   position: relative;
@@ -5905,7 +5905,6 @@ table.demo01, .table__base {
   color: #03c4b0;
   font-size: 1.3rem;
   position: relative;
-  font-weight: bold;
 }
 .full-card-text-title::after {
   content: "";
@@ -13654,7 +13653,7 @@ width:50px !important;
 
 @media screen and (min-width: 480px) {
   .full-card:hover {
-    transform: translateY(-3px);
-    box-shadow: rgba(0, 0, 0, 0.16) 0 6px 11px;
+    transform: translateY(-6px);
+    box-shadow: rgba(0, 0, 0, 0.2) 0 10px 15px;
   }
 }
