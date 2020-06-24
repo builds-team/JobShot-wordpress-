@@ -13647,17 +13647,19 @@ width:50px !important;
 .top__search__container {
   margin: 0 2% 70px 2%;
 }
-.top__search__wrap:first-child {
-  margin-top: 35px;
-}
+/* .top__search__wrap:first-child {
+  margin-top: 45px;
+} */
 .top__search__wrap {
-  margin-top: 20px;
+  margin-top: 40px;
 }
 .top__search__wrap__title {
-  margin-bottom: 10px;
+  margin-bottom: 30px;
   padding-left: 0px;
   font-size: 1.2rem;
   color: #03c4b0;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 .top__search__contents {
   display: flex;
