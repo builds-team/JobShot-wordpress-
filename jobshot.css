@@ -9888,7 +9888,7 @@ font-size: 13px !important;
   bottom: 0;
   left: 0;
   right: 0;
-  z-index: 2;
+  z-index: 10;
   padding: 0;
   margin: 0;
   list-style: none;
@@ -13641,4 +13641,102 @@ width:50px !important;
 }
 .home .full-card-table th {
   padding-right: 0;
+}
+
+/* トップ検索 */
+.top__search__container {
+  margin: 0 0 30px 0;
+}
+.top__search__wrap__title {
+  margin-bottom: 10px;
+  padding-left: 0px;
+  font-size: 1.2rem;
+  color: #03c4b0;
+}
+.top__search__contents {
+  display: flex;
+  flex-wrap: wrap;
+  /* margin-bottom: 20px; */
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  justify-content: space-between;
+}
+.top__search__ele {
+  position: relative;
+  width: 23%;
+  height: 100px;
+  margin: 0 0 15px 0;
+  transition: .3s;
+  overflow: hidden;
+}
+.top__search__ele:hover {
+  box-shadow: 0px 10px 15px 0px rgba(0, 0, 0, 0.2);
+  transition: .3s;
+}
+.top__search__ele:before {
+  content: '';
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: inherit;
+  background: #152d4a;
+  opacity: .5;
+  pointer-events: none;
+  transition: .3s;
+}
+.top__search__ele:hover:before {
+  background: #03c4b0;
+  opacity: .7 ;
+  transition: .3s;
+}
+.top__search__ele a {
+  position: absolute;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: inherit;
+  text-align: center;
+  font-size: 1rem;
+  color: #fff;
+  pointer-events: none;
+}
+.top__search__ele img {
+  position: absolute;
+  /* height: 100px; */
+  width: 100%;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@media screen and (max-width: 980px) {
+  .top__search__ele {
+    height: 85px;
+  }
+}
+@media screen and (max-width: 680px) {
+  .top__search__wrap__title {
+    /* font-size: 1.4rem; */
+    margin-bottom: 15px;
+    color: #555;
+  }
+  .top__search__ele {
+    height: 40px;
+    width: 48%;
+    box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2);
+  }
+  .top__search__ele:before {
+    background: whitesmoke;
+  }
+  .top__search__ele a {
+    color: #555;
+    font-size: 1.2rem;
+  }
 }
