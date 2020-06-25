@@ -11338,11 +11338,10 @@ a .list__contents__ele_div:hover{
   line-height: 25px;
 }
 .listup__contents__link {
-  background-color: rgb(109, 209, 180);
-  margin: 30 -30px 0 -30px;
+  background-color: #F9B539;
 }
 .listup__contents__link:hover {
-  background-color: rgba(109, 209, 180, 0.5);
+  background-color: #e4ab55;
 }
 .listup__contents__link__text {
   position: relative;
@@ -13640,4 +13639,14 @@ width:50px !important;
     transform: translateY(-4px);
     box-shadow: rgba(0, 0, 0, 0.2) 0 9px 12px;
   }
+}
+
+.company-information-home{
+  font-weight:bold !important;
+  border-bottom: 2px solid #03c4b0;
+  
+}
+.favorite__container {
+  margin-top: 20px;
+  margin-left: 20px;
 }
