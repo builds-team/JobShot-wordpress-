@@ -5235,7 +5235,7 @@ footer#footer.container {
   .hero__strength__each__description {
     color: #999;
     line-height: 1.4;
-		font-size: 1rem;
+		font-size: 0.9rem;
 		padding-top: 5px;
   }
 }
@@ -5873,11 +5873,11 @@ table.demo01, .table__base {
 .full-card {
   margin: 0;
   max-width: none;
-  padding: 10px 20px;
+  padding: 20px 20px;
   box-sizing: border-box;
 }
 .full-card + .full-card {
-  margin-top: 20px;
+  margin-top: 40px;
 }
 .full-card-img {
   position: relative;
@@ -5898,9 +5898,12 @@ table.demo01, .table__base {
   left: 0;
   width: 100%;
 }
+.full-card-text {
+  font-size: 1rem;
+}
 .full-card-text-title {
   color: #03c4b0;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   position: relative;
 }
 .full-card-text-title::after {
@@ -5916,18 +5919,23 @@ table.demo01, .table__base {
 .full-card-text-caption {
   display: flex;
   align-items: center;
+  margin: 5px 0 10px 0;
+}
+.full-card-text-caption + div {
+  opacity: 0.7;
 }
 .full-card-text-company {
-  font-size: 0.75rem;
+  font-size: 0.9rem;
   line-height: 100%;
   margin-right: 10px;
   color: #333;
 	text-decoration : underline;
 }
 .full-card-table {
-  font-size: 0.9rem;
-  margin: 0;
-  margin-top: 10px;
+  font-size: 1rem;
+  /* margin: 0;
+  margin-top: 10px; */
+  margin: 10px 0;
   border: none;
 }
 .full-card-table th, .full-card-table td {
@@ -5936,7 +5944,7 @@ table.demo01, .table__base {
 .full-card-table th {
   font-weight: normal;
   color: #999;
-  padding-right: 2em;
+  padding-right: 0;
   background-color: transparent;
   text-align: left;
   width: 25%;
@@ -13627,18 +13635,9 @@ width:50px !important;
 
 /* フォントサイズ調整 */
 /* トップページカード */
-.home .full-card-text {
-  font-size: 1rem;
-}
-.home .full-card-text-title {
-  font-size: 1.3rem;
-}
-.home .full-card-text-company {
-  font-size: 0.9rem;
-}
-.home .full-card-table {
-  font-size: 1rem;
-}
-.home .full-card-table th {
-  padding-right: 0;
+@media screen and (min-width: 480px) {
+  .full-card:hover {
+    transform: translateY(-4px);
+    box-shadow: rgba(0, 0, 0, 0.2) 0 9px 12px;
+  }
 }
