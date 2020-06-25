@@ -1,24 +1,18 @@
 jQuery(function($){
     $("#um-submit-btn").attr(
-        "onclick", "ga('send', 'event', 'link', 'click','register');"
+        "onclick", "gtag('event', 'click', {'event_category': 'link', 'event_label': 'register'});"
     );
 });
 
 jQuery(function($){
 	$("#wpcf7-f324-p918-o1 .wpcf7-submit").attr(
-		"onclick", "ga('send', 'event', 'link', 'click','intern');"
+		"onclick", "gtag('event', 'click', {'event_category': 'link', 'event_label': 'intern'});"
 	);
 });
 
 jQuery(function($){
 	$("#wpcf7-f897-p918-o1 .wpcf7-submit").attr(
-		"onclick", "ga('send', 'event', 'link', 'click','intern');"
-	);
-});
-
-jQuery(function($){
-	$(".bookingButton").attr(
-		"onclick", "ga('send', 'event', 'link', 'click','interview');"
+		"onclick", "gtag('event', 'click', {'event_category': 'link', 'event_label': 'event'});"
 	);
 });
 // トップページロゴクリック位置修正

@@ -5,16 +5,19 @@ add_action( 'wp_footer', function () {
 <script>
 document.addEventListener('wpcf7mailsent', function( event ) {
     if ( '324' == event.detail.contactFormId ) {
-        gtag('event', 'apply', {
+        gtag('event', 'submit', {
             'event_category': 'contactform7',
             'event_label': 'internship'
         });
+        setTimeout(function(){
+            
+        },1000);
         var ajaxurl = '<?php echo admin_url( 'admin-ajax.php'); ?>';
         var self_internship_pr = $("[name=your-message]").html();
         var flag = false;
         if ($('.pr_save_check_box').prop('checked')) {
             flag = true;
-	        self_internship_pr = $("[name=your-message]").val();
+            self_internship_pr = $("[name=your-message]").val();
         }
         $.ajax({
                 type: 'POST',
@@ -33,10 +36,65 @@ document.addEventListener('wpcf7mailsent', function( event ) {
                 }
             });
         location = 'https://jobshot.jp/thank-you';
+    }else if('897' == event.detail.contactFormId){
+        gtag('event', 'submit', {
+            'event_category': 'contactform7',
+            'event_label': 'event'
+        });
+        setTimeout(function(){
+        
+        },1000);
     }
 }, false );
 </script>
 <?php } );
+
+
+add_action( 'wp_footer', 'mycustom_wp_footer' );
+function mycustom_wp_footer() {
+?>
+<script>
+document.addEventListener( 'wpcf7mailsent', function( event ) {
+  if ( "324" == event.detail.contactFormId ) {
+    gtag('event', 'click', {
+      'event_category': 'link',
+      'event_label': 'intern'
+    });
+  }
+  else if ( '[form id 2]' == event.detail.contactFormId ) {
+    gtag('event', '[action]', {
+      'event_category': '[category]',
+      'event_label': '[label]'
+    });
+  }
+}, false );
+</script>
+<?php
+}
+
+jQuery(function($){
+    $("#um-submit-btn").attr(
+        "onclick", "ga('send', 'event', 'link', 'click','register');"
+    );
+});
+
+jQuery(function($){
+	$("#wpcf7-f324-p918-o1 .wpcf7-submit").attr(
+		"onclick", "ga('send', 'event', 'link', 'click','intern');"
+	);
+});
+
+jQuery(function($){
+	$("#wpcf7-f897-p918-o1 .wpcf7-submit").attr(
+		"onclick", "ga('send', 'event', 'link', 'click','intern');"
+	);
+});
+
+jQuery(function($){
+	$(".bookingButton").attr(
+		"onclick", "ga('send', 'event', 'link', 'click','interview');"
+	);
+});
 
 function update_self_internship_PR_func(){
     $user = wp_get_current_user();
