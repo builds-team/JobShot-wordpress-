@@ -9090,6 +9090,13 @@ font-size: 12px;
   margin-top:30px
 }
 
+.um-field.um-field-shortcode h3.company-information-home{
+  margin-left: 20px;
+  font-weight: bold;
+  border-bottom: 2px solid #03c4b0;
+  background-color: #04ddc7;
+}
+
 
 
 .um-field-area-base {
