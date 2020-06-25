@@ -5235,7 +5235,7 @@ footer#footer.container {
   .hero__strength__each__description {
     color: #999;
     line-height: 1.4;
-		font-size: 1rem;
+		font-size: 0.9rem;
 		padding-top: 5px;
   }
 }
@@ -13635,25 +13635,9 @@ width:50px !important;
 
 /* フォントサイズ調整 */
 /* トップページカード */
-/* .home .full-card-text {
-  font-size: 1rem;
-}
-.home .full-card-text-title {
-  font-size: 1.3rem;
-}
-.home .full-card-text-company {
-  font-size: 0.9rem;
-}
-.home .full-card-table {
-  font-size: 1rem;
-}
-.home .full-card-table th {
-  padding-right: 0;
-} */
-
 @media screen and (min-width: 480px) {
   .full-card:hover {
-    transform: translateY(-6px);
-    box-shadow: rgba(0, 0, 0, 0.2) 0 10px 15px;
+    transform: translateY(-4px);
+    box-shadow: rgba(0, 0, 0, 0.2) 0 9px 12px;
   }
 }
