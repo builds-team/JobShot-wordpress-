@@ -13643,13 +13643,11 @@ width:50px !important;
   padding-right: 0;
 }
 
+/* ここから */
 /* トップ検索 */
 .top__search__container {
   margin: 0 2% 70px 2%;
 }
-/* .top__search__wrap:first-child {
-  margin-top: 45px;
-} */
 .top__search__wrap {
   margin-top: 40px;
 }
@@ -13664,7 +13662,6 @@ width:50px !important;
 .top__search__contents {
   display: flex;
   flex-wrap: wrap;
-  /* margin-top: 20px; */
   list-style: none;
   margin: 0 !important;
   padding: 0;
@@ -13715,7 +13712,6 @@ width:50px !important;
 }
 .top__search__ele img {
   position: absolute;
-  /* height: 100px; */
   width: 100%;
   z-index: 1;
   top: 0;
@@ -13730,8 +13726,13 @@ width:50px !important;
   }
 }
 @media screen and (max-width: 680px) {
+  .top__search__container {
+    margin: 0 2% 50px 2%;
+  }
+  .top__search__wrap {
+    margin-top: 25px;
+  }
   .top__search__wrap__title {
-    /* font-size: 1.4rem; */
     margin-bottom: 15px;
     color: #555;
   }
