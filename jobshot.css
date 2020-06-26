@@ -13772,8 +13772,10 @@ width:50px !important;
   }
   .top__search__ele a {
     font-size: 1.2rem;
+    height:40px;
   }
 .favorite__container {
   margin-top: 20px;
   margin-left: 20px;
+}
 }

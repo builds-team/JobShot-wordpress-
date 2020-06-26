@@ -73,4 +73,134 @@ function frontpage_view_pickups_func(){
     return do_shortcode($card_html);
   }
 add_shortcode('view-top-intern-card','view_top_intern_card_func');
+
+function frontpage_search_func(){
+    $tokyo = wp_get_attachment_image_src(14205, array(200,200))[0];
+    $sibuya = wp_get_attachment_image_src(14200, array(200,150))[0];
+    $shinjuku = wp_get_attachment_image_src(14201, array(200,150))[0];
+    $chiyoda = wp_get_attachment_image_src(14204, array(200,150))[0];
+
+    $marketing = wp_get_attachment_image_src(14196, array(200,150))[0];
+    $consult = wp_get_attachment_image_src(14189, array(200,150))[0];
+    $retail = wp_get_attachment_image_src(14199, array(200,150))[0];
+    $kikaku = wp_get_attachment_image_src(14195, array(200,150))[0];
+    $engineer = wp_get_attachment_image_src(14192, array(200,150))[0];
+    $zimu = wp_get_attachment_image_src(14206, array(200,150))[0];
+    $design = wp_get_attachment_image_src(14191, array(200,150))[0];
+    $sonota = wp_get_attachment_image_src(14202, array(200,150))[0];
+
+    $consulting = wp_get_attachment_image_src(14190, array(200,150))[0];
+    $zinzai = wp_get_attachment_image_src(14207, array(200,150))[0];
+    $money = wp_get_attachment_image_src(14198, array(200,150))[0];
+    $syosya = wp_get_attachment_image_src(14203, array(200,150))[0];
+    $advertise = wp_get_attachment_image_src(14188, array(200,150))[0];
+    $it = wp_get_attachment_image_src(14194, array(200,150))[0];
+    $house = wp_get_attachment_image_src(14193, array(200,150))[0];
+    $media = wp_get_attachment_image_src(14197, array(200,150))[0];
+
+    $html = 
+        '    <div class="top__search">
+        <h3 class="widget-title top__search_title">人気の求人検索</h3>
+        <div class="top__search__container">
+            <div class="top__search__wrap">
+                <h4 class="top__search__wrap__title">エリアから探す</h4>
+                <ul class="top__search__contents">
+                    <li class="top__search__ele">
+                      <span>東京</span>
+                      <a href="https://jobshot.jp/internship?selective=on&area%5B%5D=%25e6%259d%25b1%25e4%25ba%25ac&sw=&itype=internship"><img src="'.$tokyo.'" alt="" class="only-pc"></a>
+                    </li>
+                    <li class="top__search__ele">
+                      <span>渋谷区</span>
+                      <a href="https://jobshot.jp/internship?selective=on&area%5B%5D=%25e6%25b8%258b%25e8%25b0%25b7%25e5%258c%25ba&sw=&itype=internship"><img src="'.$sibuya.'" alt="" class="only-pc"></a>
+                    </li>
+                    <li class="top__search__ele">
+                      <span>新宿区</span>
+                      <a href="https://jobshot.jp/internship?selective=on&area%5B%5D=%25e6%2596%25b0%25e5%25ae%25bf%25e5%258c%25ba&sw=&itype=internship"><img src="'.$shinjuku.'" alt="" class="only-pc"></a>
+                    </li>
+                    <li class="top__search__ele">
+                      <span>千代田区</span>
+                      <a href="https://jobshot.jp/internship?selective=on&area%5B%5D=%25e5%258d%2583%25e4%25bb%25a3%25e7%2594%25b0%25e5%258c%25ba&sw=&itype=internship"><img src="'.$chiyoda.'" alt="" class="only-pc"></a>
+                    </li>
+                </ul>
+            </div>
+            <div class="top__search__wrap">
+                <h4 class="top__search__wrap__title">職種から探す</h4>
+                <ul class="top__search__contents">
+                    <li class="top__search__ele">
+                      <span>マーケティング</span>
+                      <a href="https://jobshot.jp/internship?selective=on&selective=on&occupation%5B%5D=marketer&sw=&itype=internship"><img src="'.$marketing.'" alt="" class="only-pc"></a>
+                    </li>
+                    <li class="top__search__ele">
+                      <span>コンサル</span>
+                      <a href="https://jobshot.jp/internship?selective=on&occupation%5B%5D=consulting&sw=&itype=internship"><img src="'.$consult.'" alt="" class="only-pc"></a>
+                    </li>
+                    <li class="top__search__ele">
+                      <span>営業</span>
+                      <a href="https://jobshot.jp/internship?selective=on&occupation%5B%5D=sales&sw=&itype=internship"><img src="'.$retail.'" alt="" class="only-pc"></a>
+                    </li>
+                    <li class="top__search__ele">
+                      <span>企画</span>
+                      <a href="https://jobshot.jp/internship?selective=on&occupation%5B%5D=planning&sw=&itype=internship"><img src="'.$kikaku.'" alt="" class="only-pc"></a>
+                    </li>
+                    <li class="top__search__ele">
+                      <span>エンジニア</span>
+                      <a href="https://jobshot.jp/internship?selective=on&occupation%5B%5D=engineer&sw=&itype=internship"><img src="'.$engineer.'" alt="" class="only-pc"></a>
+                    </li>
+                    <li class="top__search__ele">
+                      <span>事務</span>
+                      <a href="https://jobshot.jp/internship?selective=on&occupation%5B%5D=corporate_staff&sw=&itype=internship"><img src="'.$zimu.'" alt="" class="only-pc"></a>
+                    </li>
+                    <li class="top__search__ele">
+                      <span>デザイナー</span>
+                      <a href="https://jobshot.jp/internship?occupation%5B%5D=designer&sw=&itype=internship"><img src="'.$design.'" alt="" class="only-pc"></a>
+                    </li>
+                    <li class="top__search__ele">
+                      <span>その他</span>
+                      <a href="https://jobshot.jp/internship?occupation%5B%5D=others&sw=&itype=internship"><img src="'.$sonota.'" alt="" class="only-pc"></a>
+                    </li>
+                </ul>
+            </div>
+            <div class="top__search__wrap">
+                <h4 class="top__search__wrap__title">業種から探す</h4>
+                <ul class="top__search__contents">
+                    <li class="top__search__ele">
+                      <span>コンサルティング</span>
+                      <a href="https://jobshot.jp/internship?selective=on&business_type%5B%5D=consult&sw=&itype=internship"><img src="'.$consulting.'" alt="" class="only-pc"></a>
+                    </li>
+                    <li class="top__search__ele">
+                      <span>人材</span>
+                      <a href="https://jobshot.jp/internship?business_type%5B%5D=hr&sw=&itype=internship"><img src="'.$zinzai.'" alt="" class="only-pc"></a>
+                    </li>
+                    <li class="top__search__ele">
+                      <span>金融</span>
+                      <a href="https://jobshot.jp/internship?business_type%5B%5D=fin&sw=&itype=internship"><img src="'.$money.'" alt="" class="only-pc"></a>
+                    </li>
+                    <li class="top__search__ele">
+                      <span>商社</span>
+                      <a href="https://jobshot.jp/internship?business_type%5B%5D=trad&sw=&itype=internship"><img src="'.$syosya.'" alt="" class="only-pc"></a>
+                    </li>
+                    <li class="top__search__ele">
+                      <span>広告</span>
+                      <a href="https://jobshot.jp/internship?business_type%5B%5D=adv&sw=&itype=internship"><img src="'.$advertise.'" alt="" class="only-pc"></a>
+                    </li>
+                    <li class="top__search__ele">
+                      <span>IT</span>
+                      <a href="https://jobshot.jp/internship?business_type%5B%5D=it&sw=&itype=internship"><img src="'.$it.'" alt="" class="only-pc"></a>
+                    </li>
+                    <li class="top__search__ele">
+                      <span>不動産</span>
+                      <a href="https://jobshot.jp/internship?business_type%5B%5D=real_estate&sw=&itype=internship"><img src="'.$house.'" alt="" class="only-pc"></a>
+                    </li>
+                    <li class="top__search__ele">
+                      <span>メディア</span>
+                      <a href="https://jobshot.jp/internship?business_type%5B%5D=media&sw=&itype=internship"><img src="'.$media.'" alt="" class="only-pc"></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>';
+
+    return $html;
+}
+add_shortcode('frontpage_search','frontpage_search_func');
 ?>
