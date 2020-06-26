@@ -520,8 +520,19 @@ function new_mypage_func(){
     $html .= $header_html;
     $html .= $nav_html;
         if($_GET['um_tab'] == 'favorites'){
-        $html .= '<h3>企業情報</h3>'.do_shortcode('[show_favorites item_type=company]').'<h3>イベント</h3>'.do_shortcode('[show_favorites item_type=event]').'
-        <h3>インターンシップ</h3>'.do_shortcode('[show_favorites item_type=internship]');
+        $html .= '
+        <div class="favorite__containers">
+            <div class="favorite__container">
+                <h3 class="company-information-home">企業情報</h3>'.do_shortcode('[show_favorites item_type=company]').'
+            </div>
+            <div class="favorite__container">    
+                <h3 class="company-information-home">イベント</h3>'.do_shortcode('[show_favorites item_type=event]').'
+            </div>
+            <div class="favorite__container">
+                <h3 class="company-information-home">インターンシップ</h3>'.do_shortcode('[show_favorites item_type=internship]').'
+            </div>
+        </div>'
+        ;
         return $html;
     }elseif($_GET['um_tab'] == 'attend'){
         $html .= do_shortcode('[view_applied_list]');

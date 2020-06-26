@@ -7,78 +7,88 @@ function view_applied_list_func(){
         $user_id= $_GET["um_user"];
     }
     $job_num = do_shortcode(' [cfdb-count form="/新卒応募.*/" filter="your-id='.$user_id.'"]');
-    $job_html = '<h3 class="widget-title">新卒応募</h3>';
-    $job_html .= do_shortcode(' [cfdb-html form="/新卒応募.*/" show="Submitted,job-id,job-name" filter="your-id='.$use_id.'" orderby="Submitted desc"]
-    {{BEFORE}}
-    <table class="tbl02">
-        <thead>
-            <tr>
-                <th>企業名</th>
-                <th>応募日時</th>
-            </tr>
-        </thead>
-        <tbody>{{/BEFORE}}
-            <tr>
-                <td>[pid2link ${job-id}]${job-name}[/pid2link]</td>
-                <td label="応募日時"><p>[submitted2str sbm="${Submitted}"]</p></td>
-            </tr>
-        {{AFTER}}
-        </tbody>
-    </table>{{/AFTER}}
-   [/cfdb-html]');
+    $job_html = '<div class="favorite__container"><h3 class="company-information-home">新卒応募</h3>';
+    if($job_num == 0){
+        $job_html .= '<p class="text-center">応募がありません。</p>';
+    }else{
+        $job_html .= do_shortcode(' [cfdb-html form="/新卒応募.*/" show="Submitted,job-id,job-name" filter="your-id='.$user_id.'" orderby="Submitted desc"]
+        {{BEFORE}}
+        <table class="tbl02">
+            <thead>
+                <tr>
+                    <th>企業名</th>
+                    <th>応募日時</th>
+                </tr>
+            </thead>
+            <tbody>{{/BEFORE}}
+                <tr>
+                    <td>[pid2link ${job-id}]${job-name}[/pid2link]</td>
+                    <td label="応募日時"><p>[submitted2str sbm="${Submitted}"]</p></td>
+                </tr>
+            {{AFTER}}
+            </tbody>
+        </table>{{/AFTER}}
+       [/cfdb-html]');
+    }
+    $job_html .= "</div>";
    $internship_num = do_shortcode(' [cfdb-count form="/インターン応募.*/" filter="your-id='.$user_id.'"]');
-   $internship_html = '<h3 class="widget-title">インターン応募</h3>';
-   $internship_html .= do_shortcode(' [cfdb-html form="/インターン応募.*/" show="Submitted,job-id,job-name,your-message" filter="your-id='.$user_id.'" orderby="Submitted desc"]
-    {{BEFORE}}
-    <table class="tbl02">
-        <thead>
-            <tr>
-                <th>タイトル</th>
-                <th>応募日時</th>
-                <th>志望動機</th>
-            </tr>
-        </thead>
-        <tbody>{{/BEFORE}}
-            <tr>
-                <td>[pid2link ${job-id}]${job-name}[/pid2link]</td>
-                <td label="応募日時"><p>[submitted2str sbm="${Submitted}"]</p></td>
-                <td><p>${your-message}</p></td>
-            </tr>
-        {{AFTER}}
-        </tbody>
-    </table>{{/AFTER}}
-   [/cfdb-html]');
+   $internship_html = '<div class="favorite__container"><h3 class="company-information-home">インターン応募</h3>';
+   if($internship_num == 0){
+       $internship_html .= '<p class="text-center">応募がありません。</p>';
+   }else{
+        $internship_html .= do_shortcode(' [cfdb-html form="/インターン応募.*/" show="Submitted,job-id,job-name,your-message" filter="your-id='.$user_id.'" orderby="Submitted desc"]
+        {{BEFORE}}
+        <table class="tbl02">
+            <thead>
+                <tr>
+                    <th>タイトル</th>
+                    <th>応募日時</th>
+                    <th>志望動機</th>
+                </tr>
+            </thead>
+            <tbody>{{/BEFORE}}
+                <tr>
+                    <td>[pid2link ${job-id}]${job-name}[/pid2link]</td>
+                    <td label="応募日時"><p>[submitted2str sbm="${Submitted}"]</p></td>
+                    <td><p>${your-message}</p></td>
+                </tr>
+            {{AFTER}}
+            </tbody>
+        </table>{{/AFTER}}
+        [/cfdb-html]');
+   }
+   $internship_html .= "</div>";
     $event_num = do_shortcode(' [cfdb-count form="/イベント応募.*/" filter="your-id='.$user_id.'"]');
-    $event_html = '<h3 class="widget-title">イベント応募</h3>';
-    $event_html .= do_shortcode(' [cfdb-html form="/イベント応募.*/" show="Submitted,job-id,job-name" filter="your-id='.$user_id.'" orderby="Submitted desc"]
-    {{BEFORE}}
-    <table class="tbl02">
-        <thead>
-            <tr>
-                <th>イベント名</th>
-                <th>応募日時</th>
-            </tr>
-        </thead>
-        <tbody>{{/BEFORE}}
-            <tr>
-                <td>[pid2link ${job-id}]${job-name}[/pid2link]</td>
-                <td label="応募日時"><p>[submitted2str sbm="${Submitted}"]</p></td>
-            </tr>
-        {{AFTER}}
-        </tbody>
-    </table>{{/AFTER}}
-    [/cfdb-html]');
-    $html = '';
-    if($job_num != 0){
-        $html .= $job_html;
+    $event_html = '<div class="favorite__container"><h3 class="company-information-home">イベント応募</h3>';
+    if($event_num == 0){
+        $event_html .= '<div class="cards-container"><p class="text-center">応募がありません。</p></div>';
+    }else{
+        $event_html .= do_shortcode(' [cfdb-html form="/イベント応募.*/" show="Submitted,job-id,job-name" filter="your-id='.$user_id.'" orderby="Submitted desc"]
+        {{BEFORE}}
+        <table class="tbl02">
+            <thead>
+                <tr>
+                    <th>イベント名</th>
+                    <th>応募日時</th>
+                </tr>
+            </thead>
+            <tbody>{{/BEFORE}}
+                <tr>
+                    <td>[pid2link ${job-id}]${job-name}[/pid2link]</td>
+                    <td label="応募日時"><p>[submitted2str sbm="${Submitted}"]</p></td>
+                </tr>
+            {{AFTER}}
+            </tbody>
+        </table>{{/AFTER}}
+        [/cfdb-html]');
     }
-    if($internship_num != 0){
-        $html .= $internship_html;
-    }
-    if($event_num != 0){
-        $html .= $event_html;
-    }
-   return $html.$_GET;;
+    $event_html .= "</div>";
+    $html = "<div>";
+    $html .= $job_html;
+    $html .= $event_html;
+    $html .= $internship_html;
+    $html .= "</div>";
+   return $html;
 }
 add_shortcode('view_applied_list','view_applied_list_func');
 
