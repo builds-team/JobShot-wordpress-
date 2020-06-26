@@ -621,7 +621,7 @@ function show_tech_build_lp()
                             「なかなか学習に手をつけられない…」そんな不安を無くします。<br>
                         </p>
                         <button
-                            class="button techbuild-apply" onclick="'.$onclick_href.'">無料カウンセリングに申し込む</button>
+                            class="button techbuild-apply" onclick="' . $onclick_href . '">無料カウンセリングに申し込む</button>
                     </div>
                 </div>
             </div>
@@ -1013,10 +1013,50 @@ function show_tech_build_lp()
             <section class="techbuild-section-content" id="contact">
                 <h2 class="techbuild-section-title">まずは無料相談へ</h2>
                 <div class="techbuild-section-main-container" id="techbuild_contactform_wrapper">
-                    <div class="techbuild-contact-wrapper">'.$contactform_html.'</div>
+                    <div class="techbuild-contact-wrapper">' . $contactform_html . '</div>
                 </div>
             </section>
     ';
     return  $style_html . $html;
 }
 add_shortcode('show_tech_build_lp', 'show_tech_build_lp');
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  //
+// 本文中にアドセンスコードを自動挿入する
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  //
+function add_techbuild_ads_before_h2($the_content)
+{
+    $ads = '
+        <div class="card full-card">
+            <div class="full-card-main">
+                <div class="full-card-img">
+                    <noscript><img src="https://i2.wp.com/jobshot.jp/wp-content/uploads/2020/06/TechBuild-Ad-2.png?fit=400%2C267&amp;ssl=1" alt></noscript><img src="https://i2.wp.com/jobshot.jp/wp-content/uploads/2020/06/TechBuild-Ad-2.png?fit=400%2C267&amp;ssl=1" alt="" data-src="https://i2.wp.com/jobshot.jp/wp-content/uploads/2020/06/TechBuild-Ad-2.png?fit=400%2C267&amp;ssl=1" class=" lazyloaded">
+                </div>
+                <div class="full-card-text">
+                    <div class="full-card-text-title"><a href="https://jobshot.jp/jobshot_tech-build">【エンジニア未経験者必見！】たった二ヶ月で未経験からエンジニアに</a></div>
+                    <div><p class="tech-build-detail" style="margin:15px 0;">【広告】プログラミング学習は独学者の9割が挫折すると言われています。TECH-BUILDはプログラミング学習者がつまずきやすいポイントを押さえた有名IT企業所属の優秀な現役エンジニアコーチと伴走して実力を身につけていくプログラミングスクールです。</p></div>
+                    <div class="card-category" style="background-color:#f9b539;">プログラミング初心者</div>
+                </div>
+            </div>
+            <div class="full-card-buttons">
+            <a href="https://jobshot.jp/jobshot_tech-build"><button class="button detail">詳細を見る</button></a>
+            </div>
+        </div>
+    ';
+    $h2 = '/^<h2.*?>.+?<\/h2>$/im'; //H2見出しのパターン
+
+    if (preg_match_all($h2, $the_content, $matches, PREG_SET_ORDER)) {
+        _log($matches);
+        if ($matches[0]) {
+
+            // 3つ目のh2見出しの上にTECH-BUILDの広告挿入
+            if ($matches[0][1]) {
+                $the_content  = str_replace($matches[0][1], $ads . $matches[0][1], $the_content);
+            }
+
+        }
+    }
+    return $the_content;
+}
+
+?>

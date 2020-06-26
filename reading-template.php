@@ -43,6 +43,9 @@ function import_template2_func($content)
       }
       if (get_post_type() == 'column') {
         $content = template_column2_func($content);
+        if (current_user_can('administrator')){
+          // $content = add_techbuild_ads_before_h2($content);
+        }
         return $content;
       }
     }
