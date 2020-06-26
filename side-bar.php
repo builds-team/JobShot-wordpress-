@@ -95,7 +95,7 @@ function side_bar_widget_func()
     return;
   }
 
-  $tech_build_img_url = wp_get_attachment_image_src(13898, array(400, 400))[0];
+  $tech_build_img_url = wp_get_attachment_image_src(14217, array(400, 400))[0];
   $soudan_url = wp_get_attachment_image_src(9542, array(400, 400))[0];
   $soudan21_url = wp_get_attachment_image_src(12311, array(400, 400))[0];
   $soudan22_url = wp_get_attachment_image_src(13371, array(400, 400))[0];
@@ -109,9 +109,9 @@ function side_bar_widget_func()
         <br>
         <a href="' . $home_url . '/interview"><img class="special_contents_img wp-image-5404 aligncenter" src="' . $soudan_url . '"></a>
         <br>
-        <a href="' . $home_url . '/recruit_interview"><img class="special_contents_img wp-image-5404 aligncenter" src="' . $soudan21_url . '"></a>
+        <a href="' . $home_url . '/recruit_interview"><img class="special_contents_img wp-image-5404 aligncenter only-pc" src="' . $soudan21_url . '"></a>
         <br>
-        <a href="' . $home_url . '/recruit_interview_22"><img class="special_contents_img wp-image-5404 aligncenter" src="' . $soudan22_url . '"></a>
+        <a href="' . $home_url . '/recruit_interview_22"><img class="special_contents_img wp-image-5404 aligncenter only-pc" src="' . $soudan22_url . '"></a>
         <br>
         <a href="' . $home_url . '/entry-sheet"><img class="special_contents_img wp-image-5404 aligncenter only-pc" src="' . $es_url . '"></a>
         <br>
@@ -142,7 +142,7 @@ function side_bar_widget_func()
     $event_day = get_field("開催日", $post_id);
     if ($event_day >= date("Y/m/d")) {
       $html .= '
-            <a href="' . $event_url . '"><img class="special_contents_img wp-image-5404 aligncenter" src="' . $event_image_url . '"></a>
+            <a href="' . $event_url . '"><img class="special_contents_img wp-image-5404 aligncenter only-pc" src="' . $event_image_url . '"></a>
             <br>
             ';
     }
