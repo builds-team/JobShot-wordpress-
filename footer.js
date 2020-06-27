@@ -1,5 +1,5 @@
 jQuery(function($){
-    $("#um-submit-btn").attr(
+    $(".post-1601 #um-submit-btn").attr(
         "onclick", "gtag('event', 'click', {'event_category': 'link', 'event_label': 'register'});"
     );
 });
