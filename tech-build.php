@@ -1043,15 +1043,14 @@ function add_techbuild_ads_before_h2($the_content)
             </div>
         </div>
     ';
-    $h2 = '/^<h2.*?>.+?<\/h2>$/im'; //H2見出しのパターン
+    $h2 = '/<h2.+?<\/h2>/u';
 
-    if (preg_match_all($h2, $the_content, $matches, PREG_SET_ORDER)) {
-        _log($matches);
+    if (preg_match_all($h2, $the_content, $matches)) {
         if ($matches[0]) {
 
             // 3つ目のh2見出しの上にTECH-BUILDの広告挿入
-            if ($matches[0][1]) {
-                $the_content  = str_replace($matches[0][1], $ads . $matches[0][1], $the_content);
+            if ($matches[0][2]) {
+                $the_content  = str_replace($matches[0][2], $ads . $matches[0][2], $the_content);
             }
 
         }
