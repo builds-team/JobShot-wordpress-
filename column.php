@@ -776,7 +776,7 @@ function add_top_bar_column(){
 }
 add_shortcode("add_top_bar_column","add_top_bar_column");
 
-function add_coulmn_merit(){
+function add_column_merit(){
     $home_url =esc_url( home_url());
     if (is_user_logged_in()){
         $link = $home_url;
@@ -835,4 +835,13 @@ function add_coulmn_merit(){
 }
 add_shortcode("add_column_merit", "add_column_merit");
 
-?>
+function insert_column($atts){
+    extract(shortcode_atts(array(
+        'post_id' => '0',
+    ), $atts));
+
+    if(get_post($post_id)!=null){
+        return view_insert_column_card_func($post_id);
+    }
+}
+add_shortcode("insert_column", "insert_column");

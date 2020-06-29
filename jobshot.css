@@ -13784,3 +13784,49 @@ width:50px !important;
   margin-left: 20px;
   margin-top: 20px;
 }
+/* 就活記事挿入用 */
+.type-column .column_card_img{
+  width: 200px;
+  height: 120px;
+}
+.type-column .column_card_img img{
+  width: 200px;
+  height: 120px;
+}
+.type-column .column_card_contents{
+  padding-bottom: 0px;
+  height: 120px;
+  margin-left: 250px;
+  display: flex;
+}
+.type-column .column_card_title{
+  display: flex;
+  align-items: center;
+}
+.type-column #column_card_title_text{
+  align-items: center;
+  font-size: 20px;
+  line-height: 1.5;
+  border-left: none;
+}
+@media screen and (max-width: 480px){
+  .type-column .column_card_img{
+    width: 120px;
+    height: 80px;
+    margin: 5px 10px;
+  }
+  .type-column .column_card_img img{
+    width: 120px;
+    height: 80px;
+    object-fit: cover;
+  }
+  .type-column .column_card_contents{
+    margin-left: 140px;
+    margin-right: 10px;
+    padding-bottom: 0px;
+    height: 90px;
+  }
+  .type-column #column_card_title_text{
+    font-size: 12px;
+  }
+}

@@ -799,6 +799,26 @@ function view_fullwidth_column_card_func($post_id){
 add_shortcode('view-fullwidth-column-card','view_fullwidth_column_card_func');
 
 
+function view_insert_column_card_func($post_id){
+
+  $post_title = get_the_title($post_id);
+  $image_url = get_the_post_thumbnail_url( $post_id , 'medium' );
+
+  $card_html = '
+  <div class="card full-card">
+    <div class="full-card-maim">
+      <div class="column_card_img">
+        <img src="'.$image_url.'" alt="">
+      </div>
+      <div class="column_card_contents">
+        <div class="column_card_title"><h3 id="column_card_title_text"><a href="'.esc_url(get_permalink($post_id)).'">'.$post_title.'</a></h3></div>
+      </div>
+    </div>
+  </div>';
+
+  return do_shortcode($card_html);
+}
+
 function get_youtube_embed_address_func($origin_addr){
   return str_replace('watch?v=','embed/',$origin_addr);
 }
