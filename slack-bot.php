@@ -17,11 +17,9 @@ function builds_slack($content, $attachment = [], $channel = '#2-1-jobshot事業
     $payload = [
         'channel' => $channel,
     ];
-    if (WP_DEBUG) {
-        // デバッグモードならテストをつける
-        $content = "【テスト投稿】 {$content}";
+    if ($content) {
+        $payload['text'] = $content;
     }
-    $payload['text'] = $content;
     $payload['username'] = "JobShot巡回bot";
     $payload['icon_url'] = "https://jobshot.jp/wp-content/uploads/2019/07/IMG_5901.png";
     // attachmentsについては
@@ -111,7 +109,10 @@ add_action('jobshot_bot_daily_report_cron', function () {
     $string .= sprintf(' 新規登録者数：%d人', $new_user_num);
     $string .= sprintf('\n ' . $apply_date_after . 'から' . $apply_date_before . 'の9:00までのインターン応募数：%d', $intern_apply_num);
     $string .= '```';
-    builds_slack($string, [], '#2-1-jobshot事業部bot');
+    $attachment = array(
+        "text"  =>  $string
+    );
+    builds_slack('', $attachment, '#2-1-jobshot事業部bot');
 });
 
 // cron登録処理
