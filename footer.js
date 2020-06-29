@@ -15,6 +15,12 @@ jQuery(function($){
 		"onclick", "gtag('event', 'click', {'event_category': 'link', 'event_label': 'event'});"
 	);
 });
+
+jQuery(function($){
+	$("#post-14004 .wpcf7-submit").attr(
+		"onclick", "gtag('event', 'click', {'event_category': 'link', 'event_label': 'tech-build'});"
+	);
+});
 // トップページロゴクリック位置修正
 jQuery(".branding .logo a").empty();
 // ハンバーガーアイコン修正
