@@ -1027,22 +1027,9 @@ add_shortcode('show_tech_build_lp', 'show_tech_build_lp');
 function add_techbuild_ads_before_h2($the_content)
 {
     $ads = '
-        <div class="card full-card">
-            <div class="full-card-main">
-                <div class="full-card-img">
-                    <noscript><img src="https://i2.wp.com/jobshot.jp/wp-content/uploads/2020/06/TechBuild-Ad-2.png?fit=400%2C267&amp;ssl=1" alt></noscript><img src="https://i2.wp.com/jobshot.jp/wp-content/uploads/2020/06/TechBuild-Ad-2.png?fit=400%2C267&amp;ssl=1" alt="" data-src="https://i2.wp.com/jobshot.jp/wp-content/uploads/2020/06/TechBuild-Ad-2.png?fit=400%2C267&amp;ssl=1" class=" lazyloaded">
-                </div>
-                <div class="full-card-text">
-                    <div class="full-card-text-title"><a href="https://jobshot.jp/jobshot_tech-build">【エンジニア未経験者必見！】たった二ヶ月で未経験からエンジニアに</a></div>
-                    <div><p class="tech-build-detail" style="margin:15px 0;">【広告】プログラミング学習は独学者の9割が挫折すると言われています。TECH-BUILDはプログラミング学習者がつまずきやすいポイントを押さえた有名IT企業所属の優秀な現役エンジニアコーチと伴走して実力を身につけていくプログラミングスクールです。</p></div>
-                    <div class="card-category" style="background-color:#f9b539;">プログラミング初心者</div>
-                </div>
-            </div>
-            <div class="full-card-buttons">
-            <a href="https://jobshot.jp/jobshot_tech-build"><button class="button detail">詳細を見る</button></a>
-            </div>
-        </div>
-    ';
+    <a href ="https://jobshot.jp/jobshot_tech-build">
+        <img src="https://jobshot.jp/wp-content/uploads/2020/06/TECH-BUILD.png" alt="tech-build">
+    </a>';
     $h2 = '/<h2.+?<\/h2>/u';
 
     if (preg_match_all($h2, $the_content, $matches)) {

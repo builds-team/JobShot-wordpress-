@@ -95,7 +95,7 @@ function side_bar_widget_func()
     return;
   }
 
-  $tech_build_img_url = wp_get_attachment_image_src(14217, array(400, 400))[0];
+  $tech_build_img_url = wp_get_attachment_image_src(14298, array(400, 400))[0];
   $soudan_url = wp_get_attachment_image_src(9542, array(400, 400))[0];
   $soudan21_url = wp_get_attachment_image_src(12311, array(400, 400))[0];
   $soudan22_url = wp_get_attachment_image_src(13371, array(400, 400))[0];
