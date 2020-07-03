@@ -142,6 +142,20 @@ function view_custom_search_func($atts){
         }
     }
 
+    if($item_type=="related_column"){
+        $post_id = $post->ID;
+        $column_post_id = $post->ID;
+        $args['post_type'] = array('column');
+        $args['posts_per_page'] = 5;
+        $first_category_values = CFS()->get('first_category',$post_id);
+        foreach ($first_category_values as $first_category_value => $first_category_label) {
+            $first_category = $first_category_value;
+        }
+        $first_category_metaquery = array('key'=>'first_category','value'=> $first_category,'compare'=>'LIKE');
+        $args += array('meta_query' => array($first_category_metaquery));
+        $args += array('meta_key' => 'post_views_count','orderby' => 'meta_value_num',);
+    }
+
     // 業種のタクソノミーは企業情報に基づいているので該当する企業投稿を検索→authorに追加
     if (!empty($_GET['business_type'])) {
         if($item_type!="company"){
@@ -361,7 +375,7 @@ function view_custom_search_func($atts){
         }
     }else{
         $html = paginate($cat_query->max_num_pages, get_query_var( 'paged' ), $cat_query->found_posts, $posts_per_page);
-        if($item_type == "event"){
+        if($item_type == "event" || $item_type = "related_column"){
             $html = '';
         }
     }
@@ -401,12 +415,14 @@ function view_custom_search_func($atts){
     }
     while ($cat_query->have_posts()): $cat_query->the_post();
         $post_id = $post->ID;
-        if($post_id != '11779'){
+        if($post_id != $column_post_id){
             $html .= view_card_func($post_id);
         }
     endwhile;
-  	$html .= '</div>';
-    $html .= paginate($cat_query->max_num_pages, get_query_var( 'paged' ), $cat_query->found_posts, $posts_per_page);
+    $html .= '</div>';
+    if($item_type != 'related_column'){
+        $html .= paginate($cat_query->max_num_pages, get_query_var( 'paged' ), $cat_query->found_posts, $posts_per_page);
+    }  
    	wp_reset_postdata();
     return $html;
 }

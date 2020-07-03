@@ -63,8 +63,9 @@ function template_column2_func($content){
     );
     $column_search_first_category = $first_category_column_array[$first_category];
     $home_url =esc_url( home_url());
+    $html =   '<div class="top_bar_column"><a href="' . $home_url . '/interview"><img class="special_contents_img wp-image-5404 aligncenter" src="https://jobshot.jp/wp-content/uploads/2020/07/9c48c58be9475ef4ae2e1f945f965e13.png"></a></div>';
     if(!empty($column_search_second_category)){
-        $html = '
+        $html .= '
         <div class="column_navigation_bar">
             <span>
                 <a href="'.$home_url.'/column">
@@ -100,6 +101,9 @@ function manage_column_posts_columns($columns) {
     if(current_user_can( 'administrator' )){
         $columns['first_category'] = '大項目';
         $columns['second_category'] = '中項目';
+        $columns['post_views_count'] = 'Total閲覧数';
+        $columns['week_views_count'] = 'Week閲覧数';
+        $columns['day_views_count'] = 'Day閲覧数';
         unset($columns['date']);
         unset($columns['seotitle']);
         unset($columns['seodesc']);
@@ -173,6 +177,36 @@ function add_column_category($column_name, $post_id) {
             $column_search_second_category = $second_category_column_array[$second_category];
             if ( isset($column_search_second_category) && $column_search_second_category ) {
                 echo attribute_escape($column_search_second_category);
+            } else {
+                echo __('None');
+            }
+        }
+        if ( $column_name == 'post_views_count' ) {
+            $stitle = get_post_meta($post_id, 'post_views_count', true);
+            if ( isset($stitle) && $stitle ) {
+                echo attribute_escape($stitle);
+            } else {
+                echo __('None');
+            }
+        }
+        if ( $column_name == 'week_views_count' ) {
+            $stitles =array();
+            $stitles[]+=get_post_meta($post_id, 'week_views_count', true);
+            $stitles[]+=get_post_meta($post_id, 'week_views_count1', true);
+            $stitles[]+=get_post_meta($post_id, 'week_views_count2', true);
+            $stitles[]+=get_post_meta($post_id, 'week_views_count3', true);
+            foreach($stitles as $stitle){
+                if ( isset($stitle) && $stitle ) {
+                    echo attribute_escape($stitle)."<br>";
+                } else {
+                    echo __('None')."<br>";
+                }
+            }
+        }
+        if ( $column_name == 'day_views_count' ) {
+            $stitle = get_post_meta($post_id, 'day_views_count', true);
+            if ( isset($stitle) && $stitle ) {
+                echo attribute_escape($stitle);
             } else {
                 echo __('None');
             }
@@ -831,6 +865,7 @@ function add_column_merit(){
             <p><a href="'.$link.'" class="listup__contents__link__text listup__contents__web-fontsize">今すぐ会員限定コンテンツを受け取る<i class="listup__contents__link__icon google-icon next-sign-icon"></i></a></p>
         </div>
     </div>';
+    $html .= get_related_column();
     return $html;
 }
 add_shortcode("add_column_merit", "add_column_merit");
@@ -839,9 +874,44 @@ function insert_column($atts){
     extract(shortcode_atts(array(
         'post_id' => '0',
     ), $atts));
+    $post_id = $atts;
 
     if(get_post($post_id)!=null){
         return view_insert_column_card_func($post_id);
     }
 }
 add_shortcode("insert_column", "insert_column");
+
+
+function get_related_column(){
+    global $post;
+    $post_id = $post->ID;
+
+    $first_category_values = CFS()->get('first_category',$post_id);
+    foreach ($first_category_values as $first_category_value => $first_category_label) {
+        $first_category = $first_category_value;
+    }
+    $args = array(
+        'posts_per_page' => 6,
+        'post_type' => array('column'),
+        'post_status' => array( 'publish' ),
+    );
+    $html = '<h3 class="sd-title">関連おすすめ記事</h3>';
+    $first_category_metaquery = array('key'=>'first_category','value'=> $first_category,'compare'=>'LIKE');
+    $args += array('meta_query' => array($first_category_metaquery));
+    $args += array('meta_key' => 'post_views_count','orderby' => 'meta_value_num',);
+    $columns = get_posts($args);
+    $count = 0;
+    foreach ( $columns as $column ){
+        $column_id = $column->ID;
+        if($column_id != $post_id){
+            $html .= insert_column($column_id);
+            $count += 1;
+        }
+        if($count == 5){
+            break;
+        }
+    }
+    return $html;
+}
+add_shortcode("get_related_column","get_related_column");
