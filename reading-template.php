@@ -42,6 +42,13 @@ function import_template2_func($content)
         return $content;
       }
       if (get_post_type() == 'column') {
+        if (!is_bot()) {
+          setDayViews(get_the_ID());
+          setWeekViews(get_the_ID());
+          setPostViews(get_the_ID());
+        }
+        $column_image_url = wp_get_attachment_image_src(14348, array(300, 2000))[0];
+        $content = '<a href="' . $home_url . '/interview"><img class="special_contents_img wp-image-5404 aligncenter" src="' .$column_image_url. '"></a>';
         $content = template_column2_func($content);
         $content = add_techbuild_ads_before_h2($content);
         return $content;

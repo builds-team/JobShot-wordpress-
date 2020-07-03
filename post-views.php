@@ -144,7 +144,7 @@ add_action('wp', 'my_activation');
 function reset_day_ranking() {
 	$args = array(
         'post_status' => array('publish'),
-        'post_type' => array('internship'),
+        'post_type' => array('internship','column'),
         'order' => 'DESC',
         'posts_per_page' => -1
     );
@@ -153,7 +153,9 @@ function reset_day_ranking() {
     foreach($posts as $post){
         $post_id=$post->ID;
         update_post_meta($post_id, $custom_key, '0');
-	  	setRecScore();
+        if(get_post_type($post_id)=='internship'){
+            setRecScore();
+        }
     }
 }
 add_action ( 'reset_day_ranking_cron', 'reset_day_ranking' );
@@ -161,7 +163,7 @@ add_action ( 'reset_day_ranking_cron', 'reset_day_ranking' );
 function reset_week_ranking() {
 	$args = array(
         'post_status' => array('publish'),
-        'post_type' => array('internship'),
+        'post_type' => array('internship','column'),
         'order' => 'DESC',
         'posts_per_page' => -1
     );
