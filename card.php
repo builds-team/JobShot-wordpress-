@@ -811,7 +811,7 @@ function view_insert_column_card_func($post_id){
         <img src="'.$image_url.'" alt="">
       </div>
       <div class="column_card_contents">
-        <div class="column_card_title"><h3 id="column_card_title_text"><a href="'.esc_url(get_permalink($post_id)).'">'.$post_title.'</a></h3></div>
+        <div class="column_card_title"><span id="column_card_title_text"><a href="'.esc_url(get_permalink($post_id)).'">'.$post_title.'</a></span></div>
       </div>
     </div>
   </div>';

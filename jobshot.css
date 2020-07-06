@@ -13830,3 +13830,12 @@ width:50px !important;
     font-size: 12px;
   }
 }
+
+.card__related {
+  margin-top: 35px;
+  padding: 0.25em 0.5em;
+  background: transparent;
+  border-left: solid 5px rgb(109, 209, 180);
+  margin-bottom: 20px;
+  font-size: 137.49656249999998%;
+}

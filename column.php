@@ -896,7 +896,7 @@ function get_related_column(){
         'post_type' => array('column'),
         'post_status' => array( 'publish' ),
     );
-    $html = '<h3 class="sd-title">関連おすすめ記事</h3>';
+    $html = '<p class="card__related">関連おすすめ記事</p>';
     $first_category_metaquery = array('key'=>'first_category','value'=> $first_category,'compare'=>'LIKE');
     $args += array('meta_query' => array($first_category_metaquery));
     $args += array('meta_key' => 'post_views_count','orderby' => 'meta_value_num',);
