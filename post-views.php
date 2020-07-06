@@ -172,12 +172,38 @@ function reset_week_ranking() {
     $custom_key2 = 'week_views_count2';
     $custom_key3 = 'week_views_count3';
     $posts = get_posts( $args );
+    $weekly_column_view = 0;
+    $weekly_internship_view = 0;
     foreach($posts as $post){
         $post_id=$post->ID;
+        if(get_post_type($post_id)=='internship'){
+            $view_count = get_post_meta($post_id, 'week_views_count', true);
+            if ($view_count != ''){
+                $weekly_internship_view += (int)$view_count;
+            }
+        }else {
+            $view_count = get_post_meta($post_id, 'week_views_count', true);
+            if ($view_count != ''){
+                $weekly_column_view += (int)$view_count;
+            }
+        }
         update_post_meta($post_id, $custom_key3, get_post_meta($post_id, 'week_views_count2', true));
         update_post_meta($post_id, $custom_key2, get_post_meta($post_id, 'week_views_count1', true));
         update_post_meta($post_id, $custom_key1, get_post_meta($post_id, 'week_views_count', true));
         update_post_meta($post_id, $custom_key, '0');
+
+        $lastweek = date('Y/m/d', strtotime('-7 day'));
+        $today = date('Y/m/d',strtotime('today')); 
+        // 新規ユーザーの取得
+        $string =  '今週のレポートを報告します';
+        $string .= '\n\n``` ';
+        $string .= sprintf('\n\n ' . $lastweek . 'から' . $today . 'の9:00までのインターン詳細閲覧数：%d', $weekly_internship_view);
+        $string .= sprintf('\n\n ' . $lastweek . 'から' . $today . 'の9:00までの就活記事閲覧数：%d', $weekly_column_view);
+        $string .= '```';
+        $attachment = array(
+            "text"  =>  $string
+        );
+        builds_slack('', $attachment, '#2-1-jobshot事業部bot');
     }
 }
 add_action ( 'reset_week_ranking_cron', 'reset_week_ranking' );
