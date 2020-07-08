@@ -13839,3 +13839,16 @@ width:50px !important;
   margin-bottom: 20px;
   font-size: 137.49656249999998%;
 }
+
+/* コラムカード調整 */
+.column .col-sidebar {
+  padding-top: 0;
+}
+.column .full-card + .full-card {
+  margin-top: 30px;
+}
+@media screen and (max-width: 480px) {
+  .column .full-card + .full-card {
+    margin-top: 20px;
+  }
+}
