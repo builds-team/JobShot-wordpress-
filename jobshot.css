@@ -13841,6 +13841,11 @@ width:50px !important;
 }
 
 /* コラムカード調整 */
+
+.column {
+	padding-top: 0 !important;
+}
+
 .column .col-sidebar {
   padding-top: 0;
 }
