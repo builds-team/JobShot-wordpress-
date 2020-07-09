@@ -140,10 +140,10 @@ function search_form_func($atts){
     $search_form_html ='<h3 class="widget-title">秋インターンを探す</h3>';
   }
 
-  $select_area =convert_to_dropdown_checkboxes(wp_dropdown_categories( $args_area ),"chk-ar-","area","エリアを選択",$area_names);
+  $select_area =convert_to_dropdown_checkboxes(wp_dropdown_categories( $args_area ),"chk-ar-","area","15箇所のエリアから選択",$area_names);
   $select_area = str_replace('&nbsp;&nbsp;&nbsp;', '┗', $select_area);
-  $select_occupation=convert_to_dropdown_checkboxes(wp_dropdown_categories($args_occupation),"chk-op-","occupation","職種を選択",$occupation_tag);
-  $select_business_type= convert_to_dropdown_checkboxes(wp_dropdown_categories($args_business_type),"chk-bt-","business_type","業種を選択",$business_type_tag);
+  $select_occupation=convert_to_dropdown_checkboxes(wp_dropdown_categories($args_occupation),"chk-op-","occupation","12種類の職種から選択",$occupation_tag);
+  $select_business_type= convert_to_dropdown_checkboxes(wp_dropdown_categories($args_business_type),"chk-bt-","business_type","17種類の業種から選択",$business_type_tag);
   $home_url =esc_url( home_url( ));
   $search_form_html.='
   <form role="search" method="get" class="search-form" action="'.$home_url.'/'.$item_type.'" autocomplete="off"  name="form3">
@@ -173,9 +173,9 @@ function search_form_func($atts){
   if($item_type == "internship" || $item_type == 'summer_internship' || $item_type == 'autumn_internship'){
     $search_form_html2 = '
     <div class="select-dropdown-container_test z-feature">
-      <label><input class="select-dropdown-check" type="checkbox">
+      <label><input class="select-dropdown-check" type="checkbox" id="sw_check">
         <div class="select-dropdown-text2">
-          <input type="search"  class="search-field_test " placeholder="特徴・条件" value="'.$sw_tag.'" name="sw" id="sw">
+          <input type="search"  class="search-field_test" placeholder="36個の特徴・条件から選択" value="'.$sw_tag.'" name="sw" id="sw">
         </div>
         <ul>';
     $acf_args = array(
