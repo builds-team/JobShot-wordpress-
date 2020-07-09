@@ -32,13 +32,10 @@
         $register_day = strtotime($register_day);
         $update_day = strtotime("2020-04-01 00:00:00");
         $updated_profile = get_user_meta($user_id, 'profile_update_2020',false)[0];
-        $graduate_year = get_user_meta($user_id,'graduate_year',false)[0];
         if(current_user_can('student') && $updated_profile == 0 && $register_day < $update_day){
-            if($graduate_year == 2020 || $graduate_year == 2021){
-                $home_url = esc_url( home_url( ));
-                wp_safe_redirect($home_url.'/profile_update');
-                exit();
-            }
+            $home_url = esc_url( home_url( ));
+            wp_safe_redirect($home_url.'/profile_update');
+            exit();
         }
 
     }
@@ -56,7 +53,7 @@
         $html = '
         <h3 class="widget-title">プロフィール更新のお願い</h3>
         <div class="um-editor um-editor-univ">
-            <p>学年更新時期になりましたので、変更がある場合には以下のプロフィールの更新をお願いいたします。</p>
+            <p>定期プロフィール更新の時期になりましたので、変更がある場合には以下のプロフィールの更新をお願いいたします。</p>
             <form method="post" id="testform10">
                 <div class="um-field um-field-university um-field-text um-field-type_text" data-key="university">
                     <div class="um-field-label"><label for="university-1597">大学<span class="um-req" title="必須">*</span></label>
