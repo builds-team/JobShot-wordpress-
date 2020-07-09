@@ -1,4 +1,20 @@
 jQuery(function($){
+    $(document).on("click", "#sw", function() {
+        if ($('#sw_check').prop('checked')) {
+ 
+            // チェックを外す
+            $('#sw_check').prop('checked', false);
+       
+          // もしチェックが外れていたら
+          } else {
+       
+            // チェックを入れる
+            $('#sw_check').prop('checked', true);
+          }
+    });
+});
+
+jQuery(function($){
     $(".post-1601 #um-submit-btn").attr(
         "onclick", "gtag('event', 'click', {'event_category': 'link', 'event_label': 'register'});"
     );
@@ -512,9 +528,9 @@ jQuery(function() {
 	if (w <= x) {
 	if($('#br_tag').length){
 	var str = document.getElementById("br_tag").innerHTML;
-	str = str.replace("エリアを選択","エリア");
-	str = str.replace("職種を選択","職種");
-	str = str.replace("業種を選択","業種");
+	str = str.replace("15箇所のエリアから選択","エリア");
+	str = str.replace("12種類の職種から選択","職種");
+	str = str.replace("17種類の業種から選択","業種");
 	document.getElementById("br_tag").innerHTML = str;
 	}
 	}
