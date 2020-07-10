@@ -13784,6 +13784,13 @@ width:50px !important;
   margin-left: 20px;
   margin-top: 20px;
 }
+
+/* トップ特徴検索 */
+.top__feature__search__container {
+  width: 100%;
+  margin: 25px 0 45px 0;
+}
+
 /* 就活記事挿入用 */
 .type-column .column_card_img{
   width: 200px;
