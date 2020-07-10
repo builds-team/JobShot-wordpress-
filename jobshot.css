@@ -5136,15 +5136,19 @@ footer#footer.container {
 }
 .hero__strength__each {
   margin: 0 32px;
+}
+.hero__strength__each a {
   flex: 1 1 0;
   display: flex;
   flex-direction: column;
   align-items: center;
+  color: #fff;
 }
 .hero__strength__each__img {
   height: 100px;
   fill: #fff;
-	stroke: #fff;
+  stroke: #fff;
+  transition: .3s;
 }
 .hero__strength__each__heading {
   font-size: 1.2em;
@@ -5156,6 +5160,14 @@ footer#footer.container {
   line-height: 1.7;
   text-align: justify;
   margin: 0;
+}
+.hero__strength__each a:hover {
+  color: #03c4b0;
+}
+.hero__strength__each a:hover .hero__strength__each__img {
+  fill: #03c4b0;
+  stroke: #03c4b0;
+  transition: .3s;
 }
 @media screen and (max-width: 880px) {
   .hero__img img {
@@ -5206,6 +5218,9 @@ footer#footer.container {
     position: relative;
     padding-left: 80px;
   }
+  .hero__strength__each a {
+    color: inherit;
+  }
   .hero__strength__each::before {
     content: '';
     display: block;
@@ -5237,6 +5252,9 @@ footer#footer.container {
     line-height: 1.4;
 		font-size: 0.9rem;
 		padding-top: 5px;
+  }
+  .hero__strength__each a:hover .hero__strength__each__description{
+    color: #03c4b0;
   }
 }
 @media screen and (max-width: 320px) {
