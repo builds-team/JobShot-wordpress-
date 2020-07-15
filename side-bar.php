@@ -88,14 +88,11 @@ add_shortcode("company_side_bar", "company_side_bar_func");
 function side_bar_widget_func()
 {
   $home_url = esc_url(home_url());
-  $tech_build_url = "https://jobshot.jp/jobshot_tech-build";
   $current_user = wp_get_current_user();
   $current_user_roles = $current_user->roles;
   if (in_array("company", $current_user_roles)) {
     return;
   }
-
-  $tech_build_img_url = wp_get_attachment_image_src(14298, array(400, 400))[0];
   $soudan_url = wp_get_attachment_image_src(9542, array(400, 400))[0];
   $soudan21_url = wp_get_attachment_image_src(12311, array(400, 400))[0];
   $soudan22_url = wp_get_attachment_image_src(13371, array(400, 400))[0];
@@ -105,8 +102,6 @@ function side_bar_widget_func()
   $html = '
     <h3 class="widgettitle">特別コンテンツ</h3>
     <p>
-        <a href="' . $tech_build_url . '"><img class="special_contents_img wp-image-5404 aligncenter" src="' . $tech_build_img_url . '"></a>
-        <br>
         <a href="' . $home_url . '/interview"><img class="special_contents_img wp-image-5404 aligncenter" src="' . $soudan_url . '"></a>
         <br>
         <a href="' . $home_url . '/recruit_interview"><img class="special_contents_img wp-image-5404 aligncenter only-pc" src="' . $soudan21_url . '"></a>
