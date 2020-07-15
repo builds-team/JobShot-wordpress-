@@ -420,28 +420,14 @@ function view_custom_search_func($atts){
             $html .= view_card_func($post_id);
             $post_count += 1;
             if($item_type == 'internship' && $post_count == 3){
-                $tokyo = wp_get_attachment_image_src(14205, array(200,200))[0];
-                $sibuya = wp_get_attachment_image_src(14200, array(200,150))[0];
-                $shinjuku = wp_get_attachment_image_src(14201, array(200,150))[0];
-                $chiyoda = wp_get_attachment_image_src(14204, array(200,150))[0];
-            
-                $marketing = wp_get_attachment_image_src(14196, array(200,150))[0];
-                $consult = wp_get_attachment_image_src(14189, array(200,150))[0];
-                $retail = wp_get_attachment_image_src(14199, array(200,150))[0];
-                $kikaku = wp_get_attachment_image_src(14195, array(200,150))[0];
-                $engineer = wp_get_attachment_image_src(14192, array(200,150))[0];
-                $zimu = wp_get_attachment_image_src(14206, array(200,150))[0];
-                $design = wp_get_attachment_image_src(14191, array(200,150))[0];
-                $sonota = wp_get_attachment_image_src(14202, array(200,150))[0];
-            
-                $consulting = wp_get_attachment_image_src(14190, array(200,150))[0];
-                $zinzai = wp_get_attachment_image_src(14207, array(200,150))[0];
-                $money = wp_get_attachment_image_src(14198, array(200,150))[0];
-                $syosya = wp_get_attachment_image_src(14203, array(200,150))[0];
-                $advertise = wp_get_attachment_image_src(14188, array(200,150))[0];
-                $it = wp_get_attachment_image_src(14194, array(200,150))[0];
-                $house = wp_get_attachment_image_src(14193, array(200,150))[0];
-                $media = wp_get_attachment_image_src(14197, array(200,150))[0];
+                $chiyoda = wp_get_attachment_image_src(14204, array(250,150))[0];
+                $marketing = wp_get_attachment_image_src(14196, array(250,150))[0];
+                $retail = wp_get_attachment_image_src(14199, array(250,150))[0];
+                $zimu = wp_get_attachment_image_src(14206, array(250,150))[0];
+                $sonota = wp_get_attachment_image_src(14202, array(250,150))[0];
+                $it = wp_get_attachment_image_src(14194, array(250,150))[0];
+                $house = wp_get_attachment_image_src(14193, array(250,150))[0];
+                $media = wp_get_attachment_image_src(14197, array(250,150))[0];
                 $html .= '    <div class="top__search__container top__feature__search__container">
                 <div class="top__search__wrap">
                     <h4 class="top__search__wrap__title">自分にあった募集を「特徴」から探そう</h4>
