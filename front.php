@@ -198,6 +198,45 @@ function frontpage_search_func(){
                 </ul>
             </div>
         </div>
+    </div>
+    <div class="top__search__container top__feature__search__container">
+      <div class="top__search__wrap">
+          <h4 class="top__search__wrap__title">自分にあった募集を「特徴」から探そう</h4>
+          <ul class="top__search__contents">
+              <li class="top__search__ele">
+                <span>リモートワーク可能</span>
+                <a href="https://jobshot.jp/internship?sw=&feature%5B%5D=%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF%E5%8F%AF%E8%83%BD&itype=internship"><noscript><img src="'.$zimu.'" alt class="only-pc"></noscript><img src="'.$zimu.'" alt="" class="only-pc ls-is-cached lazyloaded" data-src="'.$zimu.'"></a>
+              </li>
+              <li class="top__search__ele">
+                <span>プログラミング未経験</span>
+                <a href="https://jobshot.jp/internship?sw=&feature%5B%5D=%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0%E3%81%8C%E6%9C%AA%E7%B5%8C%E9%A8%93%E3%81%8B%E3%82%89%E5%AD%A6%E3%81%B9%E3%82%8B&itype=internship"><noscript><img src="'.$it.'" alt class="only-pc"></noscript><img src="'.$it.'" alt="" class="only-pc ls-is-cached lazyloaded" data-src="'.$it.'"></a>
+              </li>
+              <li class="top__search__ele">
+                <span>時給1200円以上</span>
+                <a href="https://jobshot.jp/internship?sw=&feature%5B%5D=%E6%99%82%E7%B5%A61200%E5%86%86%E4%BB%A5%E4%B8%8A&itype=internship"><noscript><img src="'.$marketing.'" alt class="only-pc"></noscript><img src="'.$marketing.'" alt="" class="only-pc ls-is-cached lazyloaded" data-src="'.$marketing.'"></a>
+              </li>
+              <li class="top__search__ele">
+                <span>土日のみでも可</span>
+                <a href="https://jobshot.jp/internship?sw=&feature%5B%5D=%E5%9C%9F%E6%97%A5%E3%81%AE%E3%81%BF%E3%81%A7%E3%82%82%E5%8F%AF%E8%83%BD&itype=internship"><noscript><img src="'.$house.'" alt class="only-pc"></noscript><img src="'.$house.'" alt="" class="only-pc ls-is-cached lazyloaded" data-src="'.$house.'"></a>
+              </li>
+              <li class="top__search__ele">
+                <span>週２日OK</span>
+                <a href="https://jobshot.jp/internship?sw=&feature%5B%5D=%E9%80%B12%E6%97%A5ok&itype=internship"></noscript><img src="'.$chiyoda.'" alt="" class="only-pc ls-is-cached lazyloaded" data-src="'.$chiyoda.'"></a>
+              </li>
+              <li class="top__search__ele">
+                <span>社長直下</span>
+                <a href="https://jobshot.jp/internship?sw=&feature%5B%5D=%E7%A4%BE%E9%95%B7%E7%9B%B4%E4%B8%8B&itype=internship"><noscript><img src="'.$retail.'" alt class="only-pc"></noscript><img src="'.$retail.'" alt="" class="only-pc ls-is-cached lazyloaded" data-src="'.$retail.'"></a>
+              </li>
+              <li class="top__search__ele only-pc">
+                <span>1.2年生歓迎</span>
+                <a href="https://jobshot.jp/internship?sw=&feature%5B%5D=1%2C2%E5%B9%B4%E6%AD%93%E8%BF%8E&itype=internship"><noscript><img src="'.$sonota.'" alt class="only-pc"></noscript><img src="'.$sonota.'" alt="" class="only-pc ls-is-cached lazyloaded" data-src="'.$sonota.'"></a>
+              </li>
+              <li class="top__search__ele only-pc">
+                <span>英語力が身に付く</span>
+                <a href="https://jobshot.jp/internship?sw=&feature%5B%5D=%E8%8B%B1%E8%AA%9E%E5%8A%9B%E3%81%8C%E8%BA%AB%E3%81%AB%E3%81%A4%E3%81%8F&itype=internship"><noscript><img src="'.$media.'" alt class="only-pc"></noscript><img src="'.$media.'" alt="" class="only-pc lazyloaded" data-src="'.$media.'"></a>
+              </li>
+          </ul>
+      </div>
     </div>';
 
     return $html;
