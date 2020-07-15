@@ -197,9 +197,6 @@ function frontpage_search_func(){
                     </li>
                 </ul>
             </div>
-        </div>
-    </div>
-    <div class="top__search__container top__feature__search__container">
       <div class="top__search__wrap">
           <h4 class="top__search__wrap__title">自分にあった募集を「特徴」から探そう</h4>
           <ul class="top__search__contents">
@@ -237,6 +234,7 @@ function frontpage_search_func(){
               </li>
           </ul>
       </div>
+    </div>
     </div>';
 
     return $html;
