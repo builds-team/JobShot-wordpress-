@@ -374,7 +374,8 @@ function view_custom_search_func($atts){
             $html .= '<h2 class="column_search_category">新着記事一覧</h2>';
         }
     }else{
-        $html = paginate($cat_query->max_num_pages, get_query_var( 'paged' ), $cat_query->found_posts, $posts_per_page);
+        $html = '<div class="cards__container__container">';
+        $html .= paginate($cat_query->max_num_pages, get_query_var( 'paged' ), $cat_query->found_posts, $posts_per_page);
         if($item_type == "event" || $item_type = "related_column"){
             $html = '';
         }
@@ -396,7 +397,7 @@ function view_custom_search_func($atts){
     if($item_type == "internship"){
         $tech_build_url = "https://jobshot.jp/jobshot_tech-build";
         $tech_build_img_url = wp_get_attachment_image_src(14216, array(400, 400))[0];
-        $html = '
+        $html .= '
         <div class="card full-card">
             <div class="full-card-main">
                 <div class="full-card-img">
@@ -470,6 +471,7 @@ function view_custom_search_func($atts){
             }
         }
     endwhile;
+    $html .= '</div>';
     $html .= '</div>';
     if($item_type != 'related_column'){
         $html .= paginate($cat_query->max_num_pages, get_query_var( 'paged' ), $cat_query->found_posts, $posts_per_page);

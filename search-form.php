@@ -29,10 +29,10 @@ function convert_to_dropdown_checkboxes($html,$id,$name,$text,$tags){
         }
       }
       if($tag_cnt>0){
-        $select_bt_2=str_replace("ion", "<li><label class='select-chkbox'><input type='checkbox' checked= 'checked' id='".$id.$cnt."' name='".$name."[]'", substr($select_bt, 0, 3));
+        $select_bt_2=str_replace("ion", "<li><label class='select-chkbox' onclick='search_form()'><input type='checkbox' class='search_area' checked= 'checked' id='".$id.$cnt."' name='".$name."[]'", substr($select_bt, 0, 3));
         $select_bt_2 .= substr($select_bt, 4);
       }else{
-        $select_bt_2=str_replace("ion", "<li><label class='select-chkbox'><input type='checkbox' id='".$id.$cnt."' name='".$name."[]'", substr($select_bt, 0, 3));
+        $select_bt_2=str_replace("ion", "<li><label class='select-chkbox'onclick='search_form()'><input type='checkbox' class='search__area' id='".$id.$cnt."' name='".$name."[]'", substr($select_bt, 0, 3));
         $select_bt_2 .= substr($select_bt, 4);
       }
       $select_bt_2=rtrim($select_bt_2);
@@ -140,7 +140,9 @@ function search_form_func($atts){
     $search_form_html ='<h3 class="widget-title">秋インターンを探す</h3>';
   }
 
-  $select_area =convert_to_dropdown_checkboxes(wp_dropdown_categories( $args_area ),"chk-ar-","area","15箇所のエリアから選択",$area_names);
+  $s_area = wp_dropdown_categories($args_area);
+  $s_area = str_replace('<option class="level-0" value="%e3%82%aa%e3%83%b3%e3%83%a9%e3%82%a4%e3%83%b3">オンライン</option>','',$s_area);
+  $select_area =convert_to_dropdown_checkboxes($s_area,"chk-ar-","area","14箇所のエリアから選択",$area_names);
   $select_area = str_replace('&nbsp;&nbsp;&nbsp;', '┗', $select_area);
   $select_occupation=convert_to_dropdown_checkboxes(wp_dropdown_categories($args_occupation),"chk-op-","occupation","12種類の職種から選択",$occupation_tag);
   $select_business_type= convert_to_dropdown_checkboxes(wp_dropdown_categories($args_business_type),"chk-bt-","business_type","17種類の業種から選択",$business_type_tag);
@@ -316,10 +318,371 @@ function search_form_func($atts){
       </tbody>
     </table>';
     $search_form_html .= $search_conditions;
+  }else {
+    $search_form_html .= '<table class="condition_table"></table>';
   }
 
   return $search_form_html;
 }
 add_shortcode('search_form','search_form_func');
 
+function Ajax_Search(){
+  $url = $_SERVER['REQUEST_URI'];
+	$area = [];
+  if(isset($_POST['area'])) {
+    $area = $_POST['area'];
+	 $area = $a = str_replace('┗', '', $area);
+    $area_conditions = '　エリア：';
+    foreach($area as $a) {
+      $area_conditions .= '<div class="card-category">'.$a.'</div>';
+    }
+  }
+  $occupation = [];
+  if(isset($_POST['occupation'])) {
+    $occupation = $_POST['occupation'];
+    $occupation_conditions = '　職種：';
+    foreach($occupation as $o) {
+      $occupation_condition = str_replace('┗', '', $o);
+      $occupation_conditions .= '<div class="card-category">'.$occupation_condition.'</div>';
+    }
+  }
+  $business = [];
+  if(isset($_POST['business'])) {
+    $business = $_POST['business'];
+    $business_type_conditions = '　業種：';
+    foreach($business as $b) {
+      $business_type_condition = str_replace('┗', '', $b);
+      $business_type_conditions .= '<div class="card-category">'.$business_type_condition.'</div>';
+    }
+  }
+  $feature = [];
+  if(isset($_POST['feature'])){
+    $feature = $_POST['feature'];
+    $feature_conditions = '　特徴・条件：';
+    foreach($feature as $f) {
+      $feature_conditions .= '<div class="card-category" style="background-color:#f9b539;">'.$f.'</div>';
+    }
+  }
+  $sw = [];
+  if(isset($_POST['sw'])){
+    $sw = $_POST["sw"];
+  }
+  $count = Ajax_SearchNum('internship',$area,$occupation,$business,$feature,$sw);
+  $html = '
+  <tbody>
+    <tr>
+      <th width="20%">検索予定条件</th>
+      <td>'.$area_conditions.$occupation_conditions.$business_type_conditions.$feature_conditions.'検索で'.$count.'件ヒット</td>
+    </tr>
+  </tbody>
+  ';
+
+  echo $html;
+  die();
+}
+add_action( 'wp_ajax_ajax_search', 'Ajax_Search' );
+add_action( 'wp_ajax_nopriv_ajax_search', 'Ajax_Search' );
+
+function Ajax_SearchNum($item_type,$area,$occupation,$business_type,$features,$sw){
+    $args = array(
+        'posts_per_page' => 1000,
+        'post_type' => array($item_type),
+        'post_status' => array( 'publish' ),
+    );
+    if (!empty($sw)) {
+    $args += array('s' => $sw[0]);
+    }
+    if (!empty($features)) {
+    foreach($features as $feature){
+        $metaquerysp[] = array('key'=>'特徴','value'=> $feature,'compare'=>'LIKE');
+    }
+    $args += array('meta_query' => $metaquerysp);
+  }
+  if (!empty($business_type)) {
+    if($item_type!="company"){
+        $args2=array('post_type' => array('company'),'posts_per_page' => -1);
+        $tax_obj2=get_taxonomy('business_type');
+        $terms2= $business_type;
+        $taxq2 = array('relation' => 'AND',);
+        array_push($taxq2, array(
+            'taxonomy' => 'business_type',
+            'field' => 'name',
+            'terms' => $terms2,
+            'include_children' => true,
+            'operator' => 'IN',
+        ));
+        $args2 += array('tax_query' => $taxq2);
+        $company_posts=get_posts($args2);
+        $author_id2 = array();
+        foreach($company_posts as $company_post){
+            if (!in_array($company_post->post_author, $author_id2)) {
+                $author_id2[]= $company_post->post_author;
+            }
+        }
+        $args+=array('author__in'=>$author_id2,);
+    }
+  }
+  $tax_query = array('relation' => 'AND',);
+  if(!empty($occupation)){
+      array_push($tax_query, array(
+          'taxonomy' => 'occupation',
+          'field' => 'name',
+          'terms' => $occupation,
+          'include_children' => true,
+          'operator' => 'IN',
+      ));
+  }
+  if(!empty($area)){
+    array_push($tax_query, array(
+        'taxonomy' => 'area',
+        'field' => 'slug',
+        'terms' => $area,
+        'include_children' => true,
+        'operator' => 'IN',
+    ));
+}
+  $args += array('tax_query' => $tax_query);
+  $posts = get_posts($args);
+  return count($posts);
+}
+
+function week_view_num() {
+	$args = array(
+        'post_status' => array('publish'),
+        'post_type' => array('internship','column'),
+        'order' => 'DESC',
+        'posts_per_page' => -1
+    );
+    $custom_key = 'week_views_count';
+    $custom_key1 = 'week_views_count1';
+    $custom_key2 = 'week_views_count2';
+    $custom_key3 = 'week_views_count3';
+    $posts = get_posts( $args );
+    $weekly_column_view = 0;
+    $weekly_internship_view = 0;
+    foreach($posts as $post){
+        $post_id=$post->ID;
+        if(get_post_type($post_id)=='internship'){
+            $view_count = get_post_meta($post_id, 'week_views_count', true);
+            if ($view_count != ''){
+                $weekly_internship_view += (int)$view_count;
+            }
+        }else {
+            $view_count = get_post_meta($post_id, 'week_views_count', true);
+            if ($view_count != ''){
+                $weekly_column_view += (int)$view_count;
+            }
+        }
+    }
+    return array($weekly_internship_view,$weekly_column_view);
+}
+
+
+
 ?>
+
+function Ajax_Search(){
+  $area = [];
+  if(isset($_POST['area'])) {
+    $area = $_POST['area'];
+	  $area = $a = str_replace('┗', '', $area);
+    $area_conditions = '　エリア：';
+    foreach($area as $a) {
+      $area_conditions .= '<div class="card-category">'.$a.'</div>';
+    }
+  }
+  $occupation = [];
+  if(isset($_POST['occupation'])) {
+    $occupation = $_POST['occupation'];
+    $occupation_conditions = '　職種：';
+    foreach($occupation as $o) {
+      $occupation_condition = str_replace('┗', '', $o);
+      $occupation_conditions .= '<div class="card-category">'.$occupation_condition.'</div>';
+    }
+  }
+  $business = [];
+  if(isset($_POST['business'])) {
+    $business = $_POST['business'];
+    $business_type_conditions = '　業種：';
+    foreach($business as $b) {
+      $business_type_condition = str_replace('┗', '', $b);
+      $business_type_conditions .= '<div class="card-category">'.$business_type_condition.'</div>';
+    }
+  }
+  $feature = [];
+  if(isset($_POST['feature'])){
+    $feature = $_POST['feature'];
+    $feature_conditions = '　特徴・条件：';
+    foreach($feature as $f) {
+      $feature_conditions .= '<div class="card-category" style="background-color:#f9b539;">'.$f.'</div>';
+    }
+  }
+  $sw = [];
+  if(isset($_POST['sw'])){
+    $sw = $_POST["sw"];
+  }
+  $ajax_array = Ajax_SearchNum('internship',$area,$occupation,$business,$feature,$sw);
+  $count = $ajax_array[1];
+  $card_html = $ajax_array[0];
+  $feature_html = '
+  <tbody>
+    <tr>
+      <th width="20%">検索予定条件</th>
+      <td>'.$area_conditions.$occupation_conditions.$business_type_conditions.$feature_conditions.'　　　検索で'.$count.'件ヒット</td>
+    </tr>
+  </tbody>
+  ';
+  $list = array($feature_html,$card_html);
+  header("Content-Type: application/json; charset=UTF-8"); //ヘッダー情報の明記。必須。
+  echo json_encode($list);
+  die();
+}
+add_action( 'wp_ajax_ajax_search', 'Ajax_Search' );
+add_action( 'wp_ajax_nopriv_ajax_search', 'Ajax_Search' );
+
+function Ajax_SearchNum($item_type,$area,$occupation,$business_type,$features,$sw){
+  global $post;
+    $page_no = 1;
+    $args = array(
+        'posts_per_page' => 10,
+        'paged' => $page_no,
+        'post_type' => array($item_type),
+        'post_status' => array( 'publish' ),
+    );
+    if (!empty($sw)) {
+    $args += array('s' => $sw[0]);
+    }
+    if (!empty($features)) {
+    foreach($features as $feature){
+        $metaquerysp[] = array('key'=>'特徴','value'=> $feature,'compare'=>'LIKE');
+    }
+    $args += array('meta_query' => $metaquerysp);
+  }
+  if (!empty($business_type)) {
+    if($item_type!="company"){
+        $args2=array('post_type' => array('company'),'posts_per_page' => -1);
+        $tax_obj2=get_taxonomy('business_type');
+        $terms2= $business_type;
+        $taxq2 = array('relation' => 'AND',);
+        array_push($taxq2, array(
+            'taxonomy' => 'business_type',
+            'field' => 'slug',
+            'terms' => $terms2,
+            'include_children' => true,
+            'operator' => 'IN',
+        ));
+        $args2 += array('tax_query' => $taxq2);
+        $company_posts=get_posts($args2);
+        $author_id2 = array();
+        foreach($company_posts as $company_post){
+            if (!in_array($company_post->post_author, $author_id2)) {
+                $author_id2[]= $company_post->post_author;
+            }
+        }
+        $args+=array('author__in'=>$author_id2,);
+    }
+  }
+  $tax_query = array('relation' => 'AND',);
+  if(!empty($occupation)){
+      array_push($tax_query, array(
+          'taxonomy' => 'occupation',
+          'field' => 'slug',
+          'terms' => $occupation,
+          'include_children' => true,
+          'operator' => 'IN',
+      ));
+  }
+  if(!empty($area)){
+    array_push($tax_query, array(
+        'taxonomy' => 'area',
+        'field' => 'slug',
+        'terms' => $area,
+        'include_children' => true,
+        'operator' => 'IN',
+    ));
+ }
+  $args += array('tax_query' => $tax_query);
+  $posts = get_posts($args);
+  $cat_query = new WP_Query($args);
+  $post_num = $cat_query->found_posts;
+  $post_count = 0;
+  $html = '<div class="siteorigin-widget-tinymce textwidget">';
+  $html .= paginate($cat_query->max_num_pages, 1, $cat_query->found_posts, 10);
+    $tech_build_url = "https://jobshot.jp/jobshot_tech-build";
+    $tech_build_img_url = wp_get_attachment_image_src(14216, array(400, 400))[0];
+    $html .= '
+    <div class="card full-card">
+        <div class="full-card-main">
+            <div class="full-card-img">
+                <img src="'.$tech_build_img_url.'" alt="">
+            </div>
+            <div class="full-card-text">
+                <div class="full-card-text-title"><a href="'.esc_url($tech_build_url).'">【エンジニア未経験者必見！】たった二ヶ月で未経験からエンジニアに</a></div>
+                <div><p class="tech-build-detail" style="margin:15px 0;">【広告】プログラミング学習は独学者の9割が挫折すると言われています。TECH-BUILDはプログラミング学習者がつまずきやすいポイントを押さえた有名IT企業所属の優秀な現役エンジニアコーチと伴走して実力を身につけていくプログラミングスクールです。</p></div>
+                <div class="card-category" style="background-color:#f9b539;">プログラミング初心者</div>
+            </div>
+        </div>
+        <div class="full-card-buttons">
+        <a href = "'.esc_url($tech_build_url).'"><button class="button detail">詳細を見る</button></a>
+        </div>
+    </div>';
+  while ($cat_query->have_posts()): $cat_query->the_post();
+    $post_id = $post->ID;
+    $html .= view_card_func($post_id);
+    $post_count += 1;
+    if($item_type == 'internship' && $post_count == 3){
+      $chiyoda = wp_get_attachment_image_src(14204, array(250,150))[0];
+      $marketing = wp_get_attachment_image_src(14196, array(250,150))[0];
+      $retail = wp_get_attachment_image_src(14199, array(250,150))[0];
+      $zimu = wp_get_attachment_image_src(14206, array(250,150))[0];
+      $sonota = wp_get_attachment_image_src(14202, array(250,150))[0];
+      $it = wp_get_attachment_image_src(14194, array(250,150))[0];
+      $house = wp_get_attachment_image_src(14193, array(250,150))[0];
+      $media = wp_get_attachment_image_src(14197, array(250,150))[0];
+      $html .= '    <div class="top__search__container top__feature__search__container">
+      <div class="top__search__wrap">
+          <h4 class="top__search__wrap__title">自分にあった募集を「特徴」から探そう</h4>
+          <ul class="top__search__contents">
+              <li class="top__search__ele">
+                <span>リモートワーク可能</span>
+                <a href="https://jobshot.jp/internship?sw=&feature%5B%5D=%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF%E5%8F%AF%E8%83%BD&itype=internship"><noscript><img src="'.$zimu.'" alt class="only-pc"></noscript><img src="'.$zimu.'" alt="" class="only-pc ls-is-cached lazyloaded" data-src="'.$zimu.'"></a>
+              </li>
+              <li class="top__search__ele">
+                <span>プログラミング未経験</span>
+                <a href="https://jobshot.jp/internship?sw=&feature%5B%5D=%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0%E3%81%8C%E6%9C%AA%E7%B5%8C%E9%A8%93%E3%81%8B%E3%82%89%E5%AD%A6%E3%81%B9%E3%82%8B&itype=internship"><noscript><img src="'.$it.'" alt class="only-pc"></noscript><img src="'.$it.'" alt="" class="only-pc ls-is-cached lazyloaded" data-src="'.$it.'"></a>
+              </li>
+              <li class="top__search__ele">
+                <span>時給1200円以上</span>
+                <a href="https://jobshot.jp/internship?sw=&feature%5B%5D=%E6%99%82%E7%B5%A61200%E5%86%86%E4%BB%A5%E4%B8%8A&itype=internship"><noscript><img src="'.$marketing.'" alt class="only-pc"></noscript><img src="'.$marketing.'" alt="" class="only-pc ls-is-cached lazyloaded" data-src="'.$marketing.'"></a>
+              </li>
+              <li class="top__search__ele">
+                <span>土日のみでも可</span>
+                <a href="https://jobshot.jp/internship?sw=&feature%5B%5D=%E5%9C%9F%E6%97%A5%E3%81%AE%E3%81%BF%E3%81%A7%E3%82%82%E5%8F%AF%E8%83%BD&itype=internship"><noscript><img src="'.$house.'" alt class="only-pc"></noscript><img src="'.$house.'" alt="" class="only-pc ls-is-cached lazyloaded" data-src="'.$house.'"></a>
+              </li>
+              <li class="top__search__ele">
+                <span>週２日OK</span>
+                <a href="https://jobshot.jp/internship?sw=&feature%5B%5D=%E9%80%B12%E6%97%A5ok&itype=internship"></noscript><img src="'.$chiyoda.'" alt="" class="only-pc ls-is-cached lazyloaded" data-src="'.$chiyoda.'"></a>
+              </li>
+              <li class="top__search__ele">
+                <span>社長直下</span>
+                <a href="https://jobshot.jp/internship?sw=&feature%5B%5D=%E7%A4%BE%E9%95%B7%E7%9B%B4%E4%B8%8B&itype=internship"><noscript><img src="'.$retail.'" alt class="only-pc"></noscript><img src="'.$retail.'" alt="" class="only-pc ls-is-cached lazyloaded" data-src="'.$retail.'"></a>
+              </li>
+              <li class="top__search__ele only-pc">
+                <span>1.2年生歓迎</span>
+                <a href="https://jobshot.jp/internship?sw=&feature%5B%5D=1%2C2%E5%B9%B4%E6%AD%93%E8%BF%8E&itype=internship"><noscript><img src="'.$sonota.'" alt class="only-pc"></noscript><img src="'.$sonota.'" alt="" class="only-pc ls-is-cached lazyloaded" data-src="'.$sonota.'"></a>
+              </li>
+              <li class="top__search__ele only-pc">
+                <span>英語力が身に付く</span>
+                <a href="https://jobshot.jp/internship?sw=&feature%5B%5D=%E8%8B%B1%E8%AA%9E%E5%8A%9B%E3%81%8C%E8%BA%AB%E3%81%AB%E3%81%A4%E3%81%8F&itype=internship"><noscript><img src="'.$media.'" alt class="only-pc"></noscript><img src="'.$media.'" alt="" class="only-pc lazyloaded" data-src="'.$media.'"></a>
+              </li>
+          </ul>
+      </div>
+    </div>';
+  }
+  endwhile;
+  $html .= paginate($cat_query->max_num_pages, 1, $cat_query->found_posts, 10);
+  $html .= '</div>';
+  wp_reset_postdata();
+  $list = array($html,$cat_query->found_posts);
+  return $list;
+}
