@@ -115,6 +115,32 @@ function clickBtn3() {
         }
     }
 }
+function clickBtn4() {
+    var w = screen.width;
+    var x = 1023;
+    if (w <= x) {
+        const color3 = document.form3.selective;
+        if (color3[2].checked == true) {
+            for (let i = 0; i < color3.length-1; i++){
+                color3[i].checked = false;
+            }
+        }
+    }
+}
+function openSelectModal() {
+    jQuery('.select-modal-container').css('display','block');
+}
+function closeSelectModal() {
+    jQuery('.select-modal-container').css('display','none');
+}
+jQuery(function(){
+    var w = screen.width;
+    var x = 1023;
+    if (w >= x) {
+        jQuery('.condition_table .card-category').append('<span class="card-category_delete"></span>');
+    }
+});
+
 
 jQuery(function($){
     // formの送信ボタンが押されたときの処理
