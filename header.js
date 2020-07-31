@@ -109,8 +109,10 @@ function clickBtn3() {
     if (w <= x) {
         const color3 = document.form3.selective;
         if (color3[2].checked == true) {
-            for (let i = 0; i < color3.length-1; i++){
-                color3[i].checked = false;
+            for (let i = 0; i < color3.length; i++){
+                if(i != 2){
+                    color3[i].checked = false;
+                }
             }
         }
     }
@@ -120,12 +122,21 @@ function clickBtn4() {
     var x = 1023;
     if (w <= x) {
         const color3 = document.form3.selective;
-        if (color3[2].checked == true) {
+        if (color3[3].checked == true) {
             for (let i = 0; i < color3.length-1; i++){
                 color3[i].checked = false;
             }
         }
     }
+}
+
+function ccd(){
+    console.log('a');
+    jQuery(function($){
+            var id_name = $(this).parent().attr('id');
+            console.log(id_name);
+            $('input[value="'+id_name+'"]').removeAttr('checked').prop('checked', false).change();
+    });
 }
 function openSelectModal() {
     jQuery('.select-modal-container').css('display','block');
@@ -139,6 +150,23 @@ jQuery(function(){
     if (w >= x) {
         jQuery('.condition_table .card-category').append('<span class="card-category_delete"></span>');
     }
+});
+jQuery(function(){
+    var w = screen.width;
+    var x = 681;
+    if(w >= x) {
+        jQuery('.select-modal-container').remove();
+    }else {
+        jQuery('.only-pc .form-selects-row').remove();
+    }
+});
+
+jQuery(function($){
+    $(document).on('click','.card-category_delete',function() {
+        var id_name = $(this).parent().attr('id');
+        console.log(id_name);
+        $('input[value="'+id_name+'"]').removeAttr('checked').prop('checked', false).change();
+    });
 });
 
 
@@ -582,6 +610,7 @@ jQuery(function($){
 jQuery(function($){
     $('[name="area[]"]').change(function(){
         var str = location.href;
+        var w = screen.width;
         if ( str.match(/internship/)) {
         // チェックされている値を配列に格納
         var area = $('input[name="area[]"]:checked').map(function(){
@@ -614,9 +643,15 @@ jQuery(function($){
                 "business":business,
                 "feature":feature,
                 "sw":sw,
+                "window_size":w,
             },
             success: function( response ){
                 $(".condition_table").html(response);
+                if(w <681){
+                    var res = response.split('<span class="num__search">')[1];
+                    var res = res.split('</span>')[0];
+                    $(".num__search-sp").text(res);
+                }
             },
             error: function( response ){
                console.log("失敗!");
@@ -630,6 +665,7 @@ jQuery(function($){
 jQuery(function($){
     $('[name="occupation[]"]').change(function(){
         var str = location.href;
+        var w = screen.width;
         if ( str.match(/internship/)) {
         // チェックされている値を配列に格納
         var area = $('input[name="area[]"]:checked').map(function(){
@@ -662,9 +698,15 @@ jQuery(function($){
                 "business":business,
                 "feature":feature,
                 "sw":sw,
+                "window_size":w,
             },
             success: function( response ){
-                $(".condition_table").html(response[0]);
+                $(".condition_table").html(response);
+                if(w <681){
+                    var res = response.split('<span class="num__search">')[1];
+                    var res = res.split('</span>')[0];
+                    $(".num__search-sp").text(res);
+                }
             },
             error: function( response ){
                console.log("失敗!");
@@ -678,6 +720,7 @@ jQuery(function($){
 jQuery(function($){
     $('[name="business_type[]"]').change(function(){
         var str = location.href;
+        var w = screen.width;
         if ( str.match(/internship/)) {
         // チェックされている値を配列に格納
         var area = $('input[name="area[]"]:checked').map(function(){
@@ -710,9 +753,15 @@ jQuery(function($){
                 "business":business,
                 "feature":feature,
                 "sw":sw,
+                "window_size":w,
             },
             success: function( response ){
                 $(".condition_table").html(response);
+                if(w <681){
+                    var res = response.split('<span class="num__search">')[1];
+                    var res = res.split('</span>')[0];
+                    $(".num__search-sp").text(res);
+                }
             },
             error: function( response ){
                console.log("失敗!");
@@ -726,6 +775,7 @@ jQuery(function($){
 jQuery(function($){
     $('[name="feature[]"]').change(function(){
         var str = location.href;
+        var w = screen.width;
         if ( str.match(/internship/)) {
         // チェックされている値を配列に格納
         var area = $('input[name="area[]"]:checked').map(function(){
@@ -758,9 +808,15 @@ jQuery(function($){
                 "business":business,
                 "feature":feature,
                 "sw":sw,
+                "window_size":w,
             },
             success: function( response ){
                 $(".condition_table").html(response);
+                if(w <681){
+                    var res = response.split('<span class="num__search">')[1];
+                    var res = res.split('</span>')[0];
+                    $(".num__search-sp").text(res);
+                }
             },
             error: function( response ){
                console.log("失敗!");
@@ -774,6 +830,7 @@ jQuery(function($){
 jQuery(function($){
     $('[name="sw"]').keyup(function(){
         var str = location.href;
+        var w = screen.width;
         if ( str.match(/internship/)) {
         // チェックされている値を配列に格納
         var area = $('input[name="area[]"]:checked').map(function(){
@@ -806,6 +863,7 @@ jQuery(function($){
                 "business":business,
                 "feature":feature,
                 "sw":sw,
+                "window_size":w,
             },
             success: function( response ){
                 $(".condition_table").html(response);
