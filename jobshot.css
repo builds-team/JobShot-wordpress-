@@ -8436,6 +8436,7 @@ input[type='search'].search-field_test:focus {
 @media only screen and (max-width: 680px){
   .condition_table th,.condition_table td{
     display: block;
+    width: 100%;;
   }
 }
 /* 検索フォーム・モーダル */
@@ -8538,7 +8539,7 @@ input[type='search'].search-field_test:focus {
   padding: 13px 5px 13px 16px;
 }
 .select-modal-footer {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   height: 50px;
   width: 100%;
@@ -13910,4 +13911,13 @@ width:50px !important;
   .column .full-card + .full-card {
     margin-top: 20px;
   }
+}
+
+.num__search-sp {
+  float: left;
+  margin: 0 0 0 10px;
+  height: 50px;
+  line-height: 50px;
+  color: #fff;
+  font-size: 1rem;
 }

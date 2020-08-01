@@ -1,18 +1,3 @@
-jQuery(function($){
-    $(document).on("click", "#sw", function() {
-        if ($('#sw_check').prop('checked')) {
- 
-            // チェックを外す
-            $('#sw_check').prop('checked', false);
-       
-          // もしチェックが外れていたら
-          } else {
-       
-            // チェックを入れる
-            $('#sw_check').prop('checked', true);
-          }
-    });
-});
 
 jQuery(function($){
     $(".post-1601 #um-submit-btn").attr(
