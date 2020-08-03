@@ -8337,6 +8337,7 @@ input[type='search'].search-field_test:focus {
 }
 .card-category_delete {
   vertical-align: middle;
+  cursor: pointer;
 }
 .card-category_delete:before {
   font-family: 'Material Icons';
