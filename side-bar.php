@@ -448,7 +448,7 @@ function enterprise_help()
 {
   $home_url = esc_url(home_url());
   $html = '
-    <iframe src="https://docs.google.com/viewer?url=' . $home_url . '/wp-content/uploads/2019/12/aca46e36c73c4992c3b898a2271fab9e.pdf&embedded=true" width="1000" height="600">
+    <iframe src="https://docs.google.com/viewer?url=https%3A%2F%2Fjobshot.jp%2Fwp-content%2Fuploads%2F2020%2F08%2F647abaf43d56d1c57088bb121dd72487.pdf&embedded=true" width="1000" height="600">
     </iframe>
     ';
   return $html;
