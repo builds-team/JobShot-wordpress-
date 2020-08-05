@@ -562,13 +562,15 @@ function view_company_contents_func_test(){
     $args = array(
         'post_type' => array($post_type),
         'post_status' => array( 'publish','draft','private'),
-        'author' => $company_user_login
+        'author' => $company_user_login,
+        'posts_per_page' => -1,
     );
     $posts = get_posts($args);
     $args_published = array(
         'post_type' => array($post_type),
         'post_status' => array( 'publish'),
-        'author' => $company_user_login
+        'author' => $company_user_login,
+        'posts_per_page' => -1,
     );
     if($post_type == 'internship'){
         $posts_published = count(get_posts($args_published));

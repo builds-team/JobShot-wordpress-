@@ -8337,7 +8337,13 @@ input[type='search'].search-field_test:focus {
 }
 .card-category_delete {
   vertical-align: middle;
+}
+.condition_table .card-category {
   cursor: pointer;
+}
+.card-category_delete:hover:before {
+  color: #000;
+  opacity: .5;
 }
 .card-category_delete:before {
   font-family: 'Material Icons';
@@ -12504,6 +12510,17 @@ a .list__contents__ele_div:hover{
   line-height: 1;
 }
 #es-delete:hover{
+  color: rgb(237, 48, 92);
+}
+#intern-delete {
+  font: normal 103.125%/ 1.55 'Lato', Arial, sans-serif;
+  color: #03c4b0;
+  background-color: white;
+  padding: 0;
+  margin: 0;
+  line-height: 1;
+}
+#intern-delete:hover{
   color: rgb(237, 48, 92);
 }
 .es-like-container{
