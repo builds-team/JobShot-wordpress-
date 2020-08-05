@@ -173,7 +173,12 @@ function template_internship2_func($content){
     </div>';
     $button_html = '
     <div class="company_edit" style="text-align:right;">
-      <a href="'.$home_url.'/edit_internship?post_id='.$post_id.'" style="margin-right:5px;">編集する</a><a href="'.get_delete_post_link($post_id).'" style="margin-right:5px;">削除する</a>
+      <a href="'.$home_url.'/edit_internship?post_id='.$post_id.'" style="margin-right:5px;">編集する</a>
+      <form action="" method="POST" enctype="multipart/form-data">
+        <input type="hidden" name="post_id" value="'.$post_id.'">
+        <input type="hidden" name="company_id" value="'.$company_id.'">
+        <input type="submit" name="intern-delete" id="intern-delete" class="" value="削除する">
+      </form>
     </div>';
   }else{
     $button_html = '';
@@ -381,53 +386,38 @@ function template_internship2_func($content){
       <p class="intern_list_lead">'.$intern_contents.'</p>
     </div>';
   }
-  if(!empty($intern_time_table[0]['start']) and empty($intern_day_re)){
-    $html .= '
-    <div class="intern_list">
-      <h3 class="intern_list_title">１日の流れ</h3>';
-    if(!empty($image4_url)){
-      $html .= '
-      <div class="intern_list_image_box">
-        <img src="'.$image4_url.'">
-      </div>';
-    }
-    $html .= '
-      <table class="timetable">
-        <tbody>'.$table_html.'</tbody>
-      </table>
-    </div>';
-  }
   if(!empty($intern_day_re) and strpos($intern_day_pre,'</br>') !== false){
-	$html .= '
-    <div class="intern_list">
-      <h3 class="intern_list_title">１日の流れ</h3>';
-    if(!empty($image4_url)){
+    $html .= '
+      <div class="intern_list">
+        <h3 class="intern_list_title">１日の流れ</h3>';
+      if(!empty($image4_url)){
+        $html .= '
+        <div class="intern_list_image_box">
+          <img src="'.$image4_url.'">
+        </div>';
+      }
       $html .= '
-      <div class="intern_list_image_box">
-        <img src="'.$image4_url.'">
+        <table class="timetable">
+          <tbody>'.$table_html.'</tbody>
+        </table>
       </div>';
     }
+    
+    else if( !empty($intern_day_pre)){
+    $intern_day_pre = nl2br($intern_day_pre);
     $html .= '
-      <table class="timetable">
-        <tbody>'.$table_html.'</tbody>
-      </table>
-    </div>';
-  }
-  if(empty($intern_time_table[0]['start']) and strpos($intern_day_pre,'</br>')=== false){
-	$intern_day_pre = nl2br($intern_day_pre);
-	$html .= '
-    <div class="intern_list">
-      <h3 class="intern_list_title">１日の流れ</h3>';
-    if(!empty($image4_url)){
+      <div class="intern_list">
+        <h3 class="intern_list_title">１日の流れ</h3>';
+      if(!empty($image4_url)){
+        $html .= '
+        <div class="intern_list_image_box">
+          <img src="'.$image4_url.'">
+        </div>';
+      }
       $html .= '
-      <div class="intern_list_image_box">
-        <img src="'.$image4_url.'">
+        <p class="intern_list_lead">'.$intern_day_pre.'</p>
       </div>';
     }
-    $html .= '
-      <p class="intern_list_lead">'.$intern_day_pre.'</p>
-    </div>';
-  }
 
   if((!empty($selection_flows[0]['selection_step'])) and (empty($selection_flows_re[0]))){
     $html .= '
@@ -465,17 +455,6 @@ function template_internship2_func($content){
           <td><p>'.$intern_contents.'</p></td>
         </tr>';
       }
-      if(!empty($intern_time_table[0]['start']) and empty($intern_day_re)){
-        $html .= '
-        <tr>
-          <th>１日の流れ</th>
-          <td>
-            <table class="timetable">
-              <tbody>'.$table_html.'</tbody>
-            </table>
-          </td>
-        </tr>';
-      }
       if(!empty($intern_day_re) and strpos($intern_day_pre,'</br>') !== false){
         $html .= '
         <tr>
@@ -487,7 +466,7 @@ function template_internship2_func($content){
           </td>
         </tr>';
       }
-      if(empty($intern_time_table[0]['start']) and strpos($intern_day_pre,'</br>')=== false){
+      else if(!empty($intern_day_pre)){
 		$intern_day_pre = nl2br($intern_day_pre);
 		$html .= '
 		<tr>
@@ -1604,4 +1583,23 @@ function reproduction_intern(){
 
 }
 add_action('template_redirect', 'reproduction_intern');
+
+//デリート機能
+function intern_delete(){
+  if(!empty($_POST["post_id"]) && !empty($_POST["intern-delete"])){
+    $company_id = $_POST["company_id"];
+    $post_id = $_POST["post_id"];
+    $user_id = get_current_user_id();
+    //if($user_id == $company_id){
+      wp_trash_post($post_id);
+    //}
+    $home_url =esc_url( home_url( ));
+    $current_user = wp_get_current_user();
+    $current_user_name = $current_user->data->display_name;
+    $company_url=$home_url.'/?company='.$current_user_name;
+    header('Location: '.$company_url);
+    exit();
+  }
+}
+add_action('template_redirect', 'intern_delete');
 ?>

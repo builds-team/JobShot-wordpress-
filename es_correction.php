@@ -580,9 +580,10 @@ function view_past_es(){
       }
       $user_roles = $user->roles;
       if($post->post_author == $user_id){
-        $edit_html = '                <div class="es-content-edit">
-        <i class="fas fa-pen-fancy"></i>
-        <a href="/entry-sheet/practice?post_id='.$post_id.'&category='.$es_url.'&action=edit">編集</a>
+        $edit_html = '
+        <div class="es-content-edit">
+          <i class="fas fa-pen-fancy"></i>
+          <a href="/entry-sheet/practice?post_id='.$post_id.'&category='.$es_url.'&action=edit">編集</a>
       </div>
       <div class="es-content-edit-delete-between">|</div>
       <div class="es-content-delete">

@@ -54,15 +54,15 @@ function add_column($column_name, $post_id) {
                 echo __('None');
             }
         }
-        if ( $column_name == 'apply_count' ) {
-            $formname = 'インターン応募';
-            $stitle = do_shortcode(' [cfdb-count form="/'.$formname.'.*/" filter="job-id='.$post_id.'"]');
-            if ( isset($stitle) && $stitle ) {
-                echo attribute_escape($stitle);
-            } else {
-                echo __('None');
-            }
-        }
+        //if ( $column_name == 'apply_count' ) {
+            //$formname = 'インターン応募';
+            //$stitle = do_shortcode(' [cfdb-count form="/'.$formname.'.*/" filter="job-id='.$post_id.'"]');
+            //if ( isset($stitle) && $stitle ) {
+                //echo attribute_escape($stitle);
+            //} else {
+                //echo __('None');
+            //}
+        //}
     }
 }
 add_filter( 'manage_internship_posts_columns', 'manage_posts_columns' );
