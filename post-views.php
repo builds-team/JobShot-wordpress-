@@ -16,7 +16,7 @@ function manage_posts_columns($columns) {
         $columns['post_views_count'] = 'Total閲覧数';
         $columns['week_views_count'] = 'Week閲覧数';
         $columns['day_views_count'] = 'Day閲覧数';
-        $columns['apply_count'] = '応募数';
+        //$columns['apply_count'] = '応募数';
         unset($columns['date']);
         unset($columns['wpmem_block']);
     }

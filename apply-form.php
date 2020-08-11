@@ -4,12 +4,17 @@ function apply_title(){
     if(isset($_GET['post_id'])){
         $post_id = $_GET['post_id'];
         $title = get_field("募集タイトル",$post_id);
+        if(get_post_type($post_id)=='job'){
+            $post_company = $_GET["jobname"];
+            $post_html = '<div class="job-name job-title">'.$post_company.'</div></br>';
+        }
     }
     $html = '
     <section class="entry">
         <div role="form" class="wpcf7" lang="ja" dir="ltr">
             <div class="screen-reader-response"></div>
             <div class="apply-form-container job-name-container">
+                '.$post_html.'
                 <p class="job-name">'.$title.'</p>
             </div>
         </div>
