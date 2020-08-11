@@ -383,6 +383,8 @@ function view_applylist_func ( $atts ) {
                 <th>卒業年度</th>
                 <th>応募日時</th>
                 <th>連絡先</th>
+                <th>面接希望日時</th>
+                <th>勤務可能時間</th>
                 <th>選考状況</th>
               </tr>
             </thead>
@@ -401,6 +403,12 @@ function view_applylist_func ( $atts ) {
                 </td>
                 <td label="連絡先">
                   <p>[get_user_mobile_number field=login value="${your-id}"]<br>[get_user_email field=login value="${your-id}"]</p>
+                </td>
+                <td label="面接希望日時">
+                  <p>${interview_date_1}</p><p>${interview_date_2}</p><p>${interview_date_3}</p>
+                </td>
+                <td label="勤務可能時間">
+                  <p>週${your-date}日　計${your-time}時間</p>
                 </td>
                 <td label="選考状況">
                   <form action="" method="POST">
@@ -511,6 +519,8 @@ function view_intern_all_applylist_func ( $atts ) {
               <th>応募日時</th>
               <th>応募案件名</th>
               <th>連絡先</th>
+              <th>面接希望日時</th>
+              <th>勤務可能時間</th>
               <th>選考状況</th>
               <th style="width:10%;">面接対策</th>
             </tr>
@@ -536,6 +546,12 @@ function view_intern_all_applylist_func ( $atts ) {
               <td label="連絡先">
                 <p>[get_user_mobile_number field=login value="${your-id}"]<br>[get_user_email field=login value="${your-id}"]</p>
               </td>
+              <td label="面接希望日時">
+              <p>${interview_date_1}</p><p>${interview_date_2}</p><p>${interview_date_3}</p>
+            </td>
+            <td label="勤務可能時間">
+              <p>週${your-date}日　計${your-time}時間</p>
+            </td>
               <td label="選考状況">
                 <form action="" method="POST">
                   <div>
