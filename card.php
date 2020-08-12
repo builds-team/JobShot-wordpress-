@@ -440,9 +440,15 @@ function view_fullwidth_event_card_func($post_id){
   $image_url = $image["url"];
   $event_date = get_field('開催日時',$post_id);
   $event_day=get_field('開催日',$post_id);
+  $event_day_2 = str_replace('/', '-', $event_day);
   $today=date("Y/m/d");
   $area = get_the_terms($post_id,"area")[0]->name;
   $event_target = get_field('募集対象_短文',$post_id);
+  $event_summary = get_field('概要',$post_id);
+  if(mb_strlen($event_summary) > 150){
+    $event_summary = mb_substr(nl2br($event_summary),0,150).'...';
+  }
+  $event_deadline = get_field('申込締切日時',$post_id);
   $event_capacity = get_field('定員',$post_id);
   $sankas=get_field('参加企業',$post_id);
   $sanka_html='<div>';
@@ -472,7 +478,7 @@ function view_fullwidth_event_card_func($post_id){
         <img src="'.$image_url.'" alt>
       </div>
       <div class="full-card-text">';
-  if($event_day<$today){
+  if(strtotime($event_day_2)<strtotime('now')){
   $card_html.='
         <div class="full-card-text-title">
           <font color = "gray">'.$post_title.'【終了】</font>
@@ -482,6 +488,7 @@ function view_fullwidth_event_card_func($post_id){
         <div class="full-card-text-title"><a href="'.esc_url($event_url).'">'.$post_title.'</a></div>';
   }
   $card_html .='
+        <div><p>'.$event_summary.'</p></div>
         <table class="full-card-table">
           <tbody>';
   if(!empty($sankas)){
@@ -517,6 +524,13 @@ function view_fullwidth_event_card_func($post_id){
             <tr>
               <th>定員</th>
               <td>'.$event_capacity.'</td>
+            </tr>';
+  }
+  if(!empty($event_deadline)){
+    $card_html .= '
+            <tr>
+              <th>申込締切日時</th>
+              <td>'.$event_deadline.'</td>
             </tr>';
   }
   $card_html .='

@@ -114,7 +114,8 @@ function view_custom_search_func($atts){
         $args += array('meta_query' => $metaquerysp);
     }
     if($item_type=="event"){
-        $args += array('orderby' => 'meta_value','meta_key' => '開催日','order'   => 'DESC','meta_query' => array('value' => date('Y/m/d'),'compare' => '>=','type' => 'DATE'));
+        //$args += array('orderby' => 'meta_value','meta_key' => '開催日','order'   => 'DESC','meta_query' => array('value' => date('Y/m/d'),'compare' => '>=','type' => 'DATE'));
+        $args += array('meta_key' => '開催日','orderby' => 'meta_value','order'=> 'DESC',);
     }
     //新卒投稿をしている企業のみを取得
     if($item_type=="company"){
