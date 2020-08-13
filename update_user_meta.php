@@ -55,4 +55,41 @@ function update_user_score(){
     update_user_total_profile_score($user_id);
 }
 add_shortcode('update_user_score','update_user_score');
+
+function update_all_user_score(){
+    $args = array(
+        'blog_id'      => $GLOBALS['blog_id'],
+        'role'         => 'student',
+        'meta_key'     => '',
+        'meta_value'   => '',
+        'meta_compare' => '',
+        'meta_query'   => '',
+        'date_query'   => array(),
+        'include'      => array(),
+        'exclude'      => array(),
+        'search_columns' => array(),
+        'count_total'  => true,
+        'fields'       => 'all',
+        'who'          => ''
+    );
+    $students=new WP_User_Query( $args );
+    $count = 0;
+    $user_ids = array();
+    if ( $students->get_results())foreach( $students->get_results() as $user )  {
+        $user_id = $user->data->ID;
+        $user_base_profile_score = get_user_meta( $user_id, 'user_base_profile_score',false)[0];
+        update_user_base_profile_score($user_id);
+        update_user_univ_profile_score($user_id);
+        update_user_abroad_profile_score($user_id);
+        update_user_programming_profile_score($user_id);
+        update_user_skill_profile_score($user_id);
+        update_user_community_profile_score($user_id);
+        update_user_internship_profile_score($user_id);
+        update_user_interest_profile_score($user_id);
+        update_user_experience_profile_score($user_id);
+        update_user_picture_profile_score($user_id);
+        update_user_total_profile_score($user_id);
+    }
+}
+add_shortcode('update_all_user_score','update_all_user_score');
 ?>

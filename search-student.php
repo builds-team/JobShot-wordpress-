@@ -321,7 +321,7 @@ function student_search_form_func($atts) {
             $(".radio").prop("checked", false);
         }
     </script>
-    <form role="search" method="get" class="search-form" action="'.$home_url.'/scout_result/">
+    <form role="search" method="get" class="search-form" action="'.$home_url.'/scout_result/" id="form__scout">
         <div class="tabs">
             <input id="all" type="radio" name="tab_item" checked>
                 <label class="tab_item" for="all">基本情報</label>
@@ -385,6 +385,18 @@ function student_search_form_func($atts) {
                                             <option value="４">ベンチャー企業には全く興味がない</option>
                                         </select>
                                     </td>
+                            </tr>
+                            <tr>
+                                <th>プロフィールスコア</th>
+                                <td class="cp_ipselect cp_sl03">
+                                    <select name="profile_score">
+                                        <option value="">指定なし</option>
+                                        <option value="20">20以上</option>
+                                        <option value="40">40以上</option>
+                                        <option value="60">60以上</option>
+                                        <option value="80">80以上</option>
+                                    </select>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -962,14 +974,17 @@ function student_search_result_func($atts){
         array_push($meta_query_args, $builds_mail_meta_query);
     }
 
+    $condition_html = '';
     // 性別による絞り込み
     if (!empty($_GET['gender'])) {
         $gender = $_GET['gender'];
         if($gender == 'male'){
             $gender = array('男性');
+            $condition_html .= '<span>性別：</span><div class="card-category__scout">男性</div><br>';
         }
         if($gender == 'female'){
             $gender = array ('女性');
+            $condition_html .= '<span>性別：</span><div class="card-category__scout">女性</div><br>';
         }
         array_push (
             $meta_query_args,
@@ -986,8 +1001,10 @@ function student_search_result_func($atts){
         $last_login_value = $_GET["last_login"];
         if($last_login_value == 30){
             $compare_time = date("Y/m/d H:i:s",strtotime("-1 month"));
+            $condition_html .= '<span>ログイン日時：</span><div class="card-category__scout">１ヶ月以内</div><br>';
         }else{
             $compare_time = date("Y/m/d H:i:s",strtotime("-".$last_login_value." day"));
+            $condition_html .= '<span>ログイン日時：</span><div class="card-category__scout">'.$last_login_value.'以内</div><br>';
         }
         $compare_unixtime = strtotime($compare_time);
         array_push($meta_query_args, array(
@@ -1000,13 +1017,16 @@ function student_search_result_func($atts){
     if (!empty($_GET['degree_of_internship_interest']) ) {
         $degree_of_internship_interest = $_GET["degree_of_internship_interest"];
 	  	if($degree_of_internship_interest==1){
-		    $degree_of_internship_interest=array('今すぐにでも長期インターンをやってみたい');
+            $degree_of_internship_interest=array('今すぐにでも長期インターンをやってみたい');
+            $condition_html .= '<span>活動状況：</span><div class="card-category__scout">今すぐにでも長期インターンをやってみたい</div><br>';
 		}
 	  	if($degree_of_internship_interest==2){
-		    $degree_of_internship_interest=array('話を聞いてみて、もし自分に合いそうなのであれば長期インターンをやってみたい');
+            $degree_of_internship_interest=array('話を聞いてみて、もし自分に合いそうなのであれば長期インターンをやってみたい');
+            $condition_html .= '<span>活動状況：</span><div class="card-category__scout">話を聞いてみて、もし自分に合いそうなのであれば長期インターンをやってみたい</div><br>';
 		}
 	  	if($degree_of_internship_interest==3){
-		    $degree_of_internship_interest=array('全く興味がない');
+            $degree_of_internship_interest=array('全く興味がない');
+            $condition_html .= '<span>活動状況：</span><div class="card-category__scout">全く興味がない</div><br>';   
 		}
         array_push($meta_query_args, array(
             'key'       => 'degree_of_internship_interest',
@@ -1018,16 +1038,20 @@ function student_search_result_func($atts){
     if (!empty($_GET['will_venture']) ) {
         $will_venture = $_GET["will_venture"];
 	  	if($will_venture==1){
-		    $will_venture=array('ファーストキャリアはベンチャー企業が良いと思っている');
+            $will_venture=array('ファーストキャリアはベンチャー企業が良いと思っている');
+            $condition_html .= '<span>ベンチャーへの就職意欲：</span><div class="card-category__scout">ファーストキャリアはベンチャー企業が良いと思っている</div><br>'; 
 		}
 	  	if($will_venture==2){
-		    $will_venture=array('自分に合ったベンチャー企業ならば就職してみたい');
+            $will_venture=array('自分に合ったベンチャー企業ならば就職してみたい');
+            $condition_html .= '<span>ベンチャーへの就職意欲：</span><div class="card-category__scout">自分に合ったベンチャー企業ならば就職してみたい</div><br>'; 
 		}
 	  	if($will_venture==3){
-		    $will_venture=array('ベンチャー企業に少しは興味がある');
+            $will_venture=array('ベンチャー企業に少しは興味がある');
+            $condition_html .= '<span>ベンチャーへの就職意欲：</span><div class="card-category__scout">ベンチャー企業に少しは興味がある</div><br>'; 
 		}
 	  	if($will_venture==4){
-		    $will_venture=array('ベンチャー企業には全く興味がない');
+            $will_venture=array('ベンチャー企業には全く興味がない');
+            $condition_html .= '<span>ベンチャーへの就職意欲：</span><div class="card-category__scout">ベンチャー企業には全く興味がない</div><br>'; 
 		}
         array_push($meta_query_args, array(
             'key'       => 'will_venture',
@@ -1035,7 +1059,6 @@ function student_search_result_func($atts){
             'compare'   => 'LIKE'
         ));
     }
-
     // 大学による絞り込み
     if (isset($_GET['university']) ) {
         $universities = $_GET["university"];
@@ -1103,59 +1126,70 @@ function student_search_result_func($atts){
             $university_sub = "法政大学";
             array_push($universities,$university_sub);
         }
-
+        $condition_html .= '<span>大学：</span>';
         $univ_meta_query = array('relation' => 'OR');
         foreach($universities as $university){
+            $condition_html .= '<div class="card-category__scout">'.$university.'</div>';
             array_push($univ_meta_query, array(
                 'key'       => 'university',
                 'value'     => $university,
                 'compare'   => '='
             ));
         }
+        $condition_html .= '<br>';
         array_push($meta_query_args, $univ_meta_query);
     }
 
     // 学部系統による絞り込み
     if (isset($_GET['faculty_lineage']) ) {
         $faculty_lineages = $_GET["faculty_lineage"];
+        $condition_html .= '<span>学部系統：</span>';
         $faculty_lineage_meta_query = array('relation' => 'OR');
         foreach($faculty_lineages as $faculty_lineage){
+            $condition_html .= '<div class="card-category__scout">'.$faculty_lineage.'</div>';
             array_push($faculty_lineage_meta_query, array(
                 'key'       => 'faculty_lineage',
                 'value'     => $faculty_lineage,
                 'compare'   => 'LIKE'
             ));
         }
+        $condition_html .= '<br>';
         array_push($meta_query_args, $faculty_lineage_meta_query);
     }
-
+    
+    $graduate_html = '';
     // 卒業年度による絞り込み
     if (isset($_GET['graduate_year']) ) {
         $graduate_years = $_GET["graduate_year"];
         if(in_array(2021,$graduate_years)){
             $graduate_year_sub = "2021(2019年4月時点で大学3年生/大学院1年生)";
             $graduate_year_sub_1 = "2021";
+            $graduate_html .= '<div class="card-category__scout">21卒</div>';
             array_push($graduate_years,$graduate_year_sub);
             array_push($graduate_years,$graduate_year_sub_1);
         }
         if(in_array(2022,$graduate_years)){
             $graduate_year_sub = "2022(2019年4月時点で大学2年生)";
             $graduate_year_sub_1 = "2022";
+            $graduate_html .= '<div class="card-category__scout">22卒</div>';
             array_push($graduate_years,$graduate_year_sub);
             array_push($graduate_years,$graduate_year_sub_1);
         }
         if(in_array(2023,$graduate_years)){
             $graduate_year_sub = "2023(2019年4月時点で大学1年生)";
             $graduate_year_sub_1 = "2023";
+            $graduate_html .= '<div class="card-category__scout">23卒</div>';
             array_push($graduate_years,$graduate_year_sub);
             array_push($graduate_years,$graduate_year_sub_1);
         }
         if(in_array(2024,$graduate_years)){
             $graduate_year_sub = "2024(2020年4月時点で大学1年生)";
             $graduate_year_sub_1 = "2024";
+            $graduate_html .= '<div class="card-category__scout">24卒</div>';
             array_push($graduate_years,$graduate_year_sub);
             array_push($graduate_years,$graduate_year_sub_1);
         }
+        $condition_html .= '<span>卒業年度：</span>'.$graduate_html.'<br>';
         $graduate_year_meta_query = array('relation' => 'OR');
         foreach($graduate_years as $graduate_year){
             array_push($graduate_year_meta_query, array(
@@ -1170,14 +1204,17 @@ function student_search_result_func($atts){
     // 職種による絞り込み
     if (isset($_GET['occupation']) ) {
         $occupations = $_GET["occupation"];
+        $condition_html .= '<span>職種：</span>';
         $occupation_meta_query = array('relation' => 'OR');
         foreach($occupations as $occupation){
+            $condition_html .= '<div class="card-category__scout">'.$occupation.'</div>';
             array_push($occupation_meta_query, array(
                 'key'       => 'future_occupations',
                 'value'     => $occupation,
                 'compare'   => 'LIKE'
             ));
         }
+        $condition_html .= '<br>';
         array_push($meta_query_args, $occupation_meta_query);
     }
     // 留学経験による絞り込み
@@ -1185,72 +1222,95 @@ function student_search_result_func($atts){
         $studied_abroads = $_GET["studied_abroad"];
         $studied_abroad_meta_query = array('relation' => 'OR');
         foreach($studied_abroads as $studied_abroad){
-            for($i=0;$i<=(4-$studied_abroad);$i++){
+            for($i=0;$i<=(5-$studied_abroad);$i++){
                 switch($i){
                     case 0:
-                    array_push($studied_abroad_meta_query, array(
-                        'key'       => 'studied_abroad',
-                        'value'     => '１年以上',
-                        'compare'   => 'LIKE'
-                    ));
-                    break;
+                        array_push($studied_abroad_meta_query, array(
+                            'key'       => 'studied_abroad',
+                            'value'     => '１年以上',
+                            'compare'   => 'LIKE'
+                        ));
+                        break;
                     case 1:
-                    array_push($studied_abroad_meta_query, array(
-                        'key'       => 'studied_abroad',
-                        'value'     => '６ヶ月以上1年未満',
-                        'compare'   => 'LIKE'
-                    ));
-                    break;
+                        array_push($studied_abroad_meta_query, array(
+                            'key'       => 'studied_abroad',
+                            'value'     => '６ヶ月以上1年未満',
+                            'compare'   => 'LIKE'
+                        ));
+                        break;
                     case 2:
-                    array_push($studied_abroad_meta_query, array(
-                        'key'       => 'studied_abroad',
-                        'value'     => '３ヶ月以上６ヶ月未満',
-                        'compare'   => 'LIKE'
-                    ));
-                    break;
+                        array_push($studied_abroad_meta_query, array(
+                            'key'       => 'studied_abroad',
+                            'value'     => '３ヶ月以上６ヶ月未満',
+                            'compare'   => 'LIKE'
+                        ));
+                        break;
                     case 3:
-                    array_push($studied_abroad_meta_query, array(
-                        'key'       => 'studied_abroad',
-                        'value'     => '3ヶ月未満',
-                        'compare'   => 'LIKE'
-                    ));
+                        array_push($studied_abroad_meta_query, array(
+                            'key'       => 'studied_abroad',
+                            'value'     => '3ヶ月未満',
+                            'compare'   => 'LIKE'
+                        ));
                     break;
                     case 4:
-                    array_push($studied_abroad_meta_query, array(
-                        'key'       => 'studied_abroad',
-                        'value'     => '経験なし',
-                        'compare'   => 'LIKE'
-                    ));
-                    break;
+                        array_push($studied_abroad_meta_query, array(
+                            'key'       => 'studied_abroad',
+                            'value'     => '経験なし',
+                            'compare'   => 'LIKE'
+                        ));
+                        break;
                 }
             }
+        }
+        switch($studied_abroads[0]){
+            case 0:
+                $condition_html .= '<span>留学経験：</span><div class="card-category__scout">指定なし</div><br>';
+            break;
+            case 1:
+                $condition_html .= '<span>留学経験：</span><div class="card-category__scout">期間は問わないが経験あり</div><br>';
+            break;
+            case 2:
+                $condition_html .= '<span>留学経験：</span><div class="card-category__scout">３ヶ月以上</div><br>';
+            break;
+            case 3:
+                $condition_html .= '<span>留学経験：</span><div class="card-category__scout">６ヶ月以上</div><br>';
+            break;
+            case 4:
+                $condition_html .= '<span>留学経験：</span><div class="card-category__scout">1年以上</div><br>';
+            break;
         }
         array_push($meta_query_args, $studied_abroad_meta_query);
     }
   // 学生時代の経験による絞り込み
     if (isset($_GET['student_experience']) ) {
         $student_experiences = $_GET["student_experience"];
+        $condition_html .= '<span>学生時代の経験：</span>';
         $student_experience_meta_query = array('relation' => 'OR');
         foreach($student_experiences as $student_experience){
+            $condition_html .= '<div class="card-category__scout">'.$student_experience.'</div>';
             array_push($student_experience_meta_query, array(
                 'key'       => 'student_experience',
                 'value'     => $student_experience,
                 'compare'   => 'LIKE'
             ));
         }
+        $condition_html .= '<br>';
         array_push($meta_query_args, $student_experience_meta_query);
     }
     // 大学時代のコミュニティによる絞り込み
     if (isset($_GET['univ_community']) ) {
         $univ_communities = $_GET["univ_community"];
+        $condition_html .= '<span>大学時代のコミュニティ：</span>';
         $univ_community_meta_query = array('relation' => 'OR');
         foreach($univ_communities as $univ_community){
+            $condition_html .= '<div class="card-category__scout">'.$univ_community.'</div>';
             array_push($univ_community_meta_query, array(
                 'key'       => 'univ_community',
                 'value'     => $univ_community,
                 'compare'   => 'LIKE'
             ));
         }
+        $condition_html .= '<br>';
         array_push($meta_query_args, $univ_community_meta_query);
     }
     // 長期インターン経験による絞り込み
@@ -1299,165 +1359,201 @@ function student_search_result_func($atts){
             }
         }
         array_push($meta_query_args, $internship_experiences_meta_query);
+        switch($internship_experiences[0]){
+            case 0:
+                $condition_html .= '<span>長期インターン経験：</span><div class="card-category__scout">指定なし</div><br>';
+            break;
+            case 1:
+                $condition_html .= '<span>長期インターン経験経験：</span><div class="card-category__scout">１ヶ月以上</div><br>';
+            break;
+            case 2:
+                $condition_html .= '<span>長期インターン経験経験：</span><div class="card-category__scout">３ヶ月以上</div><br>';
+            break;
+            case 3:
+                $condition_html .= '<span>長期インターン経験：</span><div class="card-category__scout">６ヶ月以上</div><br>';
+            break;
+            case 4:
+                $condition_html .= '<span>長期インターン経験経験：</span><div class="card-category__scout">1年以上</div><br>';
+            break;
+        }
     }
   // 興味のある業界による絞り込み
     if (isset($_GET['bussiness_type']) and(!empty($_GET['bussiness_type']))) {
         $bussiness_types = $_GET["bussiness_type"];
+        $condition_html .= '<span>業界：</span>';
         $bussiness_type_meta_query = array('relation' => 'OR');
         foreach($bussiness_types as $bussiness_type){
+            $condition_html .= '<div class="card-category__scout">'.$bussiness_type.'</div>';
             array_push($bussiness_type_meta_query, array(
                 'key'       => 'bussiness_type',
                 'value'     => $bussiness_type,
                 'compare'   => 'LIKE'
             ));
         }
+        $condition_html .= '<br>';
         array_push($meta_query_args, $bussiness_type_meta_query);
     }
-  //フリーワード検索による絞り込み
-if (isset($_GET['freeword']) ) {
-    $freeword =  my_esc_sql($_GET['freeword']);
-    if(strlen(freeword)>1){
-        array_push ($meta_query_args,
-            array('relation' => 'OR',
-                array(
-                    'key'     => 'last_name',
-                    'value'   => esc_attr($freeword),
-                    'compare' => 'LIKE'
-                ),
-                array(
-                    'key'     => 'first_name',
-                    'value'   => esc_attr($freeword),
-                    'compare' => 'LIKE'
-                ),
-                array(
-                    'key'     => 'last_name_ruby',
-                    'value'   => esc_attr($freeword),
-                    'compare' => 'LIKE'
-                ),
-                array(
-                    'key'     => 'first_name_ruby',
-                    'value'   => esc_attr($freeword),
-                    'compare' => 'LIKE'
-                ),
-                array(
-                    'key'     => 'region',
-                    'value'   => esc_attr($freeword),
-                    'compare' =>'LIKE'
-                ),
-                array(
-                    'key'     => 'highschool',
-                    'value'   => esc_attr($freeword),
-                    'compare' => 'LIKE'
-                ),
-                array(
-                    'key'     => 'seminar',
-                    'value'   => esc_attr($freeword),
-                    'compare' =>'LIKE'
-                ),
-                array(
-                    'key'     => 'studied_ab_place',
-                    'value'   => esc_attr($freeword),
-                    'compare' =>'LIKE'
-                ),
-                array(
-                    'key'     => 'lang_pr',
-                    'value'   => esc_attr($freeword),
-                    'compare' =>'LIKE'
-                ),
-                array(
-                    'key'     => 'skill',
-                    'value'   => esc_attr($freeword),
-                    'compare' =>'LIKE'
-                ),
-                array(
-                    'key'     => 'community_univ',
-                    'value'   => esc_attr($freeword),
-                    'compare' =>'LIKE'
-                ),
-                array(
-                    'key'     => 'internship_company',
-                    'value'   => esc_attr($freeword),
-                    'compare' =>'LIKE'
-                ),
-                array(
-                    'key'     => 'experience_internship',
-                    'value'   => esc_attr($freeword),
-                    'compare' =>'LIKE'
-                ),
-                array(
-                    'key'     => 'self_internship_PR',
-                    'value'   => esc_attr($freeword),
-                    'compare' =>'LIKE'
-                ),
-                array(
-                    'key'     => 'gender',
-                    'value'   => esc_attr($freeword),
-                    'compare' =>'LIKE'
-                ),
-                array(
-                    'key'     => 'university',
-                    'value'   => esc_attr($freeword),
-                    'compare' =>'LIKE'
-                ),
-                array(
-                    'key'     => 'faculty',
-                    'value'   => esc_attr($freeword),
-                    'compare' =>'LIKE'
-                ),
-                array(
-                    'key'     => 'faculty_lineage',
-                    'value'   => esc_attr($freeword),
-                    'compare' =>'LIKE'
-                ),
-                array(
-                    'key'     => 'school_year',
-                    'value'   => esc_attr($freeword),
-                    'compare' =>'LIKE'
-                ),
-                array(
-                    'key'     => 'graduate_year',
-                    'value'   => esc_attr($freeword),
-                    'compare' =>'LIKE'
-                ),
-                array(
-                    'key'     => 'programming_languages',
-                    'value'   => esc_attr($freeword),
-                    'compare' =>'LIKE'
-                ),
-                array(
-                    'key'     => 'skill_dev',
-                    'value'   => esc_attr($freeword),
-                    'compare' =>'LIKE'
-                ),
-                array(
-                    'key'     => 'own_pr',
-                    'value'   => esc_attr($freeword),
-                    'compare' =>'LIKE'
-                ),
-                array(
-                    'key'     => 'univ_community',
-                    'value'   => esc_attr($freeword),
-                    'compare' =>'LIKE'
-                ),
-                array(
-                    'key'     => 'student_experience',
-                    'value'   => esc_attr($freeword),
-                    'compare' =>'LIKE'
-                ),
-                array(
-                    'key'     => 'bussiness_type',
-                    'value'   => esc_attr($freeword),
-                    'compare' =>'LIKE'
-                ),
-                array(
-                    'key'     => 'future_occupations',
-                    'value'   => esc_attr($freeword),
-                    'compare' =>'LIKE'
-                )
-            )
+
+    //プロフィールスコアによる絞り込み
+    if(isset($_GET['profile_score'])){
+        $profile_score = $_GET['profile_score'];
+        $condition_html .= '<span>プロフィールスコア：</span><div class="card-category__scout">'.$profile_score.'以上</div><br>';
+        $profile_score_query = array(
+            'key'       => 'user_profile_total_score',
+            'value'     => $profile_score,
+            'compare'   => '>=',
+            'type'=>'NUMERIC'
         );
+        array_push($meta_query_args, $profile_score_query);
     }
-}
+
+  //フリーワード検索による絞り込み
+    if (isset($_GET['freeword']) ) {
+        $freeword =  my_esc_sql($_GET['freeword']);
+        $condition_html .= '<span>フリーワード：</span><div class="card-category__scout">'.$freeword.'</div><br>';
+        if(strlen($freeword)>1){
+            array_push ($meta_query_args,
+                array('relation' => 'OR',
+                    array(
+                        'key'     => 'last_name',
+                        'value'   => esc_attr($freeword),
+                        'compare' => 'LIKE'
+                    ),
+                    array(
+                        'key'     => 'first_name',
+                        'value'   => esc_attr($freeword),
+                        'compare' => 'LIKE'
+                    ),
+                    array(
+                        'key'     => 'last_name_ruby',
+                        'value'   => esc_attr($freeword),
+                        'compare' => 'LIKE'
+                    ),
+                    array(
+                        'key'     => 'first_name_ruby',
+                        'value'   => esc_attr($freeword),
+                        'compare' => 'LIKE'
+                    ),
+                    array(
+                        'key'     => 'region',
+                        'value'   => esc_attr($freeword),
+                        'compare' =>'LIKE'
+                    ),
+                    array(
+                        'key'     => 'highschool',
+                        'value'   => esc_attr($freeword),
+                        'compare' => 'LIKE'
+                    ),
+                    array(
+                        'key'     => 'seminar',
+                        'value'   => esc_attr($freeword),
+                        'compare' =>'LIKE'
+                    ),
+                    array(
+                        'key'     => 'studied_ab_place',
+                        'value'   => esc_attr($freeword),
+                        'compare' =>'LIKE'
+                    ),
+                    array(
+                        'key'     => 'lang_pr',
+                        'value'   => esc_attr($freeword),
+                        'compare' =>'LIKE'
+                    ),
+                    array(
+                        'key'     => 'skill',
+                        'value'   => esc_attr($freeword),
+                        'compare' =>'LIKE'
+                    ),
+                    array(
+                        'key'     => 'community_univ',
+                        'value'   => esc_attr($freeword),
+                        'compare' =>'LIKE'
+                    ),
+                    array(
+                        'key'     => 'internship_company',
+                        'value'   => esc_attr($freeword),
+                        'compare' =>'LIKE'
+                    ),
+                    array(
+                        'key'     => 'experience_internship',
+                        'value'   => esc_attr($freeword),
+                        'compare' =>'LIKE'
+                    ),
+                    array(
+                        'key'     => 'self_internship_PR',
+                        'value'   => esc_attr($freeword),
+                        'compare' =>'LIKE'
+                    ),
+                    array(
+                        'key'     => 'gender',
+                        'value'   => esc_attr($freeword),
+                        'compare' =>'LIKE'
+                    ),
+                    array(
+                        'key'     => 'university',
+                        'value'   => esc_attr($freeword),
+                        'compare' =>'LIKE'
+                    ),
+                    array(
+                        'key'     => 'faculty',
+                        'value'   => esc_attr($freeword),
+                        'compare' =>'LIKE'
+                    ),
+                    array(
+                        'key'     => 'faculty_lineage',
+                        'value'   => esc_attr($freeword),
+                        'compare' =>'LIKE'
+                    ),
+                    array(
+                        'key'     => 'school_year',
+                        'value'   => esc_attr($freeword),
+                        'compare' =>'LIKE'
+                    ),
+                    array(
+                        'key'     => 'graduate_year',
+                        'value'   => esc_attr($freeword),
+                        'compare' =>'LIKE'
+                    ),
+                    array(
+                        'key'     => 'programming_languages',
+                        'value'   => esc_attr($freeword),
+                        'compare' =>'LIKE'
+                    ),
+                    array(
+                        'key'     => 'skill_dev',
+                        'value'   => esc_attr($freeword),
+                        'compare' =>'LIKE'
+                    ),
+                    array(
+                        'key'     => 'own_pr',
+                        'value'   => esc_attr($freeword),
+                        'compare' =>'LIKE'
+                    ),
+                    array(
+                        'key'     => 'univ_community',
+                        'value'   => esc_attr($freeword),
+                        'compare' =>'LIKE'
+                    ),
+                    array(
+                        'key'     => 'student_experience',
+                        'value'   => esc_attr($freeword),
+                        'compare' =>'LIKE'
+                    ),
+                    array(
+                        'key'     => 'bussiness_type',
+                        'value'   => esc_attr($freeword),
+                        'compare' =>'LIKE'
+                    ),
+                    array(
+                        'key'     => 'future_occupations',
+                        'value'   => esc_attr($freeword),
+                        'compare' =>'LIKE'
+                    )
+                )
+            );
+        }
+    }
+    $programming_html = '';
     // プログラミングスキルによる絞り込み
     for($i=1;$i<=16;$i++){
         switch($i){
@@ -1512,6 +1608,7 @@ if (isset($_GET['freeword']) ) {
         }
         if ($_GET['programming_lang_lv_'.$language]!=0) {
             $skill[$i] = $_GET['programming_lang_lv_'.$language];
+            $programming_html .= $language.'(星'.$skill[$i].')　';
             $skill_meta_query[$i] = array('relation' => 'OR');
             array_push($skill_meta_query[$i], array(
                 'key'       => 'programming_lang_lv_'.$language,
@@ -1521,7 +1618,9 @@ if (isset($_GET['freeword']) ) {
             array_push($meta_query_args, $skill_meta_query[$i]);
         }
     }
-
+    if(!empty($programming_html)){
+        $condition_html .= '<span>プログラミングスキル：</span><div class="card-category__scout">'.$programming_html.'</div><br>';
+    }
     // 居住地による絞り込み
     if (isset($_GET['pref_name']) ) {
         $state =  my_esc_sql($_GET['pref_name']);
@@ -1616,8 +1715,8 @@ if (isset($_GET['freeword']) ) {
     $args = array(
         'blog_id'      => $GLOBALS['blog_id'],
         'role'         => 'student',
-        'meta_key'     => '',
-        'meta_value'   => '',
+        //'meta_key'     => '',
+        //'meta_value'   => '',
         'meta_compare' => '',
         'meta_query'   => $meta_query_args,
         'date_query'   => array(),
@@ -1633,6 +1732,7 @@ if (isset($_GET['freeword']) ) {
         'fields'       => 'all',
         'who'          => ''
     );
+    $args += array('meta_key' => 'user_profile_total_score','orderby' => 'meta_value_num','order'=> 'DESC',);
 
 
     if(isset($sort)){
@@ -1682,8 +1782,18 @@ if (isset($_GET['freeword']) ) {
     $company_name = wp_get_current_user()->data->display_name;
     if($company_name == "株式会社Builds"){
 	    $result_html='' .'今月のスカウトメール送信可能件数は'.view_remain_num_func(wp_get_current_user(),'remain-mail-num').'<br>';
-	}
-
+    }
+    
+    //検索条件の表示
+    $result_html .= '
+        <table class="condition_table">
+            <tbody>
+            <tr>
+                <th>検索条件</th>
+                <td>'.$condition_html.'</td>
+            </tr>
+            </tbody>
+        </table>';
     $total_users = $students->get_total(); // How many users we have in total (beyond the current page)
     $num_pages = ceil($total_users / $users_per_page);
     if ($total_users < $users_per_page) {$users_per_page = $total_users;}
@@ -1715,10 +1825,10 @@ if (isset($_GET['freeword']) ) {
     if( in_array("company", $roles) ){
         $result_html.='<th>スカウト</th>';
     }
-    if( in_array("officer", $roles) ){
+    if( in_array("administrator", $roles) ){
         $result_html.='<th>接触記録</th>';
     }
-    if( $user_login_name == "kotaro" || $user_login_name == "amano1104" || $user_login_name == "yuu"){
+    if( in_array("administrator", $roles)){
         $result_html.='<th>メールアドレス</th>';
     }
     $result_html.='
@@ -1774,7 +1884,7 @@ if (isset($_GET['freeword']) ) {
         if( in_array("administrator", $roles) ){
             $result_html.='<td label="接触記録"><a href="'.student_contact_form_link($user).'">接触記録を入力</a></td>';
         }
-        if( $user_login_name == "kotaro" || $user_login_name == "amano1104"|| $user_login_name == "yuu"){
+        if( in_array("administrator", $roles)){
             $result_html.='<td label="メールアドレス">'.$email.'</td>';
         }
     }
@@ -1798,3 +1908,42 @@ function scout_manage_func(){
     return $scouted_users;
   }
 ?>
+
+
+function update_all_user_score(){
+    $args = array(
+        'blog_id'      => $GLOBALS['blog_id'],
+        'role'         => 'student',
+        'meta_key'     => '',
+        'meta_value'   => '',
+        'meta_compare' => '',
+        'meta_query'   => '',
+        'date_query'   => array(),
+        'include'      => array(),
+        'exclude'      => array(),
+        'search_columns' => array(),
+        'count_total'  => true,
+        'fields'       => 'all',
+        'who'          => ''
+    );
+    $students=new WP_User_Query( $args );
+    $user_ids = array();
+    
+        $user_id = 24;
+        $user_base_profile_score = get_user_meta( $user_id, 'user_base_profile_score',false)[0];
+        update_user_base_profile_score($user_id);
+        update_user_univ_profile_score($user_id);
+        update_user_abroad_profile_score($user_id);
+        update_user_programming_profile_score($user_id);
+        update_user_skill_profile_score($user_id);
+        update_user_community_profile_score($user_id);
+        update_user_internship_profile_score($user_id);
+        update_user_interest_profile_score($user_id);
+        update_user_experience_profile_score($user_id);
+        update_user_picture_profile_score($user_id);
+        update_user_total_profile_score($user_id);
+  $html = '<h1>完了しました</h1>';
+return $html;
+}
+add_shortcode('update_all_user_score','update_all_user_score');
+

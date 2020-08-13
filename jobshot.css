@@ -5024,6 +5024,19 @@ footer#footer.container {
   margin: 0.3em;
   text-decoration: none;
 }
+
+.card-category__scout {
+  position: relative;
+  display: inline-block;
+  padding: 0.2em 0.2em 0.2em 1.5em;
+  background-color: #03c4b0;
+  color: #fff;
+  font-size: 10px;
+  border-radius: 0.3em;
+  margin: 0.3em;
+  text-decoration: none;
+}
+
 .card-category::before {
   position: absolute;
   top: 50%;
@@ -5036,6 +5049,20 @@ footer#footer.container {
   background-color: #fff;
   border-radius: 0.35em;
 }
+
+.card-category__scout::before {
+  position: absolute;
+  top: 50%;
+  left: 0.4em;
+  transform: translateY(-50%);
+  display: block;
+  content: '';
+  width: 0.7em;
+  height: 0.7em;
+  background-color: #fff;
+  border-radius: 0.35em;
+}
+
 .cards-container.companies-container {
   display: block;
   margin: -15px 0;
@@ -8332,10 +8359,21 @@ input[type='search'].search-field_test:focus {
 .condition_table .card-category {
   padding: 3px 5px;
 }
+
+.condition_table .card-category__scout {
+  padding: 3px 5px;
+}
+
 .condition_table .card-category:before {
   display: none;
 }
+.condition_table .card-category__scout:before {
+  display: none;
+}
 .card-category_delete {
+  vertical-align: middle;
+}
+.card-category_delete__scout {
   vertical-align: middle;
 }
 .condition_table .card-category {
