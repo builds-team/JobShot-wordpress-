@@ -10474,7 +10474,7 @@ font-size: 13px !important;
   }
   #column_card_title_text{
     margin: 0;
-    font-size: 12px;
+    font-size: 16px;
   }
   .column_card_description{
     display: none;
@@ -10664,6 +10664,9 @@ font-size: 13px !important;
   .only-wpc {
     display: none !important;
   }
+  .column-section {
+    font-size: 16px;
+  }
 }
 @media screen and (min-width: 781px) {
   .only-wsp {
@@ -10677,7 +10680,8 @@ font-size: 13px !important;
     padding: 0;
     margin: 30px 0 10px 0;
     color: #777;
-    border-bottom: 2px solid #777;
+    border-bottom: 2px solid #999;
+    font-size: 20px;
   }
 }
 .column-container {
@@ -10762,7 +10766,9 @@ font-size: 13px !important;
       width: calc(100vw - 35px);
       margin-left: -20px !important;
       padding: 0 0 0 35px;
-      font-size: 1rem;
+  }
+  .column-section p {
+    padding: 0 0 0 20px;
   }
   .column-section:before {
       left: 25px;
