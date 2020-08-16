@@ -996,7 +996,7 @@ add_shortcode('view-fullwidth-intern-card','view_fullwidth_intern_card_func');
 
 function view_intern_apply_num_func ( $atts ) {
   $args = array(
-    'post_status' => array('publish','private'),
+    'post_status' => array('publish'),
     'post_type' => array('internship'),
     'posts_per_page' => -1,
   );
