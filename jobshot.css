@@ -6030,6 +6030,7 @@ table.demo01, .table__base {
   }
   .full-card-text {
     margin: 10px;
+    position: relative;
   }
   .full-card-buttons {
     margin-bottom: 10px;
@@ -11006,6 +11007,41 @@ font-size: 13px !important;
       padding: 0px;
       display: inline-block;
       font-size: 10px;
+  }
+}
+@media screen and (min-width: 1191px) {
+  #post-1993 .background-img-container img {
+    top: 70%;
+  }
+}
+@media screen and (min-width: 1001px) and (max-width: 1190px) {
+  #post-1993 .background-img-container img {
+    top: 60%;
+  }
+}
+@media screen and (min-width: 783px) and (max-width: 1000px) {
+  #post-1993 .background-img-container img {
+    top: 50%;
+  }
+}
+@media screen and (min-width: 621px) and (max-width: 782px) {
+  #post-1993 .background-img-container img {
+    top: 75%;
+  }
+}
+@media screen and (min-width: 521px) and (max-width: 620px) {
+  #post-1993 .background-img-container img {
+    top: 65%;
+  }
+}
+@media screen and (min-width: 481px) and (max-width: 520px) {
+  #post-1993 .background-img-container img {
+    top: 55%;
+  }
+}
+@media screen and (max-width: 480px) {
+  #post-1993 .background-img-container img {
+    top: 55%;
   }
 }
 
