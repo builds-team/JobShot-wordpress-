@@ -5964,10 +5964,11 @@ table.demo01, .table__base {
 .full-card-text-caption {
   display: flex;
   align-items: center;
-  margin: 5px 0 10px 0;
+  margin: 5px 0 0 0;
 }
-.full-card-text-caption + div {
+.full-card-text-content {
   opacity: 0.7;
+  margin-top: 10px;
 }
 .full-card-text-company {
   font-size: 0.9rem;
@@ -8494,6 +8495,7 @@ input[type='search'].search-field_test:focus {
   color: #fff;
   background-color: #0cc4b0;
   text-align: center;
+  margin-top: 10px;
   margin-bottom: 20px;
 }
 .select-modal-container {
