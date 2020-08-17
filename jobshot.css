@@ -14039,3 +14039,16 @@ width:50px !important;
     align-items: start;
   }
   }
+
+/* バナー調整 */
+@media screen and (max-width: 782px){
+  .top_bar_column {
+    margin-left: calc(-100vw/2 + 100%/2);
+    margin-right: calc(-100vw/2 + 100%/2);
+  }
+}
+@media screen and (max-width: 480px){
+  .top_bar_column {
+    margin: 0 auto 20px auto;
+  }
+}
