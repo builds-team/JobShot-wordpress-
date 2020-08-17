@@ -488,7 +488,7 @@ function view_fullwidth_event_card_func($post_id){
         <div class="full-card-text-title"><a href="'.esc_url($event_url).'">'.$post_title.'</a></div>';
   }
   $card_html .='
-        <div><p>'.$event_summary.'</p></div>
+        <div class="full-card-text-content"><p>'.$event_summary.'</p></div>
         <table class="full-card-table">
           <tbody>';
   if(!empty($sankas)){
