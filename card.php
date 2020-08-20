@@ -580,7 +580,7 @@ function view_fullwidth_company_card_func($post_id){
       </div>
       <div class="full-card-text">
         <div class="full-card-text-title"><a href="'.esc_url($company_url).'">'.$company_name.'</a></div>
-        <div><p>'.$company_bussiness.'</p></div>
+        <div class="full-card-text-content"><p>'.$company_bussiness.'</p></div>
         <table class="full-card-table">
           <tbody>
             <tr>

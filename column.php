@@ -63,7 +63,7 @@ function template_column2_func($content){
     );
     $column_search_first_category = $first_category_column_array[$first_category];
     $home_url =esc_url( home_url());
-    $html =   '<div class="top_bar_column"><a href="' . $home_url . '/interview"><img class="special_contents_img wp-image-5404 aligncenter" src="https://jobshot.jp/wp-content/uploads/2020/07/9c48c58be9475ef4ae2e1f945f965e13.png"></a></div>';
+    $html =   '<div class="top_bar_column"><a href="' . $home_url . '/interview"><img class="special_contents_img wp-image-5404 aligncenter only-pc" src="https://jobshot.jp/wp-content/uploads/2020/07/9c48c58be9475ef4ae2e1f945f965e13.png"><img class="special_contents_img wp-image-5404 aligncenter only-sp" src="https://jobshot.jp/wp-content/uploads/2020/08/f6610aa07cdaf59b57774c746ccd31ac.png"></a></div>';
     if(!empty($column_search_second_category)){
         $html .= '
         <div class="column_navigation_bar">
