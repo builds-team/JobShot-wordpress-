@@ -1004,7 +1004,7 @@ function student_search_result_func($atts){
             $condition_html .= '<span>ログイン日時：</span><div class="card-category__scout">１ヶ月以内</div><br>';
         }else{
             $compare_time = date("Y/m/d H:i:s",strtotime("-".$last_login_value." day"));
-            $condition_html .= '<span>ログイン日時：</span><div class="card-category__scout">'.$last_login_value.'以内</div><br>';
+            $condition_html .= '<span>ログイン日時：</span><div class="card-category__scout">'.$last_login_value.'日以内</div><br>';
         }
         $compare_unixtime = strtotime($compare_time);
         array_push($meta_query_args, array(
@@ -1817,7 +1817,7 @@ function student_search_result_func($atts){
         <table class="tbl02">
             <thead>
                 <tr>
-                    <th></th>
+                    <th label="ユーザー名(プロフィールスコア)"></th>
                     <th>性別</th>
                     <th>大学・所属</th>
                     <th>職種</th>
@@ -1851,6 +1851,7 @@ function student_search_result_func($atts){
         $image_date = date("YmdHis");
         $upload_dir = wp_upload_dir();
         $upload_file_name = $upload_dir['basedir'] . "/" .'profile_photo'.$user_id.'.png';
+        $profile_score = get_user_meta( $user_id, 'user_profile_total_score',false)[0];
         if(!file_exists($upload_file_name)){
             $photo = get_avatar($user_id);
         }
@@ -1859,8 +1860,8 @@ function student_search_result_func($atts){
         }
         $result_html.='
                     <tr>
-                        <th>
-                            <a href="/user?um_user='.$user->user_login.'" style="color:white"><p>'.esc_html( $user->user_login ) .'<br></p><div>'.$photo.'</div></a>
+                        <th label="ユーザー名(プロフィールスコア)">
+                            <a href="/user?um_user='.$user->user_login.'" style="color:white"><p>'.esc_html( $user->user_login ) .'('.$profile_score.')<br></p><div>'.$photo.'</div></a>
                         </th>
                         <td label="性別">'.$gender.'</td>
                         <td label="大学・所属">'.esc_html( get_univ_name($user)).'<br>'. esc_html( get_faculty_name($user)).'</td>
