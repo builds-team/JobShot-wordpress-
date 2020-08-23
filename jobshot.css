@@ -14052,3 +14052,71 @@ width:50px !important;
     margin: 0 auto 20px auto;
   }
 }
+
+/* スカウト検索 */
+#form__scout h2{
+  font-size: 1.2rem;
+  color: #565656;
+}
+.scout_freeword {
+  height: 40px;
+  flex: 1 1 0;
+  margin-right: 10px;
+}
+div[data-toggle="buttons"] label.scout_freeword_text {
+  padding: 0;
+  width: 100%;
+}
+input[type='submit'].scout_freeword_search {
+  border-radius: 10px;
+}
+.btn-group {
+  display: flex;
+  flex-wrap: wrap;
+}
+div[data-toggle="buttons"].scout-category label {
+  width: calc(23.5% - 35px);
+  padding: 1em 1.5% 1em 35px;
+  display: block;
+  position: relative;
+}
+div[data-toggle="buttons"].scout-category-experiment label {
+  width: calc(100%/3 - 1.5% - 35px);
+  padding: 1em 1.5% 1em 35px;
+  display: block;
+  position: relative;
+}
+#form__scout input[type="checkbox"], #form__scout input[type="radio"] {
+  display: none;
+}
+#form__scout input[type="checkbox"] + span, #form__scout input[type="checkbox"] + i + i + span, #form__scout input[type="radio"] + span {
+  color: #565656;
+}
+#form__scout input[type="checkbox"]:checked + span, #form__scout input[type="checkbox"]:checked + i + i + span, #form__scout input[type="radio"]:checked + span {
+  color: #03c4b0;
+}
+#form__scout input[type="checkbox"] + span:before, #form__scout input[type="checkbox"] + i + i + span:before, #form__scout input[type="radio"] + span:before {
+  content: '';
+  display: block;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #565656;
+  position: absolute;
+  left: 3px;
+  top: 1.2em;
+  opacity: .6;
+  -webkit-transition: all .12s, border-color .08s;
+  transition: all .12s, border-color .08s;
+}
+#form__scout input[type="checkbox"]:checked + span:before, #form__scout input[type="checkbox"]:checked + i + i + span:before, #form__scout input[type="radio"]:checked + span:before {
+  width: 10px;
+  top: 1em;
+  left: 5px;
+  border-radius: 0;
+  opacity: 1;
+  border-color: #03c4b0;
+  border-top-color: transparent;
+  border-left-color: transparent;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
