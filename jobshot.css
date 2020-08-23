@@ -8498,6 +8498,7 @@ input[type='search'].search-field_test:focus {
   text-align: center;
   margin-top: 10px;
   margin-bottom: 20px;
+  cursor:pointer;
 }
 .select-modal-container {
   display: none;
@@ -14052,3 +14053,11 @@ width:50px !important;
     margin: 0 auto 20px auto;
   }
 }
+
+.search-student__form{
+  display: none;
+ }
+ .search-student__form.active{
+  display: block;
+ }
+ 
