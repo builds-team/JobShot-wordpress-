@@ -1149,7 +1149,7 @@ body.custom-background { background-color: #ffffff; }
                 </div>
                 <div class="tab_content_description">
                     <h2>学生ステータス</h2>
-                    <table>
+                    <table class="student_status">
                         <tbody>
                             <tr>
                                 <th>性別</th>
@@ -1580,17 +1580,17 @@ body.custom-background { background-color: #ffffff; }
             <input type="checkbox" name="bussiness_type[]" value="小売・流通" class="checkbox"><span> 小売・流通</span>
         </label>
     </div>
-    <div align="right">
-        <i class="material-icons" onclick="removeCheck()">refresh</i>
+    <div class="scout_all_clear">
+        <i onclick="removeCheck()">すべての条件をクリアする</i>
     </div><br>
                     <div>
-                        <input type="submit" value="検索" class="um-button um-alt" id="um-submit-btn">
+                        <input type="submit" value="この条件で検索する" class="um-button um-alt scout_search" id="um-submit-btn">
                     </div>
                 </div>
             </div>
             <div class="tab_content" id="programming_content">
                 <div class="tab_content_description">
-                    <p>プログラミングスキル:</p>
+                    <h2>プログラミングスキル</h2>
                     <table dir="ltr" border="1" cellspacing="0" cellpadding="0">
                         <colgroup>
                         <col width="100">
@@ -1634,7 +1634,7 @@ body.custom-background { background-color: #ffffff; }
                             </tr>
                         </tbody>
                     </table>
-                    <div class="btn-group btn-group" data-toggle="buttons">
+                    <div class="btn-group btn-group scout-programming-category" data-toggle="buttons">
                         <label class="btn active">
                             <span class="programming_lang_name"> C言語  </span><input type="range" name="programming_lang_lv_c" value="0" min="0" max="5" step="1" oninput="document.getElementById(&quot;output1&quot;).value=this.value">
                             <output id="output1">0</output>
@@ -1701,7 +1701,7 @@ body.custom-background { background-color: #ffffff; }
                         </label>
                     </div>
                     <div>
-                        <input type="submit" value="検索" class="um-button um-alt" id="um-submit-btn">
+                        <input type="submit" value="この条件で検索する" class="um-button um-alt scout_search" id="um-submit-btn">
                     </div>
                 </div>
             </div>
