@@ -1125,14 +1125,23 @@ body.custom-background { background-color: #ffffff; }
             $(".radio").prop("checked", false);
         }
     </script>
+    <!-- 変更 -->
+    <script type="text/javascript">
+        $(function() {
+            var rangePercent = $('.scout-programming-category [type="range"]').val();
+            $('.scout-programming-category [type="range"]').on('change input', function() {
+                rangePercent = $(this).val();
+                $(this).next().find('output').html(rangePercent+'<span></span>');
+                $(this).next().find('output').css({'left': rangePercent*20+'%'});
+            });
+        });
+    </script>
     <form role="search" method="get" class="search-form" action="https://jobshot.jp/scout_result/" id="form__scout">
         <div class="tabs">
             <input id="all" type="radio" name="tab_item" checked="">
                 <label class="tab_item" for="all">基本情報</label>
             <input id="programming" type="radio" name="tab_item">
                 <label class="tab_item" for="programming">スキル</label>
-            <input id="design" type="radio" name="tab_item">
-                <label class="tab_item" for="design">客観評価</label>
             <div class="tab_content" id="all_content">
                 <div class="tab_content_description">
                     <h2>フリーワード検索</h2>
@@ -1637,102 +1646,71 @@ body.custom-background { background-color: #ffffff; }
                     <div class="btn-group btn-group scout-programming-category" data-toggle="buttons">
                         <label class="btn active">
                             <span class="programming_lang_name"> C言語  </span><input type="range" name="programming_lang_lv_c" value="0" min="0" max="5" step="1" oninput="document.getElementById(&quot;output1&quot;).value=this.value">
-                            <output id="output1">0</output>
+                            <div class="level-container"><div class="level-subcontainer"><output id="output1">0<span></span></output></div></div>
                         </label>
                         <label class="btn active">
                             <span class="programming_lang_name"> C#  </span><input type="range" name="programming_lang_lv_cpp" value="0" min="0" max="5" step="1" oninput="document.getElementById(&quot;output2&quot;).value=this.value">
-                            <output id="output2">0</output>
+                            <div class="level-container"><div class="level-subcontainer"><output id="output2">0<span></span></output></div></div>
                         </label>
                         <label class="btn active">
                             <span class="programming_lang_name"> C++  </span><input type="range" name="programming_lang_lv_cs" value="0" min="0" max="5" step="1" oninput="document.getElementById(&quot;output3&quot;).value=this.value">
-                            <output id="output3">0</output>
+                            <div class="level-container"><div class="level-subcontainer"><output id="output3">0<span></span></output></div></div>
                         </label><br>
                         <label class="btn active">
                             <span class="programming_lang_name"> Go  </span><input type="range" name="programming_lang_lv_go" value="0" min="0" max="5" step="1" oninput="document.getElementById(&quot;output4&quot;).value=this.value">
-                            <output id="output4">0</output>
+                            <div class="level-container"><div class="level-subcontainer"><output id="output4">0<span></span></output></div></div>
                         </label>
                         <label class="btn active">
                             <span class="programming_lang_name"> Java  </span><input type="range" name="programming_lang_lv_java" value="0" min="0" max="5" step="1" oninput="document.getElementById(&quot;output5&quot;).value=this.value">
-                            <output id="output5">0</output>
+                            <div class="level-container"><div class="level-subcontainer"><output id="output5">0<span></span></output></div></div>
                         </label>
                         <label class="btn active">
                             <span class="programming_lang_name"> JavaScript  </span><input type="range" name="programming_lang_lv_js" value="0" min="0" max="5" step="1" oninput="document.getElementById(&quot;output6&quot;).value=this.value">
-                            <output id="output6">0</output>
+                            <div class="level-container"><div class="level-subcontainer"><output id="output6">0<span></span></output></div></div>
                         </label><br>
                         <label class="btn active">
                             <span class="programming_lang_name"> Kotlin  </span><input type="range" name="programming_lang_lv_kt" value="0" min="0" max="5" step="1" oninput="document.getElementById(&quot;output7&quot;).value=this.value">
-                            <output id="output7">0</output>
+                            <div class="level-container"><div class="level-subcontainer"><output id="output7">0<span></span></output></div></div>
                         </label>
                         <label class="btn active">
                             <span class="programming_lang_name"> Objective-C  </span><input type="range" name="programming_lang_lv_m" value="0" min="0" max="5" step="1" oninput="document.getElementById(&quot;output8&quot;).value=this.value">
-                            <output id="output8">0</output>
+                            <div class="level-container"><div class="level-subcontainer"><output id="output8">0<span></span></output></div></div>
                         </label>
                         <label class="btn active">
                             <span class="programming_lang_name"> PHP  </span><input type="range" name="programming_lang_lv_php" value="0" min="0" max="5" step="1" oninput="document.getElementById(&quot;output9&quot;).value=this.value">
-                            <output id="output9">0</output>
+                            <div class="level-container"><div class="level-subcontainer"><output id="output9">0<span></span></output></div></div>
                         </label><br>
                         <label class="btn active">
                             <span class="programming_lang_name"> Perl  </span><input type="range" name="programming_lang_lv_pl" value="0" min="0" max="5" step="1" oninput="document.getElementById(&quot;output10&quot;).value=this.value">
-                            <output id="output10">0</output>
+                            <div class="level-container"><div class="level-subcontainer"><output id="output10">0<span></span></output></div></div>
                         </label>
                         <label class="btn active">
                             <span class="programming_lang_name"> Python  </span><input type="range" name="programming_lang_lv_py" value="0" min="0" max="5" step="1" oninput="document.getElementById(&quot;output11&quot;).value=this.value">
-                            <output id="output11">0</output>
+                            <div class="level-container"><div class="level-subcontainer"><output id="output11">0<span></span></output></div></div>
                         </label>
                         <label class="btn active">
                             <span class="programming_lang_name"> R  </span><input type="range" name="programming_lang_lv_r" value="0" min="0" max="5" step="1" oninput="document.getElementById(&quot;output12&quot;).value=this.value">
-                            <output id="output12">0</output>
+                            <div class="level-container"><div class="level-subcontainer"><output id="output12">0<span></span></output></div></div>
                         </label><br>
                         <label class="btn active">
                             <span class="programming_lang_name"> Ruby  </span><input type="range" name="programming_lang_lv_rb" value="0" min="0" max="5" step="1" oninput="document.getElementById(&quot;output13&quot;).value=this.value">
-                            <output id="output13">0</output>
+                            <div class="level-container"><div class="level-subcontainer"><output id="output13">0<span></span></output></div></div>
                         </label>
                         <label class="btn active">
                             <span class="programming_lang_name"> Swift  </span><input type="range" name="programming_lang_lv_scala" value="0" min="0" max="5" step="1" oninput="document.getElementById(&quot;output14&quot;).value=this.value">
-                            <output id="output14">0</output>
+                            <div class="level-container"><div class="level-subcontainer"><output id="output14">0<span></span></output></div></div>
                         </label>
                         <label class="btn active">
                             <span class="programming_lang_name"> Scala  </span><input type="range" name="programming_lang_lv_swift" value="0" min="0" max="5" step="1" oninput="document.getElementById(&quot;output15&quot;).value=this.value">
-                            <output id="output15">0</output>
+                            <div class="level-container"><div class="level-subcontainer"><output id="output15">0<span></span></output></div></div>
                         </label><br>
                         <label class="btn active">
                             <span class="programming_lang_name"> VisualBasic  </span><input type="range" name="programming_lang_lv_vb" value="0" min="0" max="5" step="1" oninput="document.getElementById(&quot;output16&quot;).value=this.value">
-                            <output id="output16">0</output>
+                            <div class="level-container"><div class="level-subcontainer"><output id="output16">0<span></span></output></div></div>
                         </label>
                     </div>
                     <div>
                         <input type="submit" value="この条件で検索する" class="um-button um-alt scout_search" id="um-submit-btn">
-                    </div>
-                </div>
-            </div>
-            <div class="tab_content" id="design_content">
-                <div class="tab_content_description">
-                    
-    <div>点数での絞り込み（点数の下限を選択）</div>
-    <div class="point-range">実行力<input type="range" name="eval1" min="0" max="5" step="0.5" value="0"> <span>0</span></div>
-    <div class="point-range">主体性<input type="range" name="eval2" min="0" max="5" step="0.5" value="0"> <span>0</span></div>
-    <div class="point-range">課題発見力<input type="range" name="eval3" min="0" max="5" step="0.5" value="0"> <span>0</span></div>
-    <div class="point-range">創造力<input type="range" name="eval4" min="0" max="5" step="0.5" value="0"> <span>0</span></div>
-    <div class="point-range">リーダーシップ力<input type="range" name="eval5" min="0" max="5" step="0.5" value="0"> <span>0</span></div>
-    <div class="point-range">ストレス耐性<input type="range" name="eval6" min="0" max="5" step="0.5" value="0"> <span>0</span></div>
-    <script>
-    　var elem = document.getElementsByClassName("point-range");
-    　 var rangeValue = function (elem, target) {
-    　 　　return function(evt){
-    　　　 　　target.innerHTML = elem.value;
-    　　　}
-    　 }
-    　 for(var i = 0, max = elem.length; i < max; i++){
-    　　　bar = elem[i].getElementsByTagName("input")[0];
-    　　　target = elem[i].getElementsByTagName("span")[0];
-    　　　 bar.addEventListener("input", rangeValue(bar, target));
-    　 }
-    </script>
-                    <div>
-                        <input type="number" name="inviter_user_login" value="">
-                    </div>
-                    <div>
-                        <input type="submit" value="検索" class="um-button um-alt" id="um-submit-btn">
                     </div>
                 </div>
             </div>

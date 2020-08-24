@@ -14054,8 +14054,12 @@ width:50px !important;
 }
 
 /* スカウト検索 */
+#form__scout .tab_item {
+  width: 50%;
+}
 #form__scout h2{
   font-size: 1.2rem;
+  font-weight: bold;
   color: #565656;
 }
 .student_status td.cp_sl03 {
@@ -14074,6 +14078,11 @@ div[data-toggle="buttons"] label.scout_freeword_text {
   padding: 0;
   width: 100%;
 }
+.scout_freeword input[type=text]:focus {
+  outline: none;
+  border-color: inherit;
+}
+
 input[type='submit'].scout_freeword_search {
   border-radius: 10px;
   margin: 0;
@@ -14145,6 +14154,7 @@ div[data-toggle="buttons"].scout-category label span{
 input[type="submit"].scout_search {
   border-radius: 10px;
   margin: 0;
+  margin-top: 30px;
   font-size: 16px;
   padding: .8em 4em;
   float: right;
@@ -14158,9 +14168,108 @@ div[data-toggle="buttons"].scout-programming-category label {
 .scout-programming-category label span{
   font-size: 16px;
   color: #565656;
+  width: 100%;
+  display: block;
 }
 .scout-programming-category input[type="range"] {
   width: 100%;
+}
+.scout-programming-category input[type="range"] {
+  outline: 0;
+  border: 0;
+  border-radius: 500px;
+  width: 400px;
+  max-width: 100%;
+  margin: 5px 0 16px;
+  transition: box-shadow 0.2s ease-in-out;
+}
+  /* Chrome */
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  .scout-programming-category input[type="range"] {
+    overflow: hidden;
+    height: 30px;
+    -webkit-appearance: none;
+    background-color: #ddd;
+  }
+  .scout-programming-category input[type="range"]::-webkit-slider-runnable-track {
+    height: 30px;
+    -webkit-appearance: none;
+    color: #444;
+    transition: box-shadow 0.2s ease-in-out;
+  }
+  .scout-programming-category input[type="range"]::-webkit-slider-thumb {
+    width: 30px;
+    -webkit-appearance: none;
+    height: 30px;
+    cursor: ew-resize;
+    background: #fff;
+    box-shadow: -340px 0 0 320px #03c4b0, inset 0 0 0 40px #03c4b0;
+    border-radius: 50%;
+    transition: box-shadow 0.2s ease-in-out;
+    position: relative;
+  }
+  .scout-programming-category input[type="range"]:active::-webkit-slider-thumb {
+    background: #fff;
+    box-shadow: -340px 0 0 320px #03c4b0, inset 0 0 0 3px #03c4b0;
+  }
+}
+/* Firefox */
+.scout-programming-category input[type="range"]::-moz-range-progress {
+  background-color: #43e5f7;
+}
+.scout-programming-category input[type="range"]::-moz-range-track {
+  background-color: #9a905d;
+}
+/* IE */
+.scout-programming-category input[type="range"]::-ms-fill-lower {
+  background-color: #43e5f7;
+}
+.scout-programming-category input[type="range"]::-ms-fill-upper {
+  background-color: #9a905d;
+}
+.level-container {
+  width: 400px;
+  max-width: 100%;
+  padding: 0 15px;
+  box-sizing: border-box;
+  position: relative;
+}
+.level-subcontainer {
+  width: 100%;
+  position: relative;
+}
+.level-subcontainer output {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  width: 30px;
+  height: 30px;
+  color: #fff !important;
+  font-size: 12px;
+  transform-origin: center -10px;
+  transform: translateX(-50%);
+  transition: margin-top 0.01s ease-in-out, opacity 0.15s ease-in-out;
+}
+.level-subcontainer output span {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: #03c4b0;
+  border-radius: 0 50% 50% 50%;
+  transform: rotate(45deg);
+  z-index: -1;
+}
+.scout-programming-category input:not(:active) + .level-container output {
+  opacity: 1;
+  margin-top: -45px;
+  pointer-events: none;
+}
+.scout-programming-category input:not(:active) + .level-container output span{
+  background-color: rgba(255, 255, 255, 0);
 }
 @media screen and (max-width: 782px){
   #form__scout h2{
@@ -14219,5 +14328,20 @@ div[data-toggle="buttons"].scout-programming-category label {
   div[data-toggle="buttons"].scout-category label {
     width: calc(100%/2 - 1.5% - 35px);
     padding: 1em 1.5% 1em 35px;
+  }
+  .scout-programming-category input[type="range"] {
+    margin: 5px 0 5px;
+  }
+  div[data-toggle="buttons"].scout-programming-category label {
+    width: calc(100% - 8%);
+  }
+  .scout-programming-category input:not(:active) + .level-container output {
+    margin-top: -35px;
+  }
+  .scout-programming-category input:active + .level-container output {
+    margin-top: -35px;
+  }
+  .scout-programming-category input + .level-container output span{
+    display: none;
   }
 }
