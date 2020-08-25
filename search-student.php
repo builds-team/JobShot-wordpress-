@@ -354,12 +354,12 @@ function student_search_form_func($atts) {
                                 <th>ログイン日時</th>
                                 <td class="cp_ipselect cp_sl03">
                                     <select name="last_login">
-                                        <option value="">指定なし</option>
-                                        <option value="1">1日以内</option>
-                                        <option value="3">3日以内</option>
-                                        <option value="7">1週間以内</option>
-                                        <option value="14">2週間以内</option>
-                                        <option value="30">1ヶ月以内</option>
+                                        <option class="last_login" value="">指定なし</option>
+                                        <option class="last_login" value="1">1日以内</option>
+                                        <option class="last_login" value="3">3日以内</option>
+                                        <option class="last_login" value="7">1週間以内</option>
+                                        <option class="last_login" value="14">2週間以内</option>
+                                        <option class="last_login" value="30">1ヶ月以内</option>
                                     </select>
                                 </td>
                             </tr>
@@ -945,6 +945,14 @@ function student_search_result_func($atts){
     $user=wp_get_current_user();
     $user_roles=$user->roles;
 
+    $form_html = 
+        '<div onclick="openStudentForm()" class="select-modal-open">
+            <div>検索フォームを表示する</div>
+        </div>
+        <div class="search-student__form">';
+    $form_html .= do_shortcode('[student_search_form]');
+    $form_html .= '</div>';
+
     // 企業からのスカウトメールを希望しない学生の除外
     // if(in_array("company", $user_roles)){
     //     $company_mail_meta_query = array('relation' => 'OR');
@@ -979,10 +987,12 @@ function student_search_result_func($atts){
     if (!empty($_GET['gender'])) {
         $gender = $_GET['gender'];
         if($gender == 'male'){
+            $form_html = str_replace('<option value="male">','<option value="male" selected>',$form_html);
             $gender = array('男性');
             $condition_html .= '<span>性別：</span><div class="card-category__scout">男性</div><br>';
         }
         if($gender == 'female'){
+            $form_html = str_replace('<option value="female">','<option value="female" selected>',$form_html);
             $gender = array ('女性');
             $condition_html .= '<span>性別：</span><div class="card-category__scout">女性</div><br>';
         }
@@ -1004,8 +1014,9 @@ function student_search_result_func($atts){
             $condition_html .= '<span>ログイン日時：</span><div class="card-category__scout">１ヶ月以内</div><br>';
         }else{
             $compare_time = date("Y/m/d H:i:s",strtotime("-".$last_login_value." day"));
-            $condition_html .= '<span>ログイン日時：</span><div class="card-category__scout">'.$last_login_value.'以内</div><br>';
+            $condition_html .= '<span>ログイン日時：</span><div class="card-category__scout">'.$last_login_value.'日以内</div><br>';
         }
+        $form_html = str_replace('<option class="last_login" value="'.$last_login_value.'">','<option class="last_login" value="'.$last_login_value.'" selected>',$form_html);
         $compare_unixtime = strtotime($compare_time);
         array_push($meta_query_args, array(
             'key'       => '_um_last_login',
@@ -1018,14 +1029,17 @@ function student_search_result_func($atts){
         $degree_of_internship_interest = $_GET["degree_of_internship_interest"];
 	  	if($degree_of_internship_interest==1){
             $degree_of_internship_interest=array('今すぐにでも長期インターンをやってみたい');
+            $form_html = str_replace('<option value="1">'.$degree_of_internship_interest[0],'<option value="1" selected>'.$degree_of_internship_interest[0],$form_html);
             $condition_html .= '<span>活動状況：</span><div class="card-category__scout">今すぐにでも長期インターンをやってみたい</div><br>';
 		}
 	  	if($degree_of_internship_interest==2){
             $degree_of_internship_interest=array('話を聞いてみて、もし自分に合いそうなのであれば長期インターンをやってみたい');
+            $form_html = str_replace('<option value="2">'.$degree_of_internship_interest[0],'<option value="2" selected>'.$degree_of_internship_interest[0],$form_html);
             $condition_html .= '<span>活動状況：</span><div class="card-category__scout">話を聞いてみて、もし自分に合いそうなのであれば長期インターンをやってみたい</div><br>';
 		}
 	  	if($degree_of_internship_interest==3){
             $degree_of_internship_interest=array('全く興味がない');
+            $form_html = str_replace('<option value="3">'.$degree_of_internship_interest[0],'<option value="3" selected>'.$degree_of_internship_interest[0],$form_html);
             $condition_html .= '<span>活動状況：</span><div class="card-category__scout">全く興味がない</div><br>';   
 		}
         array_push($meta_query_args, array(
@@ -1039,18 +1053,22 @@ function student_search_result_func($atts){
         $will_venture = $_GET["will_venture"];
 	  	if($will_venture==1){
             $will_venture=array('ファーストキャリアはベンチャー企業が良いと思っている');
+            $form_html = str_replace('<option value="1">'.$will_venture[0],'<option value="1" selected>'.$will_venture[0],$form_html);
             $condition_html .= '<span>ベンチャーへの就職意欲：</span><div class="card-category__scout">ファーストキャリアはベンチャー企業が良いと思っている</div><br>'; 
 		}
 	  	if($will_venture==2){
             $will_venture=array('自分に合ったベンチャー企業ならば就職してみたい');
+            $form_html = str_replace('<option value="2">'.$will_venture[0],'<option value="2" selected>'.$will_venture[0],$form_html);
             $condition_html .= '<span>ベンチャーへの就職意欲：</span><div class="card-category__scout">自分に合ったベンチャー企業ならば就職してみたい</div><br>'; 
 		}
 	  	if($will_venture==3){
             $will_venture=array('ベンチャー企業に少しは興味がある');
+            $form_html = str_replace('<option value="3">'.$will_venture[0],'<option value="3" selected>'.$will_venture[0],$form_html);
             $condition_html .= '<span>ベンチャーへの就職意欲：</span><div class="card-category__scout">ベンチャー企業に少しは興味がある</div><br>'; 
 		}
 	  	if($will_venture==4){
             $will_venture=array('ベンチャー企業には全く興味がない');
+            $form_html = str_replace('<option value="4">'.$will_venture[0],'<option value="4" selected>'.$will_venture[0],$form_html);
             $condition_html .= '<span>ベンチャーへの就職意欲：</span><div class="card-category__scout">ベンチャー企業には全く興味がない</div><br>'; 
 		}
         array_push($meta_query_args, array(
@@ -1129,7 +1147,10 @@ function student_search_result_func($atts){
         $condition_html .= '<span>大学：</span>';
         $univ_meta_query = array('relation' => 'OR');
         foreach($universities as $university){
+            if (!is_numeric($university)){
             $condition_html .= '<div class="card-category__scout">'.$university.'</div>';
+            }
+            $form_html = str_replace('<input type="checkbox" name="university[]" value="'.$university.'" class="checkbox">','<input type="checkbox" name="university[]" value="'.$university.'" class="checkbox" checked="checked">',$form_html);
             array_push($univ_meta_query, array(
                 'key'       => 'university',
                 'value'     => $university,
@@ -1146,6 +1167,7 @@ function student_search_result_func($atts){
         $condition_html .= '<span>学部系統：</span>';
         $faculty_lineage_meta_query = array('relation' => 'OR');
         foreach($faculty_lineages as $faculty_lineage){
+            $form_html = str_replace('<input type="checkbox" name="faculty_lineage[]" value="'.$faculty_lineage.'" class="checkbox">','<input type="checkbox" name="faculty_lineage[]" value="'.$faculty_lineage.'" class="checkbox" checked="checked">',$form_html);
             $condition_html .= '<div class="card-category__scout">'.$faculty_lineage.'</div>';
             array_push($faculty_lineage_meta_query, array(
                 'key'       => 'faculty_lineage',
@@ -1192,6 +1214,7 @@ function student_search_result_func($atts){
         $condition_html .= '<span>卒業年度：</span>'.$graduate_html.'<br>';
         $graduate_year_meta_query = array('relation' => 'OR');
         foreach($graduate_years as $graduate_year){
+            $form_html = str_replace('<input type="checkbox" name="graduate_year[]" value="'.$graduate_year.'" class="checkbox">','<input type="checkbox" name="graduate_year[]" value="'.$graduate_year.'" class="checkbox" checked="checked">',$form_html);
             array_push($graduate_year_meta_query, array(
                 'key'       => 'graduate_year',
                 'value'     => $graduate_year,
@@ -1208,6 +1231,7 @@ function student_search_result_func($atts){
         $occupation_meta_query = array('relation' => 'OR');
         foreach($occupations as $occupation){
             $condition_html .= '<div class="card-category__scout">'.$occupation.'</div>';
+            $form_html = str_replace('<input type="checkbox" name="occupation[]" value="'.$occupation.'" class="checkbox">','<input type="checkbox" name="occupation[]" value="'.$occupation.'" class="checkbox" checked="checked">',$form_html);
             array_push($occupation_meta_query, array(
                 'key'       => 'future_occupations',
                 'value'     => $occupation,
@@ -1220,6 +1244,7 @@ function student_search_result_func($atts){
     // 留学経験による絞り込み
     if (isset($_GET['studied_abroad']) ) {
         $studied_abroads = $_GET["studied_abroad"];
+        $form_html = str_replace('<input type="radio" name="studied_abroad[]" value="'.$studied_abroads[0].'" class="radio">','<input type="radio" name="studied_abroad[]" value="'.$studied_abroads[0].'" class="radio" checked="checked">',$form_html);
         $studied_abroad_meta_query = array('relation' => 'OR');
         foreach($studied_abroads as $studied_abroad){
             for($i=0;$i<=(5-$studied_abroad);$i++){
@@ -1287,6 +1312,7 @@ function student_search_result_func($atts){
         $condition_html .= '<span>学生時代の経験：</span>';
         $student_experience_meta_query = array('relation' => 'OR');
         foreach($student_experiences as $student_experience){
+            $form_html = str_replace('<input type="checkbox" name="student_experience[]" value="'.$student_experience.'" class="checkbox">','<input type="checkbox" name="student_experience[]" value="'.$student_experience.'" class="checkbox" checked="checked">',$form_html);
             $condition_html .= '<div class="card-category__scout">'.$student_experience.'</div>';
             array_push($student_experience_meta_query, array(
                 'key'       => 'student_experience',
@@ -1303,6 +1329,7 @@ function student_search_result_func($atts){
         $condition_html .= '<span>大学時代のコミュニティ：</span>';
         $univ_community_meta_query = array('relation' => 'OR');
         foreach($univ_communities as $univ_community){
+            $form_html = str_replace('<input type="checkbox" name="univ_community[]" value="'.$univ_community.'" class="checkbox">','<input type="checkbox" name="univ_community[]" value="'.$univ_community.'" class="checkbox" checked="checked">',$form_html);
             $condition_html .= '<div class="card-category__scout">'.$univ_community.'</div>';
             array_push($univ_community_meta_query, array(
                 'key'       => 'univ_community',
@@ -1316,6 +1343,7 @@ function student_search_result_func($atts){
     // 長期インターン経験による絞り込み
     if (isset($_GET['internship_experiences']) ) {
         $internship_experiences = $_GET["internship_experiences"];
+        $form_html = str_replace('<input type="radio" name="internship_experiences[]" value="'.$internship_experiences[0].'" class="radio">','<input type="radio" name="internship_experiences[]" value="'.$internship_experiences[0].'" class="radio" checked="checked">',$form_html);
         $internship_experiences_meta_query = array('relation' => 'OR');
         foreach($internship_experiences as $internship_experience){
             for($i=0;$i<=(4-$internship_experience);$i++){
@@ -1383,6 +1411,7 @@ function student_search_result_func($atts){
         $condition_html .= '<span>業界：</span>';
         $bussiness_type_meta_query = array('relation' => 'OR');
         foreach($bussiness_types as $bussiness_type){
+            $form_html = str_replace('<input type="checkbox" name="bussiness_type[]" value="'.$bussiness_type.'" class="checkbox">','<input type="checkbox" name="bussiness_type[]" value="'.$bussiness_type.'" class="checkbox" checked="checked">',$form_html);
             $condition_html .= '<div class="card-category__scout">'.$bussiness_type.'</div>';
             array_push($bussiness_type_meta_query, array(
                 'key'       => 'bussiness_type',
@@ -1397,6 +1426,7 @@ function student_search_result_func($atts){
     //プロフィールスコアによる絞り込み
     if(isset($_GET['profile_score'])){
         $profile_score = $_GET['profile_score'];
+        $form_html = str_replace('<option value="'.$profile_score.'">','<option value="'.$profile_score.'" selected>',$form_html);
         $condition_html .= '<span>プロフィールスコア：</span><div class="card-category__scout">'.$profile_score.'以上</div><br>';
         $profile_score_query = array(
             'key'       => 'user_profile_total_score',
@@ -1410,6 +1440,7 @@ function student_search_result_func($atts){
   //フリーワード検索による絞り込み
     if (isset($_GET['freeword']) ) {
         $freeword =  my_esc_sql($_GET['freeword']);
+        $form_html = str_replace('<input type="text" name="freeword">','<input type="text" name="freeword" value="'.$freeword.'">',$form_html);
         $condition_html .= '<span>フリーワード：</span><div class="card-category__scout">'.$freeword.'</div><br>';
         if(strlen($freeword)>1){
             array_push ($meta_query_args,
@@ -1608,7 +1639,9 @@ function student_search_result_func($atts){
         }
         if ($_GET['programming_lang_lv_'.$language]!=0) {
             $skill[$i] = $_GET['programming_lang_lv_'.$language];
-            $programming_html .= $language.'(星'.$skill[$i].')　';
+            $form_html = str_replace('<input type="range" name="programming_lang_lv_'.$language.'" value="0" min="0" max="5" step="1" oninput=document.getElementById("output'.$i.'").value=this.value>','<input type="range" name="programming_lang_lv_'.$language.'" value="'.$skill[$i].'" min="0" max="5" step="1" oninput=document.getElementById("output'.$i.'").value=this.value>',$form_html);
+            $form_html = str_replace('<output id="output'.$i.'">0</output>','<output id="output'.$i.'">'.$skill[$i].'</output>',$form_html);
+            $programming_html .= '<div class="card-category__scout">'.$language.'(星'.$skill[$i].')</div>';
             $skill_meta_query[$i] = array('relation' => 'OR');
             array_push($skill_meta_query[$i], array(
                 'key'       => 'programming_lang_lv_'.$language,
@@ -1619,7 +1652,7 @@ function student_search_result_func($atts){
         }
     }
     if(!empty($programming_html)){
-        $condition_html .= '<span>プログラミングスキル：</span><div class="card-category__scout">'.$programming_html.'</div><br>';
+        $condition_html .= '<span>プログラミングスキル：</span>'.$programming_html.'<br>';
     }
     // 居住地による絞り込み
     if (isset($_GET['pref_name']) ) {
@@ -1794,6 +1827,7 @@ function student_search_result_func($atts){
             </tr>
             </tbody>
         </table>';
+    $result_html .= $form_html;
     $total_users = $students->get_total(); // How many users we have in total (beyond the current page)
     $num_pages = ceil($total_users / $users_per_page);
     if ($total_users < $users_per_page) {$users_per_page = $total_users;}
@@ -1817,7 +1851,7 @@ function student_search_result_func($atts){
         <table class="tbl02">
             <thead>
                 <tr>
-                    <th></th>
+                    <th>ユーザー名<br>(プロフィールスコア)</th>
                     <th>性別</th>
                     <th>大学・所属</th>
                     <th>職種</th>
@@ -1851,6 +1885,7 @@ function student_search_result_func($atts){
         $image_date = date("YmdHis");
         $upload_dir = wp_upload_dir();
         $upload_file_name = $upload_dir['basedir'] . "/" .'profile_photo'.$user_id.'.png';
+        $profile_score = get_user_meta( $user_id, 'user_profile_total_score',false)[0];
         if(!file_exists($upload_file_name)){
             $photo = get_avatar($user_id);
         }
@@ -1859,8 +1894,8 @@ function student_search_result_func($atts){
         }
         $result_html.='
                     <tr>
-                        <th>
-                            <a href="/user?um_user='.$user->user_login.'" style="color:white"><p>'.esc_html( $user->user_login ) .'<br></p><div>'.$photo.'</div></a>
+                        <th label="ユーザー名(プロフィールスコア)">
+                            <a href="/user?um_user='.$user->user_login.'" style="color:white"><p>'.esc_html( $user->user_login ) .'　<span>('.$profile_score.')</span><br></p><div>'.$photo.'</div></a>
                         </th>
                         <td label="性別">'.$gender.'</td>
                         <td label="大学・所属">'.esc_html( get_univ_name($user)).'<br>'. esc_html( get_faculty_name($user)).'</td>
@@ -1894,7 +1929,6 @@ function student_search_result_func($atts){
     </font>';
 
     $result_html.= paginate( $num_pages, $current_page, $total_users, $users_per_page);
-
     return do_shortcode($result_html);
 }
 add_shortcode('student_search_result','student_search_result_func');
