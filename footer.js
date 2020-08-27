@@ -1,4 +1,22 @@
 
+
+function cleanQuery(query) {
+	var arr = [];
+	$.each(query.split('&'), function(i, param) {
+	  if (param.split('=')[1] && param.split('=')[1] != 0 && param.split('=')[0] != 'tab_item') { arr.push(param); }
+	});
+	return arr.join('&');
+  }
+  
+  jQuery(function($){
+	  $('#form__scout').on('submit', function(event) {
+	event.preventDefault(); // サブミットをキャンセルする。
+	var query = $(this).serialize(); // フォームデータ集合をクエリー文字列で取得する。
+	query = cleanQuery(query) // クエリー文字列から値が空のパラメータを取り除く。
+	location.href = this.action + '?' + query; // 画面を遷移させる。
+  });
+  });
+
 jQuery(function($){
     $(".post-1601 #um-submit-btn").attr(
         "onclick", "gtag('event', 'click', {'event_category': 'link', 'event_label': 'register'});"

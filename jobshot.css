@@ -8498,6 +8498,7 @@ input[type='search'].search-field_test:focus {
   text-align: center;
   margin-top: 10px;
   margin-bottom: 20px;
+  cursor:pointer;
 }
 .select-modal-container {
   display: none;
@@ -14049,7 +14050,7 @@ width:50px !important;
 }
 @media screen and (max-width: 480px){
   .top_bar_column {
-    margin: 0 auto 20px auto;
+    /*margin: 0 auto 20px auto;*/
   }
 }
 
@@ -14345,3 +14346,10 @@ div[data-toggle="buttons"].scout-programming-category label {
     display: none;
   }
 }
+.search-student__form{
+  display: none;
+ }
+ .search-student__form.active{
+  display: block;
+ }
+ 

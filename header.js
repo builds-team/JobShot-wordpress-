@@ -144,6 +144,16 @@ function openSelectModal() {
 function closeSelectModal() {
     jQuery('.select-modal-container').css('display','none');
 }
+
+function openStudentForm() {
+    if (jQuery(".search-student__form").hasClass("active")) {
+        jQuery('.search-student__form').removeClass("active");
+        jQuery('.select-modal-open').html('<div>検索フォームを表示する</div>');
+    }else {
+        jQuery('.search-student__form').addClass("active");
+        jQuery('.select-modal-open').html('<div>検索フォームを非表示にする</div>');
+    }
+}
 jQuery(function(){
     var w = screen.width;
     var x = 1023;
