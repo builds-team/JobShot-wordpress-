@@ -44,10 +44,41 @@ document.addEventListener('wpcf7mailsent', function( event ) {
         setTimeout(function(){
         
         },1000);
+    }else if('1583' == event.detail.contactFormId) {
+        var ajaxurl = '<?php echo admin_url( 'admin-ajax.php'); ?>';
+        var scouted_user_name = $("[name=partner-id]").val();
+        $.ajax({
+            type: 'POST',
+            url: ajaxurl,
+            data: {
+                "action":"update_scouted_user",
+                "scouted_user_name":scouted_user_name,
+            },
+            success: function( response ){
+                console.log("成功!")
+            },
+            error: function( response ){
+               console.log("失敗!");
+            }
+        });
     }
 }, false );
 </script>
 <?php } );
+
+function update_scouted_user(){
+    $user = wp_get_current_user();
+    $user_id = $user->data->ID;
+    $flag = $_POST["scouted_user_name"];
+    $scouted_users = get_user_meta($user_id,'scouted_users',false)[0];
+    if($flag){
+        $scouted_users[] = $flag;
+        update_user_meta( $user_id, "scouted_users", $scouted_users);
+    }
+    die();
+}
+add_action( 'wp_ajax_update_scouted_user', 'update_scouted_user' );
+add_action( 'wp_ajax_nopriv_update_scouted_user', 'update_scouted_user' );
 
 
 add_action( 'wp_footer', 'mycustom_wp_footer' );

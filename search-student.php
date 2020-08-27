@@ -119,7 +119,7 @@ function student_search_form_func($atts) {
     ), $atts ) );
     $user=wp_get_current_user();
     $user_roles=$user->roles;
-
+/*
     $evaluation_form_html = '
     <div>点数での絞り込み（点数の下限を選択）</div>
     <div class="point-range">'.name_of_student_item_func(1).'<input type="range" name="eval1" min="0" max="5" step="0.5" value="0"> <span>0</span></div>
@@ -141,6 +141,7 @@ function student_search_form_func($atts) {
     　　　 bar.addEventListener("input", rangeValue(bar, target));
     　 }
     </script>';
+    */
     $home_url =esc_url( home_url( ));
     $search_form_html = '
     <style>
@@ -319,26 +320,34 @@ function student_search_form_func($atts) {
         function removeCheck(){
             $(".checkbox").prop("checked", false);
             $(".radio").prop("checked", false);
+            $("select option").attr("selected", false);
+            $(".search-field_test").val("");
+            
         }
     </script>
-    <form role="search" method="get" class="search-form" action="'.$home_url.'/scout_result" id="form__scout">
+    <form role="search" method="get" class="search-form" action="https://jobshot.jp/scout_result" id="form__scout">
         <div class="tabs">
-            <input id="all" type="radio" name="tab_item" checked>
+            <input id="all" type="radio" name="tab_item" checked="">
                 <label class="tab_item" for="all">基本情報</label>
             <input id="programming" type="radio" name="tab_item">
                 <label class="tab_item" for="programming">スキル</label>
-            <input id="design" type="radio" name="tab_item">
-                <label class="tab_item" for="design">客観評価</label>
             <div class="tab_content" id="all_content">
-			<p>フリーワード検索:</P>
-    <div class="btn-group btn-group" data-toggle="buttons">
-        <label class="btn active">
-            <input type="text" name="freeword">
-        </label>
-    </div>
                 <div class="tab_content_description">
-                    <p>学生ステータス</p>
-                    <table>
+                    <h2>フリーワード検索</h2>
+                    <div class="btn-group btn-group freeword-search-container" data-toggle="buttons">
+                        <div class="scout_freeword">
+                            <label class="btn active scout_freeword_text">
+                                <input type="text" name="freeword" class="search-field_test" placeholder="フリーワードから探す">
+                            </label>
+                        </div>
+                        <div>
+                            <input type="submit" value="検索" class="um-button um-alt search-submit scout_freeword_search" id="um-submit-btn">
+                        </div>
+                    </div>
+                </div>
+                <div class="tab_content_description">
+                    <h2>学生ステータス</h2>
+                    <table class="student_status">
                         <tbody>
                             <tr>
                                 <th>性別</th>
@@ -400,8 +409,9 @@ function student_search_form_func($atts) {
                             </tr>
                         </tbody>
                     </table>
-                    <hr> 大学:
-                    <div class="btn-group btn-group" data-toggle="buttons">
+                    <hr>
+                    <h2>大学</h2>
+                    <div class="btn-group btn-group scout-category" data-toggle="buttons">
                         <label class="btn active">
                             <input type="checkbox" name="university[]" value="北海道大学" class="checkbox"><i class="fa fa-square-o fa-2x"></i><i class="fa fa-check-square-o fa-2x"></i><span> 北海道大学</span>
                         </label>
@@ -496,8 +506,9 @@ function student_search_form_func($atts) {
                             <input type="checkbox" name="university[]" value="九州大学" class="checkbox"><i class="fa fa-square-o fa-2x"></i><i class="fa fa-check-square-o fa-2x"></i><span> 九州大学</span>
                         </label>
                     </div>
-                    <hr> 学部系統:
-                    <div class="btn-group btn-group" data-toggle="buttons">
+                    <hr>
+                    <h2>学部系統</h2>
+                    <div class="btn-group btn-group scout-category" data-toggle="buttons">
                         <label class="btn active">
                             <input type="checkbox" name="faculty_lineage[]" value="文・人文" class="checkbox"><i class="fa fa-square-o fa-2x"></i><i class="fa fa-check-square-o fa-2x"></i><span> 文・人文</span>
                         </label>
@@ -538,8 +549,9 @@ function student_search_form_func($atts) {
                             <input type="checkbox" name="faculty_lineage[]" value="総合・環境・情報・人間" class="checkbox"><i class="fa fa-square-o fa-2x"></i><i class="fa fa-check-square-o fa-2x"></i><span> 総合・環境・情報・人間</span>
                         </label>
                     </div>
-                    <hr> 卒業年度:
-                    <div class="btn-group btn-group" data-toggle="buttons">
+                    <hr>
+                    <h2>卒業年度</h2>
+                    <div class="btn-group btn-group scout-category" data-toggle="buttons">
                         <label class="btn active">
                             <input type="checkbox" name="graduate_year[]" value="2021" class="checkbox"><i class="fa fa-square-o fa-2x"></i><i class="fa fa-check-square-o fa-2x"></i><span> 21卒</span>
                         </label>
@@ -553,8 +565,9 @@ function student_search_form_func($atts) {
                             <input type="checkbox" name="graduate_year[]" value="2024" class="checkbox"><i class="fa fa-square-o fa-2x"></i><i class="fa fa-check-square-o fa-2x"></i><span> 24卒</span>
                         </label>
                     </div>
-                    <hr> 職種:
-    <div class="btn-group btn-group" data-toggle="buttons">
+                    <hr>
+                    <h2>職種</h2>
+    <div class="btn-group btn-group scout-category" data-toggle="buttons">
         <label class="btn active">
             <input type="checkbox" name="occupation[]" value="エンジニア" class="checkbox"><span> エンジニア</span>
         </label>
@@ -589,8 +602,9 @@ function student_search_form_func($atts) {
             <input type="checkbox" name="occupation[]" value="その他" class="checkbox"><span> その他</span>
         </label>
     </div>
-	<hr> 留学経験:
-    <div class="btn-group btn-group" data-toggle="buttons">
+    <hr>
+    <h2>留学経験</h2>
+    <div class="btn-group btn-group scout-category" data-toggle="buttons">
 		<label class="btn active">
             <input type="radio" name="studied_abroad[]" value="1" class="radio"><span> 期間は問わないが経験あり</span>
         </label>
@@ -607,8 +621,9 @@ function student_search_form_func($atts) {
             <input type="radio" name="studied_abroad[]" value="0" class="radio"><span> 指定なし</span>
         </label>
     </div>
-	<hr> 学生時代の経験:
-    <div class="btn-group btn-group" data-toggle="buttons">
+    <hr>
+    <h2>学生時代の経験</h2>
+    <div class="btn-group btn-group scout-category scout-category-experiment" data-toggle="buttons">
         <label class="btn active">
             <input type="checkbox" name="student_experience[]" value="起業経験" class="checkbox"><i class="fa fa-square-o fa-2x"></i><i class="fa fa-check-square-o fa-2x"></i><span> 起業経験</span>
         </label>
@@ -667,8 +682,9 @@ function student_search_form_func($atts) {
             <input type="checkbox" name="student_experience[]" value="中高大の部活経験で全国大会出場経験あり" class="checkbox"><i class="fa fa-square-o fa-2x"></i><i class="fa fa-check-square-o fa-2x"></i><span> 中高大の部活経験で全国大会出場経験あり</span>
         </label>
     </div>
-	<hr> 大学時代のコミュニティ:
-    <div class="btn-group btn-group" data-toggle="buttons">
+    <hr>
+    <h2>大学時代のコミュニティ</h2>
+    <div class="btn-group btn-group scout-category" data-toggle="buttons">
         <label class="btn active">
             <input type="checkbox" name="univ_community[]" value="文化系サークル" class="checkbox"><span> 文化系サークル</span>
         </label>
@@ -685,8 +701,9 @@ function student_search_form_func($atts) {
             <input type="checkbox" name="univ_community[]" value="学生団体" class="checkbox"><span> 学生団体</span>
         </label>
     </div>
-	<hr> 長期インターン経験:
-    <div class="btn-group btn-group" data-toggle="buttons">
+    <hr>
+    <h2>長期インターン経験</h2>
+    <div class="btn-group btn-group scout-category" data-toggle="buttons">
         <label class="btn active">
             <input type="radio" name="internship_experiences[]" value="1" class="radio"><span> １ヶ月以上</span>
         </label>
@@ -703,8 +720,9 @@ function student_search_form_func($atts) {
             <input type="radio" name="internship_experiences[]" value="0" class="radio"><span> 指定なし</span>
         </label>
     </div>
-	<hr> 興味のある業界:
-    <div class="btn-group btn-group" data-toggle="buttons">
+    <hr>
+    <h2>興味のある業界</h2>
+    <div class="btn-group btn-group scout-category" data-toggle="buttons">
         <label class="btn active">
             <input type="checkbox" name="bussiness_type[]" value="メーカー" class="checkbox"><span> メーカー</span>
         </label>
@@ -760,63 +778,53 @@ function student_search_form_func($atts) {
             <input type="checkbox" name="bussiness_type[]" value="小売・流通" class="checkbox"><span> 小売・流通</span>
         </label>
     </div>
-    <div align="right">
-        <i class="material-icons" onclick="removeCheck()">refresh</i>
-    </div><br>';
-
-  if(in_array("administrator", $user_roles)){
-    $search_form_html.=
-    '<div align="right">
-        <label class="btn active">
-            <input type="checkbox" name="mail_can_send" value="mail_can_send" class="checkbox"><span class="builds_mail">  Buildsからのメール配信希望者 </span>
-        </label>
-    </div><br>';
-  }
-  $search_form_html.= '
+    <div class="scout_all_clear">
+        <i onclick="removeCheck()" style="cursor: pointer;">すべての条件をクリアする</i>
+    </div><br>
                     <div>
-                        <input type="submit" value="検索" class="um-button um-alt" id="um-submit-btn">
+                        <input type="submit" value="この条件で検索する" class="um-button um-alt scout_search" id="um-submit-btn">
                     </div>
                 </div>
             </div>
             <div class="tab_content" id="programming_content">
                 <div class="tab_content_description">
-                    <p>プログラミングスキル:</P>
+                    <h2>プログラミングスキル</h2>
                     <table dir="ltr" border="1" cellspacing="0" cellpadding="0">
                         <colgroup>
                         <col width="100">
                         <col width="100"></colgroup>
                         <tbody>
                             <tr>
-                                <td style="width: 98px;" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;★1つ&quot;}">★1つ</td>
-                                <td style="width: 338px;" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;独学(授業等含む)で学んだ程度で、実装の経験はない&quot;}">独学(授業等含む)で学んだ程度で、実装の経験はない</td>
+                                <td style="width: 98px;" data-sheets-value="{"1":2,"2":"★1つ"}">★1つ</td>
+                                <td style="width: 338px;" data-sheets-value="{"1":2,"2":"独学(授業等含む)で学んだ程度で、実装の経験はない"}">独学(授業等含む)で学んだ程度で、実装の経験はない</td>
                             </tr>
                             <tr>
-                                <td style="width: 98px;" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;★2つ&quot;}">★2つ</td>
-                                <td style="width: 338px;" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;用語や文法は理解できるが他の人の指導は必要&quot;}" data-sheets-formula="=R[0]C[-6]">
+                                <td style="width: 98px;" data-sheets-value="{"1":2,"2":"★2つ"}">★2つ</td>
+                                <td style="width: 338px;" data-sheets-value="{"1":2,"2":"用語や文法は理解できるが他の人の指導は必要"}" data-sheets-formula="=R[0]C[-6]">
                                     <div>
                                         <div>用語や文法は理解できるが他の人の指導は必要</div>
                                     </div>
                                 </td>
                             </tr>
                             <tr>
-                                <td style="width: 98px;" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;★3つ&quot;}">★3つ</td>
-                                <td style="width: 338px;" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;用語や文法は理解でき、開発した経験がある&quot;}" data-sheets-formula="=R[0]C[-6]">
+                                <td style="width: 98px;" data-sheets-value="{"1":2,"2":"★3つ"}">★3つ</td>
+                                <td style="width: 338px;" data-sheets-value="{"1":2,"2":"用語や文法は理解でき、開発した経験がある"}" data-sheets-formula="=R[0]C[-6]">
                                     <div>
                                         <div>用語や文法は理解でき、開発した経験がある</div>
                                     </div>
                                 </td>
                             </tr>
                             <tr>
-                                <td style="width: 98px;" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;★4つ&quot;}">★4つ</td>
-                                    <td style="width: 338px;" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;フレームワークやライブラリ等を利用して、開発した経験がある&quot;}" data-sheets-formula="=R[0]C[-6]">
+                                <td style="width: 98px;" data-sheets-value="{"1":2,"2":"★4つ"}">★4つ</td>
+                                    <td style="width: 338px;" data-sheets-value="{"1":2,"2":"フレームワークやライブラリ等を利用して、開発した経験がある"}" data-sheets-formula="=R[0]C[-6]">
                                         <div>
                                             <div>フレームワークやライブラリ等を利用して、開発した経験がある</div>
                                         </div>
                                     </td>
                                 </tr>
                             <tr>
-                                <td style="width: 98px;" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;★5つ&quot;}">★5つ</td>
-                                <td style="width: 338px;" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;その言語(フレームワーク等含む)を利用して一人でサービスを作ることができる&quot;}" data-sheets-formula="=R[0]C[-6]">
+                                <td style="width: 98px;" data-sheets-value="{"1":2,"2":"★5つ"}">★5つ</td>
+                                <td style="width: 338px;" data-sheets-value="{"1":2,"2":"その言語(フレームワーク等含む)を利用して一人でサービスを作ることができる"}" data-sheets-formula="=R[0]C[-6]">
                                     <div>
                                         <div>その言語(フレームワーク等含む)を利用して一人でサービスを作ることができる</div>
                                     </div>
@@ -824,85 +832,74 @@ function student_search_form_func($atts) {
                             </tr>
                         </tbody>
                     </table>
-                    <div class="btn-group btn-group" data-toggle="buttons">
+                    <div class="btn-group btn-group scout-programming-category" data-toggle="buttons">
                         <label class="btn active">
                             <span class="programming_lang_name"> C言語  </span><input type="range" name="programming_lang_lv_c" value="0" min="0" max="5" step="1" oninput=document.getElementById("output1").value=this.value>
-                            <output id="output1">0</output>
+                            <div class="level-container"><div class="level-subcontainer"><output id="output1">0<span></span></output></div></div>
                         </label>
                         <label class="btn active">
                             <span class="programming_lang_name"> C#  </span><input type="range" name="programming_lang_lv_cpp" value="0" min="0" max="5" step="1" oninput=document.getElementById("output2").value=this.value>
-                            <output id="output2">0</output>
+                            <div class="level-container"><div class="level-subcontainer"><output id="output2">0<span></span></output></div></div>
                         </label>
                         <label class="btn active">
                             <span class="programming_lang_name"> C++  </span><input type="range" name="programming_lang_lv_cs" value="0" min="0" max="5" step="1" oninput=document.getElementById("output3").value=this.value>
-                            <output id="output3">0</output>
+                            <div class="level-container"><div class="level-subcontainer"><output id="output3">0<span></span></output></div></div>
                         </label><br>
                         <label class="btn active">
                             <span class="programming_lang_name"> Go  </span><input type="range" name="programming_lang_lv_go" value="0" min="0" max="5" step="1" oninput=document.getElementById("output4").value=this.value>
-                            <output id="output4">0</output>
+                            <div class="level-container"><div class="level-subcontainer"><output id="output4">0<span></span></output></div></div>
                         </label>
                         <label class="btn active">
                             <span class="programming_lang_name"> Java  </span><input type="range" name="programming_lang_lv_java" value="0" min="0" max="5" step="1" oninput=document.getElementById("output5").value=this.value>
-                            <output id="output5">0</output>
+                            <div class="level-container"><div class="level-subcontainer"><output id="output5">0<span></span></output></div></div>
                         </label>
                         <label class="btn active">
                             <span class="programming_lang_name"> JavaScript  </span><input type="range" name="programming_lang_lv_js" value="0" min="0" max="5" step="1" oninput=document.getElementById("output6").value=this.value>
-                            <output id="output6">0</output>
+                            <div class="level-container"><div class="level-subcontainer"><output id="output6">0<span></span></output></div></div>
                         </label><br>
                         <label class="btn active">
                             <span class="programming_lang_name"> Kotlin  </span><input type="range" name="programming_lang_lv_kt" value="0" min="0" max="5" step="1" oninput=document.getElementById("output7").value=this.value>
-                            <output id="output7">0</output>
+                            <div class="level-container"><div class="level-subcontainer"><output id="output7">0<span></span></output></div></div>
                         </label>
                         <label class="btn active">
                             <span class="programming_lang_name"> Objective-C  </span><input type="range" name="programming_lang_lv_m" value="0" min="0" max="5" step="1" oninput=document.getElementById("output8").value=this.value>
-                            <output id="output8">0</output>
+                            <div class="level-container"><div class="level-subcontainer"><output id="output8">0<span></span></output></div></div>
                         </label>
                         <label class="btn active">
                             <span class="programming_lang_name"> PHP  </span><input type="range" name="programming_lang_lv_php" value="0" min="0" max="5" step="1" oninput=document.getElementById("output9").value=this.value>
-                            <output id="output9">0</output>
+                            <div class="level-container"><div class="level-subcontainer"><output id="output9">0<span></span></output></div></div>
                         </label><br>
                         <label class="btn active">
                             <span class="programming_lang_name"> Perl  </span><input type="range" name="programming_lang_lv_pl" value="0" min="0" max="5" step="1" oninput=document.getElementById("output10").value=this.value>
-                            <output id="output10">0</output>
+                            <div class="level-container"><div class="level-subcontainer"><output id="output10">0<span></span></output></div></div>
                         </label>
                         <label class="btn active">
                             <span class="programming_lang_name"> Python  </span><input type="range" name="programming_lang_lv_py" value="0" min="0" max="5" step="1" oninput=document.getElementById("output11").value=this.value>
-                            <output id="output11">0</output>
+                            <div class="level-container"><div class="level-subcontainer"><output id="output11">0<span></span></output></div></div>
                         </label>
                         <label class="btn active">
                             <span class="programming_lang_name"> R  </span><input type="range" name="programming_lang_lv_r" value="0" min="0" max="5" step="1" oninput=document.getElementById("output12").value=this.value>
-                            <output id="output12">0</output>
+                            <div class="level-container"><div class="level-subcontainer"><output id="output12">0<span></span></output></div></div>
                         </label><br>
                         <label class="btn active">
                             <span class="programming_lang_name"> Ruby  </span><input type="range" name="programming_lang_lv_rb" value="0" min="0" max="5" step="1" oninput=document.getElementById("output13").value=this.value>
-                            <output id="output13">0</output>
+                            <div class="level-container"><div class="level-subcontainer"><output id="output13">0<span></span></output></div></div>
                         </label>
                         <label class="btn active">
                             <span class="programming_lang_name"> Swift  </span><input type="range" name="programming_lang_lv_scala" value="0" min="0" max="5" step="1" oninput=document.getElementById("output14").value=this.value>
-                            <output id="output14">0</output>
+                            <div class="level-container"><div class="level-subcontainer"><output id="output14">0<span></span></output></div></div>
                         </label>
                         <label class="btn active">
                             <span class="programming_lang_name"> Scala  </span><input type="range" name="programming_lang_lv_swift" value="0" min="0" max="5" step="1" oninput=document.getElementById("output15").value=this.value>
-                            <output id="output15">0</output>
+                            <div class="level-container"><div class="level-subcontainer"><output id="output15">0<span></span></output></div></div>
                         </label><br>
                         <label class="btn active">
                             <span class="programming_lang_name"> VisualBasic  </span><input type="range" name="programming_lang_lv_vb" value="0" min="0" max="5" step="1" oninput=document.getElementById("output16").value=this.value>
-                            <output id="output16">0</output>
+                            <div class="level-container"><div class="level-subcontainer"><output id="output16">0<span></span></output></div></div>
                         </label>
                     </div>
                     <div>
-                        <input type="submit" value="検索" class="um-button um-alt" id="um-submit-btn">
-                    </div>
-                </div>
-            </div>
-            <div class="tab_content" id="design_content">
-                <div class="tab_content_description">
-                    '.$evaluation_form_html.'
-                    <div>
-                        <input type="number" name="inviter_user_login" value="">
-                    </div>
-                    <div>
-                        <input type="submit" value="検索" class="um-button um-alt" id="um-submit-btn">
+                        <input type="submit" value="この条件で検索する" class="um-button um-alt scout_search" id="um-submit-btn">
                     </div>
                 </div>
             </div>
@@ -910,7 +907,16 @@ function student_search_form_func($atts) {
     </form>';
 
     $search_form_html.=remove_check();
-
+/*
+    if(in_array("administrator", $user_roles)){
+        $search_form_html.=
+        '<div align="right">
+            <label class="btn active">
+                <input type="checkbox" name="mail_can_send" value="mail_can_send" class="checkbox"><span class="builds_mail">  Buildsからのメール配信希望者 </span>
+            </label>
+        </div><br>';
+      }
+*/
     return $search_form_html;
 }
 add_shortcode('student_search_form','student_search_form_func');
@@ -921,6 +927,8 @@ function remove_check(){
     $('#removecheck').click(function () {
         $('.checkbox').prop('checked', false);
         $('.radio').prop('checked', false);
+        $('select option').attr('selected', false);
+        $('#sampletext').val('<input type='text' name='freeword' class='search-field_test' placeholder='フリーワードから探す'>');
       }
     );
     </script>";
@@ -1432,7 +1440,7 @@ function student_search_result_func($atts){
   //フリーワード検索による絞り込み
     if (isset($_GET['freeword']) ) {
         $freeword =  my_esc_sql($_GET['freeword']);
-        $form_html = str_replace('<input type="text" name="freeword">','<input type="text" name="freeword" value="'.$freeword.'">',$form_html);
+        $form_html = str_replace('<input type="text" name="freeword" class="search-field_test" placeholder="フリーワードから探す">','<input type="text" name="freeword" class="search-field_test" placeholder="フリーワードから探す" value="'.$freeword.'">',$form_html);
         $condition_html .= '<span>フリーワード：</span><div class="card-category__scout">'.$freeword.'</div><br>';
         if(strlen($freeword)>1){
             array_push ($meta_query_args,
@@ -1585,7 +1593,7 @@ function student_search_result_func($atts){
             if ($_GET['programming_lang_lv_'.$language]!=0) {
                 $skill[$i] = $_GET['programming_lang_lv_'.$language];
                 $form_html = str_replace('<input type="range" name="programming_lang_lv_'.$language.'" value="0" min="0" max="5" step="1" oninput=document.getElementById("output'.$i.'").value=this.value>','<input type="range" name="programming_lang_lv_'.$language.'" value="'.$skill[$i].'" min="0" max="5" step="1" oninput=document.getElementById("output'.$i.'").value=this.value>',$form_html);
-                $form_html = str_replace('<output id="output'.$i.'">0</output>','<output id="output'.$i.'">'.$skill[$i].'</output>',$form_html);
+                $form_html = str_replace('<output id="output'.$i.'">0','<output id="output'.$i.'">'.$skill[$i].'',$form_html);
                 $programming_html .= '<div class="card-category__scout">'.$language.'(星'.$skill[$i].')</div>';
                 $skill_meta_query[$i] = array('relation' => 'OR');
                 array_push($skill_meta_query[$i], array(
@@ -1709,11 +1717,11 @@ function student_search_result_func($atts){
         //	'orderby'      => 'login',
         //	'order'        => 'ASC',
         'offset'       => '',
-        'search'       => '*'.esc_attr($searchword).'*',
+        //'search'       => '*'.esc_attr($searchword).'*',
         // 'search_columns' => array( 'user_login','faculty_lineage','languages','programming_languages','region','skill_dev','skill',),
         //	'number'       => '',
         'count_total'  => true,
-        'fields'       => 'all',
+        'fields'       => '',
         'who'          => ''
     );
     $args += array('meta_key' => 'user_profile_total_score','orderby' => 'meta_value_num','order'=> 'DESC',);
@@ -1818,7 +1826,7 @@ function student_search_result_func($atts){
                 </tr>
             </thead>
             <tbody>';
-
+    $company_id = wp_get_current_user()->ID;
     if ( $students->get_results() ) foreach( $students->get_results() as $user )  {
 
         $user_id = $user->data->ID;
@@ -1853,7 +1861,7 @@ function student_search_result_func($atts){
         if(in_array("company", $roles) ){
             $scout_status = get_remain_num_for_stu_func($user, 'remain-mail-num');
             $user_name = $user->data->user_login;
-            $scouted_users = scout_manage_func();
+            $scouted_users = get_user_meta($company_id,'scouted_users',false)[0];
             $user_link = $home_url.'/user?um_user='.$user_name;
             if($scout_status["remain"]>0){
                 if(!in_array($user_name,$scouted_users,false)){
@@ -1888,42 +1896,4 @@ function scout_manage_func(){
     return $scouted_users;
   }
 ?>
-
-
-function update_all_user_score(){
-    $args = array(
-        'blog_id'      => $GLOBALS['blog_id'],
-        'role'         => 'student',
-        'meta_key'     => '',
-        'meta_value'   => '',
-        'meta_compare' => '',
-        'meta_query'   => '',
-        'date_query'   => array(),
-        'include'      => array(),
-        'exclude'      => array(),
-        'search_columns' => array(),
-        'count_total'  => true,
-        'fields'       => 'all',
-        'who'          => ''
-    );
-    $students=new WP_User_Query( $args );
-    $user_ids = array();
-    
-        $user_id = 24;
-        $user_base_profile_score = get_user_meta( $user_id, 'user_base_profile_score',false)[0];
-        update_user_base_profile_score($user_id);
-        update_user_univ_profile_score($user_id);
-        update_user_abroad_profile_score($user_id);
-        update_user_programming_profile_score($user_id);
-        update_user_skill_profile_score($user_id);
-        update_user_community_profile_score($user_id);
-        update_user_internship_profile_score($user_id);
-        update_user_interest_profile_score($user_id);
-        update_user_experience_profile_score($user_id);
-        update_user_picture_profile_score($user_id);
-        update_user_total_profile_score($user_id);
-  $html = '<h1>完了しました</h1>';
-return $html;
-}
-add_shortcode('update_all_user_score','update_all_user_score');
 

@@ -92,4 +92,34 @@ function update_all_user_score(){
     }
 }
 add_shortcode('update_all_user_score','update_all_user_score');
+
+//企業のスカウト済み学生のアップデート
+function update_company_scout(){
+    $args = array(
+        'blog_id'      => $GLOBALS['blog_id'],
+        'role'         => 'company',
+        'meta_key'     => '',
+        'meta_value'   => '',
+        'meta_compare' => '',
+        'meta_query'   => '',
+        'date_query'   => array(),
+        'include'      => array(),
+        'exclude'      => array(),
+        'count_total'  => true,
+        'fields'       => 'all',
+        'who'          => ''
+    );
+    $companies=new WP_User_Query( $args );
+    if ( $companies->get_results() ) foreach( $companies->get_results() as $company ) {
+        $company_id = $company->data->ID;
+        $company_user_login=$company->data->display_name;
+        $scouted_user = do_shortcode('[cfdb-value form="企業スカウトメール送信フォーム" filter="your-name='.$company_user_login.'" show="partner-id"]');
+        $scouted_user  = str_replace(array(" ", "　"), "", $scouted_user);
+        $scouted_users = explode(",",$scouted_user);
+        echo $scouted_users;
+        echo '<br><br>';
+        update_user_meta( $company_id, 'scouted_users' , $scouted_users);
+    }
+}
+add_shortcode('update_company_scout','update_company_scout');
 ?>

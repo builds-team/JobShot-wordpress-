@@ -5035,6 +5035,7 @@ footer#footer.container {
   border-radius: 0.3em;
   margin: 0.3em;
   text-decoration: none;
+  font-size:0.8rem;
 }
 
 .card-category::before {
