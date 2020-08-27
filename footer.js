@@ -3,7 +3,7 @@
 function cleanQuery(query) {
 	var arr = [];
 	$.each(query.split('&'), function(i, param) {
-	  if (param.split('=')[1] && param.split('=')[1] != 0) { arr.push(param); }
+	  if (param.split('=')[1] && param.split('=')[1] != 0 && param.split('=')[0] != 'tab_item') { arr.push(param); }
 	});
 	return arr.join('&');
   }
