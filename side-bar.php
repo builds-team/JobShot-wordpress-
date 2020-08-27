@@ -30,15 +30,15 @@ function company_side_bar_func($content)
         <div class="navigation-section">
             <div class="navigation-section-head">新規募集</div>
             <div class="navigation-section-container">
-                <a class="link-section" href="' . $home_url . '/new_post_job"><div class="link-title">新卒情報</div></a>
-                <a class="link-section" href="' . $home_url . '/new_post_internship"><div class="link-title">インターン情報</div></a>
+                <a class="link-section" href="' . $home_url . '/new_post_job"><div class="link-title">新卒募集</div></a>
+                <a class="link-section" href="' . $home_url . '/new_post_internship"><div class="link-title">インターン募集</div></a>
             </div>
         </div>
         <div class="navigation-section">
             <div class="navigation-section-head">募集管理</div>
             <div class="navigation-section-container">
-                <a class="link-section" href="' . $home_url . '/manage_post?posttype=job"><div class="link-title">新卒情報</div></a>
-                <a class="link-section" href="' . $home_url . '/manage_post?posttype=internship"><div class="link-title">インターン情報</div></a>
+                <a class="link-section" href="' . $home_url . '/manage_post?posttype=job"><div class="link-title">新卒管理</div></a>
+                <a class="link-section" href="' . $home_url . '/manage_post?posttype=internship"><div class="link-title">インターン管理</div></a>
             </div>
         </div>
         <div class="navigation-section">

@@ -321,7 +321,7 @@ function student_search_form_func($atts) {
             $(".radio").prop("checked", false);
         }
     </script>
-    <form role="search" method="get" class="search-form" action="'.$home_url.'/scout_result/" id="form__scout">
+    <form role="search" method="get" class="search-form" action="'.$home_url.'/scout_result" id="form__scout">
         <div class="tabs">
             <input id="all" type="radio" name="tab_item" checked>
                 <label class="tab_item" for="all">基本情報</label>
@@ -938,9 +938,11 @@ function student_search_result_func($atts){
     if (isset($_GET['sw'])) {
         $searchword = my_esc_sql($_GET['sw']);
     }
+    /*
     if (isset($_GET['sort'])) {
         $sort = my_esc_sql($_GET['sort']);
     }
+    */
 
     $user=wp_get_current_user();
     $user_roles=$user->roles;
@@ -988,19 +990,19 @@ function student_search_result_func($atts){
         $gender = $_GET['gender'];
         if($gender == 'male'){
             $form_html = str_replace('<option value="male">','<option value="male" selected>',$form_html);
-            $gender = array('男性');
+            $gender = '男性';
             $condition_html .= '<span>性別：</span><div class="card-category__scout">男性</div><br>';
         }
         if($gender == 'female'){
             $form_html = str_replace('<option value="female">','<option value="female" selected>',$form_html);
-            $gender = array ('女性');
+            $gender = '女性';
             $condition_html .= '<span>性別：</span><div class="card-category__scout">女性</div><br>';
         }
         array_push (
             $meta_query_args,
             array(
                 'key'     => 'gender',
-                'value'   =>  $gender[0],
+                'value'   =>  $gender,
                 'compare' => 'LIKE'
             )
         );
@@ -1045,7 +1047,7 @@ function student_search_result_func($atts){
         array_push($meta_query_args, array(
             'key'       => 'degree_of_internship_interest',
             'value'     => $degree_of_internship_interest[0],
-            'compare'   => 'LIKE'
+            'compare'   => '='
         ));
     }
     // ベンチャー企業への就職意欲による絞り込み
@@ -1074,7 +1076,7 @@ function student_search_result_func($atts){
         array_push($meta_query_args, array(
             'key'       => 'will_venture',
             'value'     => $will_venture[0],
-            'compare'   => 'LIKE'
+            'compare'   => '='
         ));
     }
     // 大学による絞り込み
@@ -1172,7 +1174,7 @@ function student_search_result_func($atts){
             array_push($faculty_lineage_meta_query, array(
                 'key'       => 'faculty_lineage',
                 'value'     => $faculty_lineage,
-                'compare'   => 'LIKE'
+                'compare'   => '='
             ));
         }
         $condition_html .= '<br>';
@@ -1246,51 +1248,46 @@ function student_search_result_func($atts){
         $studied_abroads = $_GET["studied_abroad"];
         $form_html = str_replace('<input type="radio" name="studied_abroad[]" value="'.$studied_abroads[0].'" class="radio">','<input type="radio" name="studied_abroad[]" value="'.$studied_abroads[0].'" class="radio" checked="checked">',$form_html);
         $studied_abroad_meta_query = array('relation' => 'OR');
-        foreach($studied_abroads as $studied_abroad){
-            for($i=0;$i<=(5-$studied_abroad);$i++){
-                switch($i){
-                    case 0:
-                        array_push($studied_abroad_meta_query, array(
-                            'key'       => 'studied_abroad',
-                            'value'     => '１年以上',
-                            'compare'   => 'LIKE'
-                        ));
-                        break;
-                    case 1:
-                        array_push($studied_abroad_meta_query, array(
-                            'key'       => 'studied_abroad',
-                            'value'     => '６ヶ月以上1年未満',
-                            'compare'   => 'LIKE'
-                        ));
-                        break;
-                    case 2:
-                        array_push($studied_abroad_meta_query, array(
-                            'key'       => 'studied_abroad',
-                            'value'     => '３ヶ月以上６ヶ月未満',
-                            'compare'   => 'LIKE'
-                        ));
-                        break;
-                    case 3:
-                        array_push($studied_abroad_meta_query, array(
-                            'key'       => 'studied_abroad',
-                            'value'     => '3ヶ月未満',
-                            'compare'   => 'LIKE'
-                        ));
+        for($i=0;$i<(5-$studied_abroads[0]);$i++){
+            switch($i){
+                case 0:
+                    array_push($studied_abroad_meta_query, array(
+                        'key'       => 'studied_abroad',
+                        'value'     => '１年以上',
+                        'compare'   => 'LIKE'
+                    ));
                     break;
-                    case 4:
-                        array_push($studied_abroad_meta_query, array(
-                            'key'       => 'studied_abroad',
-                            'value'     => '経験なし',
-                            'compare'   => 'LIKE'
-                        ));
-                        break;
-                }
+                case 1:
+                    array_push($studied_abroad_meta_query, array(
+                        'key'       => 'studied_abroad',
+                        'value'     => '６ヶ月以上1年未満',
+                        'compare'   => 'LIKE'
+                    ));
+                    break;
+                case 2:
+                    array_push($studied_abroad_meta_query, array(
+                        'key'       => 'studied_abroad',
+                        'value'     => '３ヶ月以上６ヶ月未満',
+                        'compare'   => 'LIKE'
+                    ));
+                    break;
+                case 3:
+                    array_push($studied_abroad_meta_query, array(
+                        'key'       => 'studied_abroad',
+                        'value'     => '3ヶ月未満',
+                        'compare'   => 'LIKE'
+                    ));
+                break;
+                case 4:
+                    array_push($studied_abroad_meta_query, array(
+                        'key'       => 'studied_abroad',
+                        'value'     => '経験なし',
+                        'compare'   => 'LIKE'
+                    ));
+                    break;
             }
         }
         switch($studied_abroads[0]){
-            case 0:
-                $condition_html .= '<span>留学経験：</span><div class="card-category__scout">指定なし</div><br>';
-            break;
             case 1:
                 $condition_html .= '<span>留学経験：</span><div class="card-category__scout">期間は問わないが経験あり</div><br>';
             break;
@@ -1345,52 +1342,47 @@ function student_search_result_func($atts){
         $internship_experiences = $_GET["internship_experiences"];
         $form_html = str_replace('<input type="radio" name="internship_experiences[]" value="'.$internship_experiences[0].'" class="radio">','<input type="radio" name="internship_experiences[]" value="'.$internship_experiences[0].'" class="radio" checked="checked">',$form_html);
         $internship_experiences_meta_query = array('relation' => 'OR');
-        foreach($internship_experiences as $internship_experience){
-            for($i=0;$i<=(4-$internship_experience);$i++){
-                switch($i){
-                    case 0:
-                    array_push($internship_experiences_meta_query, array(
-                        'key'       => 'internship_experiences',
-                        'value'     => '1年以上',
-                        'compare'   => 'LIKE'
-                    ));
-                    break;
-                    case 1:
-                    array_push($internship_experiences_meta_query, array(
-                        'key'       => 'internship_experiences',
-                        'value'     => '6ヶ月以上1年未満',
-                        'compare'   => 'LIKE'
-                    ));
-                    break;
-                    case 2:
-                    array_push($internship_experiences_meta_query, array(
-                        'key'       => 'internship_experiences',
-                        'value'     => '3ヶ月以上6ヶ月未満',
-                        'compare'   => 'LIKE'
-                    ));
-                    break;
-                    case 3:
-                    array_push($internship_experiences_meta_query, array(
-                        'key'       => 'internship_experiences',
-                        'value'     => '1ヶ月以上3ヶ月未満',
-                        'compare'   => 'LIKE'
-                    ));
-                    break;
-                    case 4:
-                    array_push($internship_experiences_meta_query, array(
-                        'key'       => 'internship_experiences',
-                        'value'     => 'なし',
-                        'compare'   => 'LIKE'
-                    ));
-                    break;
-                }
+        for($i=0;$i<=(4-$internship_experiences[0]);$i++){
+            switch($i){
+                case 0:
+                array_push($internship_experiences_meta_query, array(
+                    'key'       => 'internship_experiences',
+                    'value'     => '1年以上',
+                    'compare'   => 'LIKE'
+                ));
+                break;
+                case 1:
+                array_push($internship_experiences_meta_query, array(
+                    'key'       => 'internship_experiences',
+                    'value'     => '6ヶ月以上1年未満',
+                    'compare'   => 'LIKE'
+                ));
+                break;
+                case 2:
+                array_push($internship_experiences_meta_query, array(
+                    'key'       => 'internship_experiences',
+                    'value'     => '3ヶ月以上6ヶ月未満',
+                    'compare'   => 'LIKE'
+                ));
+                break;
+                case 3:
+                array_push($internship_experiences_meta_query, array(
+                    'key'       => 'internship_experiences',
+                    'value'     => '1ヶ月以上3ヶ月未満',
+                    'compare'   => 'LIKE'
+                ));
+                break;
+                case 4:
+                array_push($internship_experiences_meta_query, array(
+                    'key'       => 'internship_experiences',
+                    'value'     => 'なし',
+                    'compare'   => 'LIKE'
+                ));
+                break;
             }
         }
         array_push($meta_query_args, $internship_experiences_meta_query);
         switch($internship_experiences[0]){
-            case 0:
-                $condition_html .= '<span>長期インターン経験：</span><div class="card-category__scout">指定なし</div><br>';
-            break;
             case 1:
                 $condition_html .= '<span>長期インターン経験経験：</span><div class="card-category__scout">１ヶ月以上</div><br>';
             break;
@@ -1586,75 +1578,30 @@ function student_search_result_func($atts){
     }
     $programming_html = '';
     // プログラミングスキルによる絞り込み
-    for($i=1;$i<=16;$i++){
-        switch($i){
-            case 1:
-                $language='c';
-                break;
-            case 2:
-                $language='cpp';
-                break;
-            case 3:
-                $language='cs';
-                break;
-            case 4:
-                $language='go';
-                break;
-            case 5:
-                $language='java';
-                break;
-            case 6:
-                $language='js';
-                break;
-            case 7:
-                $language='kt';
-                break;
-            case 8:
-                $language='m';
-                break;
-            case 9:
-                $language='php';
-                break;
-            case 10:
-                $language='pl';
-                break;
-            case 11:
-                $language='py';
-                break;
-            case 12:
-                $language='r';
-                break;
-            case 13:
-                $language='rb';
-                break;
-            case 14:
-                $language='scala';
-                break;
-            case 15:
-                $language='swift';
-                break;
-            case 16:
-                $language='vb';
-                break;
+    if(strpos($_SERVER['REQUEST_URI'],'programming') !== false){
+        $languages_list = ['none','c','cpp','cs','go','java','js','kt','m','php','pl','py','r','rb','scala','swift','vb'];
+        for($i=1;$i<=16;$i++){
+            $language = $languages_list[$i];
+            if ($_GET['programming_lang_lv_'.$language]!=0) {
+                $skill[$i] = $_GET['programming_lang_lv_'.$language];
+                $form_html = str_replace('<input type="range" name="programming_lang_lv_'.$language.'" value="0" min="0" max="5" step="1" oninput=document.getElementById("output'.$i.'").value=this.value>','<input type="range" name="programming_lang_lv_'.$language.'" value="'.$skill[$i].'" min="0" max="5" step="1" oninput=document.getElementById("output'.$i.'").value=this.value>',$form_html);
+                $form_html = str_replace('<output id="output'.$i.'">0</output>','<output id="output'.$i.'">'.$skill[$i].'</output>',$form_html);
+                $programming_html .= '<div class="card-category__scout">'.$language.'(星'.$skill[$i].')</div>';
+                $skill_meta_query[$i] = array('relation' => 'OR');
+                array_push($skill_meta_query[$i], array(
+                    'key'       => 'programming_lang_lv_'.$language,
+                    'value'     => $skill[$i],
+                    'compare'   => '>='
+                ));
+                array_push($meta_query_args, $skill_meta_query[$i]);
+            }
         }
-        if ($_GET['programming_lang_lv_'.$language]!=0) {
-            $skill[$i] = $_GET['programming_lang_lv_'.$language];
-            $form_html = str_replace('<input type="range" name="programming_lang_lv_'.$language.'" value="0" min="0" max="5" step="1" oninput=document.getElementById("output'.$i.'").value=this.value>','<input type="range" name="programming_lang_lv_'.$language.'" value="'.$skill[$i].'" min="0" max="5" step="1" oninput=document.getElementById("output'.$i.'").value=this.value>',$form_html);
-            $form_html = str_replace('<output id="output'.$i.'">0</output>','<output id="output'.$i.'">'.$skill[$i].'</output>',$form_html);
-            $programming_html .= '<div class="card-category__scout">'.$language.'(星'.$skill[$i].')</div>';
-            $skill_meta_query[$i] = array('relation' => 'OR');
-            array_push($skill_meta_query[$i], array(
-                'key'       => 'programming_lang_lv_'.$language,
-                'value'     => $skill[$i],
-                'compare'   => '>='
-            ));
-            array_push($meta_query_args, $skill_meta_query[$i]);
+        if(!empty($programming_html)){
+            $condition_html .= '<span>プログラミングスキル：</span>'.$programming_html.'<br>';
         }
-    }
-    if(!empty($programming_html)){
-        $condition_html .= '<span>プログラミングスキル：</span>'.$programming_html.'<br>';
     }
     // 居住地による絞り込み
+    /*
     if (isset($_GET['pref_name']) ) {
         $state =  my_esc_sql($_GET['pref_name']);
         if(strlen($state)>1){
@@ -1676,7 +1623,9 @@ function student_search_result_func($atts){
             );
         }
     }
+    */
     // Builds社員の招待番号による絞り込み
+    /*
     if (isset($_GET['inviter_user_login']) ) {
         $inviter_user_login = $_GET["inviter_user_login"];
         // array_push($meta_query_args, array(
@@ -1685,7 +1634,7 @@ function student_search_result_func($atts){
         //     'compare'   => 'LIKE'
         // ));
     }
-
+    */
     // $choice_array=get_choice_array('experience_and_achievement_select');
     // array_push ($meta_query_args, add_search_characteristic_func('experience_and_achievement_select', '経験/実績', true, '','query_arg', $choice_array, 'LIKE','AND'));
     // array_push ($meta_query_args, add_search_characteristic_func('conditions_pay', '時給（円以下）', false,'int', 'query_arg', '', '<=',''));
@@ -1693,6 +1642,7 @@ function student_search_result_func($atts){
     //faculty_lineage
 
     //'faculty_lineage','languages','programming_languages','region','skill_dev','skill',),
+    /*
     if (isset($_GET['skillw']) ) {
         $skillw =  my_esc_sql($_GET['skillw']);
         if(strlen($skillw)>1){
@@ -1743,6 +1693,7 @@ function student_search_result_func($atts){
             }
         }
     }
+    */
 
 
     $args = array(
@@ -1767,7 +1718,7 @@ function student_search_result_func($atts){
     );
     $args += array('meta_key' => 'user_profile_total_score','orderby' => 'meta_value_num','order'=> 'DESC',);
 
-
+    /*
     if(isset($sort)){
         switch($sort){
             case '':
@@ -1791,6 +1742,7 @@ function student_search_result_func($atts){
             break;
         }
     }
+    */
 
     $user_login_name = wp_get_current_user()->data->user_login;
 
@@ -1860,10 +1812,7 @@ function student_search_result_func($atts){
         $result_html.='<th>スカウト</th>';
     }
     if( in_array("administrator", $roles) ){
-        $result_html.='<th>接触記録</th>';
-    }
-    if( in_array("administrator", $roles)){
-        $result_html.='<th>メールアドレス</th>';
+        $result_html.='<th>接触記録</th><th>メールアドレス</th>';
     }
     $result_html.='
                 </tr>
@@ -1890,7 +1839,7 @@ function student_search_result_func($atts){
             $photo = get_avatar($user_id);
         }
         else{
-            $photo = '<img src="'.$upload_file_name.'?'.$image_date.'" class="gravatar avatar avatar-190 um-avatar avatar-search" />'; 
+            $photo = '<img src="'.$upload_file_name.'?'.$image_date.'" class="gravatar avatar avatar-190 um-avatar avatar-search">'; 
         }
         $result_html.='
                     <tr>
@@ -1917,10 +1866,7 @@ function student_search_result_func($atts){
             }
         }
         if( in_array("administrator", $roles) ){
-            $result_html.='<td label="接触記録"><a href="'.student_contact_form_link($user).'">接触記録を入力</a></td>';
-        }
-        if( in_array("administrator", $roles)){
-            $result_html.='<td label="メールアドレス">'.$email.'</td>';
+            $result_html.='<td label="接触記録"><a href="'.student_contact_form_link($user).'">接触記録を入力</a></td><td label="メールアドレス">'.$email.'</td>';
         }
     }
     $result_html.='
