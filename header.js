@@ -886,3 +886,13 @@ jQuery(function($){
         }
     });
 });
+
+// スカウト検索
+$(function() {
+    var rangePercent = $('.scout-programming-category [type="range"]').val();
+    $('.scout-programming-category [type="range"]').on('change input', function() {
+        rangePercent = $(this).val();
+        $(this).next().find('output').html(rangePercent+'<span></span>');
+        $(this).next().find('output').css({'left': rangePercent*20+'%'});
+    });
+});
