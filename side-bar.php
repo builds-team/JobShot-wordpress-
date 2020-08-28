@@ -104,8 +104,6 @@ function side_bar_widget_func()
     <p>
         <a href="' . $home_url . '/interview"><img class="special_contents_img wp-image-5404 aligncenter" src="' . $soudan_url . '"></a>
         <br>
-        <a href="' . $home_url . '/recruit_interview"><img class="special_contents_img wp-image-5404 aligncenter only-pc" src="' . $soudan21_url . '"></a>
-        <br>
         <a href="' . $home_url . '/recruit_interview_22"><img class="special_contents_img wp-image-5404 aligncenter only-pc" src="' . $soudan22_url . '"></a>
         <br>
         <a href="' . $home_url . '/entry-sheet"><img class="special_contents_img wp-image-5404 aligncenter only-pc" src="' . $es_url . '"></a>
