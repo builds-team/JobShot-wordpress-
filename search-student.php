@@ -143,6 +143,18 @@ function student_search_form_func($atts) {
     </script>';
     */
     $home_url =esc_url( home_url( ));
+
+    if(in_array("administrator", $user_roles)){
+        $builds_mail_html=
+        '<hr>
+            <h2>Buildsからのメール配信希望者</h2>
+            <div class="btn-group btn-group scout-category" data-toggle="buttons">
+                <label class="btn active">
+                    <input type="checkbox" name="mail_can_send" value="mail_can_send" class="checkbox"><span>Buildsのメール配信希望者</span>
+                </label>
+            </div>
+        <br>';
+      }
     $search_form_html = '
     <style>
         .cp_ipselect {
@@ -778,9 +790,11 @@ function student_search_form_func($atts) {
             <input type="checkbox" name="bussiness_type[]" value="小売・流通" class="checkbox"><span> 小売・流通</span>
         </label>
     </div>
+    '.$builds_mail_html.'
     <div class="scout_all_clear">
         <i onclick="removeCheck()" style="cursor: pointer;">すべての条件をクリアする</i>
     </div><br>
+    
                     <div>
                         <input type="submit" value="この条件で検索する" class="um-button um-alt scout_search" id="um-submit-btn">
                     </div>
@@ -907,16 +921,7 @@ function student_search_form_func($atts) {
     </form>';
 
     $search_form_html.=remove_check();
-/*
-    if(in_array("administrator", $user_roles)){
-        $search_form_html.=
-        '<div align="right">
-            <label class="btn active">
-                <input type="checkbox" name="mail_can_send" value="mail_can_send" class="checkbox"><span class="builds_mail">  Buildsからのメール配信希望者 </span>
-            </label>
-        </div><br>';
-      }
-*/
+
     return $search_form_html;
 }
 add_shortcode('student_search_form','student_search_form_func');
@@ -978,7 +983,10 @@ function student_search_result_func($atts){
     //     array_push($meta_query_args, $company_mail_meta_query);
     // }
     // Buildsからのメール配信を希望しない学生の除外
+    $condition_html = '';
     if (isset($_GET['mail_can_send'])) {
+        $form_html = str_replace('name="mail_can_send"','name="mail_can_send" checked="checked"',$form_html);
+        $condition_html .= '<span>メール配信：</span><div class="card-category__scout">配信を希望する</div><br>';
         $builds_mail_meta_query = array('relation' => 'OR');
         array_push($builds_mail_meta_query, array(
             'key'       => 'mail_settings',
@@ -992,7 +1000,7 @@ function student_search_result_func($atts){
         array_push($meta_query_args, $builds_mail_meta_query);
     }
 
-    $condition_html = '';
+    
     // 性別による絞り込み
     if (!empty($_GET['gender'])) {
         $gender = $_GET['gender'];
@@ -1195,31 +1203,31 @@ function student_search_result_func($atts){
         $graduate_years = $_GET["graduate_year"];
         if(in_array(2021,$graduate_years)){
             $graduate_year_sub = "2021(2019年4月時点で大学3年生/大学院1年生)";
-            $graduate_year_sub_1 = "2021";
+            //$graduate_year_sub_1 = "2021";
             $graduate_html .= '<div class="card-category__scout">21卒</div>';
-            array_push($graduate_years,$graduate_year_sub);
-            array_push($graduate_years,$graduate_year_sub_1);
+            //array_push($graduate_years,$graduate_year_sub);
+            //array_push($graduate_years,$graduate_year_sub_1);
         }
         if(in_array(2022,$graduate_years)){
             $graduate_year_sub = "2022(2019年4月時点で大学2年生)";
-            $graduate_year_sub_1 = "2022";
+            //$graduate_year_sub_1 = "2022";
             $graduate_html .= '<div class="card-category__scout">22卒</div>';
-            array_push($graduate_years,$graduate_year_sub);
-            array_push($graduate_years,$graduate_year_sub_1);
+            //array_push($graduate_years,$graduate_year_sub);
+            //array_push($graduate_years,$graduate_year_sub_1);
         }
         if(in_array(2023,$graduate_years)){
             $graduate_year_sub = "2023(2019年4月時点で大学1年生)";
-            $graduate_year_sub_1 = "2023";
+            //$graduate_year_sub_1 = "2023";
             $graduate_html .= '<div class="card-category__scout">23卒</div>';
-            array_push($graduate_years,$graduate_year_sub);
-            array_push($graduate_years,$graduate_year_sub_1);
+            //array_push($graduate_years,$graduate_year_sub);
+            //array_push($graduate_years,$graduate_year_sub_1);
         }
         if(in_array(2024,$graduate_years)){
             $graduate_year_sub = "2024(2020年4月時点で大学1年生)";
-            $graduate_year_sub_1 = "2024";
+            //$graduate_year_sub_1 = "2024";
             $graduate_html .= '<div class="card-category__scout">24卒</div>';
-            array_push($graduate_years,$graduate_year_sub);
-            array_push($graduate_years,$graduate_year_sub_1);
+            //array_push($graduate_years,$graduate_year_sub);
+            //array_push($graduate_years,$graduate_year_sub_1);
         }
         $condition_html .= '<span>卒業年度：</span>'.$graduate_html.'<br>';
         $graduate_year_meta_query = array('relation' => 'OR');
