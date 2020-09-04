@@ -1960,7 +1960,6 @@ function student_search_result_func($atts){
         }
     }
 
-    echo count($ids);
     if(count($ids)==0){
         $ids = [999999999];
     }
