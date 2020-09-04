@@ -394,6 +394,20 @@ function new_mypage_func(){
                     <h5 class="user_profile_score_title">プロフィールスコア</h5>
                     <p class="user_profile_score_value">'.$user_profile_total_score.'</p>
                 </div>
+                <div class="user_profile_score_explain">
+                    <div class="user_profile_score_explain_title">
+                        <div class="user_profile_score_explain_score">
+                            <span class="user_profile_score_explain_score_num">'.$user_profile_total_score.'</span>
+                            <span class="user_profile_score_explain_score_text">Profile<br>Score</span>
+                        </div>
+                        <span class="user_profile_score_explain_q">プロフィールスコアとは?</span>
+                    </div>
+                    <div class="user_profile_score_explain_text"><p>①プロフィールスコアとは？<br>
+                        プロフィールスコアとは、学生一人ひとりの出身地・学歴などの基本情報に加えて、留学経験やガクチカ、プログラミングスキルや長期インターン経験など幅広く入力してもらった内容をもとに、JobShotで独自に算出したステータスの点数です！<br><br>
+                        ②プロフィールスコアを埋めるとどうなるの？<br>
+                        JobShotに掲載されている大企業から中小企業・ベンチャーまで様々な会社からスカウトがたくさん届くようになります！学生一人ひとりのプロフィールをじっくり読んだ上でスカウトが送信されているため、自分が活躍できる長期インターンを簡単に見つけられたり、新卒採用の選考スキップなど様々な優遇ルートをご用意しています！</p>
+                    </div>
+                </div>
             </div>
             <div class="score-card only-sp">
                 <div class="score-area">
@@ -401,12 +415,11 @@ function new_mypage_func(){
                 </div>
                 <div class="info-area">
                     <h3>プロフィールスコア</h3>
-                    <p>プロフィールを充実させてスカウトを受け取ろう</p>
+                    <p>プロフィールを充実させて大企業から中小企業・ベンチャーまで様々な会社からスカウトや様々な優遇ルートを受け取ろう!</p>
                 </div>
             </div>
         </div>
         ';
-
     }
     elseif(in_array("administrator", $login_user_roles)){
         $header_html =
@@ -451,9 +464,23 @@ function new_mypage_func(){
                 </div>
             </div>
             <div class="profile_score_area only-pc">
-                <div class="user_score_circle">
+                <div class="user_score_circle zindex2">
                     <h5 class="user_profile_score_title">プロフィールスコア</h5>
                     <p class="user_profile_score_value">'.$user_profile_total_score.'</p>
+                </div>
+                <div class="user_profile_score_explain">
+                    <div class="user_profile_score_explain_title">
+                        <div class="user_profile_score_explain_score">
+                            <span class="user_profile_score_explain_score_num">'.$user_profile_total_score.'</span>
+                            <span class="user_profile_score_explain_score_text">Profile<br>Score</span>
+                        </div>
+                        <span class="user_profile_score_explain_q">プロフィールスコアとは?</span>
+                    </div>
+                    <div class="user_profile_score_explain_text"><p>①プロフィールスコアとは？<br>
+                        プロフィールスコアとは、学生一人ひとりの出身地・学歴などの基本情報に加えて、留学経験やガクチカ、プログラミングスキルや長期インターン経験など幅広く入力してもらった内容をもとに、JobShotで独自に算出したステータスの点数です！<br><br>
+                        ②プロフィールスコアを埋めるとどうなるの？<br>
+                        JobShotに掲載されている大企業から中小企業・ベンチャーまで様々な会社からスカウトがたくさん届くようになります！学生一人ひとりのプロフィールをじっくり読んだ上でスカウトが送信されているため、自分が活躍できる長期インターンを簡単に見つけられたり、新卒採用の選考スキップなど様々な優遇ルートをご用意しています！</p>
+                    </div>
                 </div>
             </div>
             <div class="score-card only-sp">
@@ -462,7 +489,7 @@ function new_mypage_func(){
                 </div>
                 <div class="info-area">
                     <h3>プロフィールスコア</h3>
-                    <p>プロフィールを充実させてスカウトを受け取ろう</p>
+                    <p>プロフィールを充実させて大企業から中小企業・ベンチャーまで様々な会社からスカウトや様々な優遇ルートを受け取ろう!</p>
                 </div>
             </div>
         </div>
@@ -495,9 +522,23 @@ function new_mypage_func(){
                 </div>
             </div>
             <div class="profile_score_area only-pc">
-                <div class="user_score_circle">
+                <div class="user_score_circle zindex2">
                     <h5 class="user_profile_score_title">プロフィールスコア</h5>
                     <p class="user_profile_score_value">'.$user_profile_total_score.'</p>
+                </div>
+                <div class="user_profile_score_explain">
+                    <div class="user_profile_score_explain_title">
+                        <div class="user_profile_score_explain_score">
+                            <span class="user_profile_score_explain_score_num">'.$user_profile_total_score.'</span>
+                            <span class="user_profile_score_explain_score_text">Profile<br>Score</span>
+                        </div>
+                        <span class="user_profile_score_explain_q">プロフィールスコアとは?</span>
+                    </div>
+                    <div class="user_profile_score_explain_text"><p>①プロフィールスコアとは？<br>
+                        プロフィールスコアとは、学生一人ひとりの出身地・学歴などの基本情報に加えて、留学経験やガクチカ、プログラミングスキルや長期インターン経験など幅広く入力してもらった内容をもとに、JobShotで独自に算出したステータスの点数です！<br><br>
+                        ②プロフィールスコアを埋めるとどうなるの？<br>
+                        JobShotに掲載されている大企業から中小企業・ベンチャーまで様々な会社からスカウトがたくさん届くようになります！学生一人ひとりのプロフィールをじっくり読んだ上でスカウトが送信されているため、自分が活躍できる長期インターンを簡単に見つけられたり、新卒採用の選考スキップなど様々な優遇ルートをご用意しています！</p>
+                    </div>
                 </div>
             </div>
             <div class="score-card only-sp">
@@ -506,7 +547,7 @@ function new_mypage_func(){
                 </div>
                 <div class="info-area">
                     <h3>プロフィールスコア</h3>
-                    <p>プロフィールを充実させてスカウトを受け取ろう</p>
+                    <p>プロフィールを充実させて大企業から中小企業・ベンチャーまで様々な会社からスカウトや様々な優遇ルートを受け取ろう!</p>
                 </div>
             </div>
         </div>
