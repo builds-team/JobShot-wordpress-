@@ -14124,10 +14124,14 @@ width:50px !important;
 }
 .student_status td.cp_sl03 {
   border: 1px solid #ddd;
+  padding: 0;
 }
 .student_status td.cp_sl03:before {
   top: 1.7em;
   right: 1.5em;
+}
+.cp_ipselect.cp_sl03 select {
+  padding: 18px 48px 18px 18px;
 }
 .scout_freeword {
   height: 40px;
