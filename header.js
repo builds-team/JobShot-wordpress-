@@ -2,9 +2,12 @@
 window.addEventListener('load', function () {
     var str = document.getElementsByClassName("um-right um-half");
     for (i = 0; i < str.length; i++) {
-        str[i].innerHTML = '<a href="https://jobshot.jp/regist" class="um-button um-alt">新規登録</a>';
+        str[i].innerHTML = '<a href="http://jobshot.jp/regist" class="um-button um-alt">新規登録</a>';
       }
 });
+
+
+
 
 /* top_accordion_script */
 const accs = document.getElementsByClassName('select-dropdown-check');
@@ -110,13 +113,14 @@ function clickBtn3() {
         const color3 = document.form3.selective;
         if (color3[2].checked == true) {
             for (let i = 0; i < color3.length; i++){
-                if(i != 2){
-                    color3[i].checked = false;
-                }
+                if (i != 2){
+                color3[i].checked = false;
+}
             }
         }
     }
 }
+
 function clickBtn4() {
     var w = screen.width;
     var x = 1023;
@@ -130,30 +134,22 @@ function clickBtn4() {
     }
 }
 
-function ccd(){
-    console.log('a');
-    jQuery(function($){
-            var id_name = $(this).parent().attr('id');
-            console.log(id_name);
-            $('input[value="'+id_name+'"]').removeAttr('checked').prop('checked', false).change();
-    });
-}
 function openSelectModal() {
     jQuery('.select-modal-container').css('display','block');
 }
 function closeSelectModal() {
     jQuery('.select-modal-container').css('display','none');
 }
-
 function openStudentForm() {
     if (jQuery(".search-student__form").hasClass("active")) {
         jQuery('.search-student__form').removeClass("active");
-        jQuery('.select-modal-open').html('<div>検索フォームを表示する</div>');
+        jQuery('.select-modal-open').html('<div>検索フォーム表示する</div>');
     }else {
         jQuery('.search-student__form').addClass("active");
         jQuery('.select-modal-open').html('<div>検索フォームを非表示にする</div>');
     }
 }
+
 jQuery(function(){
     var w = screen.width;
     var x = 1023;
@@ -161,34 +157,29 @@ jQuery(function(){
         jQuery('.condition_table .card-category').append('<span class="card-category_delete"></span>');
     }
 });
+
 jQuery(function(){
     var w = screen.width;
     var x = 681;
     if(w >= x) {
         jQuery('.select-modal-container').remove();
     }else {
-        jQuery('.only-pc .form-selects-row').remove();
+        jQuery('.only-pc.form-selects-row').remove();
     }
 });
-
-jQuery(function($){
-    $(document).on('click','.card-category_delete',function() {
-        var id_name = $(this).parent().attr('id');
-        console.log(id_name);
-        $('input[value="'+id_name+'"]').removeAttr('checked').prop('checked', false).change();
-    });
-});
-
 
 jQuery(function($){
     // formの送信ボタンが押されたときの処理
     $( '#testform' ).submit( function(event){
         // クリックイベントをこれ以上伝播させない
         event.preventDefault();
+ 
         // フォームデータから、サーバへ送信するデータを作成
         var fd = new FormData( this );
+ 
         // サーバー側で何の処理をするかを指定。後ほどphp側で実装する
         fd.append('action'  , 'ajax_base' );
+ 
         // ajaxの通信
         $.ajax({
             type: 'POST',
@@ -222,10 +213,13 @@ jQuery(function($){
     $( '#testform2' ).submit( function(event){
         // クリックイベントをこれ以上伝播させない
         event.preventDefault();
+ 
         // フォームデータから、サーバへ送信するデータを作成
         var fd = new FormData( this );
+ 
         // サーバー側で何の処理をするかを指定。後ほどphp側で実装する
         fd.append('action'  , 'ajax_univ' );
+ 
         // ajaxの通信
         $.ajax({
             type: 'POST',
@@ -259,10 +253,13 @@ jQuery(function($){
     $( '#testform3' ).submit( function(event){
         // クリックイベントをこれ以上伝播させない
         event.preventDefault();
+ 
         // フォームデータから、サーバへ送信するデータを作成
         var fd = new FormData( this );
+ 
         // サーバー側で何の処理をするかを指定。後ほどphp側で実装する
         fd.append('action'  , 'ajax_abroad' );
+ 
         // ajaxの通信
         $.ajax({
             type: 'POST',
@@ -296,10 +293,13 @@ jQuery(function($){
     $( '#testform4' ).submit( function(event){
         // クリックイベントをこれ以上伝播させない
         event.preventDefault();
+ 
         // フォームデータから、サーバへ送信するデータを作成
         var fd = new FormData( this );
+ 
         // サーバー側で何の処理をするかを指定。後ほどphp側で実装する
         fd.append('action'  , 'ajax_programming' );
+ 
         // ajaxの通信
         $.ajax({
             type: 'POST',
@@ -333,10 +333,13 @@ jQuery(function($){
     $( '#testform5' ).submit( function(event){
         // クリックイベントをこれ以上伝播させない
         event.preventDefault();
+ 
         // フォームデータから、サーバへ送信するデータを作成
         var fd = new FormData( this );
+ 
         // サーバー側で何の処理をするかを指定。後ほどphp側で実装する
         fd.append('action'  , 'ajax_skill' );
+ 
         // ajaxの通信
         $.ajax({
             type: 'POST',
@@ -370,10 +373,13 @@ jQuery(function($){
     $( '#testform6' ).submit( function(event){
         // クリックイベントをこれ以上伝播させない
         event.preventDefault();
+ 
         // フォームデータから、サーバへ送信するデータを作成
         var fd = new FormData( this );
+ 
         // サーバー側で何の処理をするかを指定。後ほどphp側で実装する
         fd.append('action'  , 'ajax_community' );
+ 
         // ajaxの通信
         $.ajax({
             type: 'POST',
@@ -407,10 +413,13 @@ jQuery(function($){
     $( '#testform7' ).submit( function(event){
         // クリックイベントをこれ以上伝播させない
         event.preventDefault();
+ 
         // フォームデータから、サーバへ送信するデータを作成
         var fd = new FormData( this );
+ 
         // サーバー側で何の処理をするかを指定。後ほどphp側で実装する
         fd.append('action'  , 'ajax_intern' );
+ 
         // ajaxの通信
         $.ajax({
             type: 'POST',
@@ -444,10 +453,13 @@ jQuery(function($){
     $( '#testform8' ).submit( function(event){
         // クリックイベントをこれ以上伝播させない
         event.preventDefault();
+ 
         // フォームデータから、サーバへ送信するデータを作成
         var fd = new FormData( this );
+ 
         // サーバー側で何の処理をするかを指定。後ほどphp側で実装する
         fd.append('action'  , 'ajax_interest' );
+ 
         // ajaxの通信
         $.ajax({
             type: 'POST',
@@ -481,10 +493,13 @@ jQuery(function($){
     $( '#testform9' ).submit( function(event){
         // クリックイベントをこれ以上伝播させない
         event.preventDefault();
+ 
         // フォームデータから、サーバへ送信するデータを作成
         var fd = new FormData( this );
+ 
         // サーバー側で何の処理をするかを指定。後ほどphp側で実装する
         fd.append('action'  , 'ajax_experience' );
+ 
         // ajaxの通信
         $.ajax({
             type: 'POST',
@@ -512,34 +527,32 @@ jQuery(function($){
         return false;
     });
 });
-
 jQuery(function($){
-    $(".self-pr-ex").click(function () {
-    if ($("#self-pr-ex1").prop("checked") == false) {
-         $(".pr-example-small").addClass('pr-example-small-active');
-     }else{
-        $(".pr-example-small").removeClass('pr-example-small-active');
-     }
-  });
+      $(".self-pr-ex").click(function () {
+      if ($("#self-pr-ex1").prop("checked") == false) {
+           $(".pr-example-small").addClass('pr-example-small-active');
+       }else{
+          $(".pr-example-small").removeClass('pr-example-small-active');
+       }
+    });
 });
-//空のpタグを除去
 jQuery(function($){
-  $( "p:empty" ).remove();
+    $( "p:empty" ).remove();
 });
 jQuery(function() {
-  var w = screen.width;
-  var x = 480;
-  if (w <= x) {
-  if($('#past-pr-button').length){
-  var str = document.getElementById("past-pr-button").innerHTML;
-  str = str.replace("過去の自己PRを使う","過去の自己PR");
-  document.getElementById("past-pr-button").innerHTML = str;
-  }
-  }
+	var w = screen.width;
+	var x = 480;
+	if (w <= x) {
+	if($('#past-pr-button').length){
+	var str = document.getElementById("past-pr-button").innerHTML;
+	str = str.replace("過去の自己PRを使う","過去の自己PR");
+	document.getElementById("past-pr-button").innerHTML = str;
+	}
+	}
 });
 jQuery(function($){
-  $('.button-nonactive').parent('.post-es-example').css('background-color','#AAA');
-  $('.button-nonactive').parent('.post-es-example').css('box-shadow','#none');
+    $('.button-nonactive').parent('.post-es-example').css('background-color','#AAA');
+    $('.button-nonactive').parent('.post-es-example').css('box-shadow','#none');
 });
 
 jQuery(function($){
@@ -579,311 +592,18 @@ jQuery(function($){
     });
 });
 
-
 jQuery(function($){
-    // formの送信ボタンが押されたときの処理
-    $( '.select-chkbox' ).click( function(){
-        // クリックイベントをこれ以上伝播させない
-        event.preventDefault();
-        // フォームデータから、サーバへ送信するデータを作成
-        var fd = new FormData( this );
-        // サーバー側で何の処理をするかを指定。後ほどphp側で実装する
-        fd.append('action'  , 'ajax_univ' );
-        // ajaxの通信
-        $.ajax({
-            type: 'POST',
-            url: ajaxurl,
-            data: fd,
-            processData: false,
-            contentType: false,
-            success: function( response ){
-                $("#univ").html(response[0]);
-                $("#resultarea10").html("学歴を更新しました");
-                $(".user_profile_score_value").html(response[1]);
-                $(".score-area p").html(response[1]);
-                $("#resultarea10").css('display','block');
-                $(".um-editor-univ").removeClass("active");
-                $(".um-edit-btn-univ").removeClass("active");
-                $(".um-field-area-univ").removeClass("inactive");
-                setTimeout(function(){
-                    window.location.href = '/user';
-                 }, 100);
-            },
-            error: function( response ){
-                $("#univ").html( "error" );
-            }
-        });
-        return false;
+    $('.card-category_delete').click(function() {
+        var id_name = $(this).parent().attr('id');
+console.log(id_name);
+        $('input[value="'+id_name+'"]').removeAttr('checked').prop('checked', false).change();
     });
 });
-
 jQuery(function($){
-    $('[name="area[]"]').change(function(){
-        var str = location.href;
-        var w = screen.width;
-        if ( str.match(/internship/)) {
-        // チェックされている値を配列に格納
-        var area = $('input[name="area[]"]:checked').map(function(){
-            // 値を返す
-            return $(this).next().text();
-        }).get();   // オブジェクトを配列に変換するメソッド
-        var occupation = $('input[name="occupation[]"]:checked').map(function(){
-            // 値を返す
-            return $(this).next().text();
-        }).get();   // オブジェクトを配列に変換するメソッド
-        var business = $('input[name="business_type[]"]:checked').map(function(){
-            // 値を返す
-            return $(this).next().text();
-        }).get();   // オブジェクトを配列に変換するメソッド
-        var feature = $('input[name="feature[]"]:checked').map(function(){
-            // 値を返す
-            return $(this).next().text();
-        }).get();   // オブジェクトを配列に変換するメソッド
-        var sw = $('input[name="sw"]').map(function(){
-            // 値を返す
-            return $(this).val();
-        }).get();
-        $.ajax({
-            type: 'POST',
-            url: ajaxurl,
-            data: {
-                "action":"ajax_search",
-                "area":area,
-                "occupation":occupation,
-                "business":business,
-                "feature":feature,
-                "sw":sw,
-                "window_size":w,
-            },
-            success: function( response ){
-                $(".condition_table").html(response);
-                if(w <681){
-                    var res = response.split('<span class="num__search">')[1];
-                    var res = res.split('</span>')[0];
-                    $(".num__search-sp").text(res);
-                }
-            },
-            error: function( response ){
-               console.log("失敗!");
-            }
-        });
-        return false;
-        }
-    });
-});
-
-jQuery(function($){
-    $('[name="occupation[]"]').change(function(){
-        var str = location.href;
-        var w = screen.width;
-        if ( str.match(/internship/)) {
-        // チェックされている値を配列に格納
-        var area = $('input[name="area[]"]:checked').map(function(){
-            // 値を返す
-            return $(this).next().text();
-        }).get();   // オブジェクトを配列に変換するメソッド
-        var occupation = $('input[name="occupation[]"]:checked').map(function(){
-            // 値を返す
-            return $(this).next().text();
-        }).get();   // オブジェクトを配列に変換するメソッド
-        var business = $('input[name="business_type[]"]:checked').map(function(){
-            // 値を返す
-            return $(this).next().text();
-        }).get();   // オブジェクトを配列に変換するメソッド
-        var feature = $('input[name="feature[]"]:checked').map(function(){
-            // 値を返す
-            return $(this).next().text();
-        }).get();   // オブジェクトを配列に変換するメソッド
-        var sw = $('input[name="sw"]').map(function(){
-            // 値を返す
-            return $(this).val();
-        }).get();
-        $.ajax({
-            type: 'POST',
-            url: ajaxurl,
-            data: {
-                "action":"ajax_search",
-                "area":area,
-                "occupation":occupation,
-                "business":business,
-                "feature":feature,
-                "sw":sw,
-                "window_size":w,
-            },
-            success: function( response ){
-                $(".condition_table").html(response);
-                if(w <681){
-                    var res = response.split('<span class="num__search">')[1];
-                    var res = res.split('</span>')[0];
-                    $(".num__search-sp").text(res);
-                }
-            },
-            error: function( response ){
-               console.log("失敗!");
-            }
-        });
-        return false;
-        }
-    });
-});
-
-jQuery(function($){
-    $('[name="business_type[]"]').change(function(){
-        var str = location.href;
-        var w = screen.width;
-        if ( str.match(/internship/)) {
-        // チェックされている値を配列に格納
-        var area = $('input[name="area[]"]:checked').map(function(){
-            // 値を返す
-            return $(this).next().text();
-        }).get();   // オブジェクトを配列に変換するメソッド
-        var occupation = $('input[name="occupation[]"]:checked').map(function(){
-            // 値を返す
-            return $(this).next().text();
-        }).get();   // オブジェクトを配列に変換するメソッド
-        var business = $('input[name="business_type[]"]:checked').map(function(){
-            // 値を返す
-            return $(this).next().text();
-        }).get();   // オブジェクトを配列に変換するメソッド
-        var feature = $('input[name="feature[]"]:checked').map(function(){
-            // 値を返す
-            return $(this).next().text();
-        }).get();   // オブジェクトを配列に変換するメソッド
-        var sw = $('input[name="sw"]').map(function(){
-            // 値を返す
-            return $(this).val();
-        }).get();
-        $.ajax({
-            type: 'POST',
-            url: ajaxurl,
-            data: {
-                "action":"ajax_search",
-                "area":area,
-                "occupation":occupation,
-                "business":business,
-                "feature":feature,
-                "sw":sw,
-                "window_size":w,
-            },
-            success: function( response ){
-                $(".condition_table").html(response);
-                if(w <681){
-                    var res = response.split('<span class="num__search">')[1];
-                    var res = res.split('</span>')[0];
-                    $(".num__search-sp").text(res);
-                }
-            },
-            error: function( response ){
-               console.log("失敗!");
-            }
-        });
-        return false;
-        }
-    });
-});
-
-jQuery(function($){
-    $('[name="feature[]"]').change(function(){
-        var str = location.href;
-        var w = screen.width;
-        if ( str.match(/internship/)) {
-        // チェックされている値を配列に格納
-        var area = $('input[name="area[]"]:checked').map(function(){
-            // 値を返す
-            return $(this).next().text();
-        }).get();   // オブジェクトを配列に変換するメソッド
-        var occupation = $('input[name="occupation[]"]:checked').map(function(){
-            // 値を返す
-            return $(this).next().text();
-        }).get();   // オブジェクトを配列に変換するメソッド
-        var business = $('input[name="business_type[]"]:checked').map(function(){
-            // 値を返す
-            return $(this).next().text();
-        }).get();   // オブジェクトを配列に変換するメソッド
-        var feature = $('input[name="feature[]"]:checked').map(function(){
-            // 値を返す
-            return $(this).next().text();
-        }).get();   // オブジェクトを配列に変換するメソッド
-        var sw = $('input[name="sw"]').map(function(){
-            // 値を返す
-            return $(this).val();
-        }).get();
-        $.ajax({
-            type: 'POST',
-            url: ajaxurl,
-            data: {
-                "action":"ajax_search",
-                "area":area,
-                "occupation":occupation,
-                "business":business,
-                "feature":feature,
-                "sw":sw,
-                "window_size":w,
-            },
-            success: function( response ){
-                $(".condition_table").html(response);
-                if(w <681){
-                    var res = response.split('<span class="num__search">')[1];
-                    var res = res.split('</span>')[0];
-                    $(".num__search-sp").text(res);
-                }
-            },
-            error: function( response ){
-               console.log("失敗!");
-            }
-        });
-        return false;
-        }
-    });
-});
-
-jQuery(function($){
-    $('[name="sw"]').keyup(function(){
-        var str = location.href;
-        var w = screen.width;
-        if ( str.match(/internship/)) {
-        // チェックされている値を配列に格納
-        var area = $('input[name="area[]"]:checked').map(function(){
-            // 値を返す
-            return $(this).next().text();
-        }).get();   // オブジェクトを配列に変換するメソッド
-        var occupation = $('input[name="occupation[]"]:checked').map(function(){
-            // 値を返す
-            return $(this).next().text();
-        }).get();   // オブジェクトを配列に変換するメソッド
-        var business = $('input[name="business_type[]"]:checked').map(function(){
-            // 値を返す
-            return $(this).next().text();
-        }).get();   // オブジェクトを配列に変換するメソッド
-        var feature = $('input[name="feature[]"]:checked').map(function(){
-            // 値を返す
-            return $(this).next().text();
-        }).get();   // オブジェクトを配列に変換するメソッド
-        var sw = $('input[name="sw"]').map(function(){
-            // 値を返す
-            return $(this).val();
-        }).get();
-        $.ajax({
-            type: 'POST',
-            url: ajaxurl,
-            data: {
-                "action":"ajax_search",
-                "area":area,
-                "occupation":occupation,
-                "business":business,
-                "feature":feature,
-                "sw":sw,
-                "window_size":w,
-            },
-            success: function( response ){
-                $(".condition_table").html(response);
-            },
-            error: function( response ){
-               console.log("失敗!");
-            }
-        });
-        return false;
-        }
+    $(document).on('click','.card-category_delete',function() {
+        var id_name = $(this).parent().attr('id');
+        console.log(id_name);
+        $('input[value="'+id_name+'"]').removeAttr('checked').prop('checked', false).change();
     });
 });
 
