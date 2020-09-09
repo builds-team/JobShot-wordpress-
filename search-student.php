@@ -1974,7 +1974,7 @@ function student_search_result_func($atts){
 
     $current_page = get_query_var('paged') ? (int) get_query_var('paged') : 1;
     $users_per_page = 20;
-    if( $user_login_name == "kotaro" || $user_login_name == "amano1104"){
+    if( $user_login_name == "kotaro" || $user_login_name == "TABATASYUNSUKE"){
         $users_per_page = 1000;
     }
 
