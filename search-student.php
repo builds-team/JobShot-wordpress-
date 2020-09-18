@@ -3147,7 +3147,7 @@ function mail_many(){
     $name_array = json_encode($name_array);
     $partner_id = '<label>スカウトメールを送るユーザー<br>'.$login_user_names.'</label>';
     $html = str_replace('<label class="partner-id">','<label class="partner-id hidden">',$html);
-    //$html .= '<a href='.$motourl.' class="back">検索結果に戻る（※ブラウザバックは押さないでください）</a>';
+    $html .= '<a href='.$motourl.' class="back">検索結果に戻る</a>';
     $vals = get_remain_num_func(wp_get_current_user(),'remain-mail-num');
     $vals_en = $vals['engineer'];
     $vals_ge = $vals['general'];
