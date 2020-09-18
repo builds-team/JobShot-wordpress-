@@ -1,5 +1,3 @@
-
-
 function cleanQuery(query) {
 	var arr = [];
 	$.each(query.split('&'), function(i, param) {
@@ -910,57 +908,6 @@ function cleanQuery(query) {
 	  });
   });
 
-  jQuery(function($){
-	  $('[name="sw"]').keyup(function(){
-		  var str = location.href;
-		  var w = screen.width;
-		  if ( str.match(/internship/)) {
-		  // チェックされている値を配列に格納
-		  var area = $('input[name="area[]"]:checked').map(function(){
-			  // 値を返す
-			  return $(this).next().text();
-		  }).get();   // オブジェクトを配列に変換するメソッド
-		  var occupation = $('input[name="occupation[]"]:checked').map(function(){
-			  // 値を返す
-			  return $(this).next().text();
-		  }).get();   // オブジェクトを配列に変換するメソッド
-		  var business = $('input[name="business_type[]"]:checked').map(function(){
-			  // 値を返す
-			  return $(this).next().text();
-		  }).get();   // オブジェクトを配列に変換するメソッド
-		  var feature = $('input[name="feature[]"]:checked').map(function(){
-			  // 値を返す
-			  return $(this).next().text();
-		  }).get();   // オブジェクトを配列に変換するメソッド
-		  var sw = $('input[name="sw"]').map(function(){
-			  // 値を返す
-			  return $(this).val();
-		  }).get();
-		  $.ajax({
-			  type: 'POST',
-			  url: ajaxurl,
-			  data: {
-				  "action":"ajax_search",
-				  "area":area,
-				  "occupation":occupation,
-				  "business":business,
-				  "feature":feature,
-				  "sw":sw,
-				  "window_size":w,
-			  },
-			  success: function( response ){
-				  $(".condition_table").html(response);
-			  },
-			  error: function( response ){
-				 console.log("失敗!");
-			  }
-		  });
-		  return false;
-		  }
-	  });
-  });
-
-
 jQuery(function($){
 	$('form[name=form__scout]').change(function(){
 		// チェックされている値を配列に格納
@@ -973,6 +920,7 @@ jQuery(function($){
 		var degree_of_internship_interest = $('[name=degree_of_internship_interest]').val();
 		var will_venture = $('[name=will_venture]').val(); 
 		var profile_score = $('[name=profile_score]').val();
+		var scouted_or = $('[name=scouted_or]').val();
 		var university = $('input[name="university[]"]:checked').map(function(){
 			// 値を返す
 			return $(this).val();
@@ -1019,8 +967,6 @@ jQuery(function($){
 			// 値を返す
 			return $(this).val();
 		}).get();
-		console.log(mail);
-		console.log(university);
 		$.ajax({
 			type: 'POST',
 			url: ajaxurl,
@@ -1043,13 +989,13 @@ jQuery(function($){
 				"bussiness_type":bussiness_type,
 				"programming":programming,
 				"sw":sw,
+				"scouted_or":scouted_or,
 			},
 			success: function( response ){
 				var text = 'この条件で検索する'+response;
 				var text2 = '検索'+response;
 				$('.scout_search').val(text);
 				$('.scout_freeword_search').val(text2);
-				console.log(response);
 			},
 			error: function( response ){
 			   console.log("失敗!");
@@ -1057,4 +1003,45 @@ jQuery(function($){
 		});
 		return false;
 	});
+});
+jQuery(function($){
+	$('input[name="user_ids[]"]').change(function(){
+		var user_ids = $('input[name="user_ids[]"]:checked').map(function(){
+			// 値を返す
+			return $(this).val();
+		}).get();   // オブジェクトを配列に変換するメソッド
+		$.ajax({
+			type: 'POST',
+			url: ajaxurl,
+			data: {
+				"action":"ajax_scout_students_link",
+				"user_ids":user_ids,
+			},
+			success: function( response ){
+				if(response == 'safe'){
+					if($(".fixed-buttom").hasClass("hidden")) {
+						$('.fixed-buttom').removeClass("hidden");
+					}
+				}else if(response == 'miss'){
+					if($(".fixed-buttom").not("hidden")) {
+						$('.fixed-buttom').addClass("hidden");
+					}
+					alert('１ヶ月に送ることができる上限を超えています');
+				}else{
+					if($(".fixed-buttom").not("hidden")) {
+						$('.fixed-buttom').addClass("hidden");
+					}
+				}
+			},
+			error: function( response ){
+			   console.log("失敗!");
+			}
+		});
+		return false;
+	});
+});
+
+jQuery(function($){
+	$("#scout_test0 .scout_test").addClass("hidden");
+	$("#scout_test0 .scout_test").before('');
 });

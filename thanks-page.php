@@ -1,7 +1,32 @@
 <?php
 
 function add_thankspage(){
+    global $post;
+    if(isset($_GET["job_id"])){
+        $job_id = $_GET["job_id"];
+    }
+    $args = array(
+        'posts_per_page' => 6,
+        'paged' => 1,
+        'post_type' => array('internship'),
+        'post_status' => array( 'publish' ),
+    );
+    $args += array('meta_key' => 'week_views_count','orderby' => 'meta_value_num',);
+    $cat_query = new WP_Query($args);
+    $count = 0;
+    $card_html = '';
+    while ($cat_query->have_posts()): $cat_query->the_post();
+        $post_id = $post->ID;
+        if($post_id != $job_id){
+            $card_html .= view_card_func($post_id);
+            $count += 1;
+        }
+        if($count == 5){
+            break;
+        }
+        endwhile;
     $home_url =esc_url( home_url( ));
+    $intern_card = do_shortcode('[view_custom_search item_type=internship posts_per_page="3"]');
     $html = '
     <h1 style="text-align: center;"><strong>Thank you!</strong></h1>
     <p style="text-align: center;">ご応募ありがとうございました。</p>
@@ -32,6 +57,10 @@ function add_thankspage(){
                 <p><a href="'.$home_url.'/internship" class="btn-flat-border-white">他のインターンを探す</a></p>
                 <p><a href="'.$home_url.'/interview" class="btn-flat-border-white">面接対策を行う</a></p>
             </div>
+        </div>
+        <div class="after-flow-internship">
+            <h2>人気の長期インターン</h2>
+            '.$card_html.'
         </div>
         </div>
     ';

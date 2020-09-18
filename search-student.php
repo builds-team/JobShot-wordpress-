@@ -419,6 +419,16 @@ function student_search_form_func($atts) {
                                     </select>
                                 </td>
                             </tr>
+                            <tr>
+                                <th>スカウトの有無</th>
+                                <td class="cp_ipselect cp_sl03">
+                                    <select name="scouted_or">
+                                        <option value="">指定なし</option>
+                                        <option value="not_yet">未スカウトの学生</option>
+                                        <option value="already">スカウト済みの学生</option>
+                                    </select>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                     <hr>
@@ -1969,6 +1979,36 @@ function student_search_result_func($atts){
           );
         }
     }
+    $company_id = wp_get_current_user()->ID;
+    $scouted_user_ids = array();
+    //スカウト済みかどうか
+    if (!empty($_GET['scouted_or'])) {
+        $scouted = $_GET['scouted_or'];
+        if($scouted == 'not_yet'){
+            $form_html = str_replace('<option value="not_yet">','<option value="not_yet" selected>',$form_html);
+            $condition_html .= '<span>スカウトの有無：</span><div class="card-category__scout">未スカウト学生</div><br>';
+            $scouted_users = get_user_meta($company_id,'scouted_users',false)[0];
+            foreach($scouted_users as $scouted_user){
+                $user_id = get_user_by('login',$scouted_user)->ID;
+                $scouted_user_ids[] = $user_id;
+            }
+            $scouted_user_ids = array_unique($scouted_user_ids);
+            $ids = array_diff($ids, $scouted_user_ids);
+            //indexを詰める
+            $ids = array_values($ids);
+        }
+        if($scouted == 'already'){
+            $form_html = str_replace('<option value="already">','<option value="already" selected>',$form_html);
+            $condition_html .= '<span>スカウトの有無：</span><div class="card-category__scout">スカウト済み学生</div><br>';
+            $scouted_users = get_user_meta($company_id,'scouted_users',false)[0];
+            foreach($scouted_users as $scouted_user){
+                $user_id = get_user_by('login',$scouted_user)->ID;
+                $scouted_user_ids[] = $user_id;
+            }
+            $scouted_user_ids = array_unique($scouted_user_ids);
+            $ids = array_intersect($ids,$scouted_user_ids);
+        }
+    }
 
     if(count($ids)==0){
         $ids = [999999999];
@@ -2001,7 +2041,7 @@ function student_search_result_func($atts){
     $result_html='';
     $students=new WP_User_Query( $args );//get_users($args);
     $company_name = wp_get_current_user()->data->display_name;
-    if($company_name == "株式会社Builds"){
+    if(in_array("company", $roles)){
 	    $result_html='' .'今月のスカウトメール送信可能件数は'.view_remain_num_func(wp_get_current_user(),'remain-mail-num').'<br>';
     }
     
@@ -2021,6 +2061,9 @@ function student_search_result_func($atts){
     if ($total_users < $users_per_page) {$users_per_page = $total_users;}
 
     $result_html.=paginate( $num_pages, $current_page, $total_users, $users_per_page);
+    if(in_array("company", $roles) ){
+        $result_html .= '<form action="./scout_form" method="POST">';
+    }
     $result_html.='
     <font size="2">
         <table class="tbl02">
@@ -2033,6 +2076,7 @@ function student_search_result_func($atts){
                     <th>ログイン日時</th>';
     if( in_array("company", $roles) ){
         $result_html.='<th>スカウト</th>';
+        $result_html .= '<th>まとめてスカウト<br>（最大20件）</th>';
     }
     if( in_array("administrator", $roles) ){
         $result_html.='<th>接触記録</th><th>メールアドレス</th>';
@@ -2041,7 +2085,6 @@ function student_search_result_func($atts){
                 </tr>
             </thead>
             <tbody>';
-    $company_id = wp_get_current_user()->ID;
     if ( $students->get_results() ) foreach( $students->get_results() as $user )  {
 
         $user_id = $user->data->ID;
@@ -2087,6 +2130,7 @@ function student_search_result_func($atts){
             }else{
                 $result_html.='<td label="スカウト"><a href="'.$user_link.'">'.$scout_status['status'].'</a></td>';
             }
+            $result_html .= '<td label="まとめてスカウト<br>（最大20件）"><input type="checkbox" name="user_ids[]" value="'.$user_id.'" class="checkbox"></td>';
         }
         if( in_array("administrator", $roles) ){
             $result_html.='<td label="接触記録"><a href="'.student_contact_form_link($user).'">接触記録を入力</a></td><td label="メールアドレス">'.$email.'</td>';
@@ -2098,6 +2142,15 @@ function student_search_result_func($atts){
     </font>';
 
     $result_html.= paginate( $num_pages, $current_page, $total_users, $users_per_page);
+    if(in_array("company", $roles)){
+        $result_html .= '
+        <div class="fixed-buttom hidden">
+            <button class="button button-apply">まとめてスカウトメールを送る</button>
+        </div></form>';
+    }
+    if(isset($_GET['redirected'])){
+        echo '<div class="message__scout" role="alert" aria-hidden="true" style="">ありがとうございます。メッセージは送信されました。</div>';
+    }
     return do_shortcode($result_html);
 }
 add_shortcode('student_search_result','student_search_result_func');
@@ -2110,6 +2163,34 @@ function scout_manage_func(){
     $scouted_users = explode(",",$scouted_user);
     return $scouted_users;
 }
+
+function Scout_Students_Link(){
+    if(isset($_POST['user_ids'])){
+        $vals = get_remain_num_func(wp_get_current_user(),'remain-mail-num');
+        $user_ids = $_POST['user_ids'];
+        $link = '';
+        $normal_count = 0;
+        $engineer_count = 0;
+        foreach($user_ids as $user_id){
+            $user = get_user_by('id',$user_id);
+            $scout_status = get_remain_num_for_stu_func($user, 'remain-mail-num');
+            if($scout_status['status'] == '一般学生'){
+                $normal_count += 1;
+            }else{
+                $engineer_count += 1;
+            }
+        }
+        if (($vals['engineer']>= $engineer_count) && ($vals['general']>= $normal_count)){
+            $html = 'safe';
+        }else {
+            $html = 'miss';
+        }
+    }
+    echo $html;
+    die();
+}
+add_action( 'wp_ajax_ajax_scout_students_link', 'Scout_Students_Link' );
+add_action( 'wp_ajax_nopriv_ajax_scout_students_link', 'Scout_Students_Link');
 
 
 function Ajax_Search_Student(){
@@ -2993,10 +3074,150 @@ function Ajax_Search_Student(){
           );
         }
     }
+    $company_id = wp_get_current_user()->ID;
+    $scouted_user_ids = array();
+    //スカウト済みかどうか
+    if (!empty($_POST['scouted_or'])) {
+        $scouted = $_POST['scouted_or'];
+        if($scouted == 'not_yet'){
+            $scouted_users = get_user_meta($company_id,'scouted_users',false)[0];
+            foreach($scouted_users as $scouted_user){
+                $user_id = get_user_by('login',$scouted_user)->ID;
+                $scouted_user_ids[] = $user_id;
+            }
+            $scouted_user_ids = array_unique($scouted_user_ids);
+            $ids = array_diff($ids, $scouted_user_ids);
+            //indexを詰める
+            $ids = array_values($ids);
+        }
+        if($scouted == 'already'){
+            $scouted_users = get_user_meta($company_id,'scouted_users',false)[0];
+            foreach($scouted_users as $scouted_user){
+                $user_id = get_user_by('login',$scouted_user)->ID;
+                $scouted_user_ids[] = $user_id;
+            }
+            $scouted_user_ids = array_unique($scouted_user_ids);
+            $ids = array_intersect($ids,$scouted_user_ids);
+        }
+    }
     $html = '（'.count($ids).'件ヒット）';
     echo $html;
     die();
-  }
-  add_action( 'wp_ajax_ajax_search_student', 'Ajax_Search_Student' );
-  add_action( 'wp_ajax_nopriv_ajax_search_student', 'Ajax_Search_Student' );
+}
+add_action( 'wp_ajax_ajax_search_student', 'Ajax_Search_Student' );
+add_action( 'wp_ajax_nopriv_ajax_search_student', 'Ajax_Search_Student' );
+
+
+function mail_many(){
+    $motourl = $_SERVER['HTTP_REFERER'];
+    $user_ids = array();
+    $html = '';
+    $text = '';
+    $submit = '';
+    $subject = '';
+    $submit_over = '';
+    $login_user_names = '';
+    $name_array = array();
+    if(isset($_POST['user_ids'])){
+        for ($i=0;$i<count($_POST['user_ids']); $i++){
+            $user_ids[] = $_POST['user_ids'][$i];
+            $user_id = $_POST['user_ids'][$i];
+            $user = get_user_by('id',$user_id);
+            $user_email = $user->data->user_email;
+            $user_login_name = $user->data->user_login;
+            if($i == 0){
+                $html .= do_shortcode('[contact-form-7 id="1583" title="企業スカウトメール送信フォーム" html_id="scout_test'.$i.'"]');
+            }
+            else{
+                $html .= do_shortcode('[contact-form-7 id="1583" title="企業スカウトメール送信フォーム" html_id="scout_test'.$i.'" html_class="hidden"]');
+            }
+            $html = str_replace('name="partner-email" value="" size="40"','name="partner-email" value="'.$user_email.'" size="40"',$html);
+            $html = str_replace('name="partner-id" value="" size="40"','name="partner-id" value="'.$user_login_name.'" size="40"',$html);
+            $submit .= '
+            $("#scout_test'.$i.'").submit();
+            ';
+            $login_user_names .= $user_login_name.'　';
+            $name_array[] = $user_login_name;
+            if($i>0){
+                $text .= '$("#scout_test'.$i.' .wpcf7-textarea").val(text);';
+                $subject .= '$("#scout_test'.$i.' .your-subject").val(subject);';
+            }
+        }
+    }
+    $name_array = json_encode($name_array);
+    $partner_id = '<label>スカウトメールを送るユーザー<br>'.$login_user_names.'</label>';
+    $html = str_replace('<label class="partner-id">','<label class="partner-id hidden">',$html);
+    //$html .= '<a href='.$motourl.' class="back">検索結果に戻る（※ブラウザバックは押さないでください）</a>';
+    $vals = get_remain_num_func(wp_get_current_user(),'remain-mail-num');
+    $vals_en = $vals['engineer'];
+    $vals_ge = $vals['general'];
+    $normal_count = 0;
+    $engineer_count = 0;
+    foreach($user_ids as $user_id){
+        $user = get_user_by('id',$user_id);
+        $scout_status = get_remain_num_for_stu_func($user, 'remain-mail-num');
+        if($scout_status['status'] == '一般学生'){
+            $normal_count += 1;
+        }else{
+            $engineer_count += 1;
+        }
+    }
+    $re_count_n = $vals_ge - $normal_count;
+    $re_count_e = $vals_en - $engineer_count;
+    $script = '
+    <script type="text/javascript">
+    jQuery(function($){
+        $(".partner-id").after("'.$partner_id.'");
+    });
+    jQuery(function($){
+        $("#scout_test0 .wpcf7-textarea").keyup(function(){
+            var text = $(this).val();
+            '.$text.'
+        });
+    });
+    jQuery(function($){
+        $("#scout_test0 .your-subject").keyup(function(){
+            var subject = $(this).val();
+            if (subject != "") {
+            '.$subject.'
+        }
+        });
+    });
+    jQuery(function($){
+        $(".scout_test").click(function(event) {
+            event.preventDefault();
+            $(this).off("submit");//一旦submitをキャンセルして、
+            $(this).css("pointer-events","none");
+            $(".wpcf7-response-output").addClass("hidden");
+            const startTime = performance.now();
+            '.$submit.'
+            const endTime = performance.now(); // 終了時間
+            console.log(endTime - startTime); // 何ミリ秒かかったかを表示する
+            var scouted_user_name = '.$name_array.';
+            var re_count_n = '.$re_count_n.';
+            var re_count_e = '.$re_count_e.';
+            $.ajax({
+                type: "POST",
+                url: ajaxurl,
+                data: {
+                    "action":"update_scouted_user",
+                    "name_array":scouted_user_name,
+                    "re_count_n":re_count_n,
+                    "re_count_e":re_count_e,
+                },
+                success: function( response ){
+                    console.log("成功!");
+                },
+                error: function( response ){
+                   console.log("失敗!");
+                }
+            });
+            return false;
+        });
+    });
+    </script>
+    '.$html;
+    return $script;
+}
+add_shortcode('mail_many','mail_many');
 ?>
