@@ -14415,3 +14415,122 @@ div[data-toggle="buttons"].scout-programming-category label {
  .search-student__form.active{
   display: block;
  }
+
+ /* スカウトメールカード */
+.scout__card {
+  display: flex;
+  color: #666;
+  border-radius: 5px;
+  margin: 0 0 20px 0;
+  max-width: none;
+  padding: 20px 0 20px 20px;
+  box-sizing: border-box;
+  position: relative;
+
+}
+.scout-already {
+  background-color: #ffec0714;
+}
+.scout__card__main {
+  display: flex;
+  flex-direction: row;
+  width: 90%;
+}
+.scout__card__main:before {
+  content: "エンジニア学生";
+  font-size: 14px;
+  color: #f9b539;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+.scout__image {
+  width: 25%;
+}
+.scout__image__wrap {
+  margin: 30px 20px 0 20px;
+  text-align: center;
+}
+.scout__image__container {
+  width: fit-content;
+  position: relative;
+  margin: 0 auto;
+}
+.scout__image__img__container {
+  width: 120px;
+  height: 120px;
+  overflow: hidden;
+}
+.scout__image__img {
+  object-fit: cover;
+}
+.scout__prof-score {
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  color: #666;
+  height: 40px;
+  line-height: 40px;
+  width: 40px;
+  background-color: #fff;
+  border-radius: 50%;
+  border: 1px solid #666;
+}
+.scout__image .scout__name {
+  font-size: 20px;
+  margin-top: 15px;
+  color: #666;
+}
+.scout__image .scout__name:hover {
+  text-decoration: underline;
+  transition: .3s;
+}
+.scout__text {
+  width: 75%;
+  height: 100%;
+  position: relative;
+}
+.scout__text__wrap {
+  position: absolute;
+  top: 0;
+  margin: 10px 10px;
+}
+.scout__univ {
+  font-size: 18px;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+.scout__base:before {
+  content: "基本情報：";
+}
+.scout__occupations:before {
+  content: "職種：";
+}
+.scout__business-field:before {
+  content: "業界：";
+}
+.scout__content_s p{
+  display: inline-block;
+}
+.scout__pr {
+  margin-top: 10px;
+}
+.scout__check {
+  width: 10%;
+  margin: -20px 0;
+  border: 1px solid #bbb;
+  border-radius: 5px;
+}
+.scout__check__wrap {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.scout__check__wrap input {
+
+}
+.scout__check input[type="checkbox"] {
+  transform: scale(1.4);
+}
