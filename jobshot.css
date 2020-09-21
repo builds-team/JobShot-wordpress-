@@ -14436,7 +14436,7 @@ div[data-toggle="buttons"].scout-programming-category label {
   flex-direction: row;
   width: 90%;
 }
-.scout__engineer .scout__card__main:before {
+.scout-engineer .scout__card__main:before {
   content: "エンジニア学生";
   font-size: 16px;
   color: #f9b539;
@@ -14576,7 +14576,7 @@ div[data-toggle="buttons"].scout-programming-category label {
     flex-direction: column;
     width: 100%;
   }
-  .scout__engineer .scout__card__main:before {
+  .scout-engineer .scout__card__main:before {
     content: "エンジニア学生";
     font-size: 12px;
     color: #f9b539;
