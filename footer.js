@@ -1045,3 +1045,7 @@ jQuery(function($){
 	$("#scout_test0 .scout_test").addClass("hidden");
 	$("#scout_test0 .scout_test").before('');
 });
+// トップバナー
+function removebanner() {
+    jQuery('.top-banner').remove();
+}
