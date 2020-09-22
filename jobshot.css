@@ -14429,7 +14429,7 @@ div[data-toggle="buttons"].scout-programming-category label {
   overflow: inherit;
 }
 .scout-already {
-  background-color: #03c4b01c;
+  background-color: rgba(242,245,245,0.8);
 }
 .scout__card__main {
   display: flex;
