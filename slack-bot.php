@@ -77,8 +77,12 @@ add_action('wpcf7_mail_sent', function ($contact_form) {
         $post = get_post($post_id);
         $post_type = get_post_type($post_id);
         $user_name = $data["your-name"];
+        $interview_practice = $data["interview_practice"][0];
         if ('internship' === $post_type) {
             $string = sprintf($user_name . 'さんよりインターンの応募がありました: <%s|%s>', get_permalink($post), get_the_title($post));
+            if(!empty($interview_practice)){
+                $string .= "\n".$user_name."さんは面接対策を希望しています";
+            }
             builds_slack($string, [], '#2-1-jobshot事業部bot');
         }
     }
@@ -105,10 +109,9 @@ add_action('jobshot_bot_daily_report_cron', function () {
     $apply_date_before = date('Y-m-d');
     $intern_apply_num = do_shortcode(' [cfdb-count form="/' . $formname . '.*/" filter="submit_time>' . $apply_date_after . '"] ');
     $string = $yesterday . 'のレポートを報告します';
-    $string .= '\n\n``` ';
+    $string .= "\n\n";
     $string .= sprintf(' 新規登録者数：%d人', $new_user_num);
-    $string .= sprintf('\n ' . $apply_date_after . 'から' . $apply_date_before . 'の9:00までのインターン応募数：%d', $intern_apply_num);
-    $string .= '```';
+    $string .= sprintf("\n " . $apply_date_after . 'から' . $apply_date_before . 'の9:00までのインターン応募数：%d', $intern_apply_num);
     $attachment = array(
         "text"  =>  $string
     );
