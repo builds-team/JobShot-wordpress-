@@ -5815,8 +5815,8 @@ tr {
 /* url:/student-search */
 /* 固定ページ名：学生検索 */
 .avatar-search {
-  width: 96px !important;
-  height: 96px !important;
+  width: 120px !important;
+  height: 120px !important;
   object-fit: cover !important;
 }
 .tabs {
@@ -12786,7 +12786,7 @@ a .list__contents__ele_div:hover{
   }
   .page-id-1062 .container .main {
     float:left;
-    width:100% !important;
+    width:75% ;
   }
   .page-id-12601 .container .main {
     float:left;
@@ -14506,6 +14506,9 @@ div[data-toggle="buttons"].scout-programming-category label {
 }
 .scout__business-field:before {
   content: "業界：";
+}
+.scout__mail-field:before {
+  content: "メール：";
 }
 .scout__content_s p{
   display: inline-block;

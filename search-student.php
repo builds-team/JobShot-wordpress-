@@ -2061,10 +2061,11 @@ function student_search_result_func($atts){
     if ($total_users < $users_per_page) {$users_per_page = $total_users;}
 
     $result_html.=paginate( $num_pages, $current_page, $total_users, $users_per_page);
+    $result_html .= '<div class="cards-container">';
     if(in_array("company", $roles) ){
         $result_html .= '<form action="./scout_form" method="POST">';
     }
-    $result_html.='
+    $result_html2.='
     <font size="2">
         <table class="tbl02">
             <thead>
@@ -2075,13 +2076,13 @@ function student_search_result_func($atts){
                     <th>職種</th>
                     <th>ログイン日時</th>';
     if( in_array("company", $roles) ){
-        $result_html.='<th>スカウト</th>';
-        $result_html .= '<th>まとめてスカウト<br>（最大20件）</th>';
+        $result_html2.='<th>スカウト</th>';
+        $result_html2 .= '<th>まとめてスカウト<br>（最大20件）</th>';
     }
     if( in_array("administrator", $roles) ){
-        $result_html.='<th>接触記録</th><th>メールアドレス</th>';
+        $result_html2.='<th>接触記録</th><th>メールアドレス</th>';
     }
-    $result_html.='
+    $result_html2.='
                 </tr>
             </thead>
             <tbody>';
@@ -2090,11 +2091,31 @@ function student_search_result_func($atts){
         $user_id = $user->data->ID;
         $gender = get_user_meta($user_id,'gender',false)[0][0];
         $future_occupations = get_user_meta($user_id,'future_occupations',false)[0];
+        $bussiness_types = get_user_meta($user_id,'bussiness_type',false)[0];
+        $types_html = '';
+        if(isset($bussiness_types)) {
+            foreach($bussiness_types as $type) {
+                if ($type === end($bussiness_types)) {
+                    $types_html .= $type;
+                }else{
+                    $types_html .= $type.'/';
+                }
+            }
+        }
+        $self_internship_PR = get_user_meta($user_id,'self_internship_PR',false)[0];
+        if(mb_strlen($self_internship_PR) > 100){
+            $self_internship_PR = mb_substr(nl2br($self_internship_PR),0,100).'...';
+          }
         $last_login = get_user_meta($user_id,'_um_last_login',false);
         $last_login_date = date('Y年m月d日',$last_login[0]).'<br>'.date('H時i分',$last_login[0]);
         $job_html = '';
         foreach($future_occupations as $future_occupation){
-            $job_html .= $future_occupation.'<br>';
+            $job_html .= $future_occupation.'/';
+            if ($future_occupation === end($future_occupations)) {
+                $job_html .= $future_occupation;
+            }else{
+                $job_html .= $future_occupation.'/';
+            }
         }
         $email = get_user_by("id",$user_id)->data->user_email;
         $image_date = date("YmdHis");
@@ -2105,9 +2126,96 @@ function student_search_result_func($atts){
             $photo = get_avatar($user_id);
         }
         else{
-            $photo = '<img src="'.$upload_file_name.'?'.$image_date.'" class="gravatar avatar avatar-190 um-avatar avatar-search">'; 
+            $photo = '<img src="'.$upload_file_name.'?'.$image_date.'" class="gravatar avatar avatar-190 um-avatar avatar-search lazyloaded scout__image__img">'; 
         }
-        $result_html.='
+
+        $user_graduate_year = get_user_meta($user_id,'graduate_year',false)[0];
+        if(!empty($user_graduate_year)){
+            $user_graduate_year = substr(strval($user_graduate_year),2,2).'卒';
+        }
+        if(in_array("company", $roles)){
+            $scout_status = get_remain_num_for_stu_func($user, 'remain-mail-num');
+            $user_name = $user->data->user_login;
+            $scouted_users = get_user_meta($company_id,'scouted_users',false)[0];
+            if($scout_status["remain"]>0){
+                $scout_html = '
+                    <div class="scout__check__wrap"><input type="checkbox" name="user_ids[]" value="'.$user_id.'" class="checkbox"><span></span></div>
+                ';
+                if(in_array($user_name,$scouted_users,false)){
+                    if($scout_status['status'] == '一般学生'){
+                        $status_html =  '<div class="card scout__card scout-already">';
+                    }else{
+                        $status_html =  '<div class="card scout__card scout-already scout-engineer">';
+                    }
+                }else{
+                    if($scout_status['status'] == '一般学生'){
+                        $status_html =  '<div class="card scout__card">';
+                    }else{
+                        $status_html =  '<div class="card scout__card scout-engineer">';
+                    }
+                }
+            }else{
+                $scout_html = '
+                ';
+                if(in_array($user_name,$scouted_users,false)){
+                    if($scout_status['status'] == '一般学生'){
+                        $status_html =  '<div class="card scout__card scout-already">';
+                    }else{
+                        $status_html =  '<div class="card scout__card scout-already scout-engineer">';
+                    }
+                }else{
+                    if($scout_status['status'] == '一般学生'){
+                        $status_html =  '<div class="card scout__card">';
+                    }else{
+                        $status_html =  '<div class="card scout__card scout-engineer">';
+                    }
+                }
+            }
+        }else {
+            $status_html = '<div class="card scout__card">';
+        }
+
+        if( in_array("administrator", $roles) ){
+            $result_html2.='<td label="接触記録"><a href="'.student_contact_form_link($user).'">接触記録を入力</a></td><td label="メールアドレス">'.$email.'</td>';
+            $mail_html = '<div class="scout__content scout__content_s scout__mail-field"><p>'.$email.'</p></div>';
+            $touch_html = '<div class="scout__content scout__content_s"><a href="'.student_contact_form_link($user).'">接触記録を入力</a></div>';
+        }
+        $result_html .= '
+            '.$status_html.'
+                <div class="full-card-main scout__card__main">
+                    <div class="scout__image">
+                        <div class="scout__image__wrap">
+                            <a href="/user?um_user='.$user->user_login.'" class="">
+                                <div class="scout__image__container">
+                                    <div class="scout__image__img__container"><noscript>'.$photo.'</noscript>'.$photo.'</div>
+                                    <div class="scout__prof-score only-pc">'.$profile_score.'</div>
+                                    <div class="scout__prof__base only-sp">
+                                        <div class="scout__prof-score">
+                                            <span class="scout__prof-score-num">'.$profile_score.'</span>
+                                            <span class="scout__prof-score-text">Profile Score</span>
+                                        </div>
+                                        <p class="scout__name">'.esc_html( $user->user_login ) .'</p>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="/user?um_user='.$user->user_login.'" class="only-pc"><p class="scout__name">'.esc_html( $user->user_login ) .'</p></a>
+                        </div>
+                    </div>
+                    <div class="scout__text">
+                        <div class="scout__text__wrap">
+                            <div class="scout__content scout__univ"><p>'.esc_html( get_univ_name($user)). esc_html( get_faculty_name($user)).'</p></div>
+                            <div class="scout__content scout__content_s scout__base"><p>'.$gender.'/'.$user_graduate_year.'</p></div>
+                            <div class="scout__content scout__content_s scout__occupations"><p>'.$job_html.'</p></div>
+                            <div class="scout__content scout__content_s scout__business-field"><p>'.$types_html.'</p></div>
+                            '.$mail_html.$touch_html.'
+                            <div class="scout__content scout__pr"><p>'.$self_internship_PR.'</p></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="scout__check">'.$scout_html.'</div>
+            </div>
+        ';
+        $result_html2.='
                     <tr>
                         <th label="ユーザー名(プロフィールスコア)">
                             <a href="/user?um_user='.$user->user_login.'" style="color:white"><p>'.esc_html( $user->user_login ) .'　<span>('.$profile_score.')</span><br></p><div>'.$photo.'</div></a>
@@ -2123,20 +2231,20 @@ function student_search_result_func($atts){
             $user_link = $home_url.'/user?um_user='.$user_name;
             if($scout_status["remain"]>0){
                 if(!in_array($user_name,$scouted_users,false)){
-                    $result_html.='<td label="スカウト"><a href="'.scoutlink($user).'">'.$scout_status['status'].'<br>スカウトする</a></td>';
+                    $result_html2.='<td label="スカウト"><a href="'.scoutlink($user).'">'.$scout_status['status'].'<br>スカウトする</a></td>';
                 }else{
-                    $result_html.='<td label="スカウト"><a href="'.$user_link.'">'.$scout_status['status'].'<br>スカウト済み</a></td>';
+                    $result_html2.='<td label="スカウト"><a href="'.$user_link.'">'.$scout_status['status'].'<br>スカウト済み</a></td>';
                 }
             }else{
-                $result_html.='<td label="スカウト"><a href="'.$user_link.'">'.$scout_status['status'].'</a></td>';
+                $result_html2.='<td label="スカウト"><a href="'.$user_link.'">'.$scout_status['status'].'</a></td>';
             }
-            $result_html .= '<td label="まとめてスカウト<br>（最大20件）"><input type="checkbox" name="user_ids[]" value="'.$user_id.'" class="checkbox"></td>';
+            $result_html2 .= '<td label="まとめてスカウト<br>（最大20件）"><input type="checkbox" name="user_ids[]" value="'.$user_id.'" class="checkbox"></td>';
         }
         if( in_array("administrator", $roles) ){
-            $result_html.='<td label="接触記録"><a href="'.student_contact_form_link($user).'">接触記録を入力</a></td><td label="メールアドレス">'.$email.'</td>';
+            $result_html2.='<td label="接触記録"><a href="'.student_contact_form_link($user).'">接触記録を入力</a></td><td label="メールアドレス">'.$email.'</td>';
         }
     }
-    $result_html.='
+    $result_html2.='
             </tbody>
         </table>
     </font>';
@@ -2148,6 +2256,7 @@ function student_search_result_func($atts){
             <button class="button button-apply">まとめてスカウトメールを送る</button>
         </div></form>';
     }
+    $result_html .= '</div>';
     if(isset($_GET['redirected'])){
         echo '<div class="message__scout" role="alert" aria-hidden="true" style="">ありがとうございます。メッセージは送信されました。</div>';
     }
