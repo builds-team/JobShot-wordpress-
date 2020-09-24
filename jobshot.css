@@ -14479,7 +14479,7 @@ div[data-toggle="buttons"].scout-programming-category label {
   left: 0;
   bottom: 0;
   top: 0;
-  /* display: none; */
+  display: none;
   height: 100vh;
   width: 100vw;
   z-index: 10000 !important;
@@ -14492,7 +14492,6 @@ div[data-toggle="buttons"].scout-programming-category label {
   right: 0;
   margin: 0 auto;
   padding: 20px;
-  /* display: none; */
   z-index: 15000 !important;
   width: 330px;
   height: 330px;

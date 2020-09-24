@@ -1049,3 +1049,12 @@ jQuery(function($){
 function removebanner() {
     jQuery('.top-banner').remove();
 }
+// ポップアップ
+var NumOfTimes = 1;
+$(window).on( 'scroll', function () {
+//スクロール位置を取得
+	if ( $(this).scrollTop() > 600 && NumOfTimes == 1) {
+		$('.modal__mask').fadeIn();
+		NumOfTimes += 1;
+	}
+});
