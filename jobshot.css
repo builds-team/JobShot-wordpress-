@@ -12786,7 +12786,7 @@ a .list__contents__ele_div:hover{
   }
   .page-id-1062 .container .main {
     float:left;
-    width:75%;
+    width:100% !important;
   }
   .page-id-12601 .container .main {
     float:left;
@@ -14663,3 +14663,9 @@ div[data-toggle="buttons"].scout-programming-category label {
     padding: 30px 0;
   }
 }
+
+ .message__scout {
+  margin: 2em 0.5em 1em;
+  padding: 0.2em 1em;
+  border: 2px solid #46b450;
+ }

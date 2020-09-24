@@ -134,16 +134,21 @@ function decrease_remain_num_func($company, $student, $meta_name, $num){
 }
 
 //スカウトメールを送信したら残り件数を１件減らす
+/*
 function minus1_remain_mail_num_func( $contact_form ) {
-    $submission = WPCF7_Submission::get_instance();
-    if ( $submission ) {
-        $posted_data = $submission->get_posted_data();
-        $company=get_user_by('login',$posted_data['your-id']);
-        $student=get_user_by('login',$posted_data['partner-id']);
-        decrease_remain_num_func($company, $student,'remain-mail-num', 1);
+    $url = $_SERVER['REQUEST_URI'];
+    if(strpos($url,'scout_form') !== false){
+        $submission = WPCF7_Submission::get_instance();
+        if ( $submission ) {
+            $posted_data = $submission->get_posted_data();
+            $company=get_user_by('login',$posted_data['your-id']);
+            $student=get_user_by('login',$posted_data['partner-id']);
+            decrease_remain_num_func($company, $student,'remain-mail-num', 1);
+        }
     }
 }
 add_action( 'wpcf7_mail_sent', 'minus1_remain_mail_num_func', 10, 1 );
+*/
 
 //企業の１ヶ月の可能件数をリセットする
 function reset_remain_num_func($company, $meta_name){

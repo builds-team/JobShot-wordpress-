@@ -35,7 +35,8 @@ document.addEventListener('wpcf7mailsent', function( event ) {
                     // alert('error');
                 }
             });
-        location = 'https://jobshot.jp/thank-you';
+        var post_id = $("[name=job-id]").val();
+        location = 'https://jobshot.jp/thank-you?job_id='+post_id;
     }else if('897' == event.detail.contactFormId){
         gtag('event', 'submit', {
             'event_category': 'contactform7',
@@ -46,8 +47,24 @@ document.addEventListener('wpcf7mailsent', function( event ) {
         },1000);
     }else if('1583' == event.detail.contactFormId) {
         var ajaxurl = '<?php echo admin_url( 'admin-ajax.php'); ?>';
+        var motourl = document.referrer;
         var scouted_user_name = $("[name=partner-id]").val();
-        $.ajax({
+        var inputs = event.detail.inputs;
+        for ( var i = 0; i < inputs.length; i++ ) {
+            if ( 'partner-id' == inputs[i].name ) {
+                scouted_user_name = ( inputs[i].value );
+            break;
+            }
+        }
+        var url = location.href;
+        var size = $('.wpcf7-form').length;
+        var size_m = 0;
+        if ( url.match(/scout_form/)) {
+            var text = '<div class="message__scout" role="alert" aria-hidden="true" style="">ありがとうございます。'+scouted_user_name+'さんへのメッセージは送信されました。</div>';
+            $('.back').before(text);
+            size_m = $('.message__scout').length;
+        }else{
+            $.ajax({
             type: 'POST',
             url: ajaxurl,
             data: {
@@ -55,12 +72,22 @@ document.addEventListener('wpcf7mailsent', function( event ) {
                 "scouted_user_name":scouted_user_name,
             },
             success: function( response ){
-                console.log("成功!")
+                console.log("成功!");
             },
             error: function( response ){
                console.log("失敗!");
             }
         });
+        }
+        if(size == size_m){
+            if ( motourl.match(/=/)) {
+                motourl = motourl+'&redirected=true';
+            }
+            else{
+                motourl = motourl+'?redirected=true';
+            }
+            location = motourl;
+        }
     }
 }, false );
 </script>
@@ -69,12 +96,38 @@ document.addEventListener('wpcf7mailsent', function( event ) {
 function update_scouted_user(){
     $user = wp_get_current_user();
     $user_id = $user->data->ID;
-    $flag = $_POST["scouted_user_name"];
+    if(isset($_POST["scouted_user_name"])){
+        $flag = $_POST["scouted_user_name"];
+    }
     $scouted_users = get_user_meta($user_id,'scouted_users',false)[0];
     if($flag){
         $scouted_users[] = $flag;
+        $scouted_users = array_unique($scouted_users);
+        $scouted_users = array_values($scouted_users);
         update_user_meta( $user_id, "scouted_users", $scouted_users);
+        $student=get_user_by('login',$flag);
+        decrease_remain_num_func($user, $student,'remain-mail-num', 1);
     }
+    if(isset($_POST["name_array"])){
+        $name_array = $_POST["name_array"];
+        $re_count_n = $_POST["re_count_n"];
+        $re_count_e = $_POST["re_count_e"];
+    }
+    if($name_array){
+        foreach($name_array as $name){
+            $scouted_users[] = $name;
+            $scouted_users = array_unique($scouted_users);
+            $scouted_users = array_values($scouted_users);
+            update_user_meta( $user_id, "scouted_users", $scouted_users);
+        }
+    }
+    if($re_count_n){
+        $remain_num = get_remain_num_func($user,'remain-mail-num');
+        $remain_num['general'] = $re_count_n;
+        $remain_num['engineer'] = $re_count_e;
+        update_user_meta($user_id,'remain-mail-num',$remain_num);
+    }
+    echo $remain_num['general'];
     die();
 }
 add_action( 'wp_ajax_update_scouted_user', 'update_scouted_user' );
