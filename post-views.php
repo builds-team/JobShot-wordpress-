@@ -196,10 +196,9 @@ function reset_week_ranking() {
         $today = date('Y/m/d',strtotime('today')); 
         // 新規ユーザーの取得
         $string =  '今週のレポートを報告します';
-        $string .= '\n\n``` ';
-        $string .= sprintf('\n\n ' . $lastweek . 'から' . $today . 'の9:00までのインターン詳細閲覧数：%d', $weekly_internship_view);
-        $string .= sprintf('\n\n ' . $lastweek . 'から' . $today . 'の9:00までの就活記事閲覧数：%d', $weekly_column_view);
-        $string .= '```';
+        $string .= "\n\n";
+        $string .= sprintf("\n\n " . $lastweek . 'から' . $today . 'の9:00までのインターン詳細閲覧数：%d', $weekly_internship_view);
+        $string .= sprintf("\n\n " . $lastweek . 'から' . $today . 'の9:00までの就活記事閲覧数：%d', $weekly_column_view);
         $attachment = array(
             "text"  =>  $string
         );
