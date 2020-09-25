@@ -77,9 +77,21 @@ add_action('wpcf7_mail_sent', function ($contact_form) {
         $post = get_post($post_id);
         $post_type = get_post_type($post_id);
         $user_name = $data["your-name"];
+        $user_id = $data["your-id"];
+        $user = get_user_by( 'id', $user_id );
+        $university = get_univ_name($user).'<br>'.get_faculty_name($user);
+        $gender = get_user_meta($user_id,'gender',false)[0][0];
+        $school_year = get_user_meta($user_id,'school_year',false)[0];
+        $graduate_year = get_user_meta($user_id,'graduate_year',false)[0];
+        $mobile_number = get_user_meta($user_id,'mobile_number',false)[0];
         $interview_practice = $data["interview_practice"][0];
         if ('internship' === $post_type) {
             $string = sprintf($user_name . 'さんよりインターンの応募がありました: <%s|%s>', get_permalink($post), get_the_title($post));
+            $string.= "\n".'大学：'.$university;
+            $string.= "\n".'性別'.$gender;
+            $string.= "\n".'学年：'.$school_year;
+            $string.= "\n".'卒業年：'.$graduate_year;
+            $string.= "\n".'電話番号：'.$mobile_number;
             if(!empty($interview_practice)){
                 $string .= "\n".$user_name."さんは面接対策を希望しています";
             }
@@ -92,12 +104,11 @@ add_action('wpcf7_mail_sent', function ($contact_form) {
  * 毎日のレポートの報告
  */
 add_action('jobshot_bot_daily_report_cron', function () {
-    $yesterday = date('Y/m/d', strtotime('-1 day'));
     // 新規ユーザーの取得
     $args = [
         'role'         => 'student',
         'date_query' => [
-            ['before' => date('Y/m/d', strtotime('today'))],
+            ['before' => date("Y-m-01")],
             ['after'  => date('Y/m/d', strtotime('yesterday')), 'inclusive' => true],
         ]
     ];
@@ -108,10 +119,10 @@ add_action('jobshot_bot_daily_report_cron', function () {
     $month = date("m");
     $first_date = date("Y-m-01");
     $intern_apply_num = do_shortcode(' [cfdb-count form="/' . $formname . '.*/" filter="submit_time>' . $first_date . '"] ');
-    $string = $yesterday . 'のレポートを報告します';
+    $string = $month . '月の累計レポートを報告します';
     $string .= "\n\n";
     $string .= sprintf(' 新規登録者数：%d人', $new_user_num);
-    $string .= sprintf("\n " . $month . '月のインターン応募数：%d', $intern_apply_num);
+    $string .= sprintf("\n ".'インターン応募数：%d', $intern_apply_num);
     $attachment = array(
         "text"  =>  $string
     );
