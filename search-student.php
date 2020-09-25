@@ -2139,9 +2139,12 @@ function student_search_result_func($atts){
             $scouted_users = get_user_meta($company_id,'scouted_users',false)[0];
             if($scout_status["remain"]>0){
                 $scout_html = '
+                <div class="scout__check">
                     <div class="scout__check__wrap"><input type="checkbox" name="user_ids[]" value="'.$user_id.'" class="checkbox"><span></span></div>
+                </div>
                 ';
                 if(in_array($user_name,$scouted_users,false)){
+                    $scout_html = str_replace('<span></span>','<span>スカウト済み</span>',$scout_html);
                     if($scout_status['status'] == '一般学生'){
                         $status_html =  '<div class="card scout__card scout-already">';
                     }else{
@@ -2156,8 +2159,12 @@ function student_search_result_func($atts){
                 }
             }else{
                 $scout_html = '
+                    <div class="scout__check">
+                        <div class="scout__check__wrap"><span>上限に達しています</span></div>
+                    </div>
                 ';
                 if(in_array($user_name,$scouted_users,false)){
+                    $scout_html = str_replace('<span>上限に達しています</span>','<span>スカウト済み</br></br>上限に達しています</span>',$scout_html);
                     if($scout_status['status'] == '一般学生'){
                         $status_html =  '<div class="card scout__card scout-already">';
                     }else{
@@ -2173,6 +2180,8 @@ function student_search_result_func($atts){
             }
         }else {
             $status_html = '<div class="card scout__card">';
+            $scout_html = '
+        ';
         }
 
         if( in_array("administrator", $roles) ){
@@ -2212,7 +2221,7 @@ function student_search_result_func($atts){
                         </div>
                     </div>
                 </div>
-                <div class="scout__check">'.$scout_html.'</div>
+              '.$scout_html.'
             </div>
         ';
         $result_html2.='

@@ -14481,7 +14481,7 @@ div[data-toggle="buttons"].scout-programming-category label {
   font-size: 20px;
   margin-top: 15px;
   text-decoration: underline;
-  color: #666;
+  color: #0cc4b0;
 }
 .scout__image .scout__name:hover {
   text-decoration: none;
@@ -14526,11 +14526,12 @@ div[data-toggle="buttons"].scout-programming-category label {
   height: 100%;
   width: 100%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-.scout__check__wrap input {
-
+.scout__check__wrap span {
+  margin-top: 10px;
 }
 .scout__check input[type="checkbox"] {
   transform: scale(1.4);
@@ -14551,6 +14552,11 @@ div[data-toggle="buttons"].scout-programming-category label {
   .scout__text {
     padding: 0 10px;
   }
+}
+
+.scout__card:hover {
+  box-shadow: rgba(0, 0, 0, 0.18) 0 6px 10px;
+  transition: .3s;
 }
 @media screen and (max-width: 782px){
   .scout__card {
@@ -14672,3 +14678,11 @@ div[data-toggle="buttons"].scout-programming-category label {
   padding: 0.2em 1em;
   border: 2px solid #46b450;
  }
+
+.selected {
+  background-color:#FFFBE8;
+}
+
+#pl-1986 #panel-1986-0-0-1 {
+   margin: 0px !important;
+}

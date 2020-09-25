@@ -1008,8 +1008,15 @@ jQuery(function($){
 	$('input[name="user_ids[]"]').change(function(){
 		var user_ids = $('input[name="user_ids[]"]:checked').map(function(){
 			// 値を返す
+			$(this).closest('.scout__card').addClass('selected');
 			return $(this).val();
 		}).get();   // オブジェクトを配列に変換するメソッド
+		$('input[name="user_ids[]"]:not(:checked)').map(function(){
+			// 値を返す
+			if($(this).closest('.scout__card').hasClass("selected")) {
+				$(this).closest('.scout__card').removeClass('selected');
+			}
+		})
 		$.ajax({
 			type: 'POST',
 			url: ajaxurl,
@@ -1045,3 +1052,15 @@ jQuery(function($){
 	$("#scout_test0 .scout_test").addClass("hidden");
 	$("#scout_test0 .scout_test").before('');
 });
+
+
+jQuery(function($){
+		var str = location.href;
+		if ( str.match(/column/)) {
+			if (jQuery(".ez-toc-title").length ){
+				$("h2").second().before('<a href="https://bit.ly/3hRzqVI"><img class="special_contents_img wp-image-5404 aligncenter" src="https://i1.wp.com/jobshot.jp/wp-content/uploads/2020/09/3445c5fbba6bb3ca4ce085d784f4ccca.png?fit=800%2C200&ssl=1"></a>');
+			}
+		}
+});
+
+https://i1.wp.com/jobshot.jp/wp-content/uploads/2020/09/3445c5fbba6bb3ca4ce085d784f4ccca.png?fit=800%2C200&ssl=1

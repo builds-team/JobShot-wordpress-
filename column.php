@@ -92,6 +92,10 @@ function template_column2_func($content){
         $html .= '<p class="text-align-center"><i class="fas fa-lock"></i>この記事は会員限定です。JobShotに登録すると続きをお読みいただけます。</p>';
         $html .= apply_redirect();
     }else{
+        $array = (explode('<h2>', $content, 2));
+        $column_image_url = wp_get_attachment_image_src(15290, array(1000, 200))[0];
+        $content = '<a href="' . $home_url . '/interview"><img class="special_contents_img wp-image-5404 aligncenter" src="' .$column_image_url. '"></a>';
+        $html .= $array[0].$content.'<h2>'.$array[1];
         $html .= $content;
     }
     return $html;
