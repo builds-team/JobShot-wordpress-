@@ -105,13 +105,13 @@ add_action('jobshot_bot_daily_report_cron', function () {
     $new_user_num = count($users);
     // インターン応募数
     $formname = 'インターン応募';
-    $apply_date_after = date('Y-m-d', strtotime('-1 day'));
-    $apply_date_before = date('Y-m-d');
-    $intern_apply_num = do_shortcode(' [cfdb-count form="/' . $formname . '.*/" filter="submit_time>' . $apply_date_after . '"] ');
+    $month = date("m");
+    $first_date = date("Y-m-01");
+    $intern_apply_num = do_shortcode(' [cfdb-count form="/' . $formname . '.*/" filter="submit_time>' . $first_date . '"] ');
     $string = $yesterday . 'のレポートを報告します';
     $string .= "\n\n";
     $string .= sprintf(' 新規登録者数：%d人', $new_user_num);
-    $string .= sprintf("\n " . $apply_date_after . 'から' . $apply_date_before . 'の9:00までのインターン応募数：%d', $intern_apply_num);
+    $string .= sprintf("\n " . $month . '月のインターン応募数：%d', $intern_apply_num);
     $attachment = array(
         "text"  =>  $string
     );
