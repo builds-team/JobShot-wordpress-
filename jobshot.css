@@ -14506,6 +14506,7 @@ div[data-toggle="buttons"].scout-programming-category label {
   font-weight: inherit;
   line-height: 260%;
   margin: 25px;
+  margin-top: 40px;
   color: #125070;
   text-align: center;
   position: relative;
@@ -14539,10 +14540,10 @@ div[data-toggle="buttons"].scout-programming-category label {
   position: relative;
   margin: 0 auto;
   width: 85%;
-  height: 35px;
+  height: 45px;
   text-align: center;
   font-size: 20px;
-  margin-top: 20px;
+  margin-top: 40px;
 }
 .modal__login__register-btn {
   background-color: #03c4b0;
@@ -14551,7 +14552,7 @@ div[data-toggle="buttons"].scout-programming-category label {
   align-items: center;
   justify-content: center;
   font-size: 14px;
-  line-height: 38px;
+  line-height: 45px;
   font-weight: normal;
   border-radius: 5px;
 }
@@ -14578,6 +14579,9 @@ div[data-toggle="buttons"].scout-programming-category label {
   content: "\e5cd";
 }
 @media screen and (max-width: 680px) {
+  .modal__login__description {
+    margin-top: 25px;
+  }
   .modal__login__first-line {
     font-size: 128%;
   }
@@ -14592,6 +14596,16 @@ div[data-toggle="buttons"].scout-programming-category label {
     width: 280px;
     height: 280px;
   }
+  .modal__login__btn {
+    margin-top: 20px;
+    height: 40px;
+  }
+  .modal__login__register-btn {
+    line-height: 40px;
+  }
+  .modal__login__btn p {
+    margin-top: 20px;
+   }
   .modal__cancel__btn {
     top: 4px;
     right: 4px;
@@ -14599,8 +14613,6 @@ div[data-toggle="buttons"].scout-programming-category label {
     font-size: 200%;
     padding: 0 10px;
    }
-   .modal__cancel__btn:before {
-  }
 }
 
 
