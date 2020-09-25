@@ -14457,6 +14457,7 @@ div[data-toggle="buttons"].scout-programming-category label {
   right: 10px;
   color: #03c4b0;
   font-size: 14px;
+  height: 32px;
 }
 .top-banner__close {
   position: absolute;
@@ -14517,7 +14518,7 @@ div[data-toggle="buttons"].scout-programming-category label {
 }
 .modal__login__first-line {
   text-align: left;
-  font-size: 168%;
+  font-size: 128%;
 }
 .modal__login__second-line {
 }
@@ -14527,9 +14528,11 @@ div[data-toggle="buttons"].scout-programming-category label {
 }
 .modal__login__company-name {
   font-weight: 500;
+  font-size: 145%;
 }
 .modal__login__proportion {
-  font-size: 224%;
+  font-size: 245%;
+  font-weight: bold;
   color: #F9B539;
 }
 .modal__login__btn {
@@ -14550,6 +14553,7 @@ div[data-toggle="buttons"].scout-programming-category label {
   font-size: 14px;
   line-height: 38px;
   font-weight: normal;
+  border-radius: 5px;
 }
 .modal__login__register-btn span {
   color: white;
@@ -14574,6 +14578,16 @@ div[data-toggle="buttons"].scout-programming-category label {
   content: "\e5cd";
 }
 @media screen and (max-width: 680px) {
+  .modal__login__first-line {
+    font-size: 128%;
+  }
+  .modal__login__company-name {
+    font-size: 128%;
+    font-weight: bold;
+  }
+  .modal__login__proportion {
+    font-size: 225%;
+  }
   .modal__login {
     width: 280px;
     height: 280px;
