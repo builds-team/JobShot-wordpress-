@@ -128,7 +128,7 @@ function search_form_func($atts){
   );
 
   if($item_type == 'internship'){ 
-    $banner_url = wp_get_attachment_image_src(15291, array(1000, 100))[0];
+    $banner_url = wp_get_attachment_image_src(15291, array(1000, 110))[0];
     $search_form_html ='
     <img class="special_contents_img wp-image-5404 aligncenter" src="' . $banner_url . '">
     <h3 class="widget-title">長期有給インターンを探す</h3>

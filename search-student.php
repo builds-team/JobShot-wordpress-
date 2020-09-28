@@ -2065,27 +2065,6 @@ function student_search_result_func($atts){
     if(in_array("company", $roles) ){
         $result_html .= '<form action="./scout_form" method="POST">';
     }
-    $result_html2.='
-    <font size="2">
-        <table class="tbl02">
-            <thead>
-                <tr>
-                    <th>ユーザー名<br>(プロフィールスコア)</th>
-                    <th>性別</th>
-                    <th>大学・所属</th>
-                    <th>職種</th>
-                    <th>ログイン日時</th>';
-    if( in_array("company", $roles) ){
-        $result_html2.='<th>スカウト</th>';
-        $result_html2 .= '<th>まとめてスカウト<br>（最大20件）</th>';
-    }
-    if( in_array("administrator", $roles) ){
-        $result_html2.='<th>接触記録</th><th>メールアドレス</th>';
-    }
-    $result_html2.='
-                </tr>
-            </thead>
-            <tbody>';
     if ( $students->get_results() ) foreach( $students->get_results() as $user )  {
 
         $user_id = $user->data->ID;
@@ -2185,7 +2164,6 @@ function student_search_result_func($atts){
         }
 
         if( in_array("administrator", $roles) ){
-            $result_html2.='<td label="接触記録"><a href="'.student_contact_form_link($user).'">接触記録を入力</a></td><td label="メールアドレス">'.$email.'</td>';
             $mail_html = '<div class="scout__content scout__content_s scout__mail-field"><p>'.$email.'</p></div>';
             $touch_html = '<div class="scout__content scout__content_s"><a href="'.student_contact_form_link($user).'">接触記録を入力</a></div>';
         }
@@ -2224,40 +2202,7 @@ function student_search_result_func($atts){
               '.$scout_html.'
             </div>
         ';
-        $result_html2.='
-                    <tr>
-                        <th label="ユーザー名(プロフィールスコア)">
-                            <a href="/user?um_user='.$user->user_login.'" style="color:white"><p>'.esc_html( $user->user_login ) .'　<span>('.$profile_score.')</span><br></p><div>'.$photo.'</div></a>
-                        </th>
-                        <td label="性別">'.$gender.'</td>
-                        <td label="大学・所属">'.esc_html( get_univ_name($user)).'<br>'. esc_html( get_faculty_name($user)).'</td>
-                        <td label="職種">'.$job_html.'</td>
-                        <td label="ログイン日時">'.$last_login_date.'</td>';
-        if(in_array("company", $roles) ){
-            $scout_status = get_remain_num_for_stu_func($user, 'remain-mail-num');
-            $user_name = $user->data->user_login;
-            $scouted_users = get_user_meta($company_id,'scouted_users',false)[0];
-            $user_link = $home_url.'/user?um_user='.$user_name;
-            if($scout_status["remain"]>0){
-                if(!in_array($user_name,$scouted_users,false)){
-                    $result_html2.='<td label="スカウト"><a href="'.scoutlink($user).'">'.$scout_status['status'].'<br>スカウトする</a></td>';
-                }else{
-                    $result_html2.='<td label="スカウト"><a href="'.$user_link.'">'.$scout_status['status'].'<br>スカウト済み</a></td>';
-                }
-            }else{
-                $result_html2.='<td label="スカウト"><a href="'.$user_link.'">'.$scout_status['status'].'</a></td>';
-            }
-            $result_html2 .= '<td label="まとめてスカウト<br>（最大20件）"><input type="checkbox" name="user_ids[]" value="'.$user_id.'" class="checkbox"></td>';
-        }
-        if( in_array("administrator", $roles) ){
-            $result_html2.='<td label="接触記録"><a href="'.student_contact_form_link($user).'">接触記録を入力</a></td><td label="メールアドレス">'.$email.'</td>';
-        }
     }
-    $result_html2.='
-            </tbody>
-        </table>
-    </font>';
-
     $result_html.= paginate( $num_pages, $current_page, $total_users, $users_per_page);
     if(in_array("company", $roles)){
         $result_html .= '

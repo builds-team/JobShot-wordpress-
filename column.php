@@ -94,9 +94,8 @@ function template_column2_func($content){
     }else{
         $array = (explode('<h2>', $content, 2));
         $column_image_url = wp_get_attachment_image_src(15290, array(1000, 200))[0];
-        $content = '<a href="' . $home_url . '/interview"><img class="special_contents_img wp-image-5404 aligncenter" src="' .$column_image_url. '"></a>';
-        $html .= $array[0].$content.'<h2>'.$array[1];
-        $html .= $content;
+        $banner = '<a href="' . $home_url . '/interview"><img class="special_contents_img wp-image-5404 aligncenter" src="' .$column_image_url. '"></a>';
+        $html .= $array[0].$banner.'<h2>'.$array[1];
     }
     return $html;
 }

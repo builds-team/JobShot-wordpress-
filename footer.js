@@ -50,72 +50,77 @@ function cleanQuery(query) {
 	  //画像ファイルプレビュー表示
 	  //  jQueryの $('input[type="file"]')相当
 	  // addEventListenerは on("change", function(e){}) 相当
-	  document.querySelector('input[name="picture"]').addEventListener('change', function(e) {
-		  var file = e.target.files[0],
-				 reader = new FileReader(),
-				 $preview =  document.querySelector(".preview-img"), // jQueryの $(".preview")相当
-				 t = this;
-  
-		  // 画像ファイル以外の場合は何もしない
-		  if(file.type.indexOf("image") < 0){
-			return false;
-		  }
-  
-		  reader.onload = (function(file) {
-			return function(e) {
-			   //jQueryの$preview.empty(); 相当
-			   while ($preview.firstChild) $preview.removeChild($preview.firstChild);
-  
-			  // imgタグを作成
-			  var img = document.createElement( 'img' );
-			  img.setAttribute('src',  e.target.result);
-			  img.setAttribute('width', '150px');
-			  img.setAttribute('title',  file.name);
-			  // imgタグを$previeの中に追加
-			  $preview.appendChild(img);
-			};
-		  })(file);
-  
-		  reader.readAsDataURL(file);
-	  });
-  });
-  document.addEventListener('DOMContentLoaded', function() {
-	  //画像ファイルプレビュー表示
-	  //  jQueryの $('input[type="file"]')相当
-	  // addEventListenerは on("change", function(e){}) 相当
-	  document.querySelector('input[name="picture2"]').addEventListener('change', function(e) {
-		  var file = e.target.files[0],
-				  reader = new FileReader(),
-				  $preview =  document.querySelector(".preview-img2"), // jQueryの $(".preview")相当
-				  t = this;
-  
-		  // 画像ファイル以外の場合は何もしない
-		  if(file.type.indexOf("image") < 0){
+	  if(jQuery('input[name="picture"]').length){
+		document.querySelector('input[name="picture"]').addEventListener('change', function(e) {
+			var file = e.target.files[0],
+				   reader = new FileReader(),
+				   $preview =  document.querySelector(".preview-img"), // jQueryの $(".preview")相当
+				   t = this;
+	
+			// 画像ファイル以外の場合は何もしない
+			if(file.type.indexOf("image") < 0){
 			  return false;
-		  }
-  
-		  reader.onload = (function(file) {
+			}
+	
+			reader.onload = (function(file) {
 			  return function(e) {
-				  //jQueryの$preview.empty(); 相当
-				  while ($preview.firstChild) $preview.removeChild($preview.firstChild);
-  
-			  // imgタグを作成
-			  var img = document.createElement( 'img' );
-			  img.setAttribute('src',  e.target.result);
-			  img.setAttribute('width', '150px');
-			  img.setAttribute('title',  file.name);
-			  // imgタグを$previeの中に追加
-			  $preview.appendChild(img);
+				 //jQueryの$preview.empty(); 相当
+				 while ($preview.firstChild) $preview.removeChild($preview.firstChild);
+	
+				// imgタグを作成
+				var img = document.createElement( 'img' );
+				img.setAttribute('src',  e.target.result);
+				img.setAttribute('width', '150px');
+				img.setAttribute('title',  file.name);
+				// imgタグを$previeの中に追加
+				$preview.appendChild(img);
 			  };
-		  })(file);
-  
-		  reader.readAsDataURL(file);
-	  });
+			})(file);
+	
+			reader.readAsDataURL(file);
+		});  
+	  }
   });
+  	document.addEventListener('DOMContentLoaded', function() {
+		//画像ファイルプレビュー表示
+		//  jQueryの $('input[type="file"]')相当
+		// addEventListenerは on("change", function(e){}) 相当
+		if(jQuery('input[name="picture2"]').length){
+			document.querySelector('input[name="picture2"]').addEventListener('change', function(e) {
+				var file = e.target.files[0],
+						reader = new FileReader(),
+						$preview =  document.querySelector(".preview-img2"), // jQueryの $(".preview")相当
+						t = this;
+		
+				// 画像ファイル以外の場合は何もしない
+				if(file.type.indexOf("image") < 0){
+					return false;
+				}
+		
+				reader.onload = (function(file) {
+					return function(e) {
+						//jQueryの$preview.empty(); 相当
+						while ($preview.firstChild) $preview.removeChild($preview.firstChild);
+		
+					// imgタグを作成
+					var img = document.createElement( 'img' );
+					img.setAttribute('src',  e.target.result);
+					img.setAttribute('width', '150px');
+					img.setAttribute('title',  file.name);
+					// imgタグを$previeの中に追加
+					$preview.appendChild(img);
+					};
+				})(file);
+		
+				reader.readAsDataURL(file);
+			});
+		}
+  	});
   document.addEventListener('DOMContentLoaded', function() {
 	  //画像ファイルプレビュー表示
 	  //  jQueryの $('input[type="file"]')相当
 	  // addEventListenerは on("change", function(e){}) 相当
+	  if(jQuery('input[name="picture3"]').length){
 	  document.querySelector('input[name="picture3"]').addEventListener('change', function(e) {
 		  var file = e.target.files[0],
 				 reader = new FileReader(),
@@ -144,12 +149,14 @@ function cleanQuery(query) {
   
 		  reader.readAsDataURL(file);
 	  });
+	}
   });
   
   document.addEventListener('DOMContentLoaded', function() {
 	  //画像ファイルプレビュー表示
 	  //  jQueryの $('input[type="file"]')相当
 	  // addEventListenerは on("change", function(e){}) 相当
+	  if(jQuery('input[name="picture4"]').length){
 	  document.querySelector('input[name="picture4"]').addEventListener('change', function(e) {
 		  var file = e.target.files[0],
 				 reader = new FileReader(),
@@ -178,6 +185,7 @@ function cleanQuery(query) {
   
 		  reader.readAsDataURL(file);
 	  });
+	}
   });
   if (window.matchMedia( "(max-width: 680px)" ).matches) {
 	  var startPos = 0,winScrollTop = 0;
@@ -673,9 +681,7 @@ function cleanQuery(query) {
 			  jQuery(".upload-coverphoto").slideDown("fast");
 		  });
 		  jQuery(".upload-photo .photo-cancel button.favorite.innactive").on('click',function(){
-			  console.log(unnko);
 			  jQuery(".upload-photo").slideUp();
-			  console.log(unnko2);
 		  });
 		  jQuery(".upload-coverphoto .photo-cancel button.favorite.innactive").on('click',function(){
 			  jQuery(".upload-coverphoto").slideUp();
@@ -688,9 +694,7 @@ function cleanQuery(query) {
 			  jQuery(".upload-coverphoto").fadeIn("fast");
 		  });
 		  jQuery(".upload-photo .photo-cancel button.favorite.innactive").on('click',function(){
-			  console.log(unnko);
 			  jQuery(".upload-photo").fadeOut();
-			  console.log(unnko2);
 		  });
 		  jQuery(".upload-coverphoto .photo-cancel button.favorite.innactive").on('click',function(){
 			  jQuery(".upload-coverphoto").fadeOut();
@@ -698,6 +702,7 @@ function cleanQuery(query) {
 	  }
   });
   document.addEventListener('DOMContentLoaded', function() {
+	if(jQuery('input[name="upfilename"]').length){
 	  document.querySelector('input[name="upfilename"]').addEventListener('change', function(e) {
 		  var file = e.target.files[0],
 			  reader = new FileReader(),
@@ -720,8 +725,10 @@ function cleanQuery(query) {
   
 		  reader.readAsDataURL(file);
 	  });
+	}
   });
   document.addEventListener('DOMContentLoaded', function() {
+	if(jQuery('input[name="upcovername"]').length){
 	  document.querySelector('input[name="upcovername"]').addEventListener('change', function(e) {
 		  var file = e.target.files[0],
 			  reader = new FileReader(),
@@ -744,6 +751,7 @@ function cleanQuery(query) {
   
 		  reader.readAsDataURL(file);
 	  });
+	}
   });
   
   //favボタンのajax更新
@@ -1066,13 +1074,17 @@ $(window).on( 'scroll', function () {
 	}
 });
 
-
 jQuery(function($){
 		var str = location.href;
 		if ( str.match(/column/)) {
 			if (jQuery(".ez-toc-title").length ){
-				$("h2").second().before('<a href="https://bit.ly/3hRzqVI"><img class="special_contents_img wp-image-5404 aligncenter" src="https://i1.wp.com/jobshot.jp/wp-content/uploads/2020/09/3445c5fbba6bb3ca4ce085d784f4ccca.png?fit=800%2C200&ssl=1"></a>');
+				$("h2").first().before('<a href="https://bit.ly/3hRzqVI"><img class="special_contents_img wp-image-5404 aligncenter" src="https://i1.wp.com/jobshot.jp/wp-content/uploads/2020/09/3445c5fbba6bb3ca4ce085d784f4ccca.png?fit=800%2C200&ssl=1"></a>');
 			}
 		}
+});
+
+jQuery(function($){
+	$("#scout_test0 .scout_test").addClass("hidden");
+	$("#scout_test0 .scout_test").before('');
 });
 
