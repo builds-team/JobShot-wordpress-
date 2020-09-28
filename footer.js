@@ -1052,6 +1052,19 @@ jQuery(function($){
 	$("#scout_test0 .scout_test").addClass("hidden");
 	$("#scout_test0 .scout_test").before('');
 });
+// トップバナー
+function removebanner() {
+    jQuery('.top-banner').remove();
+}
+// ポップアップ
+var NumOfTimes = 1;
+$(window).on( 'scroll', function () {
+//スクロール位置を取得
+	if ( $(this).scrollTop() > 600 && NumOfTimes == 1) {
+		$('.modal__mask').fadeIn();
+		NumOfTimes += 1;
+	}
+});
 
 
 jQuery(function($){
@@ -1063,4 +1076,3 @@ jQuery(function($){
 		}
 });
 
-https://i1.wp.com/jobshot.jp/wp-content/uploads/2020/09/3445c5fbba6bb3ca4ce085d784f4ccca.png?fit=800%2C200&ssl=1
