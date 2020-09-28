@@ -108,15 +108,15 @@ add_action('jobshot_bot_daily_report_cron', function () {
     $args = [
         'role'         => 'student',
         'date_query' => [
-            ['before' => date("Y-m-01")],
-            ['after'  => date('Y/m/d', strtotime('yesterday')), 'inclusive' => true],
+            ['before' => date("Y/m/d")],
+            ['after'  => date('Y/m/01'), 'inclusive' => true],
         ]
     ];
     $users = get_users($args);
     $new_user_num = count($users);
     // インターン応募数
     $formname = 'インターン応募';
-    $month = date("m");
+    $month = date("n");
     $first_date = date("Y-m-01");
     $intern_apply_num = do_shortcode(' [cfdb-count form="/' . $formname . '.*/" filter="submit_time>' . $first_date . '"] ');
     $string = $month . '月の累計レポートを報告します';
