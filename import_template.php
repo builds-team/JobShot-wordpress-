@@ -30,6 +30,42 @@ add_action( 'wp_head', 'import_Google_Search_Console');
 
 function navigation_tab(){
   $home_url =esc_url( home_url());
+  if(is_home() || is_front_page()){
+    if ( is_user_logged_in()){
+      $current_user = wp_get_current_user();
+      $current_user_name = $current_user->data->display_name;
+      $login_user_roles = $current_user->roles;
+      if(in_array("student", $login_user_roles)){
+        $user_id = $current_user->data->ID;
+        $profile_score = get_user_meta( $user_id, 'user_profile_total_score',false)[0];
+        if($profile_score < 70){
+          $banner = '
+          <div class="navi-menu top-banner only-pc">
+              <div class="top-banner__description">
+              プロフィールを充実させてスカウトを受け取ろう！
+              </div>
+              <a class="top-banner__link google-icon" href="https://jobshot.jp/user?um_user='.$current_user_name.'">プロフィールを記入する</a>
+              <div class="top-banner__close" onclick="removebanner()">
+                  <span class="google-icon"></span>
+              </div>
+          </div>      
+        '; 
+        }
+      }
+    }else{
+      $banner = '
+      <div class="navi-menu top-banner only-pc">
+          <div class="top-banner__description">
+          東大22卒学部就活生の6人に1人が登録しています
+          </div>
+          <a class="top-banner__link google-icon" href="https://jobshot.jp/regist">無料登録をする</a>
+          <div class="top-banner__close" onclick="removebanner()">
+              <span class="google-icon"></span>
+          </div>
+      </div>
+      ';
+    }
+  }
   if ( is_user_logged_in() ){
     echo '
     <div class="navi-container">
@@ -65,7 +101,8 @@ function navigation_tab(){
           </a>
         </li>
       </ul>
-    </div>';
+    </div>
+    '.$banner;
   }else{
     echo '
     <div class="navi-container">
@@ -101,7 +138,8 @@ function navigation_tab(){
           </a>
         </li>
       </ul>
-    </div>';
+    </div>
+    '.$banner;
   }
 
 }

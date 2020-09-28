@@ -1,3 +1,4 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 // 新規登録ボタンエラー修正
 window.addEventListener('load', function () {
     var str = document.getElementsByClassName("um-right um-half");

@@ -97,6 +97,28 @@ function template_column2_func($content){
         $banner = '<a href="' . $home_url . '/interview"><img class="special_contents_img wp-image-5404 aligncenter" src="' .$column_image_url. '"></a>';
         $html .= $array[0].$banner.'<h2>'.$array[1];
     }
+    if (!is_user_logged_in()){
+        $popup = '
+        <div class="modal__mask">
+            <div class="modal__login">
+                <div class="modal__login__description">
+                    <p class="modal__login__first-line"><span class="modal__login__company-name">東大</span>２２卒学部就活生</p>
+                    <p class="modal__login__second-line">の<span class="modal__login__proportion">６人に１人</span>が</p>
+                    <p class="modal__login__third-line"><span style="font-size: 160%;"></span>登録しています</p>
+                </div>
+                <div class="modal__login__btn">
+                    <a class="modal__login__register-btn" href="https://jobshot.jp/regist">
+                        <span>無料登録をする</span>
+                    </a>
+                    <p>または<a href="https://jobshot.jp/login">ログイン</a></p>
+                </div>
+                <div class="modal__cancel__btn google-icon" onclick="$(\'.modal__mask\').css(\'display\', \'none\')">
+                </div>
+            </div>
+        </div>
+        ';
+        $html = $popup.$html;
+    }
     return $html;
 }
 

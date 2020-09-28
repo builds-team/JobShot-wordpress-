@@ -14729,6 +14729,7 @@ div[data-toggle="buttons"].scout-programming-category label {
   color: white;
   content: "\e5cd";
   font-size: 20px;
+  cursor: pointer;
 }
 /* 就活記事モーダル */
 .modal__mask {
