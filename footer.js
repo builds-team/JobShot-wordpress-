@@ -190,12 +190,12 @@ function cleanQuery(query) {
   if (window.matchMedia( "(max-width: 680px)" ).matches) {
 	  var startPos = 0,winScrollTop = 0;
 	  jQuery(window).on("scroll",function($){
-		  winScrollTop = $(this).scrollTop();
+		  winScrollTop = jQuery(this).scrollTop();
 		  if (Math.abs(winScrollTop-startPos) > 10) {
 			  if (winScrollTop >= startPos) {
-				  $(".navi-container").fadeIn("fast");
+				  jQuery(".navi-container").fadeIn("fast");
 			  } else {
-				  $(".navi-container").fadeOut("fast");
+				  jQuery(".navi-container").fadeOut("fast");
 			  }
 			  startPos = winScrollTop;
 			} else {
@@ -1075,6 +1075,7 @@ $(window).on( 'scroll', function () {
 	var w = screen.width;
 		if ( $(this).scrollTop() > 600 && NumOfTimes == 1) {
 			$('.modal__mask').fadeIn();
+			console.log("test");
 			NumOfTimes += 1;
 		}
 });

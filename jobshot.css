@@ -14683,6 +14683,7 @@ div[data-toggle="buttons"].scout-programming-category label {
 .top-banner {
   align-items: center;
   justify-content: center;
+  min-height: 60px;
 }
 .top-banner__description {
   display: inline-block;
