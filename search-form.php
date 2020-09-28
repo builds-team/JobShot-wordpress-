@@ -127,8 +127,12 @@ function search_form_func($atts){
     'echo' => false
   );
 
-  if($item_type == 'internship'){
-    $search_form_html ='<h3 class="widget-title">長期有給インターンを探す</h3>';
+  if($item_type == 'internship'){ 
+    $banner_url = wp_get_attachment_image_src(15291, array(1000, 100))[0];
+    $search_form_html ='
+    <img class="special_contents_img wp-image-5404 aligncenter" src="' . $banner_url . '">
+    <h3 class="widget-title">長期有給インターンを探す</h3>
+    ';
   }
   if($item_type == 'company'){
     $search_form_html ='<h3 class="widget-title">企業を探す</h3>';
