@@ -1095,4 +1095,7 @@ $(function(){
 		$(this).next().slideToggle();
 		$(this).toggleClass("active");
 	});
+	$(".scout__form__from .scout__form__fromTo").on("click", function() {
+		$(this).next().slideToggle();
+	});
 });

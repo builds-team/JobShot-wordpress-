@@ -1054,11 +1054,15 @@ body.custom-background { background-color: #ffffff; }
     });
     // スカウト送信画面アコーディオン
     $(function(){
+		$(".scout__form__from .scout__form__fromTo").on("click", function() {
+			$(this).next().slideToggle();
+			$(this).children().toggleClass("active");
+		});
         $(".scout__form__to__example").on("click", function() {
             $(this).next().slideToggle();
             $(this).toggleClass("active");
         });
-    });
+	});
     </script>
     <div role="form" class="wpcf7 scout__form" id="wpcf7-f1583-p15142-o1" lang="ja" dir="ltr">
 <div class="screen-reader-response" role="alert" aria-live="polite"></div>
@@ -1074,19 +1078,24 @@ body.custom-background { background-color: #ffffff; }
 <!-- 変更 -->
 <h2 class="scout__form__title">新規スカウトメッセージ</h2>
 <div class="scout__form__container scout__form__from">
-    <h2 class="scout__form__fromto">From:</h2>
-    <p>
-        <!-- <label class="scout__form__from__subTitle"> お名前<span title="必須">*</span></label> -->
-        <label><span class="wpcf7-form-control-wrap your-name"><input type="text" name="your-name" value="株式会社Builds" size="40" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required scout__form__ele scout__form__from__ele" aria-required="true" aria-invalid="false"></span></label></p>
-    <input type="hidden" name="your-id" value="Build" class="wpcf7-form-control wpcf7-hidden">
-    <p>
-        <!-- <label class="scout__form__from__subTitle"> メールアドレス<span title="必須">*</span></label> -->
-        <label><span class="wpcf7-form-control-wrap your-email"><input type="email" name="your-email" value="info@builds.ventures" size="40" class="wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email scout__form__ele scout__form__from__ele" aria-required="true" aria-invalid="false"></span> </label>
-    <span style="display:none;"><span class="wpcf7-form-control-wrap partner-email"><input type="email" name="partner-email" value="nobuhara-genya1014@g.ecc.u-tokyo.ac.jp" size="40" class="wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email" aria-required="true" aria-invalid="false"></span></span></p>
+	<h2 class="scout__form__fromto">From:<span class=""></span></h2>
+	<div style="display: none;">
+		<p>
+			<!-- <label class="scout__form__from__subTitle"> お名前<span title="必須">*</span></label> -->
+			<label><span class="wpcf7-form-control-wrap your-name"><input type="text" name="your-name" value="株式会社Builds" size="40" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required scout__form__ele scout__form__from__ele" aria-required="true" aria-invalid="false"></span></label></p>
+		<input type="hidden" name="your-id" value="Build" class="wpcf7-form-control wpcf7-hidden">
+		<p>
+			<!-- <label class="scout__form__from__subTitle"> メールアドレス<span title="必須">*</span></label> -->
+			<label><span class="wpcf7-form-control-wrap your-email"><input type="email" name="your-email" value="info@builds.ventures" size="40" class="wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email scout__form__ele scout__form__from__ele" aria-required="true" aria-invalid="false"></span> </label>
+		<span style="display:none;"><span class="wpcf7-form-control-wrap partner-email"><input type="email" name="partner-email" value="nobuhara-genya1014@g.ecc.u-tokyo.ac.jp" size="40" class="wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email" aria-required="true" aria-invalid="false"></span></span></p>
+	</div>
 </div>
 <div>
-    <label class="scout__form__to__example">スカウトメールの例はこちら<span class="google-icon"></span></label>
-    <label class="scout__form__to__example__text" style="display: none;">大変お世話になります。株式会社〇〇の採用担当〇〇と申します。<br><br>この度、プロフィールを拝見させて頂き、ぜひ弊社でご一緒に働きたいと思いご連絡致しました。<br>ぜひ一度、カジュアルにお話できればと思います。<br>以下の候補日と場所はご都合いかがでしょうか？<br>【日時】<br>○月○日　○時ー○時<br>○月○日　○時ー○時<br>○月○日　○時ー○時<br><br>【場所】<br>〇〇〇〇<br>お会いできますことを楽しみにしております。<br><br></label>
+	<label class="scout__form__to__example">スカウトメールの例文はこちら<span class="google-icon"></span></label>
+	<div class="scout__form__to__example__text__wrap" style="display: none;">
+		<label class="scout__form__to__example__text">大変お世話になります。株式会社〇〇の採用担当〇〇と申します。<br><br>この度、プロフィールを拝見させて頂き、ぜひ弊社でご一緒に働きたいと思いご連絡致しました。<br>ぜひ一度、カジュアルにお話できればと思います。<br>以下の候補日と場所はご都合いかがでしょうか？<br>【日時】<br>○月○日　○時ー○時<br>○月○日　○時ー○時<br>○月○日　○時ー○時<br><br>【場所】<br>〇〇〇〇<br>お会いできますことを楽しみにしております。</label>
+		<div class="scout__form__copy__wrap"><div class="scout__form__copy">コピーする</div></div>
+	</div>
 </div>
 <div class="scout__form__container scout__form__to">
     <h2 class="scout__form__fromto">To:</h2>
@@ -1097,7 +1106,7 @@ body.custom-background { background-color: #ffffff; }
     <p>
         <label class="scout__form__to__content"><span>件名</span><span class="wpcf7-form-control-wrap your-subject"><input type="text" name="your-subject" value="" size="40" class="wpcf7-form-control wpcf7-text your-subject scout__form__ele scout__form__to__ele" aria-required="true" aria-invalid="false"></span></label></p>
     <p>
-        <label class="scout__form__to__content__text"><span class="wpcf7-form-control-wrap your-message"><textarea name="your-message" cols="40" rows="10" class="wpcf7-form-control wpcf7-textarea scout__form__ele scout__form__to__ele" placeholder="ここから本文" aria-invalid="false"></textarea></span><br>
+        <label class="scout__form__to__content__text"><span class="wpcf7-form-control-wrap your-message"><textarea name="your-message" cols="40" rows="10" class="wpcf7-form-control wpcf7-textarea scout__form__ele scout__form__to__ele scout__form__to__ele__main" placeholder="ここから本文" aria-invalid="false"></textarea></span><br>
         </label></p>
     <p><input type="submit" value="送信" class="wpcf7-form-control wpcf7-submit scout_test scout__form__to__send"><span class="ajax-loader"></span><br>
     <span class="scout__form__to__send__alert">※メール送信に10秒ほどかかる場合がございます。送信完了の表示が出るまでしばらくお待ちください。</span></p>

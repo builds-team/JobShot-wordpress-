@@ -14900,14 +14900,26 @@ div[data-toggle="buttons"].scout-programming-category label {
   left: 0;
 }
 .scout__form__container {
-  margin-top: 20px;
+  margin-top: 15px;
 }
 .scout__form__fromTo {
   font-size: 1.2rem;
   color: #666;
 }
+.scout__form__from .scout__form__fromTo:hover {
+  cursor: pointer;
+}
+.scout__form__from .scout__form__fromTo span:before{
+  margin-left: 30px;
+  font-size: 14px;
+  color: #aaa;
+  content: "詳細を見る";
+}
+.scout__form__from .scout__form__fromTo span.active:before {
+  margin-left: 220px;
+  content: "閉じる";
+}
 .scout__form__from__subTitle {
-  /* color: #777; */
   font-weight: normal;
 }
 .scout__form__from__subTitle span{
@@ -14946,8 +14958,43 @@ div[data-toggle="buttons"].scout-programming-category label {
   font-size: 16px;
   font-weight: normal;
 }
-.scout__form__to__content__text textarea{
+.scout__form__to__content__text textarea.scout__form__to__ele__main{
   height: 200px;
+  margin: 3px 0;
+}
+.scout__form__to__example {
+  width: fit-content;
+  margin-top: 30px;
+  cursor: pointer;
+}
+.scout__form__to__example span::before{
+  content: "\e313";
+  color: #666;
+  font-size: 25px;
+  line-height: 25px;
+  float: right;
+}
+.scout__form__to__example.active span::before{
+  content: "\e316";
+}
+.scout__form__to__example__text__wrap {
+  margin-top: 10px;
+  background-color: #eee;
+  border-radius: 10px;
+  padding: 20px;
+  transition: .6s;
+}
+.scout__form__copy__wrap {
+  width: 100%;
+  height: 30px;
+  margin-top: 10px;
+}
+.scout__form__copy {
+  padding: 3px 15px;
+  background-color: #03c4b0;
+  border-radius: 5px;
+  color: #fff;
+  float: right;
 }
 .scout__form__to .scout__form__to__send {
   padding: 3px 25px;
@@ -14963,26 +15010,31 @@ div[data-toggle="buttons"].scout-programming-category label {
 .scout__back__btn {
   float: right;
 }
-.scout__form__to__example {
-  width: fit-content;
-  margin-top: 30px;
-}
-.scout__form__to__example span {
-}
-.scout__form__to__example span::before{
-  content: "\e313";
-  color: #666;
-  font-size: 25px;
-  line-height: 25px;
-  float: right;
-}
-.scout__form__to__example.active span::before{
-  content: "\e316";
-}
-.scout__form__to__example__text {
-  margin-top: 10px;
-  background-color: #eee;
-  border-radius: 10px;
-  padding: 10px;
-  transition: .8s;
+@media screen and (max-width: 680px) {
+  .scout__form {
+    margin: -10px -5px;
+  }
+  .scout__form__from .scout__form__fromTo span.active:before {
+    margin-left: 240px;
+  }
+  .scout__form__to__example span::before{
+    font-size: 20px;
+    line-height: 18px;
+  }
+  .scout__form__to .scout__form__to__ele {
+    max-width: 85%;
+  }
+  .scout__form__copy {
+    padding: 7px 15px;
+  }
+  .scout__form__to .scout__form__to__send {
+    padding: 3px 40px;
+  }
+  .scout__form__to__send__alert {
+    font-size: 12px;
+  }
+  .scout__back {
+    margin-top: 30px;
+    font-size: 14px;
+  }
 }
