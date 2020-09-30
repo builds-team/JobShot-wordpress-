@@ -44,7 +44,7 @@ function navigation_tab(){
               <div class="top-banner__description">
               プロフィールを充実させてスカウトを受け取ろう！
               </div>
-              <a class="top-banner__link google-icon" href="https://jobshot.jp/user?um_user='.$current_user_name.'">プロフィールを記入する</a>
+              <a class="top-banner__link google-icon" href="https://jobshot.jp/user?um_user='.$current_user_name.'" onclick="gtag(\'event\', \'click\', {\'event_category\': \'link\', \'event_label\': \'banner_profile\'});">プロフィールを記入する</a>
               <div class="top-banner__close" onclick="removebanner()">
                   <span class="google-icon"></span>
               </div>
@@ -58,7 +58,7 @@ function navigation_tab(){
           <div class="top-banner__description">
           東大22卒学部就活生の6人に1人が登録しています
           </div>
-          <a class="top-banner__link google-icon" href="https://jobshot.jp/regist">無料登録をする</a>
+          <a class="top-banner__link google-icon" href="https://jobshot.jp/regist" onclick="gtag(\'event\', \'click\', {\'event_category\': \'link\', \'event_label\': \'banner_new\'});">無料登録をする</a>
           <div class="top-banner__close" onclick="removebanner()">
               <span class="google-icon"></span>
           </div>

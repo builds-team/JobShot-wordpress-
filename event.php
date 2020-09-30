@@ -174,6 +174,16 @@ function template_event2_func($content){
         </div>';
     }
 
+
+    // ミダス
+    if($post_id == 15171){
+        $entry_html = '
+        <div class="fixed-buttom">
+            <a href="https://jobshot.jp/?page_id=15359">
+                <button class="button button-apply">イベントに応募する</button>
+            </a>
+        </div>';
+    }
     $area_html = '';
     if(!empty(get_field('開催場所名',$post_id))){
         $area_html .= '<div>'.get_field('開催場所名',$post_id).'</div>';
@@ -266,7 +276,7 @@ function template_event2_func($content){
     </style>
     <section>
         <h2 class="event-title">'.$event_name.'</h2>
-        <img src="'.$event_image_url.'" width="100%">
+        <img class="event__image" src="'.$event_image_url.'">
         <div class="card-category-container event">'.$points_html.'</div>
         <div>'.$content.'</div>
     </section>

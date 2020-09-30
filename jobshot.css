@@ -15038,3 +15038,13 @@ div[data-toggle="buttons"].scout-programming-category label {
     font-size: 14px;
   }
 }
+
+.event__image {
+  width:100%
+}
+
+#post-15171 .event__image{
+width:50%;
+display: block;
+margin: 0 auto;
+}

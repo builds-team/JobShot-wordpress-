@@ -107,10 +107,10 @@ function template_column2_func($content){
                     <p class="modal__login__third-line"><span style="font-size: 160%;"></span>登録しています</p>
                 </div>
                 <div class="modal__login__btn">
-                    <a class="modal__login__register-btn" href="https://jobshot.jp/regist">
+                    <a class="modal__login__register-btn" href="https://jobshot.jp/regist" onclick="gtag(\'event\', \'click\', {\'event_category\': \'link\', \'event_label\': \'popup_new\'});">
                         <span>無料登録をする</span>
                     </a>
-                    <p>または<a href="https://jobshot.jp/login">ログイン</a></p>
+                    <p>または<a href="https://jobshot.jp/login" onclick="gtag(\'event\', \'click\', {\'event_category\': \'link\', \'event_label\': \'popup_login\'});">ログイン</a></p>
                 </div>
                 <div class="modal__cancel__btn google-icon" onclick="$(\'.modal__mask\').css(\'display\', \'none\')">
                 </div>
