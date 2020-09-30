@@ -1097,5 +1097,17 @@ $(function(){
 	});
 	$(".scout__form__from .scout__form__fromTo").on("click", function() {
 		$(this).next().slideToggle();
+		$(this).children("span").toggleClass("active");
 	});
+});
+
+jQuery(function($) {
+    $('.scout__form__copy__wrap').click(function() {
+        var clipboard = $('<textarea></textarea>');
+        clipboard.val($(this).prev().text());
+        $(this).append(clipboard);
+        clipboard.select();
+        document.execCommand('copy');
+        clipboard.remove();
+    });
 });

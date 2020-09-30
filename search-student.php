@@ -2089,7 +2089,6 @@ function student_search_result_func($atts){
         $last_login_date = date('Y年m月d日',$last_login[0]).'<br>'.date('H時i分',$last_login[0]);
         $job_html = '';
         foreach($future_occupations as $future_occupation){
-            $job_html .= $future_occupation.'/';
             if ($future_occupation === end($future_occupations)) {
                 $job_html .= $future_occupation;
             }else{
@@ -3208,9 +3207,18 @@ function mail_many(){
         }
     }
     $name_array = json_encode($name_array);
-    $partner_id = '<label>スカウトメールを送るユーザー<br>'.$login_user_names.'</label>';
+    $partner_id = '
+    <p>
+        <label class="scout__form__to__content">
+            <span>宛先</span>
+            <span class="wpcf7-form-control-wrap">
+                <input type="text" name="partner-id" value="'.$login_user_names.'" size="40" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required scout__form__ele scout__form__to__ele" readonly="readonly" aria-required="true" aria-invalid="false">
+            </span>
+        </label>
+    </p>';
     $html = str_replace('<label class="partner-id">','<label class="partner-id hidden">',$html);
-    $html .= '<a href='.$motourl.' class="back">検索結果に戻る</a>';
+    $html .= '<div class="scout__back"><a href="'.$motourl.'" class="back scout__back__btn">検索結果に戻る</a></div>';
+    $html = str_replace('name="your-message"','name="your-message" placeholder="ここから本文"',$html);
     $vals = get_remain_num_func(wp_get_current_user(),'remain-mail-num');
     $vals_en = $vals['engineer'];
     $vals_ge = $vals['general'];
@@ -3230,7 +3238,7 @@ function mail_many(){
     $script = '
     <script type="text/javascript">
     jQuery(function($){
-        $(".partner-id").after("'.$partner_id.'");
+        $(".partner-id").after(\''.$partner_id.'\');
     });
     jQuery(function($){
         $("#scout_test0 .wpcf7-textarea").keyup(function(){

@@ -14995,6 +14995,7 @@ div[data-toggle="buttons"].scout-programming-category label {
   border-radius: 5px;
   color: #fff;
   float: right;
+  cursor: pointer;
 }
 .scout__form__to .scout__form__to__send {
   padding: 3px 25px;
