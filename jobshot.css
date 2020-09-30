@@ -14873,9 +14873,170 @@ div[data-toggle="buttons"].scout-programming-category label {
     padding: 0 10px;
    }
 }
-
 .selected {
   background-color:#FFFBE8;
+}
+
+/* スカウト送信画面 */
+.scout__form {
+  margin: 20px;
+}
+.scout__form__title {
+  border-bottom: solid 3px #03C4B0;
+  font-size: 1.7em !important;
+  padding: 5px 0;
+  color: #666;
+  position: relative;
+}
+.scout__form__title:after {
+  position: absolute;
+  content: " ";
+  display: block;
+  background-color: #fff;
+  border-bottom: none;
+  border-bottom: solid 3px #ffc778;
+  bottom: -3px;
+  width: 30%;
+  left: 0;
+}
+.scout__form__container {
+  margin-top: 15px;
+}
+.scout__form__fromTo {
+  font-size: 1.2rem;
+  color: #666;
+}
+.scout__form__from .scout__form__fromTo:hover {
+  cursor: pointer;
+}
+.scout__form__from .scout__form__fromTo span:before{
+  margin-left: 30px;
+  font-size: 14px;
+  color: #aaa;
+  content: "詳細を見る";
+}
+.scout__form__from .scout__form__fromTo span.active:before {
+  margin-left: 220px;
+  content: "閉じる";
+}
+.scout__form__from__subTitle {
+  font-weight: normal;
+}
+.scout__form__from__subTitle span{
+  color: #ff0000eb;
+  font-size: large;
+  margin-left: 7px;
+}
+.scout__form .scout__form__ele {
+  border: none;
+  padding-bottom: 8px;
+  padding-top: 8px;
+  border: none;
+  -webkit-box-shadow: inset 0 -1px 0 0 rgba(100,121,143,0.122);
+  box-shadow: inset 0 -1px 0 0 rgba(100,121,143,0.122);
+  line-height: 20px;
+  min-height: auto;
+  padding-left: 0;
+  padding-right: 0;
+}
+.scout__form .scout__form__ele:focus {
+  outline-color: rgba(255, 255, 255, 0);
+  border-color: rgba(255, 255, 255, 0);
+}
+.scout__form__to .scout__form__to__ele {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  background-color: inherit;
+  margin: 3px 0 3px 10px;
+}
+.scout__form__to__content {
+  -webkit-box-shadow: inset 0 -1px 0 0 rgba(100,121,143,0.122);
+  box-shadow: inset 0 -1px 0 0 rgba(100,121,143,0.122);
+}
+.scout__form__to__content span {
+  color: #777;
+  font-size: 16px;
+  font-weight: normal;
+}
+.scout__form__to__content__text textarea.scout__form__to__ele__main{
+  height: 200px;
+  margin: 3px 0;
+}
+.scout__form__to__example {
+  width: fit-content;
+  margin-top: 30px;
+  cursor: pointer;
+}
+.scout__form__to__example span::before{
+  content: "\e313";
+  color: #666;
+  font-size: 25px;
+  line-height: 25px;
+  float: right;
+}
+.scout__form__to__example.active span::before{
+  content: "\e316";
+}
+.scout__form__to__example__text__wrap {
+  margin-top: 10px;
+  background-color: #eee;
+  border-radius: 10px;
+  padding: 20px;
+  transition: .6s;
+}
+.scout__form__copy__wrap {
+  width: 100%;
+  height: 30px;
+  margin-top: 10px;
+}
+.scout__form__copy {
+  padding: 3px 15px;
+  background-color: #03c4b0;
+  border-radius: 5px;
+  color: #fff;
+  float: right;
+}
+.scout__form__to .scout__form__to__send {
+  padding: 3px 25px;
+}
+.scout__form__to__send__alert {
+  display: block;
+  font-size: 14px;
+  margin: 5px 0;
+}
+.scout__back {
+  width: 100%;
+}
+.scout__back__btn {
+  float: right;
+}
+@media screen and (max-width: 680px) {
+  .scout__form {
+    margin: -10px -5px;
+  }
+  .scout__form__from .scout__form__fromTo span.active:before {
+    margin-left: 240px;
+  }
+  .scout__form__to__example span::before{
+    font-size: 20px;
+    line-height: 18px;
+  }
+  .scout__form__to .scout__form__to__ele {
+    max-width: 85%;
+  }
+  .scout__form__copy {
+    padding: 7px 15px;
+  }
+  .scout__form__to .scout__form__to__send {
+    padding: 3px 40px;
+  }
+  .scout__form__to__send__alert {
+    font-size: 12px;
+  }
+  .scout__back {
+    margin-top: 30px;
+    font-size: 14px;
+  }
 }
 
 .event__image {

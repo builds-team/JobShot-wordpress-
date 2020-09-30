@@ -1080,8 +1080,6 @@ $(window).on( 'scroll', function () {
 		}
 });
 
-
-
 jQuery(function($){
 		var str = location.href;
 		if ( str.match(/column/)) {
@@ -1089,4 +1087,15 @@ jQuery(function($){
 				$(".main h2").first().before('<a href="https://bit.ly/3hRzqVI"><img class="special_contents_img wp-image-5404 aligncenter" src="https://i1.wp.com/jobshot.jp/wp-content/uploads/2020/09/3445c5fbba6bb3ca4ce085d784f4ccca.png?fit=800%2C200&ssl=1"></a>');
 			}
 		}
+});
+
+// スカウト送信画面アコーディオン
+$(function(){
+	$(".scout__form__to__example").on("click", function() {
+		$(this).next().slideToggle();
+		$(this).toggleClass("active");
+	});
+	$(".scout__form__from .scout__form__fromTo").on("click", function() {
+		$(this).next().slideToggle();
+	});
 });
