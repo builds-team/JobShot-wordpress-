@@ -70,16 +70,16 @@ add_action('transition_post_status', function ($new_status, $old_status, $post) 
  */
 add_action('wpcf7_mail_sent', function ($contact_form) {
     $submission = WPCF7_Submission::get_instance();
-
     if ($submission) {
         $data = $submission->get_posted_data();
         $post_id = $data["job-id"];
         $post = get_post($post_id);
         $post_type = get_post_type($post_id);
         $user_name = $data["your-name"];
-        $user_id = $data["your-id"];
-        $user = get_user_by( 'id', $user_id );
-        $university = get_univ_name($user).'<br>'.get_faculty_name($user);
+        $user_login_name = $data["your-id"];
+        $user = get_user_by( 'login', $user_login_name );
+        $user_id = $user->data->ID;
+        $university = get_univ_name($user).'　'.get_faculty_name($user);
         $gender = get_user_meta($user_id,'gender',false)[0][0];
         $school_year = get_user_meta($user_id,'school_year',false)[0];
         $graduate_year = get_user_meta($user_id,'graduate_year',false)[0];
@@ -88,7 +88,7 @@ add_action('wpcf7_mail_sent', function ($contact_form) {
         if ('internship' === $post_type) {
             $string = sprintf($user_name . 'さんよりインターンの応募がありました: <%s|%s>', get_permalink($post), get_the_title($post));
             $string.= "\n".'大学：'.$university;
-            $string.= "\n".'性別'.$gender;
+            $string.= "\n".'性別：'.$gender;
             $string.= "\n".'学年：'.$school_year;
             $string.= "\n".'卒業年：'.$graduate_year;
             $string.= "\n".'電話番号：'.$mobile_number;
@@ -115,14 +115,52 @@ add_action('jobshot_bot_daily_report_cron', function () {
     $users = get_users($args);
     $new_user_num = count($users);
     // インターン応募数
-    $formname = 'インターン応募';
+    $formname = 'インターン応募フォーム';
+
+    //スカウト送信数
+    $formname_scout = '企業スカウトメール送信フォーム';
+
+  
+    //東大22卒のユーザー数
+    $meta_query_args = array(
+        'relation' => 'AND', // オプション、デフォルト値は "AND"
+    );
+    $graduate_year_meta_query = array('relation' => 'OR');
+    array_push($graduate_year_meta_query, array(
+        'key'       => 'graduate_year',
+        'value'     => 2022,
+        'compare'   => '='
+    ));
+  array_push($meta_query_args, $graduate_year_meta_query);
+    $univ_meta_query = array('relation' => 'OR');
+    $universities = [339,'東京大学'];
+    foreach($universities as $university){
+        array_push($univ_meta_query, array(
+            'key'       => 'university',
+            'value'     => $university,
+            'compare'   => '='
+        ));
+    }
+    array_push($meta_query_args, $univ_meta_query);
+    $args = array(
+        'blog_id'      => $GLOBALS['blog_id'],
+        'role'         => 'student',
+        'meta_query'   => $meta_query_args,
+        'fields'       => 'ID',
+    );
+    $todai_ids = new WP_User_Query( $args );
+    $todai_count = count($todai_ids->get_results());
+
     $month = date("n");
     $first_date = date("Y-m-01");
-    $intern_apply_num = do_shortcode(' [cfdb-count form="/' . $formname . '.*/" filter="submit_time>' . $first_date . '"] ');
+    $intern_apply_num = do_shortcode(' [cfdb-count form="/' . $formname . '.*/" filter="submit_time>=' . $first_date . '"] ');
+    $scout_num = do_shortcode(' [cfdb-count form="/' . $formname_scout . '.*/" filter="submit_time>=' . $first_date . '"] ');
     $string = $month . '月の累計レポートを報告します';
     $string .= "\n\n";
     $string .= sprintf(' 新規登録者数：%d人', $new_user_num);
-    $string .= sprintf("\n ".'インターン応募数：%d', $intern_apply_num);
+    $string .= sprintf("\n ".'22卒東大生会員登録者数：%d人', $todai_count);
+    $string .= sprintf("\n ".'インターン応募数：%d件', $intern_apply_num);
+    $string .= sprintf("\n ".'スカウトメール送信数：%d件',$scout_num);
     $attachment = array(
         "text"  =>  $string
     );
