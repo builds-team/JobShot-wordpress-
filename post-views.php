@@ -192,18 +192,18 @@ function reset_week_ranking() {
         update_post_meta($post_id, $custom_key1, get_post_meta($post_id, 'week_views_count', true));
         update_post_meta($post_id, $custom_key, '0');
 
-        $lastweek = date('Y/m/d', strtotime('-7 day'));
-        $today = date('Y/m/d',strtotime('today')); 
-        // 新規ユーザーの取得
-        $string =  '今週のレポートを報告します';
-        $string .= "\n\n";
-        $string .= sprintf("\n\n " . $lastweek . 'から' . $today . 'の9:00までのインターン詳細閲覧数：%d', $weekly_internship_view);
-        $string .= sprintf("\n\n " . $lastweek . 'から' . $today . 'の9:00までの就活記事閲覧数：%d', $weekly_column_view);
-        $attachment = array(
-            "text"  =>  $string
-        );
-        builds_slack('', $attachment, '#2-1-jobshot事業部bot');
     }
+    $lastweek = date('Y/m/d', strtotime('-7 day'));
+    $today = date('Y/m/d',strtotime('today')); 
+    // 新規ユーザーの取得
+    $string =  '今週のレポートを報告します';
+    $string .= "\n\n";
+    $string .= sprintf("\n\n " . $lastweek . 'から' . $today . 'の9:00までのインターン詳細閲覧数：%d', $weekly_internship_view);
+    $string .= sprintf("\n\n " . $lastweek . 'から' . $today . 'の9:00までの就活記事閲覧数：%d', $weekly_column_view);
+    $attachment = array(
+        "text"  =>  $string
+    );
+    builds_slack('', $attachment, '#2-1-jobshot事業部bot');
 }
 add_action ( 'reset_week_ranking_cron', 'reset_week_ranking' );
 
