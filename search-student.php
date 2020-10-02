@@ -3198,7 +3198,10 @@ function mail_many(){
             $submit .= '
             $("#scout_test'.$i.'").submit();
             ';
-            $login_user_names .= $user_login_name.'　';
+            $login_user_names .= $user_login_name.'';
+            if($i != count($_POST['user_ids']-1)){
+                $login_user_names .= ', ';
+            }
             $name_array[] = $user_login_name;
             if($i>0){
                 $text .= '$("#scout_test'.$i.' .wpcf7-textarea").val(text);';

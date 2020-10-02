@@ -37,6 +37,13 @@
             wp_safe_redirect($home_url.'/profile_update');
             exit();
         }
+        $motourl = $_SERVER['HTTP_REFERER'];
+        $url = $_SERVER["REQUEST_URI"];
+        if((strpos($motourl,'?page_id=15359') !== false)||(strpos($url,'?page_id=15359') !== false)){
+            $home_url = esc_url( home_url( ));
+            wp_safe_redirect($home_url.'/?page_id=15359');
+            exit();
+        }
 
     }
     add_action('wp_login', 'redirect_login_front_page');
