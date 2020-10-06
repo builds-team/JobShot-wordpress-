@@ -15049,3 +15049,234 @@ width:50%;
 display: block;
 margin: 0 auto;
 }
+
+/* 長期インターンカード新デザイン */
+.new-card {
+  padding: 0;
+}
+.card__wrap {
+  display: flex;
+}
+.card__img {
+  position: relative;
+  z-index: auto;
+  width: 40%;
+}
+.card__img__wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* width: 390px; */
+  height: 100%;
+}
+.card__img__wrap img {
+  position: absolute;
+  height: 100%;
+  max-width: none;
+  width: 100%;
+  object-fit: cover;
+}
+.card__text {
+  padding: 20px 15px 20px 15px;
+  position: relative;
+  width: 60%;
+}
+.card__text:before {
+  transform:
+      rotate(45deg)
+      skew(
+        calc((90deg - 50deg) / 2),
+        calc((90deg - 50deg) / 2)
+      );
+  content: '';
+  position: absolute;
+  z-index: 5;
+  left: -100px;
+  top: -15px;
+  width: 300px;
+  height: 300px;
+  text-align: center;
+  background-color: #fff;
+  box-shadow: inset 0 0 15px 15px white;
+  /* opacity: .98; */
+  display: none;
+}
+.card__text__wrap {
+  position: relative;
+  z-index: 10;
+  margin-bottom: 15px;
+}
+.card__text__wrap .card__text__title {
+  display: block;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  height: 45px;
+  overflow: hidden;
+  color: #152d4a;
+  font-weight: bold;
+  font-size: 17px;
+}
+.card__text__explain {
+  height: 39px;
+  margin: 0;
+  padding: 15px 0;
+  border-bottom: 1px solid #e4e7ec;
+  color: #222;
+  display: block;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+.card__text__detail {
+  display: flex;
+  width: 100%;
+}
+.card__text .card__text__info {
+  float: left;
+  width: calc(50% - 10px);
+  margin: 15px 10px 15px 0;
+  padding: 0;
+  border-top: none;
+  text-align: center;
+}
+.card__text__info li {
+  margin-bottom: 3px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.card__text__info__ele {
+  color: #888;
+  font-size: 12px;
+}
+.card__text__info__name {
+  font-weight: bold;
+  font-size: 14px;
+  color: #152d4a;
+}
+.card__text__info__ele:before, .card__text__attr__type:before,.card__text__attr__category:before {
+  width: 25px;
+  height: 15px;
+  display: inline-block;
+  margin-right: 3px;
+  vertical-align: middle;
+  content: '';
+  padding-right: 22px;
+  overflow: hidden;
+}
+.card__text__info__name:before {
+  height: 20px;
+}
+.card__text__info__salary {
+
+}
+.card__text__info__time {
+
+}
+.card__text .card__text__attr {
+  display: block;
+  float: right;
+  width: calc(50% - 1px);
+  margin: 15px 0;
+  padding: 0;
+  padding-bottom: 15px;
+  border-left: 1px solid #e4e7ec;
+}
+.card__text__attr li {
+  list-style: none;
+  list-style-type: none;
+}
+.card__text__attr__ele {
+  position: relative;
+  padding-left: 35px;
+}
+.card__text__attr__ele span {
+  display: block;
+  font-size: 13px;
+  font-weight: bold;
+  color: #152d4a;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.card__text__attr__ele:before {
+  position: absolute;
+  left: 0;
+}
+/* .card__item {
+  display: flex;
+  align-items: center;
+  min-height: 50px;
+  padding: 10px 20px;
+  border-top: 1px solid #e4e7ec;
+  height: 75px;
+  position: relative;
+} */
+.card__btn {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  /* position: absolute;
+  bottom: 0;
+  right: 0; */
+  margin: 20px -15px -20px -15px;
+  width: calc(100% + 30px);
+  border-top: 1px solid #e4e7ec;
+}
+.card__btn__info {
+  display: block;
+  margin: 0;
+  padding: 11px;
+  width: calc(50% - 22px);
+  height: 20px;
+  background-color: #03c4b0;
+  color: #fff;
+  z-index: 10;
+  text-align: center;
+}
+.card__btn__favo__wrap {
+  width: 50%;
+  height: 42px;
+  margin: 0;
+  border: none;
+  background-color: #fff;
+}
+.card__btn__favo {
+  display: block;
+  margin: 0;
+  width: calc(100% - 22px);
+  height: 20px;
+  padding: 11px;
+  color: #666;
+}
+.card__btn__favo:before {
+  display: inline-block;
+  position: relative;
+  content: '\f005';
+  margin-right: 16px;
+  font-family: 'Font Awesome 5 Free';
+  font-size: 16px;
+  color: #666;
+  font-weight: 400;
+  transition-property: all;
+  transition: transform 0.5s linear;
+}
+@media screen and (max-width: 1000px) {
+  .card__wrap {
+    flex-direction: column;
+  }
+  .card__img {
+    height: 200px;
+    width: 100%;
+  }
+  .card__img__wrap  {
+    width: 100%;
+    height: 200px;
+  }
+  .card__text {
+    width: calc(100% - 30px);
+  }
+  .card__text:before {
+    display: none;
+  }
+}
