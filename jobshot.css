@@ -15060,7 +15060,7 @@ margin: 0 auto;
 .card__img {
   position: relative;
   z-index: auto;
-  width: 40%;
+  width: 35%;
 }
 .card__img__wrap {
   display: flex;
@@ -15079,7 +15079,7 @@ margin: 0 auto;
 .card__text {
   padding: 20px 15px 20px 15px;
   position: relative;
-  width: 60%;
+  width: 65%;
 }
 .card__text:before {
   transform:
@@ -15144,6 +15144,7 @@ margin: 0 auto;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  text-align: left;
 }
 .card__text__info__ele {
   color: #888;
