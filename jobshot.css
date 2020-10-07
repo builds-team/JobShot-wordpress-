@@ -15053,6 +15053,7 @@ margin: 0 auto;
 /* 長期インターンカード新デザイン */
 .new-card {
   padding: 0;
+  overflow: visible;
 }
 .card__wrap {
   display: flex;
@@ -15075,6 +15076,45 @@ margin: 0 auto;
   max-width: none;
   width: 100%;
   object-fit: cover;
+  top: 0;
+}
+.new-card {
+  position: relative;
+}
+.card__company {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  z-index: 20;
+  margin-left: -20px;
+}
+.card__name {
+  /* height: 50px; */
+  /* width: 80%; */
+  line-height: 50px;
+  font-size: 16px;
+  color: #000;
+  text-align: left;
+  background-color: #fff;
+  padding: 0 10px 0 20px;
+  display: inline-block;
+  position: relative;
+  border: 1px solid rgb(149, 158, 155, .1);
+}
+.card__name:before {
+  position: absolute;
+  content: '';
+  top: 100%;
+  left: 0;
+  border: none;
+  border-bottom: solid 15px transparent;
+  border-right: solid 20px rgb(149, 158, 155);/*折り返し部分*/
+}
+.card__name a {
+  color: #152d4a;
+}
+.card__name a:hover {
+  opacity: .7;
 }
 .card__text {
   padding: 20px 15px 20px 15px;
@@ -15115,12 +15155,18 @@ margin: 0 auto;
   color: #152d4a;
   font-weight: bold;
   font-size: 17px;
+  margin-bottom: 0;
+}
+.card__text__wrap .card__text__title a {
+  color: #152d4a;
+}
+.card__text__wrap .card__text__title a:hover {
+  opacity: .7;
 }
 .card__text__explain {
   height: 39px;
   margin: 0;
   padding: 15px 0;
-  border-bottom: 1px solid #e4e7ec;
   color: #222;
   display: block;
   -webkit-box-orient: vertical;
@@ -15130,6 +15176,7 @@ margin: 0 auto;
 .card__text__detail {
   display: flex;
   width: 100%;
+  border-top: 1px solid #e4e7ec;
 }
 .card__text .card__text__info {
   float: left;
@@ -15157,22 +15204,31 @@ margin: 0 auto;
 }
 .card__text__info__ele:before, .card__text__attr__type:before,.card__text__attr__category:before {
   width: 25px;
-  height: 15px;
+  height: 16px;
+  line-height: 16px;
   display: inline-block;
   margin-right: 3px;
   vertical-align: middle;
+  text-align: center;
+  font-size: 16px;
   content: '';
-  padding-right: 22px;
+  padding-left: 10px;
   overflow: hidden;
+  font-family: "Material Icons";
 }
 .card__text__info__name:before {
   height: 20px;
+  line-height: 20px;
+  content: '\e88a';
 }
-.card__text__info__salary {
-
+.card__text__info__salary::before {
+  content: '\e1b7';
 }
-.card__text__info__time {
-
+.card__text__info__place::before {
+  content: '\e55f';
+}
+.card__text__info__time::before {
+  content: '\e192';
 }
 .card__text .card__text__attr {
   display: block;
@@ -15203,6 +15259,12 @@ margin: 0 auto;
 .card__text__attr__ele:before {
   position: absolute;
   left: 0;
+}
+.card__text__attr__type:before {
+  content: '\e8b6';
+}
+.card__text__attr__category:before {
+  content: '\e39e';
 }
 /* .card__item {
   display: flex;
@@ -15235,6 +15297,10 @@ margin: 0 auto;
   z-index: 10;
   text-align: center;
 }
+.card__btn__info:hover {
+  opacity: .7;
+  color: #fff;
+}
 .card__btn__favo__wrap {
   width: 50%;
   height: 42px;
@@ -15262,7 +15328,36 @@ margin: 0 auto;
   transition-property: all;
   transition: transform 0.5s linear;
 }
+.card__btn__favo__wrap:hover {
+  opacity: .7;
+}
+.card__btn__favo:hover {
+  color: #03c4b0;
+}
+.card__btn__favo:hover:before {
+  color: #03c4b0;
+  transition: all 0.3s ease-in-out;
+}
+@media screen and (max-width: 1250px) {
+  .card__text__info li {
+    width: 250px;
+  }
+}
+@media screen and (max-width: 1100px) {
+  .card__text__info li {
+    width: 250px;
+  }
+}
 @media screen and (max-width: 1000px) {
+  .cards__container__space-between  {
+    justify-content: space-between;
+  }
+  .card.new-card {
+    width: 48%;
+    height: 539px;
+    margin-bottom: 40px;
+    margin-top: 0;
+  }
   .card__wrap {
     flex-direction: column;
   }
@@ -15274,10 +15369,77 @@ margin: 0 auto;
     width: 100%;
     height: 200px;
   }
+  .card__company {
+    bottom: 20px;
+    top: 150;
+    height: 40px;
+    margin-left: -15px;
+  }
+  .card__name {
+    line-height: 40px;
+    font-size: 16px;
+  }
+  .card__name::before {
+    z-index: -1;
+    border-bottom: solid 12.5px transparent;
+    border-right: solid 15px rgb(149, 158, 155);
+  }
   .card__text {
-    width: calc(100% - 30px);
+    width: calc(100% - 20px);
+    padding: 20px 10px;
   }
   .card__text:before {
     display: none;
+  }
+  .card__text .card__text__wrap .card__text__title {
+    height: 60px;
+    font-size: 16px;
+  }
+  .card__text .card__text__wrap .card__text__explain {
+    height: 50px;
+    padding: 10px 0;
+    margin-bottom: 10px;
+    font-size: 13px;
+  }
+  .card__text__detail {
+    height: 120;
+  }
+  .card__text .card__text__info {
+    margin: 10px 10px 5px 0;
+  }
+  .card__text__info li {
+    width: initial;
+  }
+  .card__text__info__name {
+    font-size: 13px;
+  }
+  .card__text .card__text__attr {
+    margin: 10px 0;
+  }
+  .card__text__attr__ele {
+    padding-left: 25px;
+    margin-left: 5px;
+  }
+  .card__text__info__ele:before, .card__text__attr__type:before, .card__text__attr__category:before {
+    padding-left: 0;
+  }
+  .card__btn {
+    margin: 0 -15px -20px -10px;
+    width: calc(100% + 20px);
+  }
+}
+@media screen and (max-width: 680px) {
+  .cards-container .top__feature__search__container {
+    margin: 0 2% 50px 2%;
+  }
+  .cards__container__space-between  {
+    justify-content: space-around;
+  }
+  .card.new-card {
+    width: 100%;
+    height: unset;
+  }
+  .card__text .card__text__wrap .card__text__explain {
+    height: unset;
   }
 }
