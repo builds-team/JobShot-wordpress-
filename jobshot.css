@@ -15264,7 +15264,7 @@ margin: 0 auto;
   content: '\e8b6';
 }
 .card__text__attr__category:before {
-  content: '\e39e';
+  content: '\e335';
 }
 /* .card__item {
   display: flex;
@@ -15326,16 +15326,17 @@ margin: 0 auto;
   color: #666;
   font-weight: 400;
   transition-property: all;
-  transition: transform 0.5s linear;
+  /* transition: transform 0.5s linear; */
+  transition: all 0.3s ease-in-out;
 }
 .card__btn__favo__wrap:hover {
   opacity: .7;
 }
 .card__btn__favo:hover {
-  color: #03c4b0;
+  color: #ffbe00;
 }
 .card__btn__favo:hover:before {
-  color: #03c4b0;
+  color: #ffbe00;
   transition: all 0.3s ease-in-out;
 }
 @media screen and (max-width: 1250px) {
@@ -15428,6 +15429,14 @@ margin: 0 auto;
     width: calc(100% + 20px);
   }
 }
+@media screen and (min-width: 681px) and (max-width: 685px) {
+  .card.new-card {
+    height: 549px;
+  }
+  .card__text .card__text__wrap .card__text__title {
+    height: 70px;
+  }
+}
 @media screen and (max-width: 680px) {
   .cards-container .top__feature__search__container {
     margin: 0 2% 50px 2%;
@@ -15438,6 +15447,9 @@ margin: 0 auto;
   .card.new-card {
     width: 100%;
     height: unset;
+  }
+  .card__text .card__text__wrap .card__text__title {
+    height: 60px;
   }
   .card__text .card__text__wrap .card__text__explain {
     height: unset;
