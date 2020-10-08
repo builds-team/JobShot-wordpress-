@@ -15067,7 +15067,6 @@ margin: 0 auto;
   display: flex;
   justify-content: center;
   align-items: center;
-  /* width: 390px; */
   height: 100%;
 }
 .card__img__wrap img {
@@ -15089,8 +15088,6 @@ margin: 0 auto;
   margin-left: -20px;
 }
 .card__name {
-  /* height: 50px; */
-  /* width: 80%; */
   line-height: 50px;
   font-size: 16px;
   color: #000;
@@ -15108,7 +15105,7 @@ margin: 0 auto;
   left: 0;
   border: none;
   border-bottom: solid 15px transparent;
-  border-right: solid 20px rgb(149, 158, 155);/*折り返し部分*/
+  border-right: solid 20px rgb(149, 158, 155);
 }
 .card__name a {
   color: #152d4a;
@@ -15120,26 +15117,6 @@ margin: 0 auto;
   padding: 20px 15px 20px 15px;
   position: relative;
   width: 65%;
-}
-.card__text:before {
-  transform:
-      rotate(45deg)
-      skew(
-        calc((90deg - 50deg) / 2),
-        calc((90deg - 50deg) / 2)
-      );
-  content: '';
-  position: absolute;
-  z-index: 5;
-  left: -100px;
-  top: -15px;
-  width: 300px;
-  height: 300px;
-  text-align: center;
-  background-color: #fff;
-  box-shadow: inset 0 0 15px 15px white;
-  /* opacity: .98; */
-  display: none;
 }
 .card__text__wrap {
   position: relative;
@@ -15266,22 +15243,10 @@ margin: 0 auto;
 .card__text__attr__category:before {
   content: '\e335';
 }
-/* .card__item {
-  display: flex;
-  align-items: center;
-  min-height: 50px;
-  padding: 10px 20px;
-  border-top: 1px solid #e4e7ec;
-  height: 75px;
-  position: relative;
-} */
 .card__btn {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  /* position: absolute;
-  bottom: 0;
-  right: 0; */
   margin: 20px -15px -20px -15px;
   width: calc(100% + 30px);
   border-top: 1px solid #e4e7ec;
@@ -15326,7 +15291,6 @@ margin: 0 auto;
   color: #666;
   font-weight: 400;
   transition-property: all;
-  /* transition: transform 0.5s linear; */
   transition: all 0.3s ease-in-out;
 }
 .card__btn__favo__wrap:hover {
