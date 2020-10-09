@@ -1,5 +1,28 @@
 <?php
+        <div class="es-fav_status">
+            <div class="es-fav_status_item">
+                <div class="es-fav_status_icon">
+                    <button class="btn favorite-button_sub" value="">
+                        <i class="far fa-heart"></i>
+                    </button>
+                </div>
+                <div class="es-fav_status_label" id="">5
+                </div>
+            </div>
+        </div>
+        <div class="column-like">
+            <button class="btn favorite-button es-like-active" id=""value="">
+                <i class="fa fa-heart"></i>
+            </button>
+        </div>
 
+        .column-like{
+            height: 32px;
+            left: 120px;
+            color: #e74c3c2e;
+            float: right;
+            margin-right: 15px;
+        }
 function template_column2_func($content){
     global $post;
     $post_id = $post->ID;
@@ -91,6 +114,8 @@ function template_column2_func($content){
         $html .= $content_sub[0];
         $html .= '<p class="text-align-center"><i class="fas fa-lock"></i>この記事は会員限定です。JobShotに登録すると続きをお読みいただけます。</p>';
         $html .= apply_redirect();
+        $html = str_replace('class="um-left um-half"','class="um-left um-half" onclick="gtag(\'event\', \'click\', {\'event_category\': \'link\', \'event_label\': \'MembersOnly_login\'});"',$html);
+        $html = str_replace('class="um-right um-half"','class="um-right um-half" onclick="gtag(\'event\', \'click\', {\'event_category\': \'link\', \'event_label\': \'MembersOnly_new\'});"',$html);
     }else{
         $array = (explode('<h2>', $content, 2));
         $column_image_url = wp_get_attachment_image_src(15290, array(1000, 200))[0];

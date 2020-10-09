@@ -15050,6 +15050,7 @@ display: block;
 margin: 0 auto;
 }
 
+
 /* 長期インターンカード新デザイン */
 .new-card {
   padding: 0;
@@ -15419,3 +15420,28 @@ margin: 0 auto;
     height: unset;
   }
 }
+
+.intern-loader {
+  font-size: 1em;
+  margin-left: 5px;
+  margin-top: 3px;
+  visibility: hidden;
+}
+
+div#blind {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  background-color: rgba(0, 0, 0, 0.1);
+  text-align: center;
+  }
+  span.loading22 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -10px;
+  margin-left: -100px;
+  }

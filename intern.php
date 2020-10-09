@@ -403,7 +403,7 @@ function template_internship2_func($content){
       </div>';
     }
     
-    else if( !empty($intern_day_pre)){
+    else if( !empty($intern_day_pre) and strpos($intern_day_pre,'</br>') === false){
     $intern_day_pre = nl2br($intern_day_pre);
     $html .= '
       <div class="intern_list">
@@ -466,7 +466,7 @@ function template_internship2_func($content){
           </td>
         </tr>';
       }
-      else if(!empty($intern_day_pre)){
+      else if(!empty($intern_day_pre) and strpos($intern_day_pre,'</br>') === false){
 		$intern_day_pre = nl2br($intern_day_pre);
 		$html .= '
 		<tr>
@@ -674,16 +674,16 @@ function edit_internship_info(){
     <div class="submitbox">
       <div id="minor-publishing">
         <div class="minor_publishing_actions">
-          <div class="save_action">
+          <div class="save_action" onclick="Load()">
             <input type="submit" name="save" id="save-post" value="下書きとして保存" class="button save_post_button">
           </div>
-          <div class="preview_action">
+          <div class="preview_action" onclick="Load()">
             <input type="submit" name="preview" id="save-post" value="プレビュー" class="button save_post_button">
           </div>
         </div>
       </div>
       <div class="major_publishing_actions">
-        <div class="publishing_action">
+        <div class="publishing_action" onclick="Load()">
           <input type="submit" name="publish" id="publish" class="button button-primary button-large" value="公開">
         </div>
       </div>
@@ -770,7 +770,7 @@ function edit_internship_info(){
     $home_url =esc_url( home_url( ));
     $edit_html =  $style_html.'
     <h2 class="maintitle">インターン情報</h2>
-    <form action="'.$home_url.'/edit_internship?post_id='.$post_id.'" method="POST" enctype="multipart/form-data">
+    <form action="'.$home_url.'/edit_internship?post_id='.$post_id.'" method="POST" enctype="multipart/form-data" class="intern-form">
       <div class="tab_content_description">
         <p class="c-txtsp">
             <table class="demo01 new_intern_table">
@@ -1122,16 +1122,16 @@ function new_internship_form(){
   <div class="submitbox">
     <div id="minor-publishing">
       <div class="minor_publishing_actions">
-        <div class="save_action">
+        <div class="save_action" onclick="Load()">
           <input type="submit" name="save" id="save-post" value="下書きとして保存" class="button save_post_button">
         </div>
-	      <div class="preview_action">
+	      <div class="preview_action" onclick="Load()">
           <input type="submit" name="preview" id="save-post" value="プレビュー" class="button save_post_button">
         </div>
       </div>
     </div>
     <div class="major_publishing_actions">
-      <div class="publishing_action">
+      <div class="publishing_action" onclick="Load()">
         <input type="submit" name="publish" id="publish" class="button button-primary button-large" value="公開">
       </div>
     </div>
@@ -1139,7 +1139,7 @@ function new_internship_form(){
   $home_url =esc_url( home_url( ));
   $edit_html =  $style_html.'
   <h2 class="maintitle">インターン情報</h2>
-  <form action="'.$home_url.'/new_post_internship" method="POST" enctype="multipart/form-data">
+  <form action="'.$home_url.'/new_post_internship" method="POST" enctype="multipart/form-data" class="intern-form">
     <div class="tab_content_description">
       <p class="c-txtsp">
           <table class="demo01 new_intern_table">
@@ -1173,6 +1173,7 @@ function new_internship_form(){
                             <div>
                               <label>住所</label>
                               <input type="text" class="input-width" min="0" name="address">
+                              <input type="hidden" name="accesses">
                             </div>
                           </div>
                       </td>
@@ -1343,8 +1344,15 @@ function new_company_post_internship(){
       $intern_contents = $_POST["intern_contents"];
       $skills = $_POST["skills"];
       $address = $_POST["address"];
-      $accesses=get_time_to_station(Array($address));
+      $time = microtime(true);
+      $accesses = "";
+      if(!empty($_POST["accesses"])){
+        $accesses = $_POST["accesses"];
+      }else{
+        $accesses=get_time_to_station(Array($address));
+      }
       $access_text='';
+ 
       foreach($accesses as $access){
           foreach($access['line'] as $ln){
             $access_text.=$ln.'/';
@@ -1355,13 +1363,19 @@ function new_company_post_internship(){
       preg_match("/(東京都|北海道|(?:京都|大阪)府|.{6,9}県)((?:四日市|廿日市|野々市|臼杵|かすみがうら|つくばみらい|いちき串木野)市|(?:杵島郡大町|余市郡余市|高市郡高取)町|.{3,12}市.{3,12}区|.{3,9}区|.{3,15}市(?=.*市)|.{3,15}市|.{6,27}町(?=.*町)|.{6,27}町|.{9,24}村(?=.*村)|.{9,24}村)(.*)/",$_POST["address"],$result);
       $prefecture = $result[1];
       $area = $result[2];
+      $time_0 = microtime(true) - $time;
+      $time = microtime(true);
       $skill_requirements = $_POST["skill_requirements"];
       $prospective_employer = $_POST["prospective_employer"];
-      $intern_student_voice = $_POST["intern_student_voice"];
+      if(isset($_POST["intern_student_voice"])){
+        $intern_student_voice = $_POST["intern_student_voice"];
+      }else{
+        $intern_student_voice = '';
+      }
       $features = $_POST["feature"];
       $occupation = $_POST["occupation"];
       $salary = $_POST["salary"];
-      $intern_day = $_POST["intern_day"];
+      //$intern_day = $_POST["intern_day"];
       $worktime = $_POST["worktime"];
       $day_requirements = $_POST["day_requirements"];
       $require_person = $_POST["require_person"];
@@ -1390,8 +1404,12 @@ function new_company_post_internship(){
           'post_type' => 'internship',
           'post_status' => 'draft'
       );
+      $time_1 = microtime(true) - $time;
+      $time = microtime(true);
       $insert_id = wp_insert_post($post_value); //下書き投稿。
+      $time_2 = microtime(true) - $time;
       if($insert_id) {
+        $time = microtime(true);
           //配列$post_valueに上書き用の値を追加、変更
           $post_value['ID'] = $insert_id; // 下書きした記事のIDを渡す。
           if(!empty($_POST["save"])){
@@ -1417,29 +1435,46 @@ function new_company_post_internship(){
           update_post_meta($insert_id, '勤務地', $address);
           update_post_meta($insert_id, 'アクセス', $access_text);
           update_post_meta($insert_id, '応募資格', $skill_requirements);
+          if($_POST["prospective_employer"]){
           update_post_meta($insert_id, 'インターン卒業生の内定先', $prospective_employer);
+          }
+          if($_POST["intern_student_voice"]){
           update_post_meta($insert_id, '働いているインターン生の声', $intern_student_voice);
+          }
+          if($_POST["feature"]){
           update_post_meta($insert_id, '特徴', $features);
+          }
+          if($_FILES["picture"]){
           add_custom_image($insert_id, 'イメージ画像', $picture);
+          }
+          if($_FILES["picture2"]){
           add_custom_image($insert_id, 'イメージ画像2', $picture2);
+          }
+          if($_FILES["picture3"]){
           add_custom_image($insert_id, 'イメージ画像3', $picture3);
+          }
+          if($_FILES["picture4"]){
           add_custom_image($insert_id, 'イメージ画像4', $picture4);
+          }
           update_post_meta($insert_id, '選考フロー', $selection_flows);
           update_post_meta($insert_id, '1日の流れ', $intern_days);
           update_post_meta($insert_id,'ES',$es);
           wp_set_object_terms( $insert_id, $occupation, 'occupation');
+          update_post_meta($insert_id, "applycnt", 0);
 		  $home_url =esc_url( home_url( ));
           if($prefecture == "東京都"){
               wp_set_object_terms( $insert_id, $area, 'area');
           }else{
               wp_set_object_terms( $insert_id, $prefecture, 'area');
           }
+          $time_3 = microtime(true) - $time;
+          $time = microtime(true);
           $insert_id2 = wp_insert_post($post_value); //上書き（投稿ステータスを公開に）
-
+          $time_4 = microtime(true) - $time;
           if($insert_id2) {
               /* 投稿に成功した時の処理等を記述 */
               if(!empty($_POST["save"])){
-                header('Location: '.$home_url.'/manage_post?posttype=internship');
+                header('Location: '.$home_url.'/manage_post?posttype=internship&time_0='.$time_0.'time_1='.$time_1.'&time_2='.$time_2.'&time_3='.$time_3.'&time_4='.$time_4);
               }
               if(!empty($_POST["preview"])){
                 header('Location: '.get_permalink($insert_id2));
@@ -1602,4 +1637,16 @@ function intern_delete(){
   }
 }
 add_action('template_redirect', 'intern_delete');
+
+function Address_Station(){
+  if(isset($_POST['address'])){
+    $address = $_POST['address'];
+    $accesses=get_time_to_station(Array($address));
+  }
+  echo $accesses;
+  die();
+}
+add_action( 'wp_ajax_address_station', 'Address_Station' );
+add_action( 'wp_ajax_nopriv_address_station', 'Address_Station');
+
 ?>

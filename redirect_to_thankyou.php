@@ -15,6 +15,7 @@ document.addEventListener('wpcf7mailsent', function( event ) {
         var ajaxurl = '<?php echo admin_url( 'admin-ajax.php'); ?>';
         var self_internship_pr = $("[name=your-message]").html();
         var flag = false;
+        var post_id = $("[name=job-id]").val();
         if ($('.pr_save_check_box').prop('checked')) {
             flag = true;
             self_internship_pr = $("[name=your-message]").val();
@@ -35,7 +36,6 @@ document.addEventListener('wpcf7mailsent', function( event ) {
                     // alert('error');
                 }
             });
-        var post_id = $("[name=job-id]").val();
         location = 'https://jobshot.jp/thank-you?job_id='+post_id;
     }else if('897' == event.detail.contactFormId){
         gtag('event', 'submit', {

@@ -4,6 +4,13 @@ function add_thankspage(){
     global $post;
     if(isset($_GET["job_id"])){
         $job_id = $_GET["job_id"];
+        $formname='インターン応募';
+        try{
+        $applycnt=do_shortcode(' [cfdb-value form="/'.$formname.'.*/" filter="job-id='.$job_id.'" function="count"]');
+        update_post_meta($job_id, "applycnt", $applycnt);
+        }catch(Exception $e){
+            
+        }
     }
     $args = array(
         'posts_per_page' => 6,
