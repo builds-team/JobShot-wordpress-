@@ -98,10 +98,13 @@ function side_bar_widget_func()
   $soudan22_url = wp_get_attachment_image_src(13371, array(400, 400))[0];
   $es_url = wp_get_attachment_image_src(13411, array(400, 400))[0];
   $oiwai_url = wp_get_attachment_image_src(6204, array(400, 400))[0];
+  $midas_url = wp_get_attachment_image_src(15496, array(400,400))[0];
 
   $html = '
     <h3 class="widgettitle">特別コンテンツ</h3>
     <p>
+        <a href="' . $home_url . '/?event=トップ外資志望学生向けセミナー～beyond-the-top-tier～"><img class="special_contents_img wp-image-5404 aligncenter" src="' . $midas_url . '"></a>
+        <br>
         <a href="' . $home_url . '/interview"><img class="special_contents_img wp-image-5404 aligncenter" src="' . $soudan_url . '"></a>
         <br>
         <a href="' . $home_url . '/recruit_interview_22"><img class="special_contents_img wp-image-5404 aligncenter only-pc" src="' . $soudan22_url . '"></a>
@@ -128,16 +131,18 @@ function side_bar_widget_func()
   $cat_query = new WP_Query($args);
   while ($cat_query->have_posts()) : $cat_query->the_post();
     $post_id = $post->ID;
-    $event_url = get_permalink($post_id);
-    $event_image = get_field("イメージ画像", $post_id);
-    $event_image_id = $event_image['id'];
-    $event_image_url = wp_get_attachment_image_src($event_image_id,array(400,400))[0];
-    $event_day = get_field("開催日", $post_id);
-    if ($event_day >= date("Y/m/d")) {
-      $html .= '
-            <a href="' . $event_url . '"><img class="special_contents_img wp-image-5404 aligncenter only-pc" src="' . $event_image_url . '"></a>
-            <br>
-            ';
+    if($post_id != 15171){
+      $event_url = get_permalink($post_id);
+      $event_image = get_field("イメージ画像", $post_id);
+      $event_image_id = $event_image['id'];
+      $event_image_url = wp_get_attachment_image_src($event_image_id,array(400,400))[0];
+      $event_day = get_field("開催日", $post_id);
+      if ($event_day >= date("Y/m/d")) {
+        //$html .= '
+              //<a href="' . $event_url . '"><img class="special_contents_img wp-image-5404 aligncenter only-pc" src="' . $event_image_url . '"></a>
+              //<br>
+              //';
+      }
     }
   endwhile;
   $html .= '</p>';
