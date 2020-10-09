@@ -242,7 +242,7 @@ function view_company_contents_func($company_user_id, $posttype){
         </thead>
     <tbody>';
     foreach ($arr as $post_id) {
-    $applylist=do_shortcode(' [cfdb-table form="/'.$formname.'.*/" filter="job-id='.$post_id.'"]');
+    //$applylist=do_shortcode(' [cfdb-table form="/'.$formname.'.*/" filter="job-id='.$post_id.'"]');
     $applycnt=do_shortcode(' [cfdb-value form="/'.$formname.'.*/" filter="job-id='.$post_id.'" function="count"]');
 
     $favorite_count = get_favorites_count($post_id);
@@ -554,6 +554,29 @@ function view_company_scout_mail_func(){
 }
 add_shortcode("view_company_scout_mail","view_company_scout_mail_func");
 
+function set_intern_apply_count(){
+    $paged = get_query_var('paged') ? get_query_var('paged') : 1 ;
+    $args = array(
+        'post_type' => array('internship'),
+        'post_status' => array( 'publish','draft','private'),
+        'posts_per_page' => 20,
+        'paged',$paged,
+    );
+    $the_query = new WP_Query($args);
+    if ($the_query->have_posts()) :
+        while ($the_query->have_posts()) :
+          $the_query->the_post();
+          $now_id = get_the_ID();
+          $formname='インターン応募';
+          $applycnt=do_shortcode(' [cfdb-value form="/'.$formname.'.*/" filter="job-id='.$now_id.'" function="count"]');
+          update_post_meta($now_id, "applycnt", $applycnt);
+          echo $now_id;
+        endwhile;
+      endif;
+    wp_reset_postdata();
+}
+add_shortcode("set_intern_apply_count","set_intern_apply_count");
+
 
 function view_company_contents_func_test(){
     $post_type = $_GET["posttype"];
@@ -653,8 +676,9 @@ function view_company_contents_func_test(){
             </form>
             ';
         }
-        $applylist=do_shortcode(' [cfdb-table form="/'.$formname.'.*/" filter="job-id='.$post_id.'"]');
-        $applycnt=do_shortcode(' [cfdb-value form="/'.$formname.'.*/" filter="job-id='.$post_id.'" function="count"]');
+        //$applylist=do_shortcode(' [cfdb-table form="/'.$formname.'.*/" filter="job-id='.$post_id.'"]');
+        //$applycnt=do_shortcode(' [cfdb-value form="/'.$formname.'.*/" filter="job-id='.$post_id.'" function="count"]');
+        $applycnt = get_post_meta($post_id,'applycnt',true);
         $occupation = get_the_terms($post_id,"occupation")[0]->name;
         $company = get_userdata($post->post_author);
         $company_id = get_company_id($company);

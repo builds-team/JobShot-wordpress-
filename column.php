@@ -91,6 +91,8 @@ function template_column2_func($content){
         $html .= $content_sub[0];
         $html .= '<p class="text-align-center"><i class="fas fa-lock"></i>この記事は会員限定です。JobShotに登録すると続きをお読みいただけます。</p>';
         $html .= apply_redirect();
+        $html = str_replace('class="um-left um-half"','class="um-left um-half" onclick="gtag(\'event\', \'click\', {\'event_category\': \'link\', \'event_label\': \'MembersOnly_login\'});"',$html);
+        $html = str_replace('class="um-right um-half"','class="um-right um-half" onclick="gtag(\'event\', \'click\', {\'event_category\': \'link\', \'event_label\': \'MembersOnly_new\'});"',$html);
     }else{
         $array = (explode('<h2>', $content, 2));
         $column_image_url = wp_get_attachment_image_src(15290, array(1000, 200))[0];

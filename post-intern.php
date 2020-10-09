@@ -217,6 +217,12 @@ function add_custom_image($post_id, $feild_name, $upload){
                     'post_status' => 'inherit',
                     'post_content' => '',
                 );
+                $size = getimagesize( $file['file'] ); // $size[0] = width, $size[1] = height
+                if ( $size[0] > 600 || $size[1] > 400 ){ // if the width or height is larger than the 
+                $image = wp_get_image_editor( $file['file'] );
+                $image->resize(600,400, false ); // resize the image
+                $final_image = $image->save( $file['file'] ); // save the resized image
+                }
                 $attachment_id = wp_insert_attachment($attachment, $file['file'], $post_id);  /*Insert post attachment and return the attachment id*/
                 $attachment_deta = wp_generate_attachment_metadata($attachment_id, $file['file'] );  /*Generate metadata for new attacment*/
                 wp_update_attachment_metadata( $attach_id, $attachment_deta );

@@ -427,7 +427,7 @@ function view_fullwidth_intern_card_func($post_id){
     </div>
     <div class="full-card-buttons">'
       .$button_html.'
-      <a href = "'.esc_url(get_permalink($post_id)).'"><button class="button detail">詳細を見る</button></a>
+      <a href = "'.esc_url(get_permalink($post_id)).'" target="_blank" rel="noopener noreferrer"><button class="button detail">詳細を見る</button></a>
     </div>
   </div>';
   return do_shortcode($card_html);
@@ -783,7 +783,7 @@ function view_fullwidth_column_card_func($post_id){
   $post_title = get_the_title($post_id);
   $description = get_post_meta($post_id, '_aioseop_description', true);
   $post_date = get_the_date( 'Y-m-d', $post_id );
-  $image_url = get_the_post_thumbnail_url( $post_id , 'medium' );
+  $image_url = get_the_post_thumbnail_url( $post_id ,array(250, 160));
   $premium_column = get_post_meta($post_id, 'プレミアム記事', true);
   if (!is_user_logged_in() and !empty($premium_column[0])){
     $lock_html = '<i class="fas fa-lock"></i>';
@@ -816,7 +816,7 @@ add_shortcode('view-fullwidth-column-card','view_fullwidth_column_card_func');
 function view_insert_column_card_func($post_id){
 
   $post_title = get_the_title($post_id);
-  $image_url = get_the_post_thumbnail_url( $post_id , 'medium' );
+  $image_url = get_the_post_thumbnail_url( $post_id ,array(250, 160));
 
   $card_html = '
   <div class="card full-card">

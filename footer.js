@@ -1111,3 +1111,35 @@ jQuery(function($) {
         clipboard.remove();
     });
 });
+
+function Load() {
+	var form = document.querySelector('.intern-form');
+	var invalids = form.querySelectorAll(':invalid');
+	if (0 == invalids.length) {
+	jQuery(document.body).append("<div id=\"blind\"><span class=\"loading22\"><div class=\"fa-3x\"><i class=\"fas fa-spinner fa-spin\"></i></span></div>");
+	}
+}
+
+jQuery(function($){
+	var str = location.href;
+	if ( str.match(/new_post_internship/)) {
+		$('input[name="address"]').change(function(){
+			var address = $('input[name="address"]').val();
+			$.ajax({
+				type: 'POST',
+				url: ajaxurl,
+				data: {
+					"action":"address_station",
+					"address":address,
+				},
+				success: function( response ){
+					$('input[name="accesses"]').val(response);
+				},
+				error: function( response ){
+				console.log("失敗!");
+				}
+			});
+			return false;
+		});
+	}
+});

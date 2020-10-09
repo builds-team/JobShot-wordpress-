@@ -2251,8 +2251,8 @@ function Scout_Students_Link(){
     echo $html;
     die();
 }
-add_action( 'wp_ajax_ajax_scout_students_link', 'Scout_Students_Link' );
-add_action( 'wp_ajax_nopriv_ajax_scout_students_link', 'Scout_Students_Link');
+add_action( 'wp_ajax_scout_students_link', 'Scout_Students_Link' );
+add_action( 'wp_ajax_nopriv_scout_students_link', 'Scout_Students_Link');
 
 
 function Ajax_Search_Student(){
