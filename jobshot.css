@@ -15086,7 +15086,7 @@ margin: 0 auto;
   bottom: 20px;
   left: 0;
   z-index: 20;
-  margin-left: -20px;
+  margin-left: -6px;
 }
 .card__name {
   line-height: 50px;
@@ -15094,7 +15094,7 @@ margin: 0 auto;
   color: #000;
   text-align: left;
   background-color: #fff;
-  padding: 0 10px 0 20px;
+  padding: 0 10px 0 10px;
   display: inline-block;
   position: relative;
   border: 1px solid rgb(149, 158, 155, .1);
@@ -15308,6 +15308,7 @@ margin: 0 auto;
   .card__text__info li {
     width: 250px;
   }
+  /* homeバージョン */
   .home .card__text__info li {
     width: initial;
   }
@@ -15316,8 +15317,13 @@ margin: 0 auto;
   .card__text__info li {
     width: 250px;
   }
+  /* homeバージョン */
   .home .card__text__info li {
     width: initial;
+  }
+  .home .card__name {
+    line-height: 40px;
+    font-size: 14px;
   }
 }
 @media screen and (max-width: 1000px) {
@@ -15345,7 +15351,6 @@ margin: 0 auto;
     bottom: 20px;
     top: 150;
     height: 40px;
-    margin-left: -15px;
   }
   .card__name {
     line-height: 40px;
@@ -15404,12 +15409,6 @@ margin: 0 auto;
   .home .card.new-card {
     width: 100%;
     height: unset;
-  }
-  .home .card__company {
-    margin-left: -6px;
-  }
-  .home .card__name {
-    padding: 0 10px 0 10px;
   }
   .home .card__text .card__text__wrap .card__text__title {
     height: 60px;
