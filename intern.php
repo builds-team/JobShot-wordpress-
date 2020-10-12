@@ -349,9 +349,11 @@ function template_internship2_func($content){
           $features_html
         .'</div>
       </div>
-      <div class="full-card-buttons">
-        <button class="button favorite innactive">'.get_favorites_button($post_id).'</button>
-        <a href="'.$entry_link.'"><button class="button detail">応募する</button></a>
+      <div class="card__btn">
+        <button class="card__btn__favo__wrap" value="'.$post_id.'">
+          <a class="card__btn__favo" id="fav-'.$post_id.'">お気に入り</a>
+        </button>
+        <a href="'.$entry_link.'" class="btn card__btn__info">応募する</a>
       </div>
     </div>
 

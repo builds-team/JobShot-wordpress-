@@ -3,6 +3,10 @@
 function apply_title(){
     if(isset($_GET['post_id'])){
         $post_id = $_GET['post_id'];
+        if ( get_post_status ( $post_id ) != 'publish' ) {
+            wp_redirect('https://jobshot.jp');
+            exit;
+        }
         $title = get_field("募集タイトル",$post_id);
         if(get_post_type($post_id)=='job'){
             $post_company = $_GET["jobname"];
@@ -19,6 +23,7 @@ function apply_title(){
             </div>
         </div>
     </section>';
+
     return $html;
 }
 add_shortcode('apply_title','apply_title');

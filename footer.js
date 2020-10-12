@@ -1143,3 +1143,36 @@ jQuery(function($){
 		});
 	}
 });
+
+  //favボタンのajax更新
+  jQuery(function($){
+	$( '.card__btn__favo__wrap' ).click( function (){
+		// フォームデータから、サーバへ送信するデータを作成
+		var fd = new FormData();
+		//post_id取得
+		var post_id = $(this).val();
+		//カウントを示すhtmlのid
+		if($(this).children('a').hasClass("active")){
+			$(this).children('a').removeClass("active");
+		}else{
+			$(this).children('a').addClass("active");
+		}
+		fd.append("post_id",post_id);
+		// サーバー側で何の処理をするかを指定。
+		fd.append('action' ,'update_favorite_count' );
+		// ajaxの通信（fav数を更新）
+		$.ajax({
+			type: 'POST',
+			url: ajaxurl,
+			data: fd,
+			processData: false,
+			contentType: false,
+			success: function( response ){
+			},
+			error: function( response ){
+				console.log('miss');
+			}
+		});
+		return false;
+	});
+});

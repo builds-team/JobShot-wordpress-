@@ -1,5 +1,33 @@
 <?php
 
+function set_intern_fav_count(){
+    $args = array(
+        'post_type' => array('internship'),
+        'post_status' => array( 'publish','draft','private'),
+        'posts_per_page' => -1,
+    );
+    $the_query = new WP_Query($args);
+    $count = 0;
+    if ($the_query->have_posts()) :
+        while ($the_query->have_posts()) :
+          $the_query->the_post();
+          $post_id = get_the_ID();
+          $favorite_count = get_favorites_count($post_id);
+          $favorite_users = get_users_who_favorited_post($post_id);
+          $users_array = array();
+          foreach($favorite_users as $favorite_user){
+            $user_id = $favorite_user->data->ID;
+            array_push($users_array,$user_id);
+          }
+          update_post_meta($post_id, "favorite", $users_array);
+          $count += 1;
+        endwhile;
+      endif;
+    echo $count;
+    wp_reset_postdata();
+}
+add_shortcode("set_intern_fav_count","set_intern_fav_count");
+
 function get_company_content_ids_func($company_user_login, $post_type){
   //これが新しい 2018/10/20
   $user= get_user_by( 'login', $company_user_login );
@@ -698,6 +726,8 @@ function view_company_contents_func_test(){
             $image_url = $company_image_url;
         }
         $favorite_count = get_favorites_count($post_id);
+        $fav_array = get_post_meta($post_id,'favorite',true);
+        $favorite_count = count($fav_array);
         if($posts_published <= 3){
             switch(get_ja_post_status($post_id)){
                 case '下書き':

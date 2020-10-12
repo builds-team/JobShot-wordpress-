@@ -14,9 +14,40 @@ function show_favorites_func($atts){
             ), $atts
         )
     );
-
+    $user_id = get_current_user_id();
     $fav_html='';
     $favorites = get_user_favorites();
+    if($item_type == 'internship'){
+        $favorites = array();
+        $meta_query_args = array(
+            'relation' => 'AND', // オプション、デフォルト値は "AND"
+        );
+        $fav_meta_query = array('relation' => 'OR');
+        array_push($fav_meta_query, array(
+            'key'       => 'favorite',
+            'value'     => $user_id,
+            'compare'   => 'LIKE'
+        ));
+        array_push($meta_query_args, $fav_meta_query);
+        $args = array(
+            'post_type' => array('internship'),
+            'post_status' => array( 'publish'),
+            'posts_per_page' => -1,
+            'meta_query'   => $meta_query_args,
+        );
+        $the_query = new WP_Query($args);
+        if ($the_query->have_posts()) :
+            while ($the_query->have_posts()) :
+              $the_query->the_post();
+              $post_id = get_the_ID();
+              $fav_array = get_post_meta($post_id,'favorite',true);
+              if(in_array($user_id,$fav_array)){
+                $favorites[] = $post_id;
+              }
+
+            endwhile;
+        endif;
+    }
     if (isset($favorites) && !empty($favorites)){
         $fav_html.='<div class="cards-container">';
         $fav_count = 0;
@@ -32,7 +63,7 @@ function show_favorites_func($atts){
         $fav_html.='</div>';
     }else{
         // No Favorites
-        $fav_html= '<p class="text-center">お気に入りがありません。</p>';
+        $fav_html= '<div class="cards-container"><p class="text-center">お気に入りがありません。</p></div>';
     }
     return $fav_html;
 }

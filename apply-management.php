@@ -700,6 +700,7 @@ function view_apply_fullwidth_intern_card_func($post_id){
   $company = get_userdata($post->post_author);
   $company_name = $company->data->display_name;
   $company_bussiness = get_field("事業内容",$post_id);
+  $company_bussiness = strip_tags($company_bussiness);
   $company_id = get_company_id($company);
   $company_url = get_permalink($company_id);
   $company_image = get_field("企業ロゴ",$company_id);
@@ -713,6 +714,7 @@ function view_apply_fullwidth_intern_card_func($post_id){
   }
   if(empty($company_bussiness)){
     $company_bussiness = get_field("事業内容",$company_id);
+    $company_bussiness = strip_tags($company_bussiness);
   }
   if(mb_strlen($company_bussiness) > 100){
     $company_bussiness = mb_substr($company_bussiness,0,100).'...';
@@ -721,8 +723,55 @@ function view_apply_fullwidth_intern_card_func($post_id){
 
   if($features){
     $features_html = '';
+    $features_html_kai = '';
+    $count = 0;
+    $features_num = array();
+    $feature_array = array("リモートワーク可能" => 1, "プログラミングが未経験から学べる" => 2, "週2日ok" => 3, "時給2000円以上" => 4, "時給1500円以上" => 5, "時給1200円以上" => 6, "英語力が身につく" => 7, "土日のみでも可能" => 8, "1,2年歓迎" => 9, "社長直下" => 10
+    , "週3日以下でもok" => 11, "交通費支給" => 12, "未経験歓迎" => 13, "曜日/時間が選べる" => 14, "起業ノウハウが身につく" => 15, "髪色自由" => 16, "理系学生おすすめ" => 17, "英語力が活かせる" => 18, "外資系" => 19
+    , "有名企業への内定者多数" => 20, "新規事業立ち上げ" => 21, "ベンチャー" => 22, "エリート社員" => 23, "少数精鋭" => 24, "夕方から勤務でも可能" => 25, "留学生歓迎" => 26, "女性おすすめ" => 27, "テスト期間考慮" => 28, "短期間の留学考慮" => 29
+    , "服装自由" => 30, "インセンティブあり" => 31, "1ヶ月からok" => 32, "3ヶ月以下歓迎" => 33, "週1日ok" => 34, "ネイル可能" => 35, "時給1000円以上" => 36);
     foreach($features as $feature){
+      $count += 1;
       $features_html .=  '<div class="card-category" style="background-color:#f9b539;">'.$feature.'</div>';
+      if($count<5){
+        $features_html_kai .= '<span>'.$feature.'</span>';
+      }
+      $features_num[] = $feature_array[$feature];
+    }
+    if(in_array(4, $features_num)){
+      
+      while( ($index = array_search( 5, $features_num, true )) !== false ) {
+        unset( $features_num[$index] ) ;
+      }
+      while( ($index = array_search( 6, $features_num, true )) !== false ) {
+        unset( $features_num[$index] ) ;
+      }
+      while( ($index = array_search( 36, $features_num, true )) !== false ) {
+        unset( $features_num[$index] ) ;
+      }
+    }
+    if(in_array(5, $features_num)){
+      while( ($index = array_search( 6, $features_num, true )) !== false ) {
+        unset( $features_num[$index] ) ;
+      }
+      while( ($index = array_search( 36, $features_num, true )) !== false ) {
+        unset( $features_num[$index] ) ;
+      }
+    }
+    if(in_array(6, $features_num)){
+      while( ($index = array_search( 36, $features_num, true )) !== false ) {
+        unset( $features_num[$index] ) ;
+      }
+    }
+    sort($features_num);
+    $count = 0;
+    $features_html_kai = '';
+    foreach($features_num as $feature){
+      $count += 1;
+      if($count<4){
+        $key = array_search($feature,$feature_array);
+        $features_html_kai .= '<span>'.$key.'</span>';
+      }
     }
   }
 
@@ -765,6 +814,56 @@ function view_apply_fullwidth_intern_card_func($post_id){
       <a href = "'.esc_url($detai_url).'"><button class="button detail">詳細を見る</button></a>
     </div>
   </div>';
+  $fav_array = get_post_meta($post_id,'favorite',true);
+  $user_id = get_current_user_id();
+  if(in_array($user_id,$fav_array)){
+    $fav_class = 'card__btn__favo active';
+  }else{
+    $fav_class = 'card__btn__favo';
+  }
+  $card_html = '
+  <div class="card full-card new-card">
+  <div class="card__wrap">
+    <div class="card__img">
+      <div class="card__img__wrap">
+        <img src="'.$image_url.'" alt="">
+      </div>
+    </div>
+    <div class="card__company"><p class="card__name"><a href="'.esc_url($company_url).'">'.$company_name.'</a></p></div>
+    <div class="card__text">
+      <div class="card__text__wrap">
+        <h3 class="card__text__title">'.$post_title.'</h3>
+        <div class="card__text__explain">'.$company_bussiness.'</div>
+        <div class="card__text__detail">
+          <ul class="card__text__info">
+            <li class="card__text__info__ele card__text__info__name">'.$company_name.'</li>
+            <li class="card__text__info__ele card__text__info__salary">'.$salary.'</li>
+            <li class="card__text__info__ele card__text__info__place">'.$area.'</li>
+            <li class="card__text__info__ele card__text__info__time">'.$requirements.'</li>
+          </ul>
+          <ul class="card__text__attr">
+            <li class="card__text__attr__ele card__text__attr__type">
+              <span>'.$business_type.'</span>
+            </li>
+            <li class="card__text__attr__ele card__text__attr__occupation">
+              <span>'.$occupation.'</span>
+            </li>
+            <li class="card__text__attr__ele card__text__attr__category">
+             '.$features_html_kai.'
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="card__btn">
+        <a href="'.esc_url($intern_url).'" class="btn card__btn__info">詳細を見る</a>
+        <button class="card__btn__favo__wrap" value="'.$post_id.'">
+          <a class="'.$fav_class.'" id="fav-'.$post_id.'">お気に入り</a>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+  ';
   return do_shortcode($card_html);
 }
 add_shortcode('view-fullwidth-intern-card','view_fullwidth_intern_card_func');
