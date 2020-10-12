@@ -15099,7 +15099,7 @@ margin: 0 auto;
   position: relative;
   border: 1px solid rgb(149, 158, 155, .1);
 }
-.card__name:before {
+/* .card__name:before {
   position: absolute;
   content: '';
   top: 100%;
@@ -15107,7 +15107,7 @@ margin: 0 auto;
   border: none;
   border-bottom: solid 15px transparent;
   border-right: solid 20px rgb(149, 158, 155);
-}
+} */
 .card__name a {
   color: #152d4a;
 }
@@ -15330,9 +15330,6 @@ margin: 0 auto;
     margin-bottom: 40px;
     margin-top: 0;
   }
-  /* .home.card.new-card {
-    width: 47%;
-  } */
   .card__wrap {
     flex-direction: column;
   }
@@ -15350,24 +15347,15 @@ margin: 0 auto;
     height: 40px;
     margin-left: -15px;
   }
-  .home .card__company {
-    margin-left: -6px;
-  }
   .card__name {
     line-height: 40px;
     font-size: 16px;
   }
-  .home .card__name {
-    padding: 0 10px 0 10px;
-  }
-  .card__name::before {
+  /* .card__name::before {
     z-index: -1;
     border-bottom: solid 12.5px transparent;
     border-right: solid 15px rgb(149, 158, 155);
-  }
-  .home .card__name::before {
-    border-right: solid 0px rgb(149, 158, 155);
-  }
+  } */
   .card__text {
     width: calc(100% - 20px);
     padding: 20px 10px;
@@ -15412,6 +15400,24 @@ margin: 0 auto;
     margin: 0 -15px -20px -10px;
     width: calc(100% + 20px);
   }
+  /* homeバージョン */
+  .home .card.new-card {
+    width: 100%;
+    height: unset;
+  }
+  .home .card__company {
+    margin-left: -6px;
+  }
+  .home .card__name {
+    padding: 0 10px 0 10px;
+  }
+  .home .card__text .card__text__wrap .card__text__title {
+    height: 60px;
+  }
+  .home .card__text .card__text__wrap .card__text__explain {
+    height: unset;
+  }
+
 }
 @media screen and (min-width: 681px) and (max-width: 685px) {
   .card.new-card {
