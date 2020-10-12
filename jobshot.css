@@ -15086,7 +15086,7 @@ margin: 0 auto;
   bottom: 20px;
   left: 0;
   z-index: 20;
-  margin-left: -20px;
+  margin-left: -6px;
 }
 .card__name {
   line-height: 50px;
@@ -15094,12 +15094,12 @@ margin: 0 auto;
   color: #000;
   text-align: left;
   background-color: #fff;
-  padding: 0 10px 0 20px;
+  padding: 0 10px 0 10px;
   display: inline-block;
   position: relative;
   border: 1px solid rgb(149, 158, 155, .1);
 }
-.card__name:before {
+/* .card__name:before {
   position: absolute;
   content: '';
   top: 100%;
@@ -15107,7 +15107,7 @@ margin: 0 auto;
   border: none;
   border-bottom: solid 15px transparent;
   border-right: solid 20px rgb(149, 158, 155);
-}
+} */
 .card__name a {
   color: #152d4a;
 }
@@ -15170,6 +15170,7 @@ margin: 0 auto;
   text-overflow: ellipsis;
   white-space: nowrap;
   text-align: left;
+  padding-left: 25px;
 }
 .card__text__info__ele {
   color: #888;
@@ -15185,14 +15186,14 @@ margin: 0 auto;
   height: 16px;
   line-height: 16px;
   display: inline-block;
-  margin-right: 3px;
   vertical-align: middle;
   text-align: center;
   font-size: 16px;
   content: '';
-  padding-left: 10px;
+  padding-left: 0;
   overflow: hidden;
   font-family: "Material Icons";
+  margin-left: -25px;
 }
 .card__text__info__name:before {
   height: 20px;
@@ -15236,7 +15237,6 @@ margin: 0 auto;
 }
 .card__text__attr__ele:before {
   position: absolute;
-  left: 0;
 }
 .card__text__attr__type:before {
   content: '\e8b6';
@@ -15328,10 +15328,22 @@ margin: 0 auto;
   .card__text__info li {
     width: 250px;
   }
+  /* homeバージョン */
+  .home .card__text__info li {
+    width: initial;
+  }
 }
 @media screen and (max-width: 1100px) {
   .card__text__info li {
     width: 250px;
+  }
+  /* homeバージョン */
+  .home .card__text__info li {
+    width: initial;
+  }
+  .home .card__name {
+    line-height: 40px;
+    font-size: 14px;
   }
 }
 @media screen and (max-width: 1000px) {
@@ -15359,17 +15371,16 @@ margin: 0 auto;
     bottom: 20px;
     top: 150px;
     height: 40px;
-    margin-left: -15px;
   }
   .card__name {
     line-height: 40px;
     font-size: 16px;
   }
-  .card__name::before {
+  /* .card__name::before {
     z-index: -1;
     border-bottom: solid 12.5px transparent;
     border-right: solid 15px rgb(149, 158, 155);
-  }
+  } */
   .card__text {
     width: calc(100% - 20px);
     padding: 20px 10px;
@@ -15388,7 +15399,8 @@ margin: 0 auto;
     font-size: 13px;
   }
   .card__text__detail {
-    height: 120;
+    height: 120px;
+    overflow: scroll;
   }
   .card__text .card__text__info {
     margin: 10px 10px 5px 0;
@@ -15413,6 +15425,18 @@ margin: 0 auto;
     margin: 0 -15px -20px -10px;
     width: calc(100% + 20px);
   }
+  /* homeバージョン */
+  .home .card.new-card {
+    width: 100%;
+    height: unset;
+  }
+  .home .card__text .card__text__wrap .card__text__title {
+    height: 60px;
+  }
+  .home .card__text .card__text__wrap .card__text__explain {
+    height: unset;
+  }
+
 }
 @media screen and (min-width: 681px) and (max-width: 685px) {
   .card.new-card {
