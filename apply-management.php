@@ -699,9 +699,10 @@ function view_apply_fullwidth_intern_card_func($post_id){
   $skill = get_the_terms($post_id,"acquire")[0]->name;
   $company = get_userdata($post->post_author);
   $company_name = $company->data->display_name;
-  $company_bussiness = get_field("事業内容",$post_id);
-  $company_bussiness = strip_tags($company_bussiness);
   $company_id = get_company_id($company);
+  $company_bussiness = get_field("事業内容",$company_id);
+  $company_bussiness = strip_tags($company_bussiness);
+  $company_bussiness = preg_replace('/(?:\n|\r|\r\n)/', '', $company_bussiness);
   $company_url = get_permalink($company_id);
   $company_image = get_field("企業ロゴ",$company_id);
   if(is_array($company_image)){
@@ -713,11 +714,12 @@ function view_apply_fullwidth_intern_card_func($post_id){
     $image_url = $company_image_url;
   }
   if(empty($company_bussiness)){
-    $company_bussiness = get_field("事業内容",$company_id);
+    $company_bussiness = get_field("業務内容",$post_id);
     $company_bussiness = strip_tags($company_bussiness);
+    $company_bussiness = preg_replace('/(?:\n|\r|\r\n)/', '', $company_bussiness);
   }
-  if(mb_strlen($company_bussiness) > 100){
-    $company_bussiness = mb_substr($company_bussiness,0,100).'...';
+  if(mb_strlen($company_bussiness) > 70){
+    $company_bussiness = mb_substr($company_bussiness,0,70).'...';
   }
   $features = get_field('特徴',$post_id);
 
@@ -731,11 +733,6 @@ function view_apply_fullwidth_intern_card_func($post_id){
     , "有名企業への内定者多数" => 20, "新規事業立ち上げ" => 21, "ベンチャー" => 22, "エリート社員" => 23, "少数精鋭" => 24, "夕方から勤務でも可能" => 25, "留学生歓迎" => 26, "女性おすすめ" => 27, "テスト期間考慮" => 28, "短期間の留学考慮" => 29
     , "服装自由" => 30, "インセンティブあり" => 31, "1ヶ月からok" => 32, "3ヶ月以下歓迎" => 33, "週1日ok" => 34, "ネイル可能" => 35, "時給1000円以上" => 36);
     foreach($features as $feature){
-      $count += 1;
-      $features_html .=  '<div class="card-category" style="background-color:#f9b539;">'.$feature.'</div>';
-      if($count<5){
-        $features_html_kai .= '<span>'.$feature.'</span>';
-      }
       $features_num[] = $feature_array[$feature];
     }
     if(in_array(4, $features_num)){
@@ -778,49 +775,8 @@ function view_apply_fullwidth_intern_card_func($post_id){
   $favorite_url = $home_url.'/manage-favorite?pid='.$post_id;
   $detai_url = $home_url.'/manage_application?pid='.$post_id;
 
-  $card_html = '
-  <div class="card full-card">
-    <div class="full-card-main">
-      <div class="full-card-img">
-        <img src="'.$image_url.'" alt="">
-      </div>
-      <div class="full-card-text">
-        <div class="full-card-text-title">'.$post_title.'</div>
-        <div class="full-card-text-caption">
-        <div class="full-card-text-company"><a href="'.esc_url($company_url).'"><b>'.$company_name.'</b></a></div>
-          <div class="card-category-container">
-            <div class="card-category">'.$area.'</div>
-            <div class="card-category">'.$occupation.'</div>
-          </div>
-        </div>
-        <div>'.$company_bussiness.'</div>
-        <table class="full-card-table">
-          <tbody>
-            <tr>
-              <th>勤務条件</th>
-              <td>'.$requirements.'</td>
-            </tr>
-            <tr>
-              <th>給与</th>
-              <td>'.$salary.'</td>
-            </tr>
-          </tbody>
-        </table>'.
-        $features_html
-      .'</div>
-    </div>
-    <div class="full-card-buttons">
-      <a href = "'.esc_url($favorite_url).'"><button class="button favorite innactive">☆お気に入り</button></a>
-      <a href = "'.esc_url($detai_url).'"><button class="button detail">詳細を見る</button></a>
-    </div>
-  </div>';
-  $fav_array = get_post_meta($post_id,'favorite',true);
+
   $user_id = get_current_user_id();
-  if(in_array($user_id,$fav_array)){
-    $fav_class = 'card__btn__favo active';
-  }else{
-    $fav_class = 'card__btn__favo';
-  }
   $card_html = '
   <div class="card full-card new-card">
   <div class="card__wrap">
@@ -855,10 +811,8 @@ function view_apply_fullwidth_intern_card_func($post_id){
         </div>
       </div>
       <div class="card__btn">
-        <a href="'.esc_url($intern_url).'" class="btn card__btn__info">詳細を見る</a>
-        <button class="card__btn__favo__wrap" value="'.$post_id.'">
-          <a class="'.$fav_class.'" id="fav-'.$post_id.'">お気に入り</a>
-        </button>
+        <a href="'.esc_url($detai_url).'" class="btn card__btn__info">詳細を見る</a>
+        <a class="card__btn__edit" href = "'.esc_url($favorite_url).'">お気に入りを見る</a>
       </div>
     </div>
   </div>

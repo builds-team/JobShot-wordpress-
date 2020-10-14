@@ -6,16 +6,18 @@ function update_favorite_count(){
   $post_id = $_POST['post_id'];
   }
   if(is_user_logged_in()){
-    $user_id = get_current_user_id();
-    //favの配列
-    $fav_array = get_post_meta($post_id,'favorite',true);
-    //favを増やす時
-    if(!in_array($user_id,$fav_array)){
-      array_push( $fav_array,$user_id);
-    }else{
-      unset($fav_array[array_keys($fav_array, $user_id)[0]]);
+    if (current_user_can('student') || current_user_can('administrator')) {
+      $user_id = get_current_user_id();
+      //favの配列
+      $fav_array = get_post_meta($post_id,'favorite',true);
+      //favを増やす時
+      if(!in_array($user_id,$fav_array)){
+        array_push( $fav_array,$user_id);
+      }else{
+        unset($fav_array[array_keys($fav_array, $user_id)[0]]);
+      }
+      update_post_meta($post_id,'favorite',$fav_array);
     }
-    update_post_meta($post_id,'favorite',$fav_array);
   }
   $result = '';
   echo $result;

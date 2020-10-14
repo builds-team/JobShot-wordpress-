@@ -102,17 +102,7 @@ function side_bar_widget_func()
 
   $html = '
     <h3 class="widgettitle">特別コンテンツ</h3>
-    <p>
-        <a href="' . $home_url . '/?event=トップ外資志望学生向けセミナー～beyond-the-top-tier～"><img class="special_contents_img wp-image-5404 aligncenter" src="' . $midas_url . '"></a>
-        <br>
-        <a href="' . $home_url . '/interview"><img class="special_contents_img wp-image-5404 aligncenter" src="' . $soudan_url . '"></a>
-        <br>
-        <a href="' . $home_url . '/recruit_interview_22"><img class="special_contents_img wp-image-5404 aligncenter only-pc" src="' . $soudan22_url . '"></a>
-        <br>
-        <a href="' . $home_url . '/entry-sheet"><img class="special_contents_img wp-image-5404 aligncenter only-pc" src="' . $es_url . '"></a>
-        <br>
-        <a href="' . $home_url . '/gift_money"><img class="special_contents_img wp-image-5404 aligncenter only-pc" src="' . $oiwai_url . '"></a>
-        <br>';
+    <p>';
   $args = array(
     'post_type' => array('event'),
     'post_status' => array('publish'),
@@ -130,8 +120,9 @@ function side_bar_widget_func()
   );
   $cat_query = new WP_Query($args);
   while ($cat_query->have_posts()) : $cat_query->the_post();
-    $post_id = $post->ID;
+    $post_id = get_the_ID();
     if($post_id != 15171){
+      echo 
       $event_url = get_permalink($post_id);
       $event_image = get_field("イメージ画像", $post_id);
       $event_image_id = $event_image['id'];
@@ -145,6 +136,17 @@ function side_bar_widget_func()
       }
     }
   endwhile;
+  $html .= '
+  <a href="' . $home_url . '/?event=トップ外資志望学生向けセミナー～beyond-the-top-tier～"><img class="special_contents_img wp-image-5404 aligncenter" src="' . $midas_url . '"></a>
+  <br>
+  <a href="' . $home_url . '/interview"><img class="special_contents_img wp-image-5404 aligncenter" src="' . $soudan_url . '"></a>
+  <br>
+  <a href="' . $home_url . '/recruit_interview_22"><img class="special_contents_img wp-image-5404 aligncenter only-pc" src="' . $soudan22_url . '"></a>
+  <br>
+  <a href="' . $home_url . '/entry-sheet"><img class="special_contents_img wp-image-5404 aligncenter only-pc" src="' . $es_url . '"></a>
+  <br>
+  <a href="' . $home_url . '/gift_money"><img class="special_contents_img wp-image-5404 aligncenter only-pc" src="' . $oiwai_url . '"></a>
+  <br>';
   $html .= '</p>';
   return $html;
 }

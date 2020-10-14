@@ -3920,8 +3920,7 @@ footer#footer.container .footer-wrap {
 .error404 .col-sidebar,
 .search-results .col-sidebar,
 .search-no-results .col-sidebar,
-.singular .col-sidebar,
-{
+.singular .col-sidebar{
   padding-top: 0 !important;
 }
 .search-results .main,
@@ -15265,6 +15264,7 @@ margin: 0 auto;
   color: #fff;
   z-index: 10;
   text-align: center;
+  line-height: 20px;
 }
 .card__btn__edit {
   display: block;
@@ -15274,6 +15274,7 @@ margin: 0 auto;
   height: 20px;
   z-index: 10;
   text-align: center;
+  line-height: 20px;
 }
 .card__btn__info:hover {
   opacity: .7;

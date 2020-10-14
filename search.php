@@ -401,7 +401,7 @@ function view_custom_search_func($atts){
         if($post_id != $column_post_id){
             $html .= view_card_func($post_id);
             $post_count += 1;
-            if($item_type == 'internship' && $post_count == 3){
+            if($item_type == 'internship' && $post_count == 4){
                 $chiyoda = wp_get_attachment_image_src(14204, array(250,150))[0];
                 $marketing = wp_get_attachment_image_src(14196, array(250,150))[0];
                 $retail = wp_get_attachment_image_src(14199, array(250,150))[0];

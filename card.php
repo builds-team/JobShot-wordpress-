@@ -341,9 +341,10 @@ function view_fullwidth_intern_card_func($post_id){
   $company_name = $company->data->display_name;
 
   $post_title = get_field("募集タイトル",$post_id);
-  $company_bussiness = get_field("事業内容",$post_id);
-  $company_bussiness = strip_tags($company_bussiness);
   $company_id = get_company_id($company);
+  $company_bussiness = get_field("事業内容",$company_id);
+  $company_bussiness = strip_tags($company_bussiness);
+  $company_bussiness = preg_replace('/(?:\n|\r|\r\n)/', '', $company_bussiness);
   $company_image = get_field("企業ロゴ",$company_id);
   if(is_array($company_image)){
     $company_image_url = $company_image["url"];
@@ -354,11 +355,12 @@ function view_fullwidth_intern_card_func($post_id){
     $image_url = $company_image_url;
   }
   if(empty($company_bussiness)){
-    $company_bussiness = get_field("事業内容",$company_id);
+    $company_bussiness = get_field("業務内容",$post_id);
     $company_bussiness = strip_tags($company_bussiness);
+    $company_bussiness = preg_replace('/(?:\n|\r|\r\n)/', '', $company_bussiness);
   }
-  if(mb_strlen($company_bussiness) > 100){
-    $company_bussiness = mb_substr(nl2br($company_bussiness),0,100).'...';
+  if(mb_strlen($company_bussiness) > 70){
+    $company_bussiness = mb_substr(nl2br($company_bussiness),0,70).'...';
   }
   $intern_contents = get_field("業務内容",$post_id);
   $skills = get_field("身につくスキル",$post_id);
@@ -392,11 +394,6 @@ function view_fullwidth_intern_card_func($post_id){
     , "有名企業への内定者多数" => 20, "新規事業立ち上げ" => 21, "ベンチャー" => 22, "エリート社員" => 23, "少数精鋭" => 24, "夕方から勤務でも可能" => 25, "留学生歓迎" => 26, "女性おすすめ" => 27, "テスト期間考慮" => 28, "短期間の留学考慮" => 29
     , "服装自由" => 30, "インセンティブあり" => 31, "1ヶ月からok" => 32, "3ヶ月以下歓迎" => 33, "週1日ok" => 34, "ネイル可能" => 35, "時給1000円以上" => 36);
     foreach($features as $feature){
-      $count += 1;
-      $features_html .=  '<div class="card-category" style="background-color:#f9b539;">'.$feature.'</div>';
-      if($count<5){
-        $features_html_kai .= '<span>'.$feature.'</span>';
-      }
       $features_num[] = $feature_array[$feature];
     }
     if(in_array(4, $features_num)){
@@ -439,47 +436,9 @@ function view_fullwidth_intern_card_func($post_id){
 
   $current_user = wp_get_current_user();
   $current_user_name = $current_user->data->display_name;
-  if($company_name == $current_user_name){
-    $button_html = '<a href="'.$home_url.'/edit_internship?post_id='.$post_id.'"><button class="button favorite innactive">編集をする</button></a>';
-  }else{
-    $button_html = '<button class="button favorite innactive">'.get_favorites_button($post_id).'</button>';
-  }
   $company_url = get_permalink($company_id);
   $intern_url=get_permalink($post_id);
 
-  $card_html = '
-  <div class="card full-card">
-    <div class="full-card-main">
-      <div class="full-card-img">
-        <img src="'.$image_url.'" alt="">
-      </div>
-      <div class="full-card-text">
-        <div class="full-card-text-title"><a href="'.esc_url($intern_url).'">'.$post_title.'</a></div>
-        <div class="full-card-text-caption">
-          <div class="full-card-text-company"><a href="'.esc_url($company_url).'"><b>'.$company_name.'</b></a></div>
-          <div class="card-category-container">'.$card_category_html.'</div>
-        </div>
-        <div><p>'.$company_bussiness.'</p></div>
-        <table class="full-card-table">
-          <tbody>
-            <tr>
-              <th>勤務条件</th>
-              <td>'.$requirements.'</td>
-            </tr>
-            <tr>
-              <th>給与</th>
-              <td>'.$salary.'</td>
-            </tr>
-          </tbody>
-        </table>'.
-        $features_html
-      .'</div>
-    </div>
-    <div class="full-card-buttons">'
-      .$button_html.'
-      <a href = "'.esc_url(get_permalink($post_id)).'" target="_blank" rel="noopener noreferrer"><button class="button detail">詳細を見る</button></a>
-    </div>
-  </div>';
   if($company_name == $current_user_name){
     $button_html = '<a href="'.$home_url.'/edit_internship?post_id='.$post_id.'" class="card__btn__edit">編集をする</a>';
   }else{
@@ -529,7 +488,7 @@ function view_fullwidth_intern_card_func($post_id){
           </div>
         </div>
         <div class="card__btn">
-          <a href="'.esc_url($intern_url).'" class="btn card__btn__info">詳細を見る</a>
+          <a href="'.esc_url($intern_url).'" class="btn card__btn__info" target="_blank" rel="noopener noreferrer">詳細を見る</a>
           '.$button_html.'
         </div>
       </div>

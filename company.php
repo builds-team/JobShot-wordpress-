@@ -28,6 +28,32 @@ function set_intern_fav_count(){
 }
 add_shortcode("set_intern_fav_count","set_intern_fav_count");
 
+function set_intern_fav_count2(){
+    $args = array(
+        'post_type' => array('internship'),
+        'post_status' => array( 'publish','draft','private'),
+        'posts_per_page' => -1,
+    );
+    $the_query = new WP_Query($args);
+    $count = 0;
+    if ($the_query->have_posts()) :
+        while ($the_query->have_posts()) :
+          $the_query->the_post();
+          $post_id = get_the_ID();
+          $fav_array = get_post_meta($post_id,'favorite',true);
+          //favを増やす時
+          if(in_array(0,$fav_array)){
+            unset($fav_array[array_keys($fav_array, 0)[0]]);
+          }
+          update_post_meta($post_id,'favorite',$fav_array);
+          $count += 1;
+        endwhile;
+      endif;
+    echo $count;
+    wp_reset_postdata();
+}
+add_shortcode("set_intern_fav_count2","set_intern_fav_count2");
+
 function get_company_content_ids_func($company_user_login, $post_type){
   //これが新しい 2018/10/20
   $user= get_user_by( 'login', $company_user_login );
