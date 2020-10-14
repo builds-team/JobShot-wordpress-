@@ -15490,3 +15490,11 @@ div#blind {
   margin-top: -10px;
   margin-left: -100px;
   }
+
+  .column-like{
+    height: 32px;
+    left: 120px;
+    color: #e74c3c2e;
+    float: right;
+    margin-right: 15px;
+}

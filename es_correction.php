@@ -5,11 +5,15 @@ function update_favorite_count(){
   if(isset($_POST['post_id'])){
   $post_id = $_POST['post_id'];
   }
+  $result = '';
   if(is_user_logged_in()){
     if (current_user_can('student') || current_user_can('administrator')) {
       $user_id = get_current_user_id();
       //favの配列
       $fav_array = get_post_meta($post_id,'favorite',true);
+      if(empty($fav_array)){
+        $fav_array = array();
+      }
       //favを増やす時
       if(!in_array($user_id,$fav_array)){
         array_push( $fav_array,$user_id);
@@ -18,8 +22,27 @@ function update_favorite_count(){
       }
       update_post_meta($post_id,'favorite',$fav_array);
     }
+  }else {
+    $result = '
+    <div class="modal__mask" style="display: block;">
+      <div class="modal__login">
+          <div class="modal__login__description">
+              <p class="modal__login__first-line"><span class="modal__login__company-name">東大</span>２２卒学部就活生</p>
+              <p class="modal__login__second-line">の<span class="modal__login__proportion">６人に１人</span>が</p>
+              <p class="modal__login__third-line"><span style="font-size: 160%;"></span>登録しています</p>
+          </div>
+          <div class="modal__login__btn">
+              <a class="modal__login__register-btn" href="https://jobshot.jp/regist" onclick="gtag(\'event\', \'click\', {\'event_category\': \'link\', \'event_label\': \'popup_new\'});">
+                  <span>無料登録をする</span>
+              </a>
+              <p>または<a href="https://jobshot.jp/login" onclick="gtag(\'event\', \'click\', {\'event_category\': \'link\', \'event_label\': \'popup_login\'});">ログイン</a></p>
+          </div>
+          <div class="modal__cancel__btn google-icon" onclick="$(\'.modal__mask\').css(\'display\', \'none\')">
+          </div>
+      </div>
+    </div>
+    ';
   }
-  $result = '';
   echo $result;
   die();
 }

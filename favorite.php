@@ -65,6 +65,7 @@ function show_favorites_func($atts){
         // No Favorites
         $fav_html= '<div class="cards-container"><p class="text-center">お気に入りがありません。</p></div>';
     }
+    $fav_html = str_replace('<p>','<p style="font-size: 13px;">',$fav_html);
     return $fav_html;
 }
 add_shortcode("show_favorites","show_favorites_func");

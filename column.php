@@ -965,3 +965,26 @@ function get_related_column(){
     return $html;
 }
 add_shortcode("get_related_column","get_related_column");
+
+function set_column_fav_count(){
+    $args = array(
+        'post_type' => array('column'),
+        'post_status' => array( 'publish','draft','private'),
+        'posts_per_page' => -1,
+    );
+    $the_query = new WP_Query($args);
+    $count = 0;
+    if ($the_query->have_posts()) :
+        while ($the_query->have_posts()) :
+          $the_query->the_post();
+          $post_id = get_the_ID();
+          $users_array = array();
+          update_post_meta($post_id, "favorite", $users_array);
+          $count += 1;
+        endwhile;
+      endif;
+    echo $count;
+    wp_reset_postdata();
+}
+add_shortcode("set_column_fav_count","set_column_fav_count");
+

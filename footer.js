@@ -1168,6 +1168,10 @@ jQuery(function($){
 			processData: false,
 			contentType: false,
 			success: function( response ){
+				$('.entry').prepend(response);
+				if(response.length){
+					$('#fav-'+post_id).removeClass("active");
+				}
 			},
 			error: function( response ){
 				console.log('miss');

@@ -1463,6 +1463,7 @@ function new_company_post_internship(){
           update_post_meta($insert_id,'ES',$es);
           wp_set_object_terms( $insert_id, $occupation, 'occupation');
           update_post_meta($insert_id, "applycnt", 0);
+          update_post_meta($insert_id,'favorite',array());
 		  $home_url =esc_url( home_url( ));
           if($prefecture == "東京都"){
               wp_set_object_terms( $insert_id, $area, 'area');
