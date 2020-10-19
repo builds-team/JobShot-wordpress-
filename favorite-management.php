@@ -11,23 +11,22 @@ function view_favorite_list_func ( $atts ) {
     }
 
     if(get_post_type($post_id)=='internship'){
-        $html = '<h3 class="widget-title">'.get_the_title($post_id).'</h3>';
+        $result_html = '<h3 class="widget-title">'.get_the_title($post_id).'</h3>';
         $formname = 'インターン応募';
         $attendformname = 'インターン出席登録';
         $favorite_users = get_post_meta($post_id,'favorite',true);
     }else{
-        $html = '<h3 class="widget-title">'.get_the_title($post_id).'</h3>';
+        $result_html = '<h3 class="widget-title">'.get_the_title($post_id).'</h3>';
         $formname = 'イベント応募';
         $attendformname = 'イベント出席登録';
         $favorite_users = get_users_who_favorited_post($post_id);
     }
 
     $roles=wp_get_current_user()->roles;
-    $result_html='';
     $students=new WP_User_Query( $args );//get_users($args);
     $company_name = wp_get_current_user()->data->display_name;
     if(in_array("company", $roles)){
-	    $result_html='<p>今月のスカウトメール送信可能件数は</p>'.view_remain_num_func(wp_get_current_user(),'remain-mail-num').'<br>';
+	    $result_html.='<p>今月のスカウトメール送信可能件数は</p>'.view_remain_num_func(wp_get_current_user(),'remain-mail-num').'<br>';
     }
     $result_html .= '<div class="cards-container">';
     if(in_array("company", $roles) ){

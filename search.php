@@ -411,7 +411,10 @@ function view_custom_search_func($atts){
                 $house = wp_get_attachment_image_src(14193, array(250,150))[0];
                 $media = wp_get_attachment_image_src(14197, array(250,150))[0];
                 $banner_url = wp_get_attachment_image_src(15473, array(1000, 150))[0];
-                $html .= '<img class="" src="' . $banner_url . '" style="margin-top:40px">
+                $html .= '
+                <div class="" style="margin-top:30px;  display: flex; align-items: flex-start;">
+                    <img class="" src="' . $banner_url . '" style="margin-top:40px align-items: flex-start;">
+                </div>
                 <div class="top__search__container top__feature__search__container">
                 <div class="top__search__wrap">
                     <h4 class="top__search__wrap__title">自分にあった募集を「特徴」から探そう</h4>

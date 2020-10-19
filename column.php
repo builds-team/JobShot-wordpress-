@@ -1,28 +1,9 @@
 <?php
-        <div class="es-fav_status">
-            <div class="es-fav_status_item">
-                <div class="es-fav_status_icon">
-                    <button class="btn favorite-button_sub" value="">
-                        <i class="far fa-heart"></i>
-                    </button>
-                </div>
-                <div class="es-fav_status_label" id="">5
-                </div>
-            </div>
-        </div>
         <div class="column-like">
-            <button class="btn favorite-button es-like-active" id=""value="">
+            <button class="btn favorite-button" id=""value="">
                 <i class="fa fa-heart"></i>
             </button>
         </div>
-
-        .column-like{
-            height: 32px;
-            left: 120px;
-            color: #e74c3c2e;
-            float: right;
-            margin-right: 15px;
-        }
 function template_column2_func($content){
     global $post;
     $post_id = $post->ID;

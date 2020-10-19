@@ -850,6 +850,13 @@ function view_fullwidth_column_card_func($post_id){
   $post_date = get_the_date( 'Y-m-d', $post_id );
   $image_url = get_the_post_thumbnail_url( $post_id ,array(250, 160));
   $premium_column = get_post_meta($post_id, 'プレミアム記事', true);
+  $fav_array = get_post_meta($post_id,'favorite',true);
+  $user_id = get_current_user_id();
+  if(in_array($user_id,$fav_array)){
+    $active = 'es-like-active';
+  }else{
+    $active = '';
+  }
   if (!is_user_logged_in() and !empty($premium_column[0])){
     $lock_html = '<i class="fas fa-lock"></i>';
   }
@@ -870,6 +877,11 @@ function view_fullwidth_column_card_func($post_id){
         </div>
       </div>
     </div>
+    <div class="column-like">
+      <button class="btn favorite-button '.$active.'" id="fav-'.$post_id.'"value="'.$post_id.'">
+        <i class="fa fa-heart"></i>
+      </button>
+    </div>
   </div>';
 
   return do_shortcode($card_html);
@@ -882,6 +894,7 @@ function view_insert_column_card_func($post_id){
 
   $post_title = get_the_title($post_id);
   $image_url = get_the_post_thumbnail_url( $post_id ,array(250, 160));
+
 
   $card_html = '
   <div class="card full-card">

@@ -767,10 +767,14 @@ function cleanQuery(query) {
 		  var count = (Number($(count_id).html()));
 		  if($(this).hasClass("es-like-active")){
 			  $(this).removeClass("es-like-active");
-			  $(count_id).html(count-1);
+			  if($($count_id).length){
+				$(count_id).html(count-1);
+			  }
 		  }else{
 			  $(this).addClass("es-like-active");
-			  $(count_id).html(count+1);
+			  if($($count_id).length){
+				  $(count_id).html(count+1);
+			  }
 		  }
 		  fd.append("post_id",post_id);
 		  // サーバー側で何の処理をするかを指定。
