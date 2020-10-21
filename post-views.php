@@ -191,8 +191,12 @@ function reset_week_ranking() {
         update_post_meta($post_id, $custom_key2, get_post_meta($post_id, 'week_views_count1', true));
         update_post_meta($post_id, $custom_key1, get_post_meta($post_id, 'week_views_count', true));
         update_post_meta($post_id, $custom_key, '0');
-
     }
+    update_post_meta(137, 'redirect_count3', get_post_meta(137, 'redirect_count2', true));
+    update_post_meta(137, 'redirect_count2', get_post_meta(137, 'redirect_count1', true));
+    update_post_meta(137, 'redirect_count1', get_post_meta(137, 'redirect_count', true));
+    update_post_meta(137, 'redirect_count', '0');
+    /*
     $lastweek = date('Y/m/d', strtotime('-7 day'));
     $today = date('Y/m/d',strtotime('today')); 
     // 新規ユーザーの取得
@@ -204,6 +208,7 @@ function reset_week_ranking() {
         "text"  =>  $string
     );
     builds_slack('', $attachment, '#2-1-jobshot事業部bot');
+    */
 }
 add_action ( 'reset_week_ranking_cron', 'reset_week_ranking' );
 

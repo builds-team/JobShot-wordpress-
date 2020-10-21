@@ -138,7 +138,7 @@ function search_form_func($atts){
               <p class="modal__intern__4th-line">話を聞いてみよう！</p>
           </div>
           <div class="modal__intern__btn">
-              <a class="modal__intern__register-btn" href="https://jobshot.jp/interview">
+              <a class="modal__intern__register-btn" href="https://jobshot.jp/interview" onclick="gtag(\'event\', \'click\', {\'event_category\': \'link\', \'event_label\': \'Popup_sodan\'});">
                   <span>個別相談会に参加する</span>
               </a>
           </div>

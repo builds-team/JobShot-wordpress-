@@ -288,7 +288,11 @@ function template_internship2_func($content){
     $selection_html .= '<li class="flowchart__item">'.$selection_flow[0].'</li>';
   }
   $selection_html .= '<li class="flowchart__item flowchart__item--last">採用</li></ol>';
-  $entry_link = do_shortcode('[get_form_address formtype=apply form_id=324 post_id='.$post->ID.' title='.$post_title.']');
+  if(is_user_logged_in()){
+    $entry_link = do_shortcode('[get_form_address formtype=apply form_id=324 post_id='.$post->ID.' title='.$post_title.']'); 
+  }else{
+    $entry_link = 'https://jobshot.jp/apply_login?form_id=324&post_id='.$post->ID.'&jobname='.$post_title;
+  }
 
   if(current_user_can('student')){
     $onclick = 'onclick="gtag(\'event\', \'click\', {\'event_category\': \'link\', \'event_label\': \'to_apply_form\'});"';
