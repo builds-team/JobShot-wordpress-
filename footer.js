@@ -1059,6 +1059,7 @@ jQuery(function($){
 		return false;
 	});
 });
+//クッキーがない時だけ表示
 jQuery(function($){
 	if ($.cookie('bnrRead') == 'on') {
 		$('.top-banner').addClass('hidden');
@@ -1183,6 +1184,7 @@ jQuery(function($){
 	});
 });
 
+//新規登録のアスタリスク追加
 jQuery(function($){
 	var str = location.href;
 	if ( str.match(/regist/)) {
@@ -1195,9 +1197,27 @@ jQuery(function($){
 	}
 });
 
+//マイページの共有削除
 jQuery(function($){
 	var str = location.href;
 	if ( str.match(/user\?um_user/)) {
 		$('.robots-nocontent').remove();
 	}
+});
+
+//相談会のポップアップ
+function removePopup() {
+	jQuery('.modal__mask').remove();
+	jQuery.cookie('popRead', 'on', { //cookieにbnrReadという名前でonという値をセット
+        expires: 1, //cookieの有効日数
+        path:'/' //有効にするパス
+      });
+}
+
+
+//クッキーがない時だけ表示
+jQuery(function($){
+	if ($.cookie('popRead') == 'on') {
+		$('.modal__intern__mask').remove();
+	  }
 });
