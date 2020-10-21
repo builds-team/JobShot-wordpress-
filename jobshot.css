@@ -15592,6 +15592,13 @@ div#blind {
   transition-property: all;
   transition: all 0.3s ease-in-out;
 }
+.column__card__favo .check-favo:before {
+  display: none;
+}
+.column__card__favo .checked-favo:before {
+  display: block;
+  color: #ffbe00;
+}
 @media screen and (max-width: 782px) {
   .column__card__title {
     height: 45px;
