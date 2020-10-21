@@ -851,6 +851,7 @@ function view_fullwidth_column_card_func($post_id){
   $image_url = get_the_post_thumbnail_url( $post_id ,array(250, 160));
   $premium_column = get_post_meta($post_id, 'プレミアム記事', true);
   $fav_array = get_post_meta($post_id,'favorite',true);
+  $fav_count = count($fav_array);
   $user_id = get_current_user_id();
   if(in_array($user_id,$fav_array)){
     $active = 'es-like-active';

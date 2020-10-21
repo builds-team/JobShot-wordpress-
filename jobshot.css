@@ -11802,7 +11802,7 @@ a .list__contents__ele_div:hover{
       top: 60px;
     }
     .apply-form-container .your-name, .apply-form-container input[name="your-name"] {
-        width: 167px;
+        /*width: 167px;*/
     }
     .apply-form-container .your-email, .apply-form-container input[type="email"], #interview_date .interview_date_1, #interview_date .interview_date_2, #interview_date .interview_date_3, #interview_date input[type="text"]{
         width: 100%;

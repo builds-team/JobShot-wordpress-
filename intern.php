@@ -290,8 +290,13 @@ function template_internship2_func($content){
   $selection_html .= '<li class="flowchart__item flowchart__item--last">採用</li></ol>';
   $entry_link = do_shortcode('[get_form_address formtype=apply form_id=324 post_id='.$post->ID.' title='.$post_title.']');
 
+  if(current_user_can('student')){
+    $onclick = 'onclick="gtag(\'event\', \'click\', {\'event_category\': \'link\', \'event_label\': \'to_apply_form\'});"';
+  }else{
+    $onclick = '';
+  }
   $entry_html = '
-      <a href="'.$entry_link.'">
+      <a href="'.$entry_link.'" '.$onclick.'>
           <button class="button button-apply">インターンに応募する</button>
       </a>';
 

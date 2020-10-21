@@ -238,24 +238,24 @@ function search_form_func($atts){
             case 'popular':
               $search_form_html3 = '
               <div class="sort-search">
-                <button type="submit" name="sort" class="search-field" value="new" onclick="sort_by_new()">新着順</button>
                 <button type="submit" name="sort" class="search-field disabled" value="popular" onclick="sort_by_popular()" disabled>人気順</button>
+                <button type="submit" name="sort" class="search-field" value="new" onclick="sort_by_new()">新着順</button>
                 <button type="submit" name="sort" class="search-field" value="recommend" onclick="sort_by_recommend()">おすすめ順</button>
               </div>';
               break;
             case 'new':
               $search_form_html3 = '
               <div class="sort-search">
-                <button type="submit" name="sort" class="search-field disabled" value="new" onclick="sort_by_new()" disabled>新着順</button>
                 <button type="submit" name="sort" class="search-field" value="popular" onclick="sort_by_popular()">人気順</button>
+                <button type="submit" name="sort" class="search-field disabled" value="new" onclick="sort_by_new()" disabled>新着順</button>
                 <button type="submit" name="sort" class="search-field" value="recommend" onclick="sort_by_recommend()">おすすめ順</button>
               </div>';
               break;
             case 'recommend':
               $search_form_html3 = '
               <div class="sort-search">
-                <button type="submit" name="sort" class="search-field" value="new" onclick="sort_by_new()">新着順</button>
                 <button type="submit" name="sort" class="search-field" value="popular" onclick="sort_by_popular()">人気順</button>
+                <button type="submit" name="sort" class="search-field" value="new" onclick="sort_by_new()">新着順</button>
                 <button type="submit" name="sort" class="search-field disabled" value="recommend" onclick="sort_by_recommend()" disabled>おすすめ順</button>
               </div>';
               break;
@@ -263,8 +263,8 @@ function search_form_func($atts){
         }else{
           $search_form_html3 = '
           <div class="sort-search">
-            <button type="submit" name="sort" class="search-field disabled" value="new" onclick="sort_by_new()">新着順</button>
-            <button type="submit" name="sort" class="search-field" value="popular" onclick="sort_by_popular()">人気順</button>
+            <button type="submit" name="sort" class="search-field disabled" value="popular" onclick="sort_by_popular()" disabled>人気順</button>
+            <button type="submit" name="sort" class="search-field" value="new" onclick="sort_by_new()">新着順</button>
             <button type="submit" name="sort" class="search-field" value="recommend" onclick="sort_by_recommend()">おすすめ順</button>
           </div>';
         }

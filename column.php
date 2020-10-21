@@ -1,9 +1,4 @@
 <?php
-        <div class="column-like">
-            <button class="btn favorite-button" id=""value="">
-                <i class="fa fa-heart"></i>
-            </button>
-        </div>
 function template_column2_func($content){
     global $post;
     $post_id = $post->ID;

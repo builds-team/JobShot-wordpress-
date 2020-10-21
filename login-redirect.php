@@ -53,6 +53,16 @@ function subscriber_go_to_home( $user_id ) {
 
 function apply_redirect(){
     $home_url =esc_url( home_url( ));
+    $post_id = $_GET['post_id'];
+    if(get_post_type($post_id)=='internship'){
+        $redirect_count = get_user_meta(137,'redirect_count',true);
+        if(empty($redirect_count)){
+            $redirect_count = 1;
+        }else{
+            $redirect_count += 1;
+        }
+        update_user_meta(137,'redirect_count',$redirect_count);
+    }
     $html = '
         <div class="um um-login um-1596 uimob500" style="opacity: 1;">
             <div class="um-form">

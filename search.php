@@ -220,7 +220,7 @@ function view_custom_search_func($atts){
         }
     }else{
         if($item_type == 'internship'){
-            $args += array('order'   => 'DESC','orderby' => 'modified',);
+            $args += array('meta_key' => 'week_views_count','orderby' => 'meta_value_num',);
         }
     }
 
@@ -492,6 +492,15 @@ function recommend_score($args){
     $paged = 0 == get_query_var( 'paged', 0 ) ? 1 : get_query_var( 'paged', 1 );
     $cat_query->posts=array_slice($posts, ($paged-1)*10,$paged*10);
     return $cat_query;
+}
+
+function koukoku_intern(){
+    $post_ids = [1111111,22222222];
+    foreach($post_ids as $post_id){
+        $view_count = get_post_meta($post_id, 'week_views_count', true);
+        $view_count += 10000;
+        update_post_meta($post_id, $custom_key, $view_count);
+    }
 }
 
 //おすすめの点数の詳細表示用。使い終わったら非常に処理が重くなるのですぐに元に戻す。
