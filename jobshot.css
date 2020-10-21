@@ -15502,7 +15502,7 @@ div#blind {
 /* コラムカード・お気に入り */
 .column__card {
   width: 45%;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 .column__card__wrap {
   
@@ -15545,8 +15545,7 @@ div#blind {
   letter-spacing: .04em;
 }
 .column__card__title {
-  height: 44px;
-  font-size: 14px;
+  height: 45px;
   -webkit-line-clamp: 2;
   line-height: 1.5;
   margin-bottom: 8px;
@@ -15554,13 +15553,18 @@ div#blind {
 .column__card__title h3{
   color: #03c4b0;
 }
+.column__card__title h3 a{
+  font-size: 20px;
+}
 .column__card__description {
-  height: 150px;
-  font-size: 13px;
+  height: 105px;
   -webkit-line-clamp: 5;
 }
+.column__card__description p{
+  font-size: 14px;
+}
 .column__card__footer {
-  margin-top: 10px;
+  margin-top: 5px;
   height: 40px;
   line-height: 40px;
 }
@@ -15587,4 +15591,50 @@ div#blind {
   font-weight: 400;
   transition-property: all;
   transition: all 0.3s ease-in-out;
+}
+@media screen and (max-width: 782px) {
+  .column__card__title {
+    height: 45px;
+    font-size: 14px;
+  }
+  .column__card__title h3 a{
+    font-size: 20px;
+  }
+  .column__card__description {
+    height: 105px;
+  }
+  .column__card__description p{
+    font-size: 14px;
+  }
+  .column__card__footer {
+    font-size: 13px;
+  }
+}
+@media screen and (max-width: 480px) {
+  .column__card {
+    display: block;
+    width: calc(100% + 50px);
+    margin: 0 -50px;
+    border-bottom: 1px solid #f2f2f2;
+  }
+  .column__card__wrap {
+    padding: 0 25px;
+  }
+  .column__card__img {
+    /* display: none; */
+    float: right;
+    margin: 20px 0 0 20px;
+    height: 60px;
+    width: 60px;
+  }
+  .column__card__title {
+    overflow: initial;
+    display: block;
+  }
+  .column__card__title h3 a{
+    font-size: 16px;
+  }
+  .column__card__description {
+    display: none;
+  }
 }
