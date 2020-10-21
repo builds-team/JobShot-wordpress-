@@ -15537,11 +15537,27 @@ div#blind {
 .column__card__body {
   padding: 20px 0 0 0;
 }
+.column__card__title, .column__card__description  {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  word-break: break-all;
+  letter-spacing: .04em;
+}
 .column__card__title {
-  
+  height: 44px;
+  font-size: 14px;
+  -webkit-line-clamp: 2;
+  line-height: 1.5;
+  margin-bottom: 8px;
+}
+.column__card__title h3{
+  color: #03c4b0;
 }
 .column__card__description {
-  
+  height: 150px;
+  font-size: 13px;
+  -webkit-line-clamp: 5;
 }
 .column__card__footer {
   margin-top: 10px;
@@ -15554,6 +15570,7 @@ div#blind {
 }
 .column__card__favo {
   float: right;
+  padding: 0 10px;
 }
 .column__card__favo a{
   display: block;
