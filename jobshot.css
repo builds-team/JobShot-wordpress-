@@ -15577,14 +15577,21 @@ div#blind {
 }
 .column__card__favo {
   float: right;
-  padding: 0 10px;
+  padding: 0;
 }
-.column__card__favo a{
+.column__card__favo__btn{
   display: block;
   margin: 0;
   color: #666;
 }
-.column__card__favo a:before {
+.column__card__favo__btn.only-sp{
+  color: #ffbe00;
+}
+.column__card__favo__btn:hover{
+  color: #ffbe00;
+  cursor: pointer;
+}
+.column__card__favo__btn:before {
   display: inline-block;
   position: relative;
   content: '\f005';
@@ -15594,6 +15601,13 @@ div#blind {
   font-weight: 400;
   transition-property: all;
   transition: all 0.3s ease-in-out;
+}
+.column__card__favo__btn.only-sp:before {
+  color: #ffbe00;
+  margin-right: 5px;
+}
+.column__card__favo__btn:hover:before {
+  color: #ffbe00;
 }
 @media screen and (max-width: 782px) {
   .column__card__title {
@@ -15612,6 +15626,15 @@ div#blind {
   .column__card__footer {
     font-size: 13px;
   }
+}
+@media screen and (max-width: 680px) {
+  .column__card__date {
+    float: right;
+  }
+  .column__card__favo {
+    float: left;
+  }
+  
 }
 @media screen and (max-width: 480px) {
   .column__card {
@@ -15670,17 +15693,64 @@ div#blind {
   color: #ffbe00;
 }
 a.column__detail__favo__btn{
+  float: right;
+  position: sticky;
+  bottom: 50px;
   display: block;
   margin: 0;
-  color: #666;
+  color: #ffbe00;
+  background-color: #fff;
   width: fit-content;
+  padding: 10px;
+  border-radius: 50%;
+  border: 2px solid #ffbe00;
   margin-top: 20px;
-  margin-bottom: -20px;
+  margin-right: 5px;
   font-size: 20px;
+  transition: all 0.3s ease-in-out;
+  z-index: 3;
+}
+a.column__detail__favo__btn:hover {
+  color: #fff;
+  background-color: #ffbe00;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
 }
 a.column__detail__favo__btn:before {
-  margin-right: 10px;
-  color: #666;
+  color: #ffbe00;
+  height: 30px;
+  width: 30px;
+  text-align: center;
+  vertical-align: middle;
   transition-property: all;
   transition: all 0.3s ease-in-out;
+}
+a.column__detail__favo__btn:after {
+  display: none;
+  position: absolute;
+  width: 100%;
+  top: -35px;
+  left: -4px;
+  text-align: center;
+  background-color: #fff;
+  color: #ffbe00;
+  border: 1px solid #ffbe00;
+  content: 'お気に入り';
+  border-radius: 2px;
+  padding: 5px;
+  font-size: 10px;
+  transition: all 0.3s ease-in-out;
+}
+a.column__detail__favo__btn:hover:before {
+  color: #fff;
+  transition: all 0.3s ease-in-out;
+}
+a.column__detail__favo__btn:hover:after {
+  display: block;
+  transition: all 0.3s ease-in-out;
+}
+@media screen and (max-width: 680px) {
+  a.column__detail__favo__btn{
+    bottom: 70px;
+  }
 }
