@@ -11651,32 +11651,57 @@ a .list__contents__ele_div:hover{
     padding-top: 0;
   }
 /*インターン応募ページ*/
+#post-918 {
+  background-color: #f4fff7;
+}
 .apply-form {
     width: 762px;
     margin: 0 auto;
 }
 .apply-form-container {
-    padding: 45px 0 90px 0;
-    border-bottom: 0.3px solid #e6e6e6;
+    padding: 30px 20px 30px 20px;
+    border: 0.3px solid #efefefc9;
     position: relative;
+    background-color: #fff;
+    border-radius: 10px;
+    margin: 20px 0;
 }
 .noborder {
     border: none;
 }
 .job-name-container {
     width: 762px;
-    margin: 0 auto;
-    padding: 90px 0 45px 0;
+    margin: 30px auto 0 auto;
     color: #222;
+    border: none;
+    padding: 0;
 }
+.job-name-container p{
+  width: calc(100% - 45px);
+  padding: 0.7em;/*文字周りの余白*/
+  color: #666;/*文字色*/
+  background: #f4fff7;/*背景色*/
+  border-left: solid 5px #03c4b0;/*左線（実線 太さ 色）*/
+}
+/* .job-name-container:before {
+  content: '応募フォーム';
+  position: absolute;
+  top: -30px;
+  left: 5px;
+  font-size: 20px;
+} */
 #canworktime {
-    padding: 40px 0 120px 0;
+    /* padding: 40px 0 120px 0; */
 }
 .form-necessarily {
     font-size: 16px;
     font-weight: lighter;
 }
-.form-necessarily:before {
+.form-necessarily .um-req {
+  color: red!important;
+  font-size: large;
+}
+/* .form-necessarily:before {
     content: "必須";
     color: #fff;
     background: #BE3D3D 0% 0% no-repeat padding-box;
@@ -11691,7 +11716,7 @@ a .list__contents__ele_div:hover{
   border-radius: 2px;
   padding: 4px 6px;
   margin-right: 10px;
-}
+} */
 .apply-form-container label {
     font-weight: normal;
 }
