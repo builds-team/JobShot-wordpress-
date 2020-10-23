@@ -11655,26 +11655,28 @@ a .list__contents__ele_div:hover{
   background-color: #f4fff7;
 }
 .apply-form {
-    width: 762px;
-    margin: 0 auto;
+  width: 762px;
+  margin: 0 auto;
 }
 .apply-form-container {
-    padding: 30px 20px 30px 20px;
-    border: 0.3px solid #efefefc9;
-    position: relative;
-    background-color: #fff;
-    border-radius: 10px;
-    margin: 20px 0;
+  padding: 30px 20px 30px 20px;
+  border: 0.3px solid #efefefc9;
+  position: relative;
+  background-color: #fff;
+  border-radius: 10px;
+  margin: 20px 0;
+  box-shadow: 0 0 2px rgba(0,0,0,.015), 0 2px 4px rgba(0,0,0,.03);
 }
 .noborder {
-    border: none;
+  border: none;
 }
 .job-name-container {
-    width: 762px;
-    margin: 30px auto 0 auto;
-    color: #222;
-    border: none;
-    padding: 0;
+  width: 762px;
+  margin: 30px auto 0 auto;
+  color: #222;
+  border: none;
+  padding: 0;
+  box-shadow: none;
 }
 .job-name-container p{
   width: calc(100% - 45px);
@@ -11691,11 +11693,14 @@ a .list__contents__ele_div:hover{
   font-size: 20px;
 } */
 #canworktime {
-    /* padding: 40px 0 120px 0; */
+  /* padding: 40px 0 120px 0; */
+}
+#canworktime label:first-child {
+  float: left;
 }
 .form-necessarily {
-    font-size: 16px;
-    font-weight: lighter;
+  font-size: 16px;
+  font-weight: lighter;
 }
 .form-necessarily .um-req {
   color: red!important;
@@ -11720,20 +11725,22 @@ a .list__contents__ele_div:hover{
 .apply-form-container label {
     font-weight: normal;
 }
-.apply-form-container .your-name, .apply-form-container .your-email, .your-date-container, .apply-form-container .interview_date_1,.apply-form-container .interview_date_2,.apply-form-container .interview_date_3, .interview_practice {
+.apply-form-container .your-name, .apply-form-container .your-email, .apply-form-container .interview_date_1,.apply-form-container .interview_date_2,.apply-form-container .interview_date_3, .interview_practice {
     position: absolute;
     left: 270px;
 }
 .your-date-container{
-    top:36px;
+    padding-left: 170px;
+    margin-top: -20px;
 }
 .your-date-container label{
+    padding-left: 250px;
     padding-top: 20px;
     line-height: 30px;
 }
-.your-date-container span:first-child {
+/* .your-date-container span:first-child {
     padding-right: 20px;
-}
+} */
 .apply-form-container textarea {
     height: 250px;
 }
@@ -11748,11 +11755,10 @@ a .list__contents__ele_div:hover{
     margin: 0 5px;
 }
 .entry-seat {
-    margin: -24px 0 0 270px;
-    width: 492px;
+    margin: -24px 0 0 250px;
 }
 .es-example {
-    margin: 0 0 0 270px;
+    margin: 0 0 0 250px;
 }
 .es-example-container {
     margin-top: 25px;
@@ -11915,12 +11921,12 @@ a .list__contents__ele_div:hover{
       top: 210px;
     }
     #interview_date .interview_date_sub1{
-      left: 0;
-      top: 280px;
+      padding-left: 0;
     }
     #interview_date .interview_date_sub2{
-      left: 0;
-      top: 300px;
+      /* left: 0;
+      top: 300px; */
+      padding-left: 0;
     }
     .apply-form #interview_practice p{
       padding-left: 0px;
@@ -12270,13 +12276,15 @@ a .list__contents__ele_div:hover{
     margin: 30px 0;
   }
   .interview_date_sub1{
-    position: absolute;
-    left: 270px;
+    /* position: absolute;
+    left: 270px; */
+    padding-left: 250px;
   }
   .interview_date_sub2{
-    position: absolute;
+    /* position: absolute;
     top: 270px;
-    left: 270px;
+    left: 270px; */
+    padding-left: 250px;
   }
   .interview_practice input{
     margin: 0;
@@ -12290,7 +12298,7 @@ a .list__contents__ele_div:hover{
     margin: 0;
   }
   #interview_practice p{
-    padding-left: 270px;
+    padding-left: 250px;
     padding-top: 20px;
     line-height: 30px;
   }
