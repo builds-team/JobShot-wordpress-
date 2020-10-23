@@ -11,6 +11,8 @@ function apply_title(){
         if(get_post_type($post_id)=='job'){
             $post_company = $_GET["jobname"];
             $post_html = '<div class="job-name job-title">'.$post_company.'</div></br>';
+        }elseif(get_post_type($post_id)=='event'){
+            $title = $_GET["jobname"];
         }
     }
     $html = '

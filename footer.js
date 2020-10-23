@@ -767,12 +767,12 @@ function cleanQuery(query) {
 		  var count = (Number($(count_id).html()));
 		  if($(this).hasClass("es-like-active")){
 			  $(this).removeClass("es-like-active");
-			  if($($count_id).length){
+			  if($(count_id).length){
 				$(count_id).html(count-1);
 			  }
 		  }else{
 			  $(this).addClass("es-like-active");
-			  if($($count_id).length){
+			  if($(count_id).length){
 				  $(count_id).html(count+1);
 			  }
 		  }
@@ -1059,6 +1059,7 @@ jQuery(function($){
 		return false;
 	});
 });
+//クッキーがない時だけ表示
 jQuery(function($){
 	if ($.cookie('bnrRead') == 'on') {
 		$('.top-banner').addClass('hidden');
@@ -1072,18 +1073,15 @@ function removebanner() {
         path:'/' //有効にするパス
       });
 }
-
 var NumOfTimes = 1;
 $(window).on( 'scroll', function () {
 //スクロール位置を取得
 	var w = screen.width;
 		if ( $(this).scrollTop() > 600 && NumOfTimes == 1) {
 			$('.modal__mask').fadeIn();
-			console.log("test");
 			NumOfTimes += 1;
 		}
 });
-
 jQuery(function($){
 		var str = location.href;
 		if ( str.match(/column/)) {
@@ -1092,7 +1090,6 @@ jQuery(function($){
 			}
 		}
 });
-
 // スカウト送信画面アコーディオン
 $(function(){
 	$(".scout__form__to__example").on("click", function() {
@@ -1101,7 +1098,7 @@ $(function(){
 	});
 	$(".scout__form__from .scout__form__fromTo").on("click", function() {
 		$(this).next().slideToggle();
-		$(this).children("span").toggleClass("active");
+$(this).children("span").toggleClass("active");
 	});
 });
 
@@ -1116,14 +1113,16 @@ jQuery(function($) {
     });
 });
 
+
+
 function Load() {
 	var form = document.querySelector('.intern-form');
 	var invalids = form.querySelectorAll(':invalid');
+	console.log(invalids);
 	if (0 == invalids.length) {
 	jQuery(document.body).append("<div id=\"blind\"><span class=\"loading22\"><div class=\"fa-3x\"><i class=\"fas fa-spinner fa-spin\"></i></span></div>");
 	}
 }
-
 jQuery(function($){
 	var str = location.href;
 	if ( str.match(/new_post_internship/)) {
@@ -1183,4 +1182,42 @@ jQuery(function($){
 		});
 		return false;
 	});
+});
+
+//新規登録のアスタリスク追加
+jQuery(function($){
+	var str = location.href;
+	if ( str.match(/regist/)) {
+		$('.um-field-checkbox-option').html( function( index, element ) {
+			if( index === 21 || index === 22) {
+				return element + '<span class="um-req" title="必須">*</span>';
+			}
+	 
+		})
+	}
+});
+
+//マイページの共有削除
+jQuery(function($){
+	var str = location.href;
+	if ( str.match(/user\?um_user/)) {
+		$('.robots-nocontent').remove();
+	}
+});
+
+//相談会のポップアップ
+function removePopup() {
+	jQuery('.modal__mask').remove();
+	jQuery.cookie('popRead', 'on', { //cookieにbnrReadという名前でonという値をセット
+        expires: 1, //cookieの有効日数
+        path:'/' //有効にするパス
+      });
+}
+
+
+//クッキーがない時だけ表示
+jQuery(function($){
+	if ($.cookie('popRead') == 'on') {
+		$('.modal__intern__mask').remove();
+	  }
 });

@@ -128,9 +128,24 @@ function search_form_func($atts){
   );
 
   if($item_type == 'internship'){ 
-    $banner_url = wp_get_attachment_image_src(15472, array(1000, 200))[0];
     $search_form_html ='
-    <img class="special_contents_img wp-image-5404 aligncenter" src="' . $banner_url . '">
+    <div class="modal__mask modal__intern__mask" style="display: none;">
+      <div class="modal__intern">
+          <div class="modal__intern__description">
+              <p class="modal__intern__first-line"><span>企業</span>や<span>案件選び</span>から</p>
+              <p class="modal__intern__second-line"><span>内定</span>までをプロがサポート！</p>
+              <p class="modal__intern__third-line">まずは<span>個別相談会</span>で</p>
+              <p class="modal__intern__4th-line">話を聞いてみよう！</p>
+          </div>
+          <div class="modal__intern__btn">
+              <a class="modal__intern__register-btn" href="https://jobshot.jp/interview" onclick="gtag(\'event\', \'click\', {\'event_category\': \'link\', \'event_label\': \'Popup_sodan\'});">
+                  <span>個別相談会に参加する</span>
+              </a>
+          </div>
+          <div class="modal__cancel__btn google-icon" onclick="removePopup()">
+          </div>
+      </div>
+    </div>
     <h3 class="widget-title">長期有給インターンを探す</h3>
     ';
   }
@@ -238,24 +253,24 @@ function search_form_func($atts){
             case 'popular':
               $search_form_html3 = '
               <div class="sort-search">
-                <button type="submit" name="sort" class="search-field" value="new" onclick="sort_by_new()">新着順</button>
                 <button type="submit" name="sort" class="search-field disabled" value="popular" onclick="sort_by_popular()" disabled>人気順</button>
+                <button type="submit" name="sort" class="search-field" value="new" onclick="sort_by_new()">新着順</button>
                 <button type="submit" name="sort" class="search-field" value="recommend" onclick="sort_by_recommend()">おすすめ順</button>
               </div>';
               break;
             case 'new':
               $search_form_html3 = '
               <div class="sort-search">
-                <button type="submit" name="sort" class="search-field disabled" value="new" onclick="sort_by_new()" disabled>新着順</button>
                 <button type="submit" name="sort" class="search-field" value="popular" onclick="sort_by_popular()">人気順</button>
+                <button type="submit" name="sort" class="search-field disabled" value="new" onclick="sort_by_new()" disabled>新着順</button>
                 <button type="submit" name="sort" class="search-field" value="recommend" onclick="sort_by_recommend()">おすすめ順</button>
               </div>';
               break;
             case 'recommend':
               $search_form_html3 = '
               <div class="sort-search">
-                <button type="submit" name="sort" class="search-field" value="new" onclick="sort_by_new()">新着順</button>
                 <button type="submit" name="sort" class="search-field" value="popular" onclick="sort_by_popular()">人気順</button>
+                <button type="submit" name="sort" class="search-field" value="new" onclick="sort_by_new()">新着順</button>
                 <button type="submit" name="sort" class="search-field disabled" value="recommend" onclick="sort_by_recommend()" disabled>おすすめ順</button>
               </div>';
               break;
@@ -263,8 +278,8 @@ function search_form_func($atts){
         }else{
           $search_form_html3 = '
           <div class="sort-search">
-            <button type="submit" name="sort" class="search-field disabled" value="new" onclick="sort_by_new()">新着順</button>
-            <button type="submit" name="sort" class="search-field" value="popular" onclick="sort_by_popular()">人気順</button>
+            <button type="submit" name="sort" class="search-field disabled" value="popular" onclick="sort_by_popular()" disabled>人気順</button>
+            <button type="submit" name="sort" class="search-field" value="new" onclick="sort_by_new()">新着順</button>
             <button type="submit" name="sort" class="search-field" value="recommend" onclick="sort_by_recommend()">おすすめ順</button>
           </div>';
         }

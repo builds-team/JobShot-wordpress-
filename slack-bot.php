@@ -84,6 +84,7 @@ add_action('wpcf7_mail_sent', function ($contact_form) {
         $school_year = get_user_meta($user_id,'school_year',false)[0];
         $graduate_year = get_user_meta($user_id,'graduate_year',false)[0];
         $mobile_number = get_user_meta($user_id,'mobile_number',false)[0];
+        $email_address = $data["your-email"];
         $interview_practice = $data["interview_practice"][0];
         if ('internship' === $post_type) {
             $string = sprintf($user_name . 'さんよりインターンの応募がありました: <%s|%s>', get_permalink($post), get_the_title($post));
@@ -92,6 +93,7 @@ add_action('wpcf7_mail_sent', function ($contact_form) {
             $string.= "\n".'学年：'.$school_year;
             $string.= "\n".'卒業年：'.$graduate_year;
             $string.= "\n".'電話番号：'.$mobile_number;
+            $string.= "\n".'メールアドレス：'.$email_address;
             if(!empty($interview_practice)){
                 $string .= "\n".$user_name."さんは面接対策を希望しています";
             }
