@@ -15688,9 +15688,15 @@ div#blind {
   font-family: 'Font Awesome 5 Free';
   font-weight: 400;
 }
+.column__detail__favo__btn.active:before {
+  font-weight: 900;
+}
 .column__detail__favo:before {
   margin-right: 5px;
   color: #ffbe00;
+}
+.column__detail__favo__btn__wrap {
+  
 }
 a.column__detail__favo__btn{
   float: right;
@@ -15741,6 +15747,9 @@ a.column__detail__favo__btn:after {
   font-size: 10px;
   transition: all 0.3s ease-in-out;
 }
+a.column__detail__favo__btn.active:after {
+  content: 'お気に入り済み';
+}
 a.column__detail__favo__btn:hover:before {
   color: #fff;
   transition: all 0.3s ease-in-out;
@@ -15753,7 +15762,7 @@ a.column__detail__favo__btn:hover:after {
   a.column__detail__favo__btn{
     bottom: 70px;
   }
-=======
+}
 /* インターンモーダル */
 .modal__intern {
   position: fixed;

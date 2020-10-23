@@ -93,10 +93,14 @@ function template_column2_func($content){
         $html = str_replace('class="um-left um-half"','class="um-left um-half" onclick="gtag(\'event\', \'click\', {\'event_category\': \'link\', \'event_label\': \'MembersOnly_login\'});"',$html);
         $html = str_replace('class="um-right um-half"','class="um-right um-half" onclick="gtag(\'event\', \'click\', {\'event_category\': \'link\', \'event_label\': \'MembersOnly_new\'});"',$html);
     }else{
-        $array = (explode('<h2>', $content, 2));
-        $column_image_url = wp_get_attachment_image_src(15290, array(1000, 200))[0];
-        $banner = '<a href="' . $home_url . '/interview"><img class="special_contents_img wp-image-5404 aligncenter" src="' .$column_image_url. '"></a>';
-        $html .= $array[0].$banner.'<h2>'.$array[1];
+        $content_sub = preg_split("/<h1>/",$content);
+        //$html .= $content;
+        $fav_array = get_post_meta($post_id,'favorite',true);
+        $user_id = get_current_user_id();
+        $fav_count = count($fav_array);
+        $html .= $content_sub[0].'<span class="column__detail__favo only-pc" id="">'.$fav_count.'</span><h1>'.$content_sub[1];
+        $html_sub = preg_split("/<\/h1>/",$html);
+        $html = $html_sub[0].'</h1><span class="column__detail__favo only-sp" id="">'.$fav_count.'</span>'.$html_sub[1];
     }
     if (!is_user_logged_in()){
         $popup = '
@@ -119,6 +123,8 @@ function template_column2_func($content){
         </div>
         ';
         $html = $popup.$html;
+    }else{
+        $html = 
     }
     return $html;
 }
@@ -837,13 +843,24 @@ function add_top_bar_column(){
 add_shortcode("add_top_bar_column","add_top_bar_column");
 
 function add_column_merit(){
+    global $post;
+    $post_id = $post->ID;
     $home_url =esc_url( home_url());
     if (is_user_logged_in()){
         $link = $home_url;
+        $fav_array = get_post_meta($post_id,'favorite',true);
+        $user_id = get_current_user_id();
+        if(in_array($user_id,$fav_array)){
+          $fav_class = 'column__detail__favo__btn active';
+        }else{
+          $fav_class = 'column__detail__favo__btn';
+        }
+        $fav_button = '<div><a class="'.$fav_class.'" id="fav-'.$post_id.'" data-id="'.$post_id.'"></a><div>';
     }else{
         $link = $home_url.'/regist';
+        $fav_button = '';
     }
-    $html = '
+    $html = $fav_button.'
     <div class="listup__contents__menu">
         <div class="listup__contents__head">
             <hr>

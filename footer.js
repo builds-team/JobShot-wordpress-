@@ -1221,3 +1221,46 @@ jQuery(function($){
 		$('.modal__intern__mask').remove();
 	  }
 });
+
+  //favボタンのajax更新
+  jQuery(function($){
+	$( '.column__detail__favo__btn' ).click( function (){
+		// フォームデータから、サーバへ送信するデータを作成
+		var fd = new FormData();
+		//post_id取得
+		var post_id = $(this).data('id');
+		var count = (Number($('.column__detail__favo.only-pc').html()));
+		//カウントを示すhtmlのid
+		if($(this).hasClass("active")){
+			$(this).removeClass("active");
+			if($('.column__detail__favo').length){
+				$('.column__detail__favo.only-pc').html(count-1);
+				$('.column__detail__favo.only-sp').html(count-1);
+			}
+		}else{
+			$(this).addClass("active");
+			if($('.column__detail__favo').length){
+				$('.column__detail__favo.only-pc').html(count+1);
+				$('.column__detail__favo.only-sp').html(count+1);
+			}
+		}
+		fd.append("post_id",post_id);
+		// サーバー側で何の処理をするかを指定。
+		fd.append('action' ,'update_favorite_count' );
+		// ajaxの通信（fav数を更新）
+		$.ajax({
+			type: 'POST',
+			url: ajaxurl,
+			data: fd,
+			processData: false,
+			contentType: false,
+			success: function( response ){
+				console.log("safe")
+			},
+			error: function( response ){
+				console.log('miss');
+			}
+		});
+		return false;
+	});
+});
