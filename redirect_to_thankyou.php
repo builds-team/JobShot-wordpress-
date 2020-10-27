@@ -220,6 +220,24 @@ function past_self_internship_PR_func(){
 }
 add_shortcode("past_self_internship_PR","past_self_internship_PR_func");
 
+function fill_in_past_self_PR(){
+    $user = wp_get_current_user();
+    $user_id = $user->data->ID;
+    $login_name = $user->user_login;
+    $self_internship_pr_value = do_shortcode('[cfdb-value form="インターン応募フォーム" show="your-message" filter="your-id='.$login_name.'&&your_message=on" limit="5" orderby="Submitted DESC"]');
+    $self_internship_pr_count = do_shortcode('[cfdb-count form="インターン応募フォーム" show="your-message" filter="your-id='.$login_name.'&&your_message=on" limit="5" orderby="Submitted DESC"]');
+    $self_internship_pr_value = preg_split("/[,]/",$self_internship_pr_value);
+    if($self_internship_pr_count == 0){
+	  $pr_content = '<textarea name="your-message" cols="40" rows="10" class="wpcf7-form-control wpcf7-textarea" id="pr-textarea" aria-invalid="false"></textarea>';
+	}
+    for($i = 0; $i<1; $i++){
+        $pr_content = 
+        '<textarea name="your-message" cols="40" rows="10" class="wpcf7-form-control wpcf7-textarea" id="pr-textarea" aria-invalid="false">'.$self_internship_pr_value[$i].'</textarea>';
+    }
+    return $izimodal_content;
+}
+add_shortcode("fill_in_past_self_PR","fill_in_past_self_PR");
+
 function es_menjo(){
     $post_id = $_GET['post_id'];
     $es = get_field('ES',$post_id);
