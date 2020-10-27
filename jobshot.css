@@ -15302,7 +15302,7 @@ margin: 0 auto;
   }
   /* homeバージョン */
   .home .card__text__info li {
-    width: initial;
+    width: 180px;
   }
 }
 @media screen and (max-width: 1100px) {
