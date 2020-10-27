@@ -572,6 +572,9 @@ function new_mypage_func(){
             <div class="favorite__container">
                 <h3 class="company-information-home">インターンシップ</h3>'.do_shortcode('[show_favorites item_type=internship]').'
             </div>
+            <div class="favorite__container">
+                <h3 class="company-information-home">就活記事</h3>'.do_shortcode('[show_favorites item_type=column]').'
+            </div>
         </div>'
         ;
         return $html;
