@@ -854,9 +854,9 @@ function view_fullwidth_column_card_func($post_id){
   $fav_count = count($fav_array);
   $user_id = get_current_user_id();
   if(in_array($user_id,$fav_array)){
-    $active = 'es-like-active';
+    $only_pc = '<a class="column__card__favo__btn active only-pc" data-id="'.$post_id.'" id="fav-'.$post_id.'">お気に入り</a>';
   }else{
-    $active = '';
+    $only_pc = '<a class="column__card__favo__btn only-pc" data-id="'.$post_id.'" id="fav-'.$post_id.'">お気に入り</a>';
   }
   if (!is_user_logged_in() and !empty($premium_column[0])){
     $lock_html = '<i class="fas fa-lock"></i>';
@@ -878,10 +878,9 @@ function view_fullwidth_column_card_func($post_id){
         </div>
       </div>
     </div>
-    <div class="column-like">
-      <button class="btn favorite-button '.$active.'" id="fav-'.$post_id.'"value="'.$post_id.'">
-        <i class="fa fa-heart"></i>
-      </button>
+    <div class="column__card__favo">
+      '.$only_pc.'
+      <span class="column__card__favo__btn only-sp">'.$fav_count.'</span>
     </div>
   </div>';
 
@@ -895,7 +894,14 @@ function view_insert_column_card_func($post_id){
 
   $post_title = get_the_title($post_id);
   $image_url = get_the_post_thumbnail_url( $post_id ,array(250, 160));
-
+  $fav_array = get_post_meta($post_id,'favorite',true);
+  $fav_count = count($fav_array);
+  $user_id = get_current_user_id();
+  if(in_array($user_id,$fav_array)){
+    $only_pc = '<a class="column__card__favo__btn active only-pc" data-id="'.$post_id.'" id="fav-'.$post_id.'">お気に入り</a>';
+  }else{
+    $only_pc = '<a class="column__card__favo__btn only-pc" data-id="'.$post_id.'" id="fav-'.$post_id.'">お気に入り</a>';
+  }
 
   $card_html = '
   <div class="card full-card">
@@ -906,6 +912,10 @@ function view_insert_column_card_func($post_id){
       <div class="column_card_contents">
         <div class="column_card_title"><span id="column_card_title_text"><a href="'.esc_url(get_permalink($post_id)).'">'.$post_title.'</a></span></div>
       </div>
+    </div>
+    <div class="column__card__favo">
+      '.$only_pc.'
+      <span class="column__card__favo__btn only-sp">'.$fav_count.'</span>
     </div>
   </div>';
 

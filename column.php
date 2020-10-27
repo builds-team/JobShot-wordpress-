@@ -855,7 +855,7 @@ function add_column_merit(){
         }else{
           $fav_class = 'column__detail__favo__btn';
         }
-        $fav_button = '<div><a class="'.$fav_class.'" id="fav-'.$post_id.'" data-id="'.$post_id.'"></a><div>';
+        $fav_button = '<div class="column__detail__favo__btn__wrap"><a class="'.$fav_class.'" id="fav-'.$post_id.'" data-id="'.$post_id.'"></a><div>';
     }else{
         $link = $home_url.'/regist';
         $fav_button = '';

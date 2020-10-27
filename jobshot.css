@@ -15578,8 +15578,14 @@ div#blind {
   margin: 0;
   color: #666;
 }
+.column__card__favo__btn.active.only-pc{
+  display: block;
+  margin: 0;
+  color: #ffbe00;
+}
 .column__card__favo__btn.only-sp{
   color: #ffbe00;
+  margin-left: 10px;
 }
 .column__card__favo__btn:hover{
   color: #ffbe00;
@@ -15595,6 +15601,10 @@ div#blind {
   font-weight: 400;
   transition-property: all;
   transition: all 0.3s ease-in-out;
+}
+.column__card__favo__btn.active.only-pc:before {
+  color: #ffbe00;
+  font-weight: 900;
 }
 .column__card__favo__btn.only-sp:before {
   color: #ffbe00;
@@ -15690,34 +15700,37 @@ div#blind {
   color: #ffbe00;
 }
 .column__detail__favo__btn__wrap {
-  
+  position: sticky;
+  bottom: 120px;
+  display: block;
+  z-index: 3;
 }
 a.column__detail__favo__btn{
   float: right;
-  position: sticky;
-  bottom: 50px;
-  display: block;
   margin: 0;
   color: #ffbe00;
   background-color: #fff;
   width: fit-content;
   padding: 10px;
   border-radius: 50%;
-  border: 2px solid #ffbe00;
+  border: 2px solid #777;
   margin-top: 20px;
   margin-right: 5px;
   font-size: 20px;
   transition: all 0.3s ease-in-out;
-  z-index: 3;
+}
+a.column__detail__favo__btn.active{
+  border: 2px solid #ffbe00;
 }
 a.column__detail__favo__btn:hover {
   color: #fff;
   background-color: #ffbe00;
   cursor: pointer;
+  border: 2px solid #ffbe00;
   transition: all 0.3s ease-in-out;
 }
 a.column__detail__favo__btn:before {
-  color: #ffbe00;
+  color: #777;
   height: 30px;
   width: 30px;
   text-align: center;
@@ -15725,12 +15738,15 @@ a.column__detail__favo__btn:before {
   transition-property: all;
   transition: all 0.3s ease-in-out;
 }
+a.column__detail__favo__btn.active::before {
+  color: #ffbe00;
+}
 a.column__detail__favo__btn:after {
   display: none;
   position: absolute;
-  width: 100%;
-  top: -35px;
-  left: -4px;
+  width: fit-content;
+  top: -15px;
+  right: 4px;
   text-align: center;
   background-color: #fff;
   color: #ffbe00;
@@ -15753,8 +15769,8 @@ a.column__detail__favo__btn:hover:after {
   transition: all 0.3s ease-in-out;
 }
 @media screen and (max-width: 680px) {
-  a.column__detail__favo__btn{
-    bottom: 70px;
+  .column__detail__favo__btn__wrap{
+    bottom: 150px;
   }
 }
 /* インターンモーダル */

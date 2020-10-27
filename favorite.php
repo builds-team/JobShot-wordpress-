@@ -17,7 +17,7 @@ function show_favorites_func($atts){
     $user_id = get_current_user_id();
     $fav_html='';
     $favorites = get_user_favorites();
-    if($item_type == 'internship'){
+    if($item_type == 'internship' || 'column'){
         $favorites = array();
         $meta_query_args = array(
             'relation' => 'AND', // オプション、デフォルト値は "AND"
@@ -30,7 +30,7 @@ function show_favorites_func($atts){
         ));
         array_push($meta_query_args, $fav_meta_query);
         $args = array(
-            'post_type' => array('internship'),
+            'post_type' => array($item_type),
             'post_status' => array( 'publish'),
             'posts_per_page' => -1,
             'meta_query'   => $meta_query_args,

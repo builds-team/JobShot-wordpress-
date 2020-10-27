@@ -147,7 +147,7 @@ $html.='<br><a href="'.home_url('/avatar').'">アバターの追加・変更</a>
 $html.='<h2>あなたの評価</h2>
 <div>[drawgraph]</div>';
 $html.='<h2>お気に入りインターン</h2><p>[show_favorites item_type=internship]</p>';
-    $html.='<h2>お気に入り企業</h2><p>[show_favorites item_type=company]</p>';
+$html.='<h2>お気に入り企業</h2><p>[show_favorites item_type=company]</p>';
 $html.='<h2>お気に入りイベント</h2><p>[show_favorites item_type=event]</p>';
 $html.='<h2>プロフィール</h2>[view_student_data info_basic=1]';
 $html.='<h2>申し込み一覧</h2>[view_applied_list]';

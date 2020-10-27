@@ -1255,7 +1255,47 @@ jQuery(function($){
 			processData: false,
 			contentType: false,
 			success: function( response ){
-				console.log("safe")
+				$('.entry').prepend(response);
+				if(response.length){
+					$('#fav-'+post_id).removeClass("active");
+				}
+			},
+			error: function( response ){
+				console.log('miss');
+			}
+		});
+		return false;
+	});
+});
+
+  //favボタンのajax更新
+  jQuery(function($){
+	$( '.column__card__favo__btn.only-pc' ).click( function (){
+		// フォームデータから、サーバへ送信するデータを作成
+		var fd = new FormData();
+		//post_id取得
+		var post_id = $(this).data('id');
+		//カウントを示すhtmlのid
+		if($(this).hasClass("active")){
+			$(this).removeClass("active");
+		}else{
+			$(this).addClass("active");
+		}
+		fd.append("post_id",post_id);
+		// サーバー側で何の処理をするかを指定。
+		fd.append('action' ,'update_favorite_count' );
+		// ajaxの通信（fav数を更新）
+		$.ajax({
+			type: 'POST',
+			url: ajaxurl,
+			data: fd,
+			processData: false,
+			contentType: false,
+			success: function( response ){
+				$('.entry').prepend(response);
+				if(response.length){
+					$('#fav-'+post_id).removeClass("active");
+				}
 			},
 			error: function( response ){
 				console.log('miss');
