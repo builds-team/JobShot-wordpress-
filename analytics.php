@@ -33,7 +33,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 (function(add, cla){window['UserHeatTag']=cla;window[cla]=window[cla]||function(){(window[cla].q=window[cla].q||[]).push(arguments)},window[cla].l=1*new Date();var ul=document.createElement('script');var tag = document.getElementsByTagName('script')[0];ul.async=1;ul.src=add;tag.parentNode.insertBefore(ul,tag);})('//uh.nakanohito.jp/uhj2/uh.js', '_uhtracker');_uhtracker({id:'uhAInVkJCv'});
 </script>
 <!-- End User Heat Tag -->";
-
 }
 add_action ('wp_head','google_analytics_add_wp_head',1);
 
@@ -62,5 +61,26 @@ function instagram_analytics_add_wp_head (){
 
 }
 add_action ('wp_head','instagram_analytics_add_wp_head',1);
+
+function count_favorite($item_type){
+  $args = array(
+      'post_type' => array($item_type),
+      'post_status' => array( 'publish'),
+      'posts_per_page' => -1,
+  );
+  $the_query = new WP_Query($args);
+  $count = 0;
+  if ($the_query->have_posts()) :
+      while ($the_query->have_posts()) :
+        $the_query->the_post();
+        $post_id = get_the_ID();
+        $fav_array = get_post_meta($post_id,'favorite',true);
+        $count += count($fav_array);
+      endwhile;
+    endif;
+  echo $count;
+  wp_reset_postdata();
+}
+add_shortcode("count_favorite","count_favorite");
 
 ?>

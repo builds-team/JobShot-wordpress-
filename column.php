@@ -848,18 +848,18 @@ function add_column_merit(){
     $home_url =esc_url( home_url());
     if (is_user_logged_in()){
         $link = $home_url;
-        $fav_array = get_post_meta($post_id,'favorite',true);
-        $user_id = get_current_user_id();
-        if(in_array($user_id,$fav_array)){
-          $fav_class = 'column__detail__favo__btn active';
-        }else{
-          $fav_class = 'column__detail__favo__btn';
-        }
-        $fav_button = '<div class="column__detail__favo__btn__wrap"><a class="'.$fav_class.'" id="fav-'.$post_id.'" data-id="'.$post_id.'"></a><div>';
     }else{
         $link = $home_url.'/regist';
         $fav_button = '';
     }
+    $fav_array = get_post_meta($post_id,'favorite',true);
+    $user_id = get_current_user_id();
+    if(in_array($user_id,$fav_array)){
+      $fav_class = 'column__detail__favo__btn active';
+    }else{
+      $fav_class = 'column__detail__favo__btn';
+    }
+    $fav_button = '<div class="column__detail__favo__btn__wrap"><a class="'.$fav_class.'" id="fav-'.$post_id.'" data-id="'.$post_id.'"></a></div>';
     $html = $fav_button.'
     <div class="listup__contents__menu">
         <div class="listup__contents__head">

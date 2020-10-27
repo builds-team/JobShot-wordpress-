@@ -10036,7 +10036,15 @@ font-size: 13px !important;
 }
 .navi-menu-icon-recruit:before {
   font-family: "Material Icons";
-  content: "\e7fb";
+  content: "search";
+}
+.navi-menu-icon-column:before {
+  font-family: "Material Icons";
+  content: "\e616";
+}
+.navi-menu-icon-favorite:before {
+  font-family: "Material Icons";
+  content: "star_rate";
 }
 .navi-menu-icon-intern:before {
   font-family: "Material Icons";
@@ -10044,7 +10052,7 @@ font-size: 13px !important;
 }
 .navi-menu-icon-event:before {
   font-family: "Material Icons";
-  content: "\e616";
+  content: "\e7fb";
 }
 .navi-menu-icon-mypage:before {
   font-family: "Material Icons";

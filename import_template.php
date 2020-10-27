@@ -77,21 +77,21 @@ function navigation_tab(){
           </a>
         </li>
         <li class="navi-menu-button">
-          <a href="'.$home_url.'/company" class="navi-menu-content navi-menu-content-recruit">
+          <a href="'.$home_url.'/internship" class="navi-menu-content navi-menu-content-recruit">
             <span class="navi-menu-icon navi-menu-icon-recruit"></span>
-            <span class="navi-menu-text">新卒</span>
+            <span class="navi-menu-text">探す</span>
           </a>
         </li>
-        <li class="navi-menu-button navi-menu-content-intern">
-          <a href="'.$home_url.'/internship" class="navi-menu-content">
-            <span class="navi-menu-icon navi-menu-icon-intern"></span>
-            <span class="navi-menu-text">インターン</span>
+        <li class="navi-menu-button navi-menu-content-column">
+          <a href="'.$home_url.'/column" class="navi-menu-content">
+            <span class="navi-menu-icon navi-menu-icon-column"></span>
+            <span class="navi-menu-text">就活記事</span>
           </a>
         </li>
-        <li class="navi-menu-button navi-menu-content-event">
-          <a href="'.$home_url.'/event" class="navi-menu-content">
-            <span class="navi-menu-icon navi-menu-icon-event"></span>
-            <span class="navi-menu-text">イベント</span>
+        <li class="navi-menu-button navi-menu-content-favorite">
+          <a href="'.$home_url.'/user?um_tab=favorites" class="navi-menu-content">
+            <span class="navi-menu-icon navi-menu-icon-favorite"></span>
+            <span class="navi-menu-text">お気に入り</span>
           </a>
         </li>
         <li class="navi-menu-button navi-menu-content-mypage">
@@ -114,17 +114,17 @@ function navigation_tab(){
           </a>
         </li>
         <li class="navi-menu-button">
-          <a href="'.$home_url.'/company" class="navi-menu-content navi-menu-content-recruit">
+          <a href="'.$home_url.'/internship" class="navi-menu-content navi-menu-content-recruit">
             <span class="navi-menu-icon navi-menu-icon-recruit"></span>
-            <span class="navi-menu-text">新卒</span>
-          </a>
-        </li>
-        <li class="navi-menu-button navi-menu-content-intern">
-          <a href="'.$home_url.'/internship" class="navi-menu-content">
-            <span class="navi-menu-icon navi-menu-icon-intern"></span>
             <span class="navi-menu-text">インターン</span>
           </a>
         </li>
+        <li class="navi-menu-button navi-menu-content-column">
+        <a href="'.$home_url.'/column" class="navi-menu-content">
+          <span class="navi-menu-icon navi-menu-icon-column"></span>
+          <span class="navi-menu-text">就活記事</span>
+        </a>
+      </li>
         <li class="navi-menu-button navi-menu-content-event">
           <a href="'.$home_url.'/event" class="navi-menu-content">
             <span class="navi-menu-icon navi-menu-icon-event"></span>
