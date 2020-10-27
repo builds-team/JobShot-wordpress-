@@ -11736,8 +11736,13 @@ a .list__contents__ele_div:hover{
 .entry-seat label {
   float: none;
 }
-.entry-seat-save {
-  text-align: right;
+.entry-seat .entry-seat-save {
+  font-size: 16px;
+  width: fit-content;
+  float: right;
+}
+.post-es-example {
+  float: left;
 }
 .es-example {
     margin: 0 0 0 250px;
@@ -11749,10 +11754,8 @@ a .list__contents__ele_div:hover{
 /* ↓エントリーシートボタン */
 .es-example-container {
     margin-top: 25px;
-    display: flex;
-    justify-content: space-around;
 }
-.post-es-example, .pre-es-example {
+.pre-es-example {
     width:40%;
     text-align:center;
     vertical-align: top;
@@ -11769,13 +11772,13 @@ a .list__contents__ele_div:hover{
   float: none;
 }
 .open-options.button {
-    height: 40px;
-    color: #333;
+    color: #666;
     padding: 0;
-    background-color: #DBDBDB;
+    font-size: 16px;
+    background-color: #fff;
+    text-decoration: underline;
 }
 .open-options.button:hover {
-    background-color: #DBDBDB;
     opacity: 0.5;
 }
 .apply-submit-btn {
@@ -11841,7 +11844,13 @@ a .list__contents__ele_div:hover{
   .es-example p{
     font-size: 14px;
   }
-  .post-es-example, .pre-es-example {
+  .entry-seat-save span{
+    font-size: 14px;
+  }
+  .post-es-example {
+
+  }
+  .pre-es-example {
       width:40%;
       height: 30px;
       line-height: 30px;
@@ -11850,7 +11859,7 @@ a .list__contents__ele_div:hover{
       box-shadow: initial;
   }
   .open-options.button {
-      height: 30px;
+      font-size: 14px;
   }
   .apply-submit-btn {
       margin: -20px 0 100px 0;
