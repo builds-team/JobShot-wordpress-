@@ -15882,3 +15882,28 @@ a.column__detail__favo__btn:hover:after {
     padding: 0 10px;
    }
 }
+
+/* カテゴリーバー */
+/* .page-id-1986 nav.menu-primary {
+  box-shadow: none;
+} */
+.category__bar {
+  display: flex;
+  height: 50px;
+  margin: 0 -20px;
+  z-index: 1001;
+}
+.category__bar__item {
+  width: calc(100% / 3);
+  font-size: 14px;
+  color: #d9d9d9;
+  text-align: center;
+  height: 50px;
+  line-height: 50px;
+}
+.category__bar__item.active {
+  color: #03c4b0;
+  height: 46px;
+  line-height: 46px;
+  border-bottom: 3px solid #03c4b0;
+}
