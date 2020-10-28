@@ -15884,9 +15884,6 @@ a.column__detail__favo__btn:hover:after {
 }
 
 /* カテゴリーバー */
-/* .page-id-1986 nav.menu-primary {
-  box-shadow: none;
-} */
 .category__bar {
   display: flex;
   height: 50px;
@@ -15903,7 +15900,9 @@ a.column__detail__favo__btn:hover:after {
 }
 .category__bar__item.active {
   color: #03c4b0;
-  height: 46px;
-  line-height: 46px;
+  height: 48px;
+  line-height: 48px;
+  margin-bottom: 2px;
+  box-sizing:border-box;
   border-bottom: 3px solid #03c4b0;
 }
