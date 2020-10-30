@@ -48,11 +48,11 @@ function profile_tab($user_name,$login_user_roles){
                 </div>
                 <div class="um-profile-nav-item um-profile-nav-favorites ">
                     <a href="https://jobshot.jp/user?um_user='.$user_name.'&um_tab=favorites" class="uimob800-show uimob500-show uimob340-show um-tip-n" original-title="お気に入り">
-                        <i class="um-faicon-star"></i>
+                        <i class="um-faicon-heart"></i>
                         <span class="uimob800-hide uimob500-hide uimob340-hide title">お気に入り</span>
                     </a>
                     <a href="https://jobshot.jp/user?um_user='.$user_name.'&um_tab=favorites" class="uimob800-hide uimob500-hide uimob340-hide" title="お気に入り">
-                        <i class="um-faicon-star"></i>
+                        <i class="um-faicon-heart"></i>
                         <span class="title">お気に入り</span>
                     </a>
                 </div>

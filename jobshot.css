@@ -10036,7 +10036,7 @@ font-size: 13px !important;
 }
 .navi-menu-icon-recruit:before {
   font-family: "Material Icons";
-  content: "search";
+  content: "\e8f9";
 }
 .navi-menu-icon-column:before {
   font-family: "Material Icons";
@@ -10044,7 +10044,7 @@ font-size: 13px !important;
 }
 .navi-menu-icon-favorite:before {
   font-family: "Material Icons";
-  content: "star_rate";
+  content: "\e87d";
 }
 .navi-menu-icon-intern:before {
   font-family: "Material Icons";
@@ -15595,19 +15595,19 @@ div#blind {
 .column__card__favo__btn.active.only-pc{
   display: block;
   margin: 0;
-  color: #ffbe00;
+  color: rgb(224, 36, 94);
 }
 .column__card__favo__btn.only-sp{
-  color: #ffbe00;
+  color: rgb(224, 36, 94);
 }
 .column__card__favo__btn:hover{
-  color: #ffbe00;
+  color: rgb(224, 36, 94);
   cursor: pointer;
 }
 .column__card__favo__btn:before {
   display: inline-block;
   position: relative;
-  content: '\f005';
+  content: '\f004';
   margin-right: 10px;
   font-family: 'Font Awesome 5 Free';
   color: #666;
@@ -15616,15 +15616,15 @@ div#blind {
   transition: all 0.3s ease-in-out;
 }
 .column__card__favo__btn.active.only-pc:before {
-  color: #ffbe00;
+  color: rgb(224, 36, 94);
   font-weight: 900;
 }
 .column__card__favo__btn.only-sp:before {
-  color: #ffbe00;
+  color: rgb(224, 36, 94);
   margin-right: 5px;
 }
 .column__card__favo__btn:hover:before {
-  color: #ffbe00;
+  color: rgb(224, 36, 94);
 }
 @media screen and (max-width: 782px) {
   .column__card__title {
@@ -15687,13 +15687,13 @@ div#blind {
 /* コラム詳細お気に入り */
 .column__detail__favo.only-pc {
   display: block;
-  color: #ffbe00;
+  color: rgb(224, 36, 94);
   margin-top: -33px;
   float: right;
 }
 .column__detail__favo.only-sp {
   display: block;
-  color: #ffbe00;
+  color: rgb(224, 36, 94);
   font-size: 14px;
   margin-top: -10px;
   margin-bottom: 10px;
@@ -15701,7 +15701,7 @@ div#blind {
 .column__detail__favo:before,.column__detail__favo__btn:before {
   display: inline-block;
   position: relative;
-  content: '\f005';
+  content: '\f004';
   font-family: 'Font Awesome 5 Free';
   font-weight: 400;
 }
@@ -15710,7 +15710,7 @@ div#blind {
 }
 .column__detail__favo:before {
   margin-right: 5px;
-  color: #ffbe00;
+  color: rgb(224, 36, 94);
 }
 .column__detail__favo__btn__wrap {
   position: sticky;
@@ -15721,7 +15721,7 @@ div#blind {
 a.column__detail__favo__btn{
   float: right;
   margin: 0;
-  color: #ffbe00;
+  color: rgb(224, 36, 94);
   background-color: #fff;
   width: fit-content;
   padding: 10px;
@@ -15733,13 +15733,13 @@ a.column__detail__favo__btn{
   transition: all 0.3s ease-in-out;
 }
 a.column__detail__favo__btn.active{
-  border: 2px solid #ffbe00;
+  border: 2px solid rgb(224, 36, 94);
 }
 a.column__detail__favo__btn:hover {
   color: #fff;
-  background-color: #ffbe00;
+  background-color: rgb(224, 36, 94);
   cursor: pointer;
-  border: 2px solid #ffbe00;
+  border: 2px solid rgb(224, 36, 94);
   transition: all 0.3s ease-in-out;
 }
 a.column__detail__favo__btn:before {
@@ -15752,7 +15752,7 @@ a.column__detail__favo__btn:before {
   transition: all 0.3s ease-in-out;
 }
 a.column__detail__favo__btn.active::before {
-  color: #ffbe00;
+  color: rgb(224, 36, 94);
 }
 a.column__detail__favo__btn:after {
   display: none;
@@ -15763,7 +15763,7 @@ a.column__detail__favo__btn:after {
   text-align: center;
   background-color: #fff;
   color: #ffbe00;
-  border: 1px solid #ffbe00;
+  border: 1px solid rgb(224, 36, 94);
   content: 'お気に入り';
   border-radius: 2px;
   padding: 5px;

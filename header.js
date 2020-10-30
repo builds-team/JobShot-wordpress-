@@ -540,17 +540,7 @@ jQuery(function($){
 jQuery(function($){
     $( "p:empty" ).remove();
 });
-jQuery(function() {
-	var w = screen.width;
-	var x = 480;
-	if (w <= x) {
-	if($('#past-pr-button').length){
-	var str = document.getElementById("past-pr-button").innerHTML;
-	str = str.replace("過去の自己PRを使う","過去の自己PR");
-	document.getElementById("past-pr-button").innerHTML = str;
-	}
-	}
-});
+
 jQuery(function($){
     $('.button-nonactive').parent('.post-es-example').css('background-color','#AAA');
     $('.button-nonactive').parent('.post-es-example').css('box-shadow','#none');
