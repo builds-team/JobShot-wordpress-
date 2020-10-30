@@ -863,29 +863,31 @@ function view_fullwidth_column_card_func($post_id){
   }
 
   $card_html = '
-  <div class="card full-card">
-    <div class="full-card-maim">
-      <div class="column_card_img">
+  <div class="column__card">
+    <div class="column__card__wrap">
+      <div class="column__card__img">
+        <a href="https://jobshot.jp/column/'.$post_id.'" class="column__card__link"></a>
         <img src="'.$image_url.'" alt="">
       </div>
-      <div class="column_card_contents">
-        <div class="column_card_title"><h3 id="column_card_title_text"><a href="'.esc_url(get_permalink($post_id)).'">'.$post_title.'</a></h3></div>
-        <div class="column_card_description">
+      <div class="column__card__body">
+        <div class="column__card__title"><h3 id="column_card_title_text"><a href="'.esc_url(get_permalink($post_id)).'">'.$post_title.'</a></h3></div>
+        <div class="column__card__description">
           <p>'.$description.'</p>
         </div>
-        <div class="column_card_date">
+      </div>
+      <div class="column__card__footer">
+        <div class="column__card__date">
           <p><i class="far fa-clock"></i>'.$post_date.$lock_html.'</p>
         </div>
+        <div class="column__card__favo">
+          '.$only_pc.'
+          <span class="column__card__favo__btn only-sp">'.$fav_count.'</span>
+        </div>
       </div>
-    </div>
-    <div class="column__card__favo">
-      '.$only_pc.'
-      <span class="column__card__favo__btn only-sp">'.$fav_count.'</span>
     </div>
   </div>';
 
   return do_shortcode($card_html);
-
 }
 add_shortcode('view-fullwidth-column-card','view_fullwidth_column_card_func');
 
