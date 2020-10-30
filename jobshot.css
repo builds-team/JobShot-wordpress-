@@ -11730,99 +11730,125 @@ a .list__contents__ele_div:hover{
     padding: 5px;
 }
 .apply-form-container input[type="checkbox"] {
-  vertical-align: text-top;
+  transform: scale(1.1);
+  vertical-align: middle;
+  margin-right: 7px;
 }
 .apply-form-container .your-date input, .apply-form-container .your-time input {
-    margin: 0 5px;
-    width: 60px;
+  margin: 0 5px;
+  width: 60px;
+}
+.self-pr-container {
+  position: relative;
 }
 .entry-seat {
-    margin: -20px 0 0 250px;
-    display: inline-block;
-    width: calc(100% - 250px);
+  margin: -20px 0 0 250px;
+  display: inline-block;
+  width: calc(100% - 250px);
 }
 .entry-seat label {
   float: none;
 }
-.entry-seat-save {
-  text-align: right;
+.entry-seat .entry-seat-save {
+  position: absolute;
+  bottom: -30px;
+  right: 5px;
+  font-size: 16px;
+  height: 20px;
+  line-height: 20px;
+  vertical-align: middle;
+}
+.entry-seat .entry-seat-save span{
+  display: inline-block;
+  height: 20px;
+  line-height: 20px;
+  vertical-align: middle;
+}
+.post-es-example {
+  height: 20px;
+  line-height: 20px;
+  vertical-align: middle;
+}
+.post-es-example button{
+  line-height: 20px;
 }
 .es-example {
-    margin: 0 0 0 250px;
-    display: inline-block;
+  margin: 0 0 0 250px;
+  display: inline-block;
 }
 .es-example p {
   font-size: 16px;
 }
-/* ↓エントリーシートボタン */
 .es-example-container {
-    margin-top: 25px;
-    display: flex;
-    justify-content: space-around;
+  margin-top: 15px;
 }
-.post-es-example, .pre-es-example {
-    width:40%;
-    text-align:center;
-    vertical-align: top;
-    display: inline-block;
-    height: 40px;
-    line-height: 40px;
-    background-color: #DBDBDB;
-    padding: 0 12px;
-    border-radius: 5px;
-    box-shadow: 0px 3px 6px #00000029;
-    border: 1px solid #B4B4B4;
+.pre-es-example {
+  width:40%;
+  text-align:center;
+  display: inline-block;
+  height: 40px;
+  line-height: 40px;
+  background-color: #03c4b0;
+  padding: 0 12px;
+  border-radius: 5px;
+  box-shadow: 0px 3px 6px #00000019;
+  border: 1px solid #03c4b0;
+  transition: .3s;
 }
 .pre-es-example label{
   float: none;
+  color: #fff;
+}
+.pre-es-example label:hover{
+  opacity: .7;
+  transition: .3s;
 }
 .open-options.button {
-    height: 40px;
-    color: #333;
-    padding: 0;
-    background-color: #DBDBDB;
+  color: #666;
+  padding: 0;
+  font-size: 16px;
+  background-color: #fff;
+  text-decoration: underline;
 }
 .open-options.button:hover {
-    background-color: #DBDBDB;
-    opacity: 0.5;
+  opacity: 0.5;
 }
 .apply-submit-btn {
-    text-align: center;
-    margin-bottom:25px !important;
+  text-align: center;
+  margin-bottom:25px !important;
 }
 .apply-submit-btn input[type="submit"] {
-    height: 50px;
-    width: 370px;
-    color: #fff;
-    font-size: 25px;
-    font-weight: normal;
-    background-color: #EFB753;
-    box-shadow: 0px 3px 6px #00000029;
-    border-radius: 25px;
-    margin-right: -30px;
+  height: 50px;
+  width: 370px;
+  color: #fff;
+  font-size: 25px;
+  font-weight: normal;
+  background-color: #EFB753;
+  box-shadow: 0px 3px 6px #00000029;
+  border-radius: 25px;
+  margin-right: -30px;
 }
 .apply-submit-btn input[type="submit"]:hover {
-    background-color: #EFB753;
-    opacity: 0.5;
+  background-color: #EFB753;
+  opacity: 0.5;
 }
-/* エントリーシートボタンここまで */
 @media screen and (max-width: 1100px) {
   .apply-form {
-      width: calc(100% - 20px);
-      padding: 0px;
-      margin: 0 10px;
+    width: calc(100% - 20px);
+    padding: 0px;
+    margin: 0 10px;
   }
   .apply-form-container {
-      padding: 20px;
-      border-bottom: none;
+    padding: 20px;
+    border-bottom: none;
   }
   .job-name-container {
-      width: calc(100% - 20px);
-      padding: 0px 0px 10px 0px;
-      margin: 0 10px;
+    width: calc(100% - 20px);
+    padding: 0px 0px 10px 0px;
+    margin: 0 10px;
   }
   .job-name-container .job-name {
-      font: 550 20px/33px Arial;
+    font: 550 20px/33px Arial;
   }
   .apply-form-container label {
     font-weight: normal;
@@ -11843,22 +11869,28 @@ a .list__contents__ele_div:hover{
     margin: 10px 0 0 0;
     width: 100%;
   }
+  .apply-form-container textarea {
+    height: 350px;
+  }
   .es-example {
     margin: 0;
   }
   .es-example p{
     font-size: 14px;
   }
-  .post-es-example, .pre-es-example {
-      width:40%;
-      height: 30px;
-      line-height: 30px;
-      padding: 4 5px;
-      text-shadow: 0px 3px 6px #00000029;
-      box-shadow: initial;
+  .entry-seat-save span{
+    font-size: 14px;
+  }
+  .pre-es-example {
+    width:40%;
+    height: 30px;
+    line-height: 30px;
+    padding: 4px 15px;
+    text-shadow: 0px 3px 6px #00000029;
+    box-shadow: initial;
   }
   .open-options.button {
-      height: 30px;
+      font-size: 14px;
   }
   .apply-submit-btn {
       margin: -20px 0 100px 0;
@@ -11881,8 +11913,11 @@ a .list__contents__ele_div:hover{
     padding: 0;
   }
   .apply-form-container input[type="checkbox"] {
-    transform: scale(1.5);
-    margin-right: 10px;
+    transform: scale(1.1);
+    margin-right: 5px;
+  }
+  .apply-submit-btn input[type="submit"] {
+    margin-top: 30px;
   }
 }
 .pre-es-example p:hover{
