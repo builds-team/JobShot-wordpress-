@@ -469,3 +469,29 @@ function enterprise_edit_button()
   }
 }
 add_action('wp_head', 'enterprise_edit_button');
+
+
+function top_bar_search($atts){
+  extract(shortcode_atts(array(
+    'item_type' => '',
+), $atts));
+  $internship_active = '';
+  $job_active = '';
+  $event_active = '';
+  if($item_type == 'internship'){
+    $internship_active = "active";
+  }elseif($item_type == 'job'){
+    $job_active = 'active';
+  }else{
+    $event_active = 'active';
+  }
+  $html = '
+  <div class="category__bar only-sp">
+    <div class="category__bar__item '.$job_active.'"><a href="https://jobshot.jp/company">新卒</a></div>
+    <div class="category__bar__item '.$internship_active.'"><a href="https://jobshot.jp/internship">長期インターン</a></div>
+    <div class="category__bar__item '.$event_active.'"><a href="https://jobshot.jp/event">イベント</a></div>
+  </div>
+  ';
+  return $html;
+}
+add_shortcode('top_bar_search','top_bar_search');
