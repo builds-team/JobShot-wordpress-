@@ -870,7 +870,7 @@ function view_fullwidth_column_card_func($post_id){
         <img src="'.$image_url.'" alt="">
       </div>
       <div class="column__card__body">
-        <div class="column__card__title"><h3 id="column_card_title_text"><a href="'.esc_url(get_permalink($post_id)).'">'.$post_title.'</a></h3></div>
+        <div class="column__card__title"><h3 id="column__card__title__text"><a href="'.esc_url(get_permalink($post_id)).'">'.$post_title.'</a></h3></div>
         <div class="column__card__description">
           <p>'.$description.'</p>
         </div>
