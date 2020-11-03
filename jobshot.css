@@ -15928,18 +15928,18 @@ a.column__detail__favo__btn:hover:after {
   z-index: 1001;
 }
 .category__bar__wrap {
-  min-width: 900px;
+  min-width: fit-content;
 }
 .category__bar__item {
   display: inline-block;
-  width: 150px;
+  width: 170px;
   font-size: 14px;
   text-align: center;
   height: 44px;
   line-height: 44px;
 }
 .category__bar__item a{
-  color: #adadad;
+  color: #A4A9AE;
   display: block;
   width: 100%;
   height: 100%;
@@ -15955,12 +15955,12 @@ a.column__detail__favo__btn:hover:after {
   border-bottom: 3px solid #03c4b0;
 }
 .category__bar__item.active a {
-  color: #152d4a;
+  color: #555;
   font-weight: bold;
 }
 
 /* ヘッダーナビ */
-.header__subtitle {
+.header__subtitle { /* サブタイトル */
   position: absolute;
   left: 200px;
   height: 50px;
@@ -15975,15 +15975,48 @@ a.column__detail__favo__btn:hover:after {
   height: 50px;
   line-height: 50px;
   font-size: 14px;
-  color: #adadad;
+  color: #A4A9AE;
 }
-.header__navi {
+.header__navi { /* ナビ */
   float: right;
   height: 100%;
   width: fit-content;
   margin-right: 20px;
 }
-.header__navi__user {
+.header__navi__btn { /* 未ログイン時ボタン・PC */
+  display: flex;
+}
+.header__navi__login, .header__navi__resist {
+  height: 30px;
+  margin: 10px 0;
+}
+.header__navi__login {
+  margin-right: 10px;
+}
+input[type=submit].header__navi__login__btn,.header__navi__resist__btn {
+  height: 30px;
+  line-height: 30px;
+  padding: 0 30px;
+  display: block;
+  font-size: 12px;
+}
+input[type=submit].header__navi__login__btn, input[type=submit].header__navi__login__btn:hover {
+  background: #eeeeee;
+  color: #666;
+  transition: .3s;
+}
+#um-submit-btn.header__navi__login__btn:hover {
+  background: #eeeeee !important;
+}
+input[type=submit].header__navi__login__btn:hover,.header__navi__resist__btn:hover{
+  opacity: .6;
+}
+.header__navi__resist__btn,.header__navi__resist__btn:hover {
+  background: #03c4b0;
+  color: #fff;
+  border-radius: 3px;
+}
+.header__navi__user { /* ログイン時画像 */
   position: relative;
   overflow: hidden;
   margin: 5px 0;
@@ -16004,10 +16037,10 @@ a.column__detail__favo__btn:hover:after {
   object-fit: cover;
   display: block;
 }
+.header__navi__menu__open {
+  display: none;
+}
 .header__navi__menu {
-  /* position: absolute;
-  bottom: -20px;
-  right: 0; */
   position: fixed;
   top: 64px;
   right: 50px;
@@ -16110,11 +16143,48 @@ a.column__detail__favo__btn:hover:after {
   line-height: 30px;
   font-size: 14px;
 }
+.header__navi__menu__btn { /* 未ログイン時ボタン・スマホ */
+}
+.header__navi__menu__login, .header__navi__menu__resist {
+  height: 50px;
+  margin: 10px 0;
+  width: 100%;
+  text-align: center;
+}
+.header__navi__menu__resist__btn,.header__navi__menu__resist__btn:hover {
+  background: #03c4b0;
+  color: #fff;
+  border-radius: 3px;
+}
+input[type=submit].header__navi__menu__login__btn,.header__navi__menu__resist__btn {
+  height: 50px;
+  line-height: 50px;
+  padding: 0;
+  margin: 0 30px;
+  display: block;
+  font-size: 16px;
+}
+input[type=submit].header__navi__menu__login__btn, input[type=submit].header__navi__menu__login__btn:hover {
+  background: #fff;
+  color: #03c4b0;
+  text-decoration: underline;
+}
+#um-submit-btn.header__navi__menu__login__btn:hover {
+  background: #fff !important;
+}
+input[type=submit].header__navi__menu__login__btn:hover,.header__navi__menu__resist__btn:hover{
+  opacity: 1;
+}
+
+
 @media screen and (max-width: 680px) {
+  /* カテゴリーバー */
+  .category__bar__item {
+    width: 120px;
+    font-size: 12px;
+  }
+  /* ヘッダーナビ */
   .header__navi__menu {
-    /* position: absolute;
-    bottom: -20px;
-    right: 0; */
     position: fixed;
     top: 50px;
     left: 0;

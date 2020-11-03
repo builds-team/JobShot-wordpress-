@@ -750,6 +750,43 @@ $(function() {
     });
 });
 
+// 変更
+// ヘッダーナビ
+jQuery(function(){
+    var w = screen.width;
+    var x = 681;
+    if(w >= x) {
+      $('.header__navi__user').click(function() {
+        $('.header__navi__menu__open').toggle();
+      });
+    }else {
+      $('.header__navi__user').click(function() {
+        $('.header__navi__menu__open').slideToggle();
+      });
+    }
+});
+jQuery(function(){
+    var w = screen.width;
+    var x = 681;
+    if(w >= x) {
+      $(document).on('click touchend', function(event) {
+        if (!$(event.target).closest('.header__navi__menu__wrap').length && !$(event.target).closest('.header__navi__user').length) {
+          $('.header__navi__menu__open').hide();
+        }
+      });
+    }else {
+      $(document).on('click touchend', function(event) {
+        if (!$(event.target).closest('.header__navi__menu__wrap').length && !$(event.target).closest('.header__navi__user').length) {
+          $('.header__navi__menu__open').slideUp();
+        }
+      });
+    }
+});
+function closeHeaderNavi() {
+  $('.header__navi__menu__open').slideUp();
+}
+
+
 </script>
 <style>:root {
 			--lazy-loader-animation-duration: 300ms;
@@ -957,40 +994,54 @@ body.custom-background { background-color: #ffffff; }
         </ul>
     </div>
 </div> -->
+<!-- 変更 -->
 <div class="header__subtitle only-pc"><p>高学歴層特化新卒・長期インターンキャリアサイト</p></div>
 <div class="header__navi">
     <div class="header__navi__wrap">
-        <div class="header__navi__user">
-            <img class="gravatar avatar avatar-190 um-avatar lazyloaded header__navi__user__img" src="../IMG_5224.jpeg" alt="" data-src="/srv/htdocs/wp-content/uploads/profile_photo568.png?20201103011203">
+        <div class="um-col-alt header__navi__btn only-pc hidden"><!-- 未ログイン・PC -->
+          <div class="header__navi__login" onclick="gtag('event', 'click', {'event_category': 'link', 'event_label': 'MembersOnly_login'});">
+            <input type="submit" value="ログイン" class="um-button header__navi__login__btn" id="um-submit-btn">
+          </div>
+          <div class="header__navi__resist" onclick="gtag('event', 'click', {'event_category': 'link', 'event_label': 'MembersOnly_new'});"><a href="http://jobshot.jp/regist" class="um-button um-alt header__navi__resist__btn">新規登録(無料)</a></div>
         </div>
+        <div class="header__navi__user"><!-- 未ログイン→人型アイコン、ログイン→個人写真 -->
+            <img class="gravatar avatar avatar-190 um-avatar lazyloaded header__navi__user__img hidden" src="../IMG_5224.jpeg" alt="" data-src="">
+            <img class="gravatar avatar avatar-190 um-avatar lazyloaded header__navi__user__img" src="../original.jpg" alt="" data-src="">
+          </div>
         <div class="header__navi__menu__open">
             <div class="header__navi__menu__overlay only-sp"></div>
             <div class="header__navi__menu">
                 <div class="header__navi__menu__wrap">
-                    <div class="header__navi__menu__user">
+                    <div class="header__navi__menu__user hidden"><!-- ログイン時 -->
                         <div class="header__navi__menu__user__foto">
-                            <img class="gravatar avatar avatar-190 um-avatar lazyloaded header__navi__menu__user__img" src="../IMG_5224.jpeg" alt="" data-src="/srv/htdocs/wp-content/uploads/profile_photo568.png?20201103011203">
-                        </div>
+                            <img class="gravatar avatar avatar-190 um-avatar lazyloaded header__navi__menu__user__img" src="../IMG_5224.jpeg" alt="" data-src="">
+                          </div>
                         <div class="header__navi__menu__user__info">
                             <p class="header__navi__menu__user__name">鈴木貴也</p>
                             <p class="header__navi__menu__user__score"><span>71</span>Profile Score</p>
                         </div>
                     </div>
-                    <div class="header__navi__menu__contents">
+                    <div class="header__navi__menu__contents hidden"><!-- ログイン時 -->
                         <ul class="header__navi__menu__contents__wrap">
                             <li class="header__navi__menu__content header__navi__menu__favo google-icon"><a href="">お気に入り</a></li>
                             <li class="header__navi__menu__content header__navi__menu__apply google-icon"><a href="">応募済み一覧</a></li>
                             <li class="header__navi__menu__content header__navi__menu__entrysheet google-icon"><a href="">エントリーシート</a></li>
                         </ul>
                     </div>
-                    <div class="header__navi__menu__edits">
+                    <div class="header__navi__menu__edits hidden"><!-- ログイン時 -->
                         <ul class="header__navi__menu__edits__wrap">
                             <li class="header__navi__menu__edit"><a href="">マイアカウント</a></li>
                             <li class="header__navi__menu__edit"><a href="">メール配信設定</a></li>
                             <li class="header__navi__menu__edit"><a href="">ログアウト</a></li>
                         </ul>
                     </div>
-                    <div class="header__navi__menu__close only-sp"><span class="header__navi__menu__close__icon google-icon"></span><span class="header__navi__menu__close__text google-icon only-sp">閉じる</span></span></div>
+                    <div class="um-col-alt header__navi__menu__btn only-sp"><!-- 未ログイン・スマホ -->
+                      <div class="header__navi__menu__resist" onclick="gtag('event', 'click', {'event_category': 'link', 'event_label': 'MembersOnly_new'});"><a href="http://jobshot.jp/regist" class="um-button um-alt header__navi__menu__resist__btn">新規登録(無料)</a></div>
+                      <div class="header__navi__menu__login" onclick="gtag('event', 'click', {'event_category': 'link', 'event_label': 'MembersOnly_login'});">
+                        <input type="submit" value="ログイン" class="um-button header__navi__menu__login__btn" id="um-submit-btn">
+                      </div>
+                    </div>
+                    <div class="header__navi__menu__close only-sp" onclick="closeHeaderNavi()"><span class="header__navi__menu__close__icon google-icon"></span><span class="header__navi__menu__close__text google-icon only-sp">閉じる</span></span></div>
                 </div>
             </div>
         </div>
@@ -1030,12 +1081,11 @@ body.custom-background { background-color: #ffffff; }
 <div class="siteorigin-widget-tinymce textwidget">
     <div class="category__bar">
         <div class="category__bar__wrap">
-            <div class="category__bar__item "><a href="https://jobshot.jp/company">新卒情報</a></div>
-            <div class="category__bar__item active"><a href="https://jobshot.jp/internship">長期インターン</a></div>
-            <div class="category__bar__item "><a href="https://jobshot.jp/event">イベント</a></div>
+            <div class="category__bar__item "><a href="https://jobshot.jp/company">新卒情報を探す</a></div>
+            <div class="category__bar__item active"><a href="https://jobshot.jp/internship">長期インターンを探す</a></div>
+            <div class="category__bar__item "><a href="https://jobshot.jp/event">イベントを探す</a></div>
             <div class="category__bar__item "><a href="https://jobshot.jp/column">就活記事</a></div>
             <div class="category__bar__item "><a href="https://jobshot.jp/entry-sheet">エントリーシート</a></div>
-            <div class="category__bar__item "><a href="https://jobshot.jp/company">新卒</a></div>
         </div>
     </div>
 	<div class="hero">
