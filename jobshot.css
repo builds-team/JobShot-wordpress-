@@ -15932,8 +15932,8 @@ a.column__detail__favo__btn:hover:after {
 }
 .category__bar__item {
   display: inline-block;
-  width: 170px;
   font-size: 14px;
+  padding: 0 20px;
   text-align: center;
   height: 44px;
   line-height: 44px;
@@ -16017,11 +16017,14 @@ input[type=submit].header__navi__login__btn:hover,.header__navi__resist__btn:hov
   border-radius: 3px;
 }
 .header__navi__user { /* ログイン時画像 */
+  padding: 9px 0 9px 9px;
+}
+.header__navi__user__wrap {
   position: relative;
   overflow: hidden;
-  margin: 5px 0;
-  height: 40px;
-  width: 40px;
+  margin: 0;
+  height: 32px;
+  width: 32px;
   border-radius: 50%;
 }
 .header__navi__user:hover {
@@ -16126,6 +16129,9 @@ input[type=submit].header__navi__login__btn:hover,.header__navi__resist__btn:hov
   height: 40px;
   line-height: 40px;
 }
+.header__navi__menu__profile:before {
+  content: '\e7ff';
+}
 .header__navi__menu__favo:before {
   content: '\e87e';
 }
@@ -16143,47 +16149,28 @@ input[type=submit].header__navi__login__btn:hover,.header__navi__resist__btn:hov
   line-height: 30px;
   font-size: 14px;
 }
-.header__navi__menu__btn { /* 未ログイン時ボタン・スマホ */
-}
-.header__navi__menu__login, .header__navi__menu__resist {
-  height: 50px;
-  margin: 10px 0;
-  width: 100%;
-  text-align: center;
-}
-.header__navi__menu__resist__btn,.header__navi__menu__resist__btn:hover {
-  background: #03c4b0;
-  color: #fff;
-  border-radius: 3px;
-}
-input[type=submit].header__navi__menu__login__btn,.header__navi__menu__resist__btn {
-  height: 50px;
-  line-height: 50px;
-  padding: 0;
-  margin: 0 30px;
-  display: block;
-  font-size: 16px;
-}
-input[type=submit].header__navi__menu__login__btn, input[type=submit].header__navi__menu__login__btn:hover {
-  background: #fff;
-  color: #03c4b0;
-  text-decoration: underline;
-}
-#um-submit-btn.header__navi__menu__login__btn:hover {
-  background: #fff !important;
-}
-input[type=submit].header__navi__menu__login__btn:hover,.header__navi__menu__resist__btn:hover{
-  opacity: 1;
-}
-
-
 @media screen and (max-width: 680px) {
   /* カテゴリーバー */
   .category__bar__item {
-    width: 120px;
+    padding: 0 10px;
     font-size: 12px;
   }
   /* ヘッダーナビ */
+  .header__navi__login {
+    margin-right: 0;
+  }
+  input[type=submit].header__navi__login__btn,.header__navi__resist__btn {
+    padding: 0 10px;
+  }
+  input[type=submit].header__navi__login__btn, input[type=submit].header__navi__login__btn:hover {
+    background: #fff;
+  }
+  #um-submit-btn.header__navi__login__btn:hover {
+    background: #fff !important;
+  }
+  input[type=submit].header__navi__login__btn:hover,.header__navi__resist__btn:hover{
+    opacity: 1;
+  }
   .header__navi__menu {
     position: fixed;
     top: 50px;
