@@ -137,8 +137,6 @@ function side_bar_widget_func()
     }
   endwhile;
   $html .= '
-  <a href="' . $home_url . '/?event=トップ外資志望学生向けセミナー～beyond-the-top-tier～"><img class="special_contents_img wp-image-5404 aligncenter" src="' . $midas_url . '"></a>
-  <br>
   <a href="' . $home_url . '/interview"><img class="special_contents_img wp-image-5404 aligncenter" src="' . $soudan_url . '"></a>
   <br>
   <a href="' . $home_url . '/recruit_interview_22"><img class="special_contents_img wp-image-5404 aligncenter only-pc" src="' . $soudan22_url . '"></a>

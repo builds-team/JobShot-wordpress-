@@ -14,7 +14,9 @@ function show_favorites_func($atts){
             ), $atts
         )
     );
-    $user_id = get_current_user_id();
+    $user_name = $_GET['um_user'];
+    $user = get_user_by('login',$user_name);
+    $user_id = $user->ID;
     $fav_html='';
     $favorites = get_user_favorites();
     if($item_type == 'internship' || 'column'){
@@ -71,4 +73,48 @@ function show_favorites_func($atts){
 }
 add_shortcode("show_favorites","show_favorites_func");
 
+
+function view_intern_fav_count(){
+    $args = array(
+        'post_type' => array('internship'),
+        'post_status' => array( 'publish'),
+        'posts_per_page' => -1,
+    );
+    $the_query = new WP_Query($args);
+    $count = 0;
+    if ($the_query->have_posts()) :
+        while ($the_query->have_posts()) :
+          $the_query->the_post();
+          $post_id = get_the_ID();
+          $fav_array = get_post_meta($post_id,'favorite',true);
+          //favを増やす時
+          $count += count($fav_array);
+        endwhile;
+      endif;
+    echo 'internのfav数は'.$count.'<br>';
+    wp_reset_postdata();
+}
+add_shortcode("view_intern_fav_count","view_intern_fav_count");
+
+function view_column_fav_count(){
+    $args = array(
+        'post_type' => array('column'),
+        'post_status' => array( 'publish'),
+        'posts_per_page' => -1,
+    );
+    $the_query = new WP_Query($args);
+    $count = 0;
+    if ($the_query->have_posts()) :
+        while ($the_query->have_posts()) :
+          $the_query->the_post();
+          $post_id = get_the_ID();
+          $fav_array = get_post_meta($post_id,'favorite',true);
+          //favを増やす時
+          $count += count($fav_array);
+        endwhile;
+      endif;
+    echo 'columnのfav数は'.$count.'<br>';
+    wp_reset_postdata();
+}
+add_shortcode("view_column_fav_count","view_column_fav_count");
 ?>

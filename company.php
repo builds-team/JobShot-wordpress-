@@ -54,6 +54,33 @@ function set_intern_fav_count2(){
 }
 add_shortcode("set_intern_fav_count2","set_intern_fav_count2");
 
+
+function view_company_scout_count(){
+    $args = array(
+        'post_type' => array('company'),
+        'post_status' => array( 'publish'),
+        'posts_per_page' => -1,
+    );
+    $the_query = new WP_Query($args);
+    $result = '';
+    if ($the_query->have_posts()) :
+        while ($the_query->have_posts()) :
+          $the_query->the_post();
+          $post_id = get_the_ID();
+          $post = get_post($post_id);
+          $user_id = get_userdata($post->post_author)->ID;
+          $user_info = get_userdata($user_id);
+          $user = get_user_by('id',$user_id);
+          $user_name = $user_info->user_login;
+          $result .= $user_name.'<br>'.view_remain_num_func($user,'remain-mail-num').'<br>';
+        endwhile;
+      endif;
+    echo $result;
+    wp_reset_postdata();
+}
+add_shortcode("view_company_scout_countt","view_company_scout_count");
+
+
 function get_company_content_ids_func($company_user_login, $post_type){
   //これが新しい 2018/10/20
   $user= get_user_by( 'login', $company_user_login );

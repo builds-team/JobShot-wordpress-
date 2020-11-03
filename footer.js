@@ -1077,10 +1077,25 @@ var NumOfTimes = 1;
 $(window).on( 'scroll', function () {
 //スクロール位置を取得
 	var w = screen.width;
+	var str = location.href;
+	if ( str.match(/column/)) {
 		if ( $(this).scrollTop() > 600 && NumOfTimes == 1) {
 			$('.modal__mask').fadeIn();
 			NumOfTimes += 1;
 		}
+	}else{
+		if(w>680){
+			if ( $(this).scrollTop() > 2500 && NumOfTimes == 1) {
+				$('.modal__mask').fadeIn();
+				NumOfTimes += 1;
+			}
+		}else{
+			if ( $(this).scrollTop() > 3200 && NumOfTimes == 1) {
+				$('.modal__mask').fadeIn();
+				NumOfTimes += 1;
+			}	
+		}
+	}
 });
 jQuery(function($){
 		var str = location.href;

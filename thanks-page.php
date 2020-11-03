@@ -67,9 +67,12 @@ function add_thankspage(){
         </div>
         <div class="after-flow-internship">
             <h2>人気の長期インターン</h2>
-            '.$card_html.'
         </div>
+    </div>
+        <div class="cards-container">
+        '.$card_html.'
         </div>
+
     ';
     return $html;
 }

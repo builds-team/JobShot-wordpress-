@@ -3,15 +3,38 @@
 function get_all_mail_num_per_month_func($user){
     $user_roles=$user->roles;
     $all_nums = array(
-        "general" => 0,
-        "engineer" => 0,
+        "general" => 75,
+        "engineer" => 75,
     );
-
     if(in_array("company", $user_roles)){
-        $all_nums = array(
-            "general" => 75,
-            "engineer" => 75,
+        $user_id = $user->ID;
+        $args = array(
+            'posts_per_page'   => 1,
+            'post_type' => array('company'),
+            'author'	   => $user_id,
+            'post_status'      => 'publish',
         );
+        $posts_array = get_posts( $args );
+        $company_id = $posts_array[0]->ID;
+        $plan = CFS()->get('plan',$company_id);
+        foreach($plan as $plan_key => $plan_value){
+          if($plan_key == 'ミニマム'){
+            $all_nums = array(
+                "general" => 75,
+                "engineer" => 75,
+            );
+          }elseif($plan_key == 'スタンダード'){
+            $all_nums = array(
+                "general" => 120,
+                "engineer" => 120,
+            );
+          }else{
+            $all_nums = array(
+                "general" => 75,
+                "engineer" => 75,
+            );
+          }
+        }
     }
     return $all_nums;
 }

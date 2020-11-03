@@ -308,8 +308,100 @@ function template_internship2_func($content){
   if(!in_array("company", $user_roles)){
     $top_campaign_html = top_campaign();
   }
+  $company_bussiness = get_field("事業内容",$company_id);
+  $company_bussiness = strip_tags($company_bussiness);
+  $company_bussiness = preg_replace('/(?:\n|\r|\r\n)/', '', $company_bussiness);
+  if(empty($company_bussiness)){
+    $company_bussiness = get_field("業務内容",$post_id);
+    $company_bussiness = strip_tags($company_bussiness);
+    $company_bussiness = preg_replace('/(?:\n|\r|\r\n)/', '', $company_bussiness);
+  }
+  if(mb_strlen($company_bussiness) > 70){
+    $company_bussiness = mb_substr(nl2br($company_bussiness),0,70).'...';
+  }
+  $card_category_html = '';
+  if(!empty($area)){
+    $card_category_html .= '<div class="card-category">'.$area.'</div>';
+  }
+  if(!empty($occupation)){
+    $card_category_html .= '<div class="card-category">'.$occupation.'</div>';
+  }
+  if(!empty($business_type)){
+    $card_category_html .= '<div class="card-category">'.$business_type.'</div>';
+  }
 
-  $html = $top_campaign_html.$button_html.'
+  if($features){
+    $features_html = '';
+    $features_html_kai = '';
+    $count = 0;
+    $features_num = array();
+    $feature_array = array("リモートワーク可能" => 1, "プログラミングが未経験から学べる" => 2, "週2日ok" => 3, "時給2000円以上" => 4, "時給1500円以上" => 5, "時給1200円以上" => 6, "英語力が身につく" => 7, "土日のみでも可能" => 8, "1,2年歓迎" => 9, "社長直下" => 10
+    , "週3日以下でもok" => 11, "交通費支給" => 12, "未経験歓迎" => 13, "曜日/時間が選べる" => 14, "起業ノウハウが身につく" => 15, "髪色自由" => 16, "理系学生おすすめ" => 17, "英語力が活かせる" => 18, "外資系" => 19
+    , "有名企業への内定者多数" => 20, "新規事業立ち上げ" => 21, "ベンチャー" => 22, "エリート社員" => 23, "少数精鋭" => 24, "夕方から勤務でも可能" => 25, "留学生歓迎" => 26, "女性おすすめ" => 27, "テスト期間考慮" => 28, "短期間の留学考慮" => 29
+    , "服装自由" => 30, "インセンティブあり" => 31, "1ヶ月からok" => 32, "3ヶ月以下歓迎" => 33, "週1日ok" => 34, "ネイル可能" => 35, "時給1000円以上" => 36);
+    foreach($features as $feature){
+      $features_num[] = $feature_array[$feature];
+    }
+    if(in_array(4, $features_num)){
+      
+      while( ($index = array_search( 5, $features_num, true )) !== false ) {
+        unset( $features_num[$index] ) ;
+      }
+      while( ($index = array_search( 6, $features_num, true )) !== false ) {
+        unset( $features_num[$index] ) ;
+      }
+      while( ($index = array_search( 36, $features_num, true )) !== false ) {
+        unset( $features_num[$index] ) ;
+      }
+    }
+    if(in_array(5, $features_num)){
+      while( ($index = array_search( 6, $features_num, true )) !== false ) {
+        unset( $features_num[$index] ) ;
+      }
+      while( ($index = array_search( 36, $features_num, true )) !== false ) {
+        unset( $features_num[$index] ) ;
+      }
+    }
+    if(in_array(6, $features_num)){
+      while( ($index = array_search( 36, $features_num, true )) !== false ) {
+        unset( $features_num[$index] ) ;
+      }
+    }
+    sort($features_num);
+    $count = 0;
+    $features_html_kai = '';
+    foreach($features_num as $feature){
+      $count += 1;
+      if($count<4){
+        $key = array_search($feature,$feature_array);
+        $features_html_kai .= '<span>'.$key.'</span>';
+      }
+    }
+  }
+
+
+  $current_user = wp_get_current_user();
+  $current_user_name = $current_user->data->display_name;
+  $company_url = get_permalink($company_id);
+  $intern_url=get_permalink($post_id);
+
+  if($company_name == $current_user_name){
+    $button_html = '<a href="'.$home_url.'/edit_internship?post_id='.$post_id.'" class="card__btn__edit">編集をする</a>';
+  }else{
+    $fav_array = get_post_meta($post_id,'favorite',true);
+    $user_id = get_current_user_id();
+    if(in_array($user_id,$fav_array)){
+      $fav_class = 'card__btn__favo active';
+    }else{
+      $fav_class = 'card__btn__favo';
+    }
+    $button_html = '
+      <button class="card__btn__favo__wrap" value="'.$post_id.'">
+        <a class="'.$fav_class.'" id="fav-'.$post_id.'">お気に入り</a>
+      </button>';
+  }
+
+  $html = $top_campaign_html.'
   <div class="card-detail-container">
     <div class="only-sp">
       <div class="full-card-img intern-detail-img">
@@ -332,42 +424,47 @@ function template_internship2_func($content){
       </div>
     </div>
     <!-- card -->
-    <div class="card full-card only-pc">
-      <div class="full-card-main">
-        <div class="full-card-img">
-          <img src="'.$image_url.'" alt>
+    <div class="card full-card new-card only-pc">
+    <div class="card__wrap">
+      <div class="card__img">
+        <div class="card__img__wrap">
+          <img src="'.$image_url.'" alt="">
         </div>
-        <div class="full-card-text">
-          <div class="full-card-text-title">'.$post_title.'</div>
-          <div class="full-card-text-caption">
-            <div class="full-card-text-company"><a href="'.esc_url($company_url).'"><b>'.$company_name.'</b></a></div>
-            <div class="card-category-container">'.$card_category_html.'</div>
-          </div>
-          <table class="full-card-table">
-            <tbody>
-                <tr>
-                    <th>勤務条件</th>
-                    <td>'.$requirements.'</td>
-                </tr>
-                <tr>
-                    <th>給与</th>
-                    <td>'.$salary.'</td>
-                </tr>
-            </tbody>
-          </table>'.
-          $features_html
-        .'</div>
       </div>
-      <div class="card__btn">
-        <button class="card__btn__favo__wrap" value="'.$post_id.'">
-          <a class="card__btn__favo" id="fav-'.$post_id.'">お気に入り</a>
-        </button>
-        <a href="'.$entry_link.'" class="btn card__btn__info">応募する</a>
+      <div class="card__company"><p class="card__name"><a href="'.esc_url($company_url).'">'.$company_name.'</a></p></div>
+      <div class="card__text">
+        <div class="card__text__wrap">
+          <h3 class="card__text__title"><a href="'.esc_url($intern_url).'">'.$post_title.'</a></h3>
+          <div class="card__text__explain"><p style="font-size: 0.8em;">'.$company_bussiness.'</p></div>
+          <div class="card__text__detail">
+            <ul class="card__text__info">
+              <li class="card__text__info__ele card__text__info__name">'.$company_name.'</li>
+              <li class="card__text__info__ele card__text__info__salary">'.$salary.'</li>
+              <li class="card__text__info__ele card__text__info__place">'.$area.'</li>
+              <li class="card__text__info__ele card__text__info__time">'.$requirements.'</li>
+            </ul>
+            <ul class="card__text__attr">
+              <li class="card__text__attr__ele card__text__attr__type">
+                <span>'.$business_type.'</span>
+              </li>
+              <li class="card__text__attr__ele card__text__attr__occupation">
+                <span>'.$occupation.'</span>
+              </li>
+              <li class="card__text__attr__ele card__text__attr__category">
+              '.$features_html_kai.'
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="card__btn">
+          <a href="'.$entry_link.'" class="btn card__btn__info">応募する</a>
+          '.$button_html.'
+        </div>
       </div>
     </div>
-
+  </div>
+  </div>
   <!-- main -->
-
   <section class="only-sp">';
   if(!empty($company_bussiness)){
     $html .= '
