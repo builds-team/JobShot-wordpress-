@@ -16224,3 +16224,67 @@ input[type=submit].header__navi__login__btn:hover,.header__navi__resist__btn:hov
     margin-top: -20px;
   }
 }
+
+/* マイページお気に入り */
+.singular .main-content h2.mypage__title {
+  margin: -25px 0 5px 0;
+  font-size: 1.5rem;
+}
+.mypage__title {
+  padding: 0.25em 0.5em;
+  background: transparent;
+  border-left: solid 5px rgb(109, 209, 180);
+  color: #777;
+}
+input[name="mypage__tab__item"] {
+  display: none;
+}
+.mypage__tab__item {
+  display: inline-block;
+  font-size: 14px;
+  padding: 0 20px;
+  text-align: center;
+  height: 44px;
+  line-height: 44px;
+  color: #A4A9AE;
+}
+.mypage__tab__item:hover {
+  cursor: pointer;
+}
+input[name="mypage__tab__item"]:checked + .mypage__tab__item {
+  border-bottom: 3px solid #03c4b0;
+  color: #666;
+  font-weight: bold;
+}
+.mypage__item__container {
+  margin: 0;
+  display: none;
+}
+#mypage__tab__company:checked ~ .mypage__item__company,
+#mypage__tab__event:checked ~ .mypage__item__event,
+#mypage__tab__intern:checked ~ .mypage__item__intern,
+#mypage__tab__column:checked ~ .mypage__item__column {
+  display: block;
+}
+#mypage__tab__recruit-apply:checked ~ .mypage__item__recruit-apply,
+#mypage__tab__event-apply:checked ~ .mypage__item__event-apply,
+#mypage__tab__intern-apply:checked ~ .mypage__item__intern-apply {
+  display: block;
+}
+.mypage__tab__border {
+  display: block;
+  border-top: 1px solid #ebebeb;
+  margin: -1px 0 10px 0;
+  padding: 0;
+}
+.text-center {
+  text-align: center;
+}
+@media screen and (max-width: 680px) {
+  .mypage__tab__item {
+    font-size: 12px;
+    padding: 0 5px;
+  }
+  .favorite__containers .mypage__tab__item {
+  }
+}
