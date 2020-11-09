@@ -16166,3 +16166,34 @@ a.column__detail__favo__btn:hover:after {
 .intern__detail__conditions__requirements__content {
   margin-bottom: 20px;
 }
+.intern__detail__voice {
+  margin: 70px 0 0 0;
+  position: relative;
+}
+.intern__detail__voice:last-child {
+  margin: 70px 0 0 0;
+}
+.intern__detail__voice__student {
+  height: 100px;
+  width: 100px;
+  position: absolute;
+  top: -50px;
+  left: 20px;
+  z-index: 1;
+}
+.intern__detail__voice__img {
+
+}
+.intern__detail__voice__comment {
+  padding-top: 70px;
+  margin: 0;
+}
+.intern__detail__voice__comment:before {
+  content: none;
+}
+.intern__detail__voice__comment:after {
+  content: none;
+}
+.intern__detail__applyBtn {
+  margin-top: 50px;
+}
