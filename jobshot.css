@@ -15946,3 +15946,113 @@ a.column__detail__favo__btn:hover:after {
 .category__bar__item.active a {
   color: #03c4b0;
 }
+
+/* インターン詳細ページ */
+.detail-card {
+  max-width: none;
+  padding: 0;
+  margin: 0;
+}
+.detail-card__wrap {
+  display: flex;
+  flex-direction: column;
+}
+.detail-card__img {
+  height: 300px;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.detail-card__img img {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  top: 0;
+}
+.detail-card__title{
+  position: absolute;
+  bottom: 0;
+  margin: 0;
+  width: calc(100% - 20px);
+  padding: 10px;
+  background-color: #00000070;
+  color: #fff;
+  font-size: 20px;
+}
+.detail-card__info {
+  padding: 10px;
+}
+.detail-card__info__detail {
+  display: flex;
+}
+.detail-card__info__detail__img {
+  width: 200px;
+  padding-top: 10px;
+}
+.detail-card__info__detail__img__wrap {
+  width: 150px;
+  height: 150px;
+  max-height: 150px;
+  /* box-shadow: rgba(0, 0, 0, 0.16) 0 1px 1px; */
+  margin: auto;
+  border: 1px solid #ebebeb;
+  overflow: hidden;
+}
+.detail-card__info__detail__img__wrap a {
+  height: 100%;
+}
+.detail-card__info__detail__img img{
+  width: 100%;
+}
+.detail-card__info__detail .detail-card__info__detail__items {
+  width: calc(100% - 200px);
+  margin: 0;
+  padding: 10px;
+}
+.detail-card__info__detail__item {
+  margin-bottom: 3px;
+  /* overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap; */
+  list-style: none;
+  text-align: left;
+  padding-left: 25px;
+  display: inline-block;
+  width: 100%;
+}
+.detail-card__info__detail__item:before {
+  width: 25px;
+  height: 16px;
+  line-height: 16px;
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+  font-size: 16px;
+  padding-left: 0;
+  overflow: hidden;
+  font-family: "Material Icons";
+  margin-left: -25px;
+}
+.detail-card__info__detail__item__name {
+  font-size: 20px;
+  padding-left: 5px;
+  font-weight: bold;
+  width: initial;
+  transition: .3s;
+}
+.detail-card__info__detail__item__name a {
+  color: #152d4a;
+}
+.detail-card__info__detail__item__name:hover {
+  cursor: pointer;
+  opacity: .7;
+  transition: .3s;
+}
+.detail-card__info__detail__item__type, .detail-card__info__detail__item__occupation {
+  width: initial;
+}
+.detail-card__info__detail__item__occupation {
+  margin-left: 20px;
+}
