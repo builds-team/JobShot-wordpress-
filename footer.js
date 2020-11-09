@@ -1319,3 +1319,33 @@ jQuery(function($){
 		return false;
 	});
 });
+
+//個別相談会の情報を予め入れておく
+jQuery(function($){
+	$( 'body' ).click( function (){
+		var str = location.href;
+		if ( str.match(/interview\/apply/)) {
+			console.log("test");
+			var fd = new FormData();
+			// サーバー側で何の処理をするかを指定。
+			fd.append('action' ,'fill_interview_apply' );
+			// ajaxの通信（fav数を更新）
+			$.ajax({
+				type: 'POST',
+				url: ajaxurl,
+				data: fd,
+				processData: false,
+				contentType: false,
+				success: function( response ){
+					$('#booking_package_input_firstname').val(response[1]);
+					$('#booking_package_input_lastname').val(response[0]);
+					$('#booking_package_input_email').val(response[2]);
+					$('#booking_package_input_phone').val(response[3]);
+				},
+				error: function( response ){
+				}
+			});
+			return false;
+		}
+	});
+});

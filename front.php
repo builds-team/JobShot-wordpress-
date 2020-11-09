@@ -50,7 +50,7 @@ function frontpage_view_pickups_func(){
           </div>
           <p class="intern__intro__text">
               長期インターンとは、「有給で長期間（約6ヵ月以上）実際のビジネスの現場で就業すること」です。 <br>社員とほとんど変わらない基準で働くことが求められており、実務経験やスキルを早い段階で身に付けることが期待できます。
-              <a href="https://jobshot.jp/column/11621" class="intern__intro__link">選考・勤務のコツ</a>
+              <a href="https://jobshot.jp/column/11281" class="intern__intro__link">選考・勤務のコツ</a>
           </p>
           <div class="intern__intro__title">
               <span class="intern__intro__title__icon google-icon"></span>
@@ -58,7 +58,7 @@ function frontpage_view_pickups_func(){
           </div>
           <p class="intern__intro__text">
               長期インターンで携われる仕事の種類は様々です。営業、マーケティング、ライター/編集のようなビジネス職の募集もあれば、特定の分野に関するスキルを持っている場合、エンジニアやWebデザイナーといった専門職に参加する学生もいます。
-              <a href="https://jobshot.jp/column/11614" class="intern__intro__link">職種・勤務環境</a>
+              <a href="https://jobshot.jp/column/column/8322" class="intern__intro__link">職種・勤務環境</a>
           </p>
           <div class="intern__intro__title">
               <span class="intern__intro__title__icon google-icon"></span>

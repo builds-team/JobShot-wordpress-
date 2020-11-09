@@ -52,6 +52,10 @@ function import_template2_func($content)
         $content = template_column2_func($content);
         return $content;
       }
+      if(get_post_type() == 'room'){
+        $content = template_room_func($content);
+        return $content;
+      }
     }
   }
   return $content;

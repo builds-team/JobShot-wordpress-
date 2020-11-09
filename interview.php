@@ -2,6 +2,11 @@
 
 function about_interview(){
     $home_url =esc_url( home_url( ));
+    if(is_user_logged_in()){
+        $apply_url = 'https://jobshot.jp/interview/apply';
+    }else{
+        $apply_url = 'https://jobshot.jp/interview/login';
+    }
     $html='
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
     <style>
@@ -46,51 +51,6 @@ function about_interview(){
             width: 100%;
         }
     </style>
-    <section>
-        <img src="'.$home_url.'/wp-content/uploads/2020/02/9628bacf8cc0154c6bec8a8ac88ced35.png">
-        <div class="card-category-container event">
-            <div class="card-category">将来の志望企業から逆算して最適なインターン選びをお手伝いします！</div><br>
-            <div class="card-category">ESを一緒に作成し、通過率を高めます！</div><br>
-            <div class="card-category">過去問による面接で採用率を高めます！</div><br>
-        </div>
-    </section>
-    <section>
-        <table class="demo01">
-            <tbody>
-                <tr>
-                    <th>開催日時</th>
-                    <td>
-                        <div><a href="'.$home_url.'/interview/apply">こちらからお選びください</a></div>
-                    </td>
-                </tr>
-                <tr>
-                    <th>場所</th>
-                    <td>
-                        <div>オンラインにて開催いたします</div>
-                    </td>
-                </tr>
-                <tr>
-                    <th>参加費</th>
-                    <td>無料</td>
-                </tr>
-                <tr>
-                    <th>持ち物</th>
-                    <td>メモ帳・筆記用具</td>
-                </tr>
-                <tr>
-                    <th>備考</th>
-                    <td>コロナウイルスの影響により、安全面を考慮し、オンラインで開催いたします</br>オンライン面談ではZoom(※インストール不要)を使用する予定です</td>
-                </tr>
-            </tbody>
-        </table>
-    </section>
-    <div class="fixed-buttom">
-        <a href="'.$home_url.'/interview/apply">
-            <button class="button button-apply">申し込みはこちらから</button>
-        </a>
-    </div>
-
-
     <div class="siteorigin-widget-tinymce textwidget">
     <div class="background-img-container">
         <noscript><img src="https://i1.wp.com/jobshot.jp/wp-content/uploads/2020/02/photo-1555443712-22cd30585e5c.jpeg?w=1905&#038;ssl=1" alt data-recalc-dims="1"></noscript><img src="'.$home_url.'/wp-content/uploads/2020/06/charles-deluvio-Lks7vei-eAg-unsplash.jpg" alt="" data-src="https://jobshot.jp/wp-content/uploads/2020/02/photo-1555443712-22cd30585e5c.jpeg" class=" lazyloaded">
@@ -194,7 +154,7 @@ function about_interview(){
                     <tr>
                         <th>開催日時</th>
                         <td>
-                            <div><a href="https://jobshot.jp/interview/apply">こちらからお選びください</a></div>
+                            <div><a href="'.$apply_url.'">こちらからお選びください</a></div>
                         </td>
                     </tr>
                     <tr>
@@ -220,7 +180,7 @@ function about_interview(){
         </div>
     </div>
     <div class="fixed-buttom">
-        <a href="https://jobshot.jp/interview/apply">
+        <a href="'.$apply_url.'">
             <button class="button button-apply">申し込みはこちらから</button>
         </a>
     </div>
@@ -239,6 +199,11 @@ function recruit_interview($atts){
         '21'    =>  '/wp-content/uploads/2020/04/99df0b5ee83a50b1c98a06ba7146e8bd.png',
         '22'    =>  '/wp-content/uploads/2020/05/image-2.png'
     );
+    if(is_user_logged_in()){
+        $apply_url = 'https://jobshot.jp/interview/apply';
+    }else{
+        $apply_url = 'https://jobshot.jp/interview/login';
+    }
     $html='
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
     <style>
@@ -296,7 +261,7 @@ function recruit_interview($atts){
                 <tr>
                     <th>開催日時</th>
                     <td>
-                        <div><a href="'.$home_url.'/interview/apply">こちらからお選びください</a></div>
+                        <div><a href="'.$apply_url.'">こちらからお選びください</a></div>
                     </td>
                 </tr>
                 <tr>
@@ -321,7 +286,7 @@ function recruit_interview($atts){
         </table>
     </section>
     <div class="fixed-buttom">
-        <a href="'.$home_url.'/interview/apply">
+        <a href="'.$apply_url.'">
             <button class="button button-apply">申し込みはこちらから</button>
         </a>
     </div>';
@@ -329,6 +294,98 @@ function recruit_interview($atts){
     return $html;
 }
 add_shortcode("recruit_interview","recruit_interview");
+
+function ut_guild(){
+    $home_url =esc_url( home_url( ));
+    $html='
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+    <style>
+        .datalist dt:before {
+            font-family: "Font Awesome 5 Free";
+            content: "\f00c";
+            padding-right: 15px;
+            color: #03c4b0;
+            }
+            .table th {
+            width: 25%;
+            text-align: left
+        }
+        .table td, .table th {
+            border-bottom: 2px solid #f0f0f0
+        }
+        .table td {
+            padding: 12px 0 13px
+        }
+        @media screen and (min-width:768px) {
+            .table {
+                width: 100%
+            }
+        }
+        .widget {
+            font-size: 1.0em;
+        }
+        footer .widget {
+            font-size: 0.8em;
+        }
+        .gmap {
+            height: 0;
+            overflow: hidden;
+            padding-bottom: 56.25%;
+            position: relative;
+        }
+        .gmap iframe {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 100%;
+        }
+        .ut-grid {
+            box-sizing: border-box;
+            border: 1px solid #03c4b0;
+            border-spacing: 0 20px;
+            padding: 20px 15px 20px 15px;
+            margin-bottom: 30px;
+        }
+    </style>
+    <section>
+        <img src="https://jobshot.jp/wp-content/uploads/2020/11/UT-GUILD-a.jpeg">
+    </section>
+    <section>
+        <div class="ut-grid">
+            <p>2020年10月末、Slackを利用した東大生限定のハイクラス就活コミュニティ「UT-GUILD」が誕生しました。
+            就活において周りと圧倒的な差をつけられるコンテンツを配信しており、最難関企業の内定獲得を目指す東大生は参加必須です！</p><br>
+            <h3>▼メリットその１▼</h3>
+            <p>外資系トップティア企業出身役員直下インターンなど圧倒的に成長できる厳選長期インターンが分かる！</p><br>
+            <h3>▼メリットその２▼</h3>
+            <p>日系大手トップ企業/外資系トップティア企業の現役社員/出身者/内定者と直接話せるセミナーに参加できる！</p><br>
+            <p>UT-GUILDに参加し、最難関企業の内定獲得に大きく近づく一歩を踏み出してみませんか？</p>
+        </div>
+    </section>
+    <div class="fixed-buttom">
+        <a href="https://bit.ly/3eiqYP4">
+            <button class="button button-apply">1分で終わる登録はこちら</button>
+        </a>
+    </div>';
+
+    return $html;
+}
+add_shortcode("ut_guild","ut_guild");
+
+function fill_interview_apply(){
+    $user = wp_get_current_user();
+    $last_name = $user->last_name;
+    $first_name = $user->first_name;
+    $email = $user->data->user_email;
+    $user_id = $user->data->ID;
+    $mobile_number = get_user_meta($user_id,'mobile_number',false)[0];
+    $list = array($first_name,$last_name,$email,$mobile_number);
+    header("Content-Type: application/json; charset=UTF-8"); //ヘッダー情報の明記。必須。
+    echo json_encode($list);
+    die();
+}
+add_action( 'wp_ajax_fill_interview_apply', 'fill_interview_apply' );
+add_action( 'wp_ajax_fill_interview_apply', 'fill_interview_apply');
 
 /*カレッジワークスの場所
 

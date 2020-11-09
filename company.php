@@ -54,6 +54,29 @@ function set_intern_fav_count2(){
 }
 add_shortcode("set_intern_fav_count2","set_intern_fav_count2");
 
+function set_intern_name(){
+    $args = array(
+        'post_type' => array('internship'),
+        'post_status' => array( 'publish','draft','private'),
+        'posts_per_page' => -1,
+    );
+    $the_query = new WP_Query($args);
+    $count = 0;
+    if ($the_query->have_posts()) :
+        while ($the_query->have_posts()) :
+          $the_query->the_post();
+          $post_id = get_the_ID();
+          $post = get_post($post_id);
+          $company = get_userdata($post->post_author);
+          $company_name = $company->data->display_name;
+          update_post_meta($post_id,'author_displayname',$company_name);
+        endwhile;
+      endif;
+    echo '完了';
+    wp_reset_postdata();
+}
+add_shortcode("set_intern_name","set_intern_name");
+
 
 function view_company_scout_count(){
     $args = array(

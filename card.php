@@ -488,8 +488,8 @@ function view_fullwidth_intern_card_func($post_id){
           </div>
         </div>
         <div class="card__btn">
-          <a href="'.esc_url($intern_url).'" class="btn card__btn__info" target="_blank" rel="noopener noreferrer">詳細を見る</a>
           '.$button_html.'
+          <a href="'.esc_url($intern_url).'" class="btn card__btn__info" target="_blank" rel="noopener noreferrer">詳細を見る</a>
         </div>
       </div>
     </div>

@@ -111,6 +111,10 @@ function view_custom_search_func($atts){
         foreach($features as $feature){
             $metaquerysp[] = array('key'=>'特徴','value'=> $feature,'compare'=>'LIKE');
         }
+        if (!empty($_GET['sw'])) {
+            $keyword = my_esc_sql($_GET['sw']);
+            //$metaquerysp[] = array('key'=>'author_displayname','value'=> $keyword,'compare'=>'LIKE');
+        }
         $args += array('meta_query' => $metaquerysp);
     }
     if($item_type=="event"){

@@ -317,8 +317,10 @@ function template_internship2_func($content){
     $company_bussiness = preg_replace('/(?:\n|\r|\r\n)/', '', $company_bussiness);
   }
   if(mb_strlen($company_bussiness) > 70){
-    $company_bussiness = mb_substr(nl2br($company_bussiness),0,70).'...';
+    $company_bussiness_card = mb_substr(nl2br($company_bussiness),0,70).'...';
   }
+  $company_bussiness = get_field("事業内容",$company_id);
+  $company_bussiness = strip_tags($company_bussiness);
   $card_category_html = '';
   if(!empty($area)){
     $card_category_html .= '<div class="card-category">'.$area.'</div>';
@@ -435,7 +437,7 @@ function template_internship2_func($content){
       <div class="card__text">
         <div class="card__text__wrap">
           <h3 class="card__text__title"><a href="'.esc_url($intern_url).'">'.$post_title.'</a></h3>
-          <div class="card__text__explain"><p style="font-size: 0.8em;">'.$company_bussiness.'</p></div>
+          <div class="card__text__explain"><p style="font-size: 0.8em;">'.$company_bussiness_card.'</p></div>
           <div class="card__text__detail">
             <ul class="card__text__info">
               <li class="card__text__info__ele card__text__info__name">'.$company_name.'</li>
@@ -457,8 +459,8 @@ function template_internship2_func($content){
           </div>
         </div>
         <div class="card__btn">
-          <a href="'.$entry_link.'" class="btn card__btn__info">応募する</a>
           '.$button_html.'
+          <a href="'.$entry_link.'" class="btn card__btn__info">応募する</a>
         </div>
       </div>
     </div>
@@ -1182,6 +1184,9 @@ function update_internship_info(){
       'post_status' => $post_status,
       'ID' => $post_id,
     );
+    $company = get_user_by('id',get_current_user_id());
+    $company_name = $company->data->display_name;
+    update_post_meta($post_id,'author_displayname',$company_name);
     $insert_id2 = wp_insert_post($post_value); //上書き（投稿ステータスを公開に）
     $home_url =esc_url( home_url( ));
     if($insert_id2) {
@@ -1570,6 +1575,9 @@ function new_company_post_internship(){
           wp_set_object_terms( $insert_id, $occupation, 'occupation');
           update_post_meta($insert_id, "applycnt", 0);
           update_post_meta($insert_id,'favorite',array());
+          $company = get_user_by('id',get_current_user_id());
+          $company_name = $company->data->display_name;
+          update_post_meta($insert_id,'author_displayname',$company_name);
 		  $home_url =esc_url( home_url( ));
           if($prefecture == "東京都"){
               wp_set_object_terms( $insert_id, $area, 'area');

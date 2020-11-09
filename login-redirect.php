@@ -65,6 +65,10 @@ function apply_redirect(){
         }
         update_user_meta(137,'redirect_count',$redirect_count);
     }
+    $now_url = $_SERVER['REQUEST_URI'];
+    if(strpos($now_url,'interview/login') !== false){
+        $redirect_url = 'https://jobshot.jp/interview/apply';
+    }
     $html = '<style type="text/css">
         .um-1596.um {
             max-width: 450px;
