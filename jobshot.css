@@ -13452,6 +13452,11 @@ width:50px !important;
 }
 
 /* 長期インターン個別相談会 */
+body.page-id-5511 {
+  background-color: transparent;
+  background-image: radial-gradient(#f5f5f5 3px, transparent 3px);
+  background-size: 30px 30px;
+}
 .page-id-5511 .container {
   max-width: initial;
 }
@@ -13504,6 +13509,9 @@ width:50px !important;
   margin: 0 -20px;
   padding: 120px 12% 0 12%;
   font-size: 1.2rem;
+}
+.consult__solve__details .demo01 th {
+  background-color: transparent;
 }
 @media (max-width: 1280px) {
   .consult__block {
