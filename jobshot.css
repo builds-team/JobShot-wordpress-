@@ -16310,3 +16310,75 @@ input[name="mypage__tab__item"]:checked + .mypage__tab__item {
   .favorite__containers .mypage__tab__item {
   }
 }
+
+/* 個別相談会応募 */
+.consult__apply__title {
+  padding: 0.25em 0.5em;
+  background: transparent;
+  border-left: solid 5px rgb(109, 209, 180);
+  color: #777;
+}
+.consult__apply__title:after {
+  display: none;
+}
+/* step */
+.cp_stepflow07 {
+	font-size: 80%;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	margin: 0 0 1em;
+	padding: 0;
+}
+.cp_stepflow07 > li {
+	position: relative;
+	display: block;
+	width: auto;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	text-align: center;
+	text-overflow: ellipsis;
+	color: #b0bec5;
+	 -ms-flex: 1;
+	-moz-flex: 1;
+	-webkit-box-flex: 1;
+	     flex: 1;
+}
+.cp_stepflow07 > li .bubble::after,
+.cp_stepflow07 > li .bubble::before {
+	position: absolute;
+	top: 0px;
+	right: 50%;
+	left: 50%;
+	display: block;
+	width: 90%;
+	height: 8px;
+	content: '';
+	transform: translateX(-50%);
+	background-color: #b0bec5;
+}
+.cp_stepflow07 > li .bubble + span {
+	display: block;
+  margin-top: 1em;
+  font-size: 14px;
+}
+.cp_stepflow07 > li.completed,
+.cp_stepflow07 > li.completed .bubble {
+	color: #03c4b0;
+}
+.cp_stepflow07 > li.completed .bubble,
+.cp_stepflow07 > li.completed .bubble::after,
+.cp_stepflow07 > li.completed .bubble::before {
+	background-color: #03c4b0;
+}
+.cp_stepflow07 > li.active,
+.cp_stepflow07 > li.active .bubble {
+	font-weight: bold;
+  color: #03c4b0;
+}
+.cp_stepflow07 > li.active .bubble,
+.cp_stepflow07 > li.active .bubble::after,
+.cp_stepflow07 > li.active .bubble::before {
+	background-color: #03c4b0;
+}
