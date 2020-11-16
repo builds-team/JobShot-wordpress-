@@ -16315,7 +16315,7 @@ input[name="mypage__tab__item"]:checked + .mypage__tab__item {
 .consult__apply__title {
   padding: 0.25em 0.5em;
   background: transparent;
-  border-left: solid 5px rgb(109, 209, 180);
+  border-left: solid 5px #03c4b0;
   color: #777;
 }
 .consult__apply__title:after {
@@ -16381,4 +16381,14 @@ input[name="mypage__tab__item"]:checked + .mypage__tab__item {
 .cp_stepflow07 > li.active .bubble::after,
 .cp_stepflow07 > li.active .bubble::before {
 	background-color: #03c4b0;
+}
+.consult__apply__procedure {
+  width: 100%;
+}
+.consult__apply__procedure__step {
+  display: none;
+  width: 100%;
+}
+.consult__apply__procedure__step.active {
+  display: block;
 }
