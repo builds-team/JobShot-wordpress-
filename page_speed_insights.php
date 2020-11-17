@@ -47,10 +47,10 @@ function dequeue_plugins_style() {
     wp_dequeue_style( 'jetpack_likes' );
     wp_dequeue_style( 'chronicle-style-lato-web' );
     wp_deregister_style( 'broadsheet-style' );
-    if( !is_page( array('apply','contact','published_contact','scout','mail_setteing','アカウント削除', 'jobshotxtech-build','スカウトフォーム','ログイン（インターン応募）') )){
+    if( !is_page( array('apply','contact','published_contact','scout','mail_setteing','アカウント削除', 'jobshotxtech-build','スカウトフォーム','ログイン（インターン応募）','面接対策（ログイン）') )){
         wp_dequeue_style( 'contact-form-7' );
     }
-    if( !is_page( array('user','register','login','user_account','mypage_test','apply','interview_apply','エントリーシート','エントリーシートを見る','エントリーシートを見る（お気に入り）','ログイン（インターン応募）') )){
+    if( !is_page( array('user','register','login','user_account','mypage_test','apply','interview_apply','エントリーシート','エントリーシートを見る','エントリーシートを見る（お気に入り）','ログイン（インターン応募）','面接対策（ログイン）') )){
         wp_deregister_style( 'um_crop' );
         wp_deregister_style( 'um_modal' );
         wp_deregister_style( 'um_datetime_date' );
@@ -93,7 +93,7 @@ function dequeue_plugins_style() {
 
     }
 
-    if( !is_page( array('user','register','login','user_account','mypage_test','apply','interview_apply','エントリーシート','エントリーシートを見る','エントリーシートを見る（お気に入り）','ログイン（インターン応募）') )){
+    if( !is_page( array('user','register','login','user_account','mypage_test','apply','interview_apply','エントリーシート','エントリーシートを見る','エントリーシートを見る（お気に入り）','ログイン（インターン応募）','面接対策（ログイン）') )){
         wp_deregister_script('um_pickadate');
         wp_deregister_script('um_pickadate_picker');
         wp_deregister_script('um_pickadate_picker.date');
@@ -165,7 +165,7 @@ function my_enqueue_scripts() {
     // wp_enqueue_script('jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js', array(), '3.3.1');
     wp_deregister_script('jquery');
 
-    if(is_page( array('user','register','login','user_account','mypage_test','apply','interview_apply','contact','published_contact','scout','intern_test','プロフィール更新のお願い','アカウント削除','スカウトフォーム','ログイン（インターン応募）') )){
+    if(is_page( array('user','register','login','user_account','mypage_test','apply','interview_apply','contact','published_contact','scout','intern_test','プロフィール更新のお願い','アカウント削除','スカウトフォーム','ログイン（インターン応募）','面接対策（ログイン）') )){
         wp_enqueue_script('jquery','https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js',array(),'3.1.1');
     }else{
         wp_enqueue_script('jquery','https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js', array(), '1.8.3'); 

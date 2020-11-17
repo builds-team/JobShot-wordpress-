@@ -562,7 +562,7 @@ function cleanQuery(query) {
   });
   
   jQuery(function(){
-	  if(jQuery(".um-cover").length>1){
+	  if(jQuery(".um-cover").length){
 		  var profiletab = "";
 		  jQuery(".um-cover")[0].remove();
 		  jQuery(".um-profile-photo")[0].remove();
@@ -1218,6 +1218,9 @@ jQuery(function($){
 	if ( str.match(/user\?um_user/)) {
 		$('.robots-nocontent').remove();
 	}
+	else if( str.match(/user\//)){
+		$('.robots-nocontent').remove();
+	}
 });
 
 //相談会のポップアップ
@@ -1319,3 +1322,32 @@ jQuery(function($){
 		return false;
 	});
 });
+//個別相談会の情報を予め入れておく
+jQuery(function($){
+	$( '#booking-package-id-1' ).click( function (){
+		var str = location.href;
+		if ( str.match(/interview\/apply/)) {
+			var fd = new FormData();
+			// サーバー側で何の処理をするかを指定。
+			fd.append('action' ,'fill_interview_apply' );
+			// ajaxの通信（fav数を更新）
+			$.ajax({
+				type: 'POST',
+				url: ajaxurl,
+				data: fd,
+				processData: false,
+				contentType: false,
+				success: function( response ){
+					$('#booking_package_input_firstname').val(response[1]);
+					$('#booking_package_input_lastname').val(response[0]);
+					$('#booking_package_input_email').val(response[2]);
+					$('#booking_package_input_phone').val(response[3]);
+				},
+				error: function( response ){
+				}
+			});
+			return false;
+		}
+	});
+});
+

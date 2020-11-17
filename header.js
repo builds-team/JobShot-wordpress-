@@ -607,3 +607,42 @@ $(function() {
         $(this).next().find('output').css({'left': rangePercent*20+'%'});
     });
 });
+// 変更
+// ヘッダーナビ
+jQuery(function(){
+    var w = screen.width;
+    var x = 681;
+    if(w >= x) {
+      $('.header__navi__user').click(function() {
+        $('.header__navi__menu__open').toggle();
+      });
+    }else {
+      $('.header__navi__user').click(function() {
+        $('.header__navi__menu__open').slideToggle();
+      });
+    }
+});
+jQuery(function(){
+    var w = screen.width;
+    var x = 681;
+    if(w >= x) {
+      $(document).on('click touchend', function(event) {
+        if (!$(event.target).closest('.header__navi__menu__wrap').length && !$(event.target).closest('.header__navi__user').length) {
+          $('.header__navi__menu__open').hide();
+        }
+      });
+    }else {
+      $(document).on('click touchend', function(event) {
+        if (!$(event.target).closest('.header__navi__menu__wrap').length && !$(event.target).closest('.header__navi__user').length) {
+          $('.header__navi__menu__open').slideUp();
+        }
+      });
+    }
+});
+function closeHeaderNavi() {
+  $('.header__navi__menu__open').slideUp();
+}
+
+function go_login(){
+    window.location.href = '/login';
+}

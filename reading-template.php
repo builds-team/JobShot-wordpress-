@@ -5,7 +5,7 @@ function import_template2_func($content)
   if (is_single() && !empty($GLOBALS['post'])) {
     if ($GLOBALS['post']->ID == get_the_ID()) {
       if (get_post_type() == 'event') {
-        $content = template_event2_func($content);
+        $content = do_shortcode('[header_mypage]').do_shortcode('[header_tab]').template_event2_func($content);
         return $content;
       }
       if (get_post_type() == 'internship') {
@@ -15,7 +15,7 @@ function import_template2_func($content)
           setWeekViews(get_the_ID());
           setPostViews(get_the_ID());
         }
-        $content = template_internship2_func($content);
+        $content = do_shortcode('[header_mypage]').do_shortcode('[header_tab]').template_internship2_func($content);
         return $content;
         // }else{
         //   return apply_redirect();
@@ -23,22 +23,22 @@ function import_template2_func($content)
       }
       if (get_post_type() == 'job') {
         if (is_user_logged_in()) {
-          $content = template_job2_func($content);
+          $content = do_shortcode('[header_mypage]').do_shortcode('[header_tab]').template_job2_func($content);
           return $content;
         } else {
           return apply_redirect();
         }
       }
       if (get_post_type() == 'company') {
-        $content = template_company_info2_func($content);
+        $content = do_shortcode('[header_mypage]').do_shortcode('[header_tab]').template_company_info2_func($content);
         return $content;
       }
       if (get_post_type() == 'summer_internship') {
-        $content = template_summer_internship2_func($content);
+        $content = do_shortcode('[header_mypage]').do_shortcode('[header_tab]').template_summer_internship2_func($content);
         return $content;
       }
       if (get_post_type() == 'autumn_internship') {
-        $content = template_autumn_internship2_func($content);
+        $content = do_shortcode('[header_mypage]').do_shortcode('[header_tab]').template_autumn_internship2_func($content);
         return $content;
       }
       if (get_post_type() == 'column') {
@@ -49,12 +49,16 @@ function import_template2_func($content)
         }
         $column_image_url = wp_get_attachment_image_src(14348, array(300, 2000))[0];
         $content = '<a href="' . $home_url . '/interview"><img class="special_contents_img wp-image-5404 aligncenter" src="' .$column_image_url. '"></a>';
-        $content = template_column2_func($content);
+        $content = ddo_shortcode('[header_mypage]').o_shortcode('[header_tab]').template_column2_func($content);
+        return $content;
+      }
+      if(get_post_type() == 'room'){
+        $content = do_shortcode('[header_mypage]').do_shortcode('[header_tab]').template_room_func($content);
         return $content;
       }
     }
   }
-  return $content;
+  $content = do_shortcode('[header_mypage]').do_shortcode('[header_tab]').$content;
 }
 add_filter('the_content', 'import_template2_func');
 

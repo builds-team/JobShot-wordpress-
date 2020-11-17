@@ -556,47 +556,8 @@ function new_mypage_func(){
     if($login_user_id == $user_id){
       $html .= $upload_html;
     }
-    $nav_html = profile_tab($user_name,$login_user_roles);
     $html .= $cover_html;
     $html .= $header_html;
-    $html .= $nav_html;
-        if($_GET['um_tab'] == 'favorites'){
-        $html .= '
-        <div class="favorite__containers">
-            <div class="favorite__container">
-                <h3 class="company-information-home">企業情報</h3>'.do_shortcode('[show_favorites item_type=company]').'
-            </div>
-            <div class="favorite__container">    
-                <h3 class="company-information-home">イベント</h3>'.do_shortcode('[show_favorites item_type=event]').'
-            </div>
-            <div class="favorite__container">
-                <h3 class="company-information-home">インターンシップ</h3>'.do_shortcode('[show_favorites item_type=internship]').'
-            </div>
-            <div class="favorite__container">
-                <h3 class="company-information-home">就活記事</h3>'.do_shortcode('[show_favorites item_type=column]').'
-            </div>
-        </div>'
-        ;
-        return $html;
-    }elseif($_GET['um_tab'] == 'attend'){
-        $html .= do_shortcode('[view_applied_list]');
-        return $html;
-    }elseif($_GET['um_tab'] == 'entry-sheet'){
-        $es_total = get_past_es($user_id,'all','published');
-        if(!empty($es_total)){
-            foreach($es_total as $es){
-                $es_card_html .= view_other_es($es,$login_user_id,1000);
-            }
-            $html .= '<div class="es-cards-container">'.$es_card_html.'</div>';
-            return $html;
-        }else{
-            $html .= '
-            <div class="es-title-container">
-                <p>公開されたESはまだありません</p>
-            </div>';
-            return $html;
-        }
-        
     }
     $html.='
     <!-- これより上はclassとdivが被っているので不要 -->

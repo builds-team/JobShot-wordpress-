@@ -50,7 +50,7 @@ function frontpage_view_pickups_func(){
           </div>
           <p class="intern__intro__text">
               長期インターンとは、「有給で長期間（約6ヵ月以上）実際のビジネスの現場で就業すること」です。 <br>社員とほとんど変わらない基準で働くことが求められており、実務経験やスキルを早い段階で身に付けることが期待できます。
-              <a href="https://jobshot.jp/column/11621" class="intern__intro__link">選考・勤務のコツ</a>
+              <a href="https://jobshot.jp/column/11281" class="intern__intro__link">選考・勤務のコツ</a>
           </p>
           <div class="intern__intro__title">
               <span class="intern__intro__title__icon google-icon"></span>
@@ -58,7 +58,7 @@ function frontpage_view_pickups_func(){
           </div>
           <p class="intern__intro__text">
               長期インターンで携われる仕事の種類は様々です。営業、マーケティング、ライター/編集のようなビジネス職の募集もあれば、特定の分野に関するスキルを持っている場合、エンジニアやWebデザイナーといった専門職に参加する学生もいます。
-              <a href="https://jobshot.jp/column/11614" class="intern__intro__link">職種・勤務環境</a>
+              <a href="https://jobshot.jp/column/column/8322" class="intern__intro__link">職種・勤務環境</a>
           </p>
           <div class="intern__intro__title">
               <span class="intern__intro__title__icon google-icon"></span>
@@ -240,4 +240,209 @@ function frontpage_search_func(){
     return $html;
 }
 add_shortcode('frontpage_search','frontpage_search_func');
+
+function header_tab($atts){
+  extract(shortcode_atts(array(
+    'item_type' => '',
+), $atts));
+$url = $_SERVER["REQUEST_URI"];
+  if($item_type=='internship' || strpos($url,'/internship')!== false){
+    $intern = 'active';
+  }elseif($item_type=='event' || strpos($url,'/event')!== false){
+    $event = 'active';
+  }elseif($item_type=='company' || strpos($url,'/company')!== false){
+    $job = 'active';
+  }elseif($item_type=='scout' || strpos($url,'/scout')!== false){
+    $scout = 'active';
+  }elseif($item_type=='column' || strpos($url,'/column')!== false){
+    $column = 'active';
+  }elseif($item_type=='entry-sheet' || strpos($url,'/entry-sheet')!== false){
+    if(strpos($url,'user/entry-sheet')=== false){
+      $entry = 'active';
+    }
+  }elseif($url == '/'){
+    $home = 'active';
+  }
+  if(current_user_can('company')){
+    $current_user = wp_get_current_user();
+    $current_user_name = $current_user->data->display_name;
+    $company_url='/?company='.$current_user_name;
+    $url = $_SERVER["REQUEST_URI"];
+    if(strpos($company_url,urldecode($url))!== false){
+      $company = 'active';
+    }
+    $html = '
+    <div class="category__bar">
+      <div class="category__bar__wrap">
+          <div class="category__bar__item '.$home.'"><a href="https://jobshot.jp">ホーム</a></div>
+          <div class="category__bar__item only-pc '.$job.'"><a href="https://jobshot.jp/company">新卒情報を探す</a></div>
+          <div class="category__bar__item only-sp '.$job.'"><a href="https://jobshot.jp/company">新卒情報</a></div>
+          <div class="category__bar__item only-pc '.$intern.'"><a href="https://jobshot.jp/internship">長期インターンを探す</a></div>
+          <div class="category__bar__item only-sp '.$intern.'"><a href="https://jobshot.jp/internship">長期インターン</a></div>
+          <div class="category__bar__item only-pc '.$event.'"><a href="https://jobshot.jp/event">イベントを探す</a></div>
+          <div class="category__bar__item only-sp '.$event.'"><a href="https://jobshot.jp/event">イベント</a></div>
+          <div class="category__bar__item '.$scout.'"><a href="https://jobshot.jp/scout">スカウト</a></div>
+          <div class="category__bar__item '.$column.'"><a href="https://jobshot.jp/column">就活記事</a></div>
+          <div class="category__bar__item '.$company.'"><a href="https://jobshot.jp'.$company_url.'">マイページ</a></div>
+      </div>
+    </div>
+    ';
+  }elseif(current_user_can('administrator')){
+    $html = '
+    <div class="category__bar">
+      <div class="category__bar__wrap">
+          <div class="category__bar__item '.$home.'"><a href="https://jobshot.jp">ホーム</a></div>
+          <div class="category__bar__item only-pc '.$job.'"><a href="https://jobshot.jp/company">新卒情報を探す</a></div>
+          <div class="category__bar__item only-sp '.$job.'"><a href="https://jobshot.jp/company">新卒情報</a></div>
+          <div class="category__bar__item only-pc '.$intern.'"><a href="https://jobshot.jp/internship">長期インターンを探す</a></div>
+          <div class="category__bar__item only-sp '.$intern.'"><a href="https://jobshot.jp/internship">長期インターン</a></div>
+          <div class="category__bar__item only-pc '.$event.'"><a href="https://jobshot.jp/event">イベントを探す</a></div>
+          <div class="category__bar__item only-sp '.$event.'"><a href="https://jobshot.jp/event">イベント</a></div>
+          <div class="category__bar__item '.$scout.'"><a href="https://jobshot.jp/scout">スカウト</a></div>
+          <div class="category__bar__item '.$column.'"><a href="https://jobshot.jp/column">就活記事</a></div>
+          <div class="category__bar__item '.$entry.'"><a href="https://jobshot.jp/entry-sheet">エントリーシート</a></div>
+          <div class="category__bar__item"><a href="https://jobshot.jp/manage-internship">インターン管理</a></div>
+          <div class="category__bar__item"><a href="https://jobshot.jp/?page_id=2409">新卒管理</a></div>
+          <div class="category__bar__item"><a href="https://jobshot.jp/?page_id=2421">イベント管理</a></div>
+      </div>
+    </div>
+    ';
+  }else{
+    $html = '
+    <div class="category__bar">
+      <div class="category__bar__wrap">
+          <div class="category__bar__item '.$home.'"><a href="https://jobshot.jp">ホーム</a></div>
+          <div class="category__bar__item only-pc '.$job.'"><a href="https://jobshot.jp/company">新卒情報を探す</a></div>
+          <div class="category__bar__item only-sp '.$job.'"><a href="https://jobshot.jp/company">新卒情報</a></div>
+          <div class="category__bar__item only-pc '.$intern.'"><a href="https://jobshot.jp/internship">長期インターンを探す</a></div>
+          <div class="category__bar__item only-sp '.$intern.'"><a href="https://jobshot.jp/internship">長期インターン</a></div>
+          <div class="category__bar__item only-pc '.$event.'"><a href="https://jobshot.jp/event">イベントを探す</a></div>
+          <div class="category__bar__item only-sp '.$event.'"><a href="https://jobshot.jp/event">イベント</a></div>
+          <div class="category__bar__item '.$column.'"><a href="https://jobshot.jp/column">就活記事</a></div>
+          <div class="category__bar__item '.$entry.'"><a href="https://jobshot.jp/entry-sheet">エントリーシート</a></div>
+      </div>
+    </div>
+    ';
+  }
+  return $html;
+}
+add_shortcode('header_tab','header_tab');
+
+function header_mypage(){
+  if(is_user_logged_in()){
+    $user_id = get_current_user_id();
+    $user_info = get_userdata($user_id);
+    $user_name = $user_info->user_login;
+    $upload_dir = wp_upload_dir();
+    $upload_file_name = $upload_dir['basedir'] . "/" .'profile_photo'.$user_id.'.png';
+    $user_profile_total_score = update_user_total_profile_score($user_id);
+    if(!file_exists($upload_file_name)){
+      $attachment_id=2632;
+      $upload_file_name = wp_get_attachment_image_src($attachment_id)[0];
+    }
+    if(current_user_can('student') || current_user_can('administrator')){
+      $list = '
+      <li class="header__navi__menu__content header__navi__menu__profile google-icon"><a href="/user">プロフィール</a></li>
+      <li class="header__navi__menu__content header__navi__menu__favo google-icon"><a href="/user/favorite?um_user='.$user_name.'">お気に入り</a></li>
+      <li class="header__navi__menu__content header__navi__menu__apply google-icon"><a href="/user/attend?um_user='.$user_name.'"">応募済み一覧</a></li>
+      <li class="header__navi__menu__content header__navi__menu__entrysheet google-icon"><a href="/user/entry-sheet?um_user='.$user_name.'"">エントリーシート</a></li>
+      ';
+      $list2 = '
+      <li class="header__navi__menu__edit"><a href="/user_account">マイアカウント</a></li>
+      <li class="header__navi__menu__edit"><a href="/mail_setteing">メール配信設定</a></li>
+      <li class="header__navi__menu__edit"><a href="/?page_id=1603">ログアウト</a></li>
+      ';
+      $profile_html = '
+      <p class="header__navi__menu__user__score"><span>'.$user_profile_total_score.'</span>Profile Score</p>;
+      ';
+    }else if(current_user_can('company')){
+      $current_user = wp_get_current_user();
+      $current_user_name = $current_user->data->display_name;
+      $company_url=$home_url.'/?company='.$current_user_name;
+      $args = array(
+          'posts_per_page'    =>  1,
+          'post_type'         =>  array('company'),
+          'post_status' => array('publish' ),
+          'author'    =>  $user_id,
+      );
+      $posts = get_posts($args);
+      $post_id = $posts[0]->ID;
+      $image = get_field('企業ロゴ',$post_id);
+      $upload_file_name = $image["url"];
+      $list = '
+      <li class="header__navi__menu__content header__navi__menu__profile google-icon"><a href="'.$company_url.'">ホーム</a></li>
+      <li class="header__navi__menu__content header__navi__menu__scout__m google-icon"><a href="/manage_scout">スカウト管理</a></li>
+      <li class="header__navi__menu__content header__navi__menu__intern__m google-icon"><a href="/manage_post?posttype=internship">インターン管理</a></li>
+      <li class="header__navi__menu__content header__navi__menu__job__m google-icon"><a href="/manage_post?posttype=job">新卒管理</a></li>
+      ';
+      $list2 = '
+      <li class="header__navi__menu__edit"><a href="/user_account">設定</a></li>
+      <li class="header__navi__menu__edit"><a href="/?page_id=1603">ログアウト</a></li>
+      ';
+    }
+    $html = '
+    <nav class="menu-primary" role="navigation">
+		<div class="container">
+    <div class="header__subtitle only-pc"><p>高学歴層特化新卒・長期インターンキャリアサイト</p></div>
+    <div class="header__navi">
+        <div class="header__navi__wrap">
+            <div class="header__navi__user"><!-- ログイン時 -->
+              <div class="header__navi__user__wrap">
+                <img class="gravatar avatar avatar-190 um-avatar lazyloaded header__navi__user__img" src="'.$upload_file_name.'" alt="" data-src="">
+              </div>
+            </div>
+            <div class="header__navi__menu__open"><!-- ログイン時 -->
+                <div class="header__navi__menu__overlay only-sp"></div>
+                <div class="header__navi__menu">
+                    <div class="header__navi__menu__wrap">
+                        <div class="header__navi__menu__user">
+                            <div class="header__navi__menu__user__foto">
+                                <img class="gravatar avatar avatar-190 um-avatar lazyloaded header__navi__menu__user__img" src="'.$upload_file_name.'" alt="" data-src="">
+                              </div>
+                            <div class="header__navi__menu__user__info">
+                                <p class="header__navi__menu__user__name">'.$user_name.'</p>
+                                '.$profile_html.'
+                            </div>
+                        </div>
+                        <div class="header__navi__menu__contents">
+                            <ul class="header__navi__menu__contents__wrap">
+                            '.$list.'
+                            </ul>
+                        </div>
+                        <div class="header__navi__menu__edits">
+                            <ul class="header__navi__menu__edits__wrap">
+                            '.$list2.'
+                            </ul>
+                        </div>
+                        <div class="header__navi__menu__close only-sp" onclick="closeHeaderNavi()"><span class="header__navi__menu__close__icon google-icon"></span><span class="header__navi__menu__close__text google-icon only-sp">閉じる</span></span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </nav>
+      ';
+  }else{
+    $html = '
+    <nav class="menu-primary" role="navigation">
+    <div class="header__subtitle only-pc"><p>高学歴層特化新卒・長期インターンキャリアサイト</p></div>
+    <div class="header__navi">
+        <div class="header__navi__wrap">
+            <div class="header__navi__btn"><!-- 未ログイン　-->
+              <div class="header__navi__login">
+                <input type="submit" value="ログイン" class="header__navi__login__btn" id="um-submit-btn" onclick="go_login()">
+              </div>
+              <div class="header__navi__resist"><a href="http://jobshot.jp/regist" class="header__navi__resist__btn only-pc">新規登録(無料)</a></div>
+              <div class="header__navi__resist"><a href="http://jobshot.jp/regist" class="header__navi__resist__btn only-sp">新規登録</a></div>
+            </div>
+        </div>
+    </div>
+    </nav>
+    ';
+  }
+  return $html;
+
+}
+add_shortcode('header_mypage','header_mypage');
 ?>

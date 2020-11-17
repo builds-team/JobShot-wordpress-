@@ -93,12 +93,13 @@ function side_bar_widget_func()
   if (in_array("company", $current_user_roles)) {
     return;
   }
-  $soudan_url = wp_get_attachment_image_src(9542, array(400, 400))[0];
+  $soudan_url = wp_get_attachment_image_src(15764, array(400, 400))[0];
   $soudan21_url = wp_get_attachment_image_src(12311, array(400, 400))[0];
   $soudan22_url = wp_get_attachment_image_src(13371, array(400, 400))[0];
   $es_url = wp_get_attachment_image_src(13411, array(400, 400))[0];
   $oiwai_url = wp_get_attachment_image_src(6204, array(400, 400))[0];
   $midas_url = wp_get_attachment_image_src(15496, array(400,400))[0];
+  $ut_url = wp_get_attachment_image_src(15702, array(400,400))[0];
 
   $html = '
     <h3 class="widgettitle">特別コンテンツ</h3>
@@ -138,6 +139,8 @@ function side_bar_widget_func()
   endwhile;
   $html .= '
   <a href="' . $home_url . '/interview"><img class="special_contents_img wp-image-5404 aligncenter" src="' . $soudan_url . '"></a>
+  <br>
+  <a href="' . $home_url . '/ut_guild"><img class="special_contents_img wp-image-5404 aligncenter only-pc" src="' . $ut_url . '"></a>
   <br>
   <a href="' . $home_url . '/recruit_interview_22"><img class="special_contents_img wp-image-5404 aligncenter only-pc" src="' . $soudan22_url . '"></a>
   <br>

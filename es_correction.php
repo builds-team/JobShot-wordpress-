@@ -1480,3 +1480,28 @@ function comment_es(){
   }
 }
 add_action('template_redirect', 'comment_es');
+
+
+function view_mypage_es(){
+  $user_name = $_GET['um_user'];
+  $user = get_user_by('login',$user_name);
+  $user_id = $user->ID;
+  if(get_current_user_id() == $user_id || current_user_can('administrator')){
+    $es_total = get_past_es($user_id,'all','published');
+    if(!empty($es_total)){
+        foreach($es_total as $es){
+            $es_card_html .= view_other_es($es,$user_id,1000);
+        }
+    }else{
+      $es_card_html = '<p class="text-center">お気に入りがありません。</p>';
+    }
+    $html = '
+    <h2 class="mypage__title">エントリーシート</h2>
+    <div class="es-cards-container">
+    '.$es_card_html.'
+    </div>
+    ';
+  }
+  return $html;
+}
+add_shortcode("view_mypage_es","view_mypage_es");
