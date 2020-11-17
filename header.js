@@ -642,3 +642,7 @@ jQuery(function(){
 function closeHeaderNavi() {
   $('.header__navi__menu__open').slideUp();
 }
+
+function go_login(){
+    window.location.href = '/login';
+}

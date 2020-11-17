@@ -56,13 +56,13 @@ function about_interview(){
         <noscript><img src="https://i1.wp.com/jobshot.jp/wp-content/uploads/2020/02/photo-1555443712-22cd30585e5c.jpeg?w=1905&#038;ssl=1" alt data-recalc-dims="1"></noscript><img src="'.$home_url.'/wp-content/uploads/2020/06/charles-deluvio-Lks7vei-eAg-unsplash.jpg" alt="" data-src="https://jobshot.jp/wp-content/uploads/2020/02/photo-1555443712-22cd30585e5c.jpeg" class=" lazyloaded">
         <div class="background-img-text consult__bg-img__text">
             <p class="consult__bg-img__ele consult__bg-img__ele__first">講師　外コン・GAFA内定者</p>
-            <h1 class="font-serif consult__bg-img__ele consult__bg-img__ele__second">長期インターン個別相談会</h1>
+            <h1 class="font-serif consult__bg-img__ele consult__bg-img__ele__second">長期インターン個別相談</h1>
             <p class="consult__bg-img__ele consult__bg-img__ele__third">企業選びから<span class="consult-emphasis-color">内定</span>までサポート</p>
             <p class="consult__bg-img__ele consult__bg-img__ele__four">参加者限定　<span class="consult-emphasis-color">特別推薦</span>あり</p>
         </div>
     </div>
     <div class="consult__block consult__worry">
-        <h2 class="menu_title consult__title">長期インターンでよくある悩み</h2>
+        <h2 class="menu_title consult__title">こんな悩みはありませんか？</h2>
         <div class="consult__worry__container">
           <ul class="consult__worry__feature">
             <li>
@@ -71,7 +71,7 @@ function about_interview(){
             </li>
             <li>
               <div class="consult__worry__icon consult__worry__icon-size"><img src="'.$home_url.'/wp-content/uploads/2020/06/consult__second.png" alt=""></div>
-              <p class="menu_text consult-font-bold consult-font-size">いきなり多忙になるのは大変そうかも…</p>
+              <p class="menu_text consult-font-bold consult-font-size">遊びや勉強と両立できる時間がない…</p>
             </li>
             <li>
               <div class="consult__worry__icon consult__worry__icon-size"><img src="'.$home_url.'/wp-content/uploads/2020/06/consult__third.png" alt=""></div>
@@ -83,6 +83,21 @@ function about_interview(){
     <div class="consult__block consult__univ">
         <h2 class="menu_title consult__title only-pc">Jobshotの無料相談なら解決できます</h2>
         <h2 class="menu_title consult__title only-sp">Jobshotの無料相談なら解決</h2>
+        <div class="consult__univ__container consult__flex__container">
+            <div class="consult__univ__consultant">
+                <div class="consult__univ__consultant__img"><img src="'.$home_url.'/wp-content/uploads/2020/11/tabatashunsuke-2.jpg" alt=""></div>
+                <p class="consult-font-name consult-font-bold">JobShot事業部 田畑駿介（21）</p>
+            </div>
+            <br><br>
+            <div class="consult__univ__comment">
+                <p class="consult-font-bold">実績：</p>
+                <p>一橋大学商学部に入学後、20名規模のベンチャー/マザーズ上場ベンチャー併せて2社での長期インターンを経験。<br>
+                自身の体験から「長期インターンを通じて、より多くの学生に人生が変わる瞬間を届けたい」という思いでJobShotの長期インターン個別面談を担当している。</p>
+                <br>
+                <p class="consult-font-bold">一言：</p>
+                <p>あなたに合った最適な長期インターンをご紹介します！</p>
+            </div>
+        </div>
         <div class="consult__univ__container consult__flex__container">
             <div class="consult__univ__consultant">
                 <div class="consult__univ__consultant__img"><img src="'.$home_url.'/wp-content/uploads/2020/06/takazawa.jpg" alt=""></div>
@@ -98,19 +113,19 @@ function about_interview(){
         </div>
     </div>
     <div class="consult__block consult__solve">
-        <h2 class="menu_title consult__title only-pc">JobShotの無料相談を学生が選ぶ理由</h2>
-        <h2 class="menu_title consult__title only-sp">JobShotの無料相談を選ぶ理由</h2>
+        <h2 class="menu_title consult__title only-pc">なぜJobShotの無料相談は必要なのか？</h2>
+        <h2 class="menu_title consult__title only-sp">なぜJobShotの無料相談は必要なのか？</h2>
         <div class="consult__solve__reason">
             <ul class="consult__solve__reason__text consult__flex__container">
                 <li class="consult__solve__reason__ele">
                     <span class="consult__solve__reason__ele__title">POINT<span class="consult__solve__reason__ele__num">1</span></span>
-                    <p>相談してくれる学生の目標から逆算し、自分に合った<span class="consult-font-bold">ベストなキャリア設計</span>ができる！</p></li>
+                    <p>あなたの興味や経験に沿って、<span class="consult-font-bold">最適な長期インターン</span>を厳選して紹介</p></li>
                 <li class="consult__solve__reason__ele">
                     <span class="consult__solve__reason__ele__title">POINT<span class="consult__solve__reason__ele__num">2</span></span>
-                    <p><span class="consult-font-bold">相談実績600件</span>の学生が自分と同じ目線で相談を受けてくれるから、サポートの質が高い！</p></li>
+                    <p><span class="consult-font-bold">相談実績600件</span>の学生があなたと同じ目線で親身にサポートが可能</p></li>
                 <li class="consult__solve__reason__ele">
                     <span class="consult__solve__reason__ele__title">POINT<span class="consult__solve__reason__ele__num">3</span></span>
-                    <p>求人の文章だけでは伝わらないことを説明するから、長期インターンを始めた時に<span class="consult-font-bold">後悔しない</span>！</p></li>
+                    <p>エントリーシート作成、面接対策など<span class="consult-font-bold">実践的なサポート</span>を提供</p></li>
             </ul>
         </div>
     </div>

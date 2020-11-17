@@ -4666,7 +4666,7 @@ html {
 /* ---------header--------- */
 nav.menu-primary {
   position: fixed;
-  z-index: 1000;
+  z-index: 100;
   width: 100%;
   height: 50px;
   background-color: #fff;
@@ -4676,9 +4676,7 @@ nav.menu-primary {
   position: absolute;
   top: 50%;
    /* left: calc(50vw - 360px); */
-  transform: translatey(-50%);
-	max-width: 92%;
-} */
+
 @media only screen and (max-width: 1280px) {
 	/* nav.menu-primary .container {
 		max-width: 1280px;
@@ -4932,7 +4930,7 @@ footer#footer.container {
   padding: 0 5px !important;
 }
 .singular .main-content article {
-    padding: 20px 5px;
+    padding: 0px 5px;
   }
 #no-title .widget-title {
   display: none;
@@ -8124,7 +8122,6 @@ background-position: center center;
   padding: 20px;
   /* background-color: #4e4e4e; */
   background-color: #312e2e;
-  margin-top: -20px;
   margin-bottom: 20px;
   text-align: center;
   font-size: 25px;
@@ -9893,7 +9890,7 @@ font-size: 13px !important;
 }
 @media screen and (max-width: 480px){
   .intern-detail-img {
-    margin: -20px -20px 0px -20px;
+    margin: 0px -20px 0px -20px;
     width: 100vw;
   }
   .intern-detail-table{
@@ -11333,7 +11330,7 @@ font-size: 13px !important;
     left: 50%;
     transform: translateX(-50%);
     width: 100vw;
-    margin-top: -50px;
+    margin-top: -30px;
   }
   .upload-photo, .upload-coverphoto{
     top: initial;
@@ -13557,6 +13554,7 @@ width:50px !important;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  margin-bottom: 50px;
 }
 .consult__univ__consultant {
   width: 25vw;
@@ -15926,6 +15924,7 @@ a.column__detail__favo__btn:hover:after {
   overflow: scroll;
   white-space: nowrap;
   z-index: 1001;
+  background-color: white;
 }
 .category__bar__wrap {
   min-width: fit-content;
@@ -16141,6 +16140,15 @@ input[type=submit].header__navi__login__btn:hover,.header__navi__resist__btn:hov
 .header__navi__menu__entrysheet:before {
   content: '\e3b8';
 }
+.header__navi__menu__intern__m:before {
+  content: '\e85d';
+}
+.header__navi__menu__scout__m:before {
+  content: '\e0d0';
+}
+.header__navi__menu__job__m:before {
+  content: '\e616';
+}
 .header__navi__menu__edit {
   height: 30px;
 }
@@ -16227,7 +16235,7 @@ input[type=submit].header__navi__login__btn:hover,.header__navi__resist__btn:hov
 
 /* マイページお気に入り */
 .singular .main-content h2.mypage__title {
-  margin: -25px 0 20px 0;
+  margin: 25px 0 20px 0;
   font-size: 1.5rem;
 }
 .mypage__title {
@@ -16282,13 +16290,18 @@ input[name="mypage__tab__item"]:checked + .mypage__tab__item {
 }
 @media screen and (max-width: 680px) {
   .singular .main-content h2.mypage__title {
-    margin: -25px 0 10px 0;
+    margin: 25px 0 10px 0;
     font-size: 1.5rem;
   }
   .mypage__tab__item {
     font-size: 12px;
     padding: 0 5px;
   }
-  .favorite__containers .mypage__tab__item {
-  }
+}
+
+.menu-primary{
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
 }

@@ -93,7 +93,7 @@ function side_bar_widget_func()
   if (in_array("company", $current_user_roles)) {
     return;
   }
-  $soudan_url = wp_get_attachment_image_src(9542, array(400, 400))[0];
+  $soudan_url = wp_get_attachment_image_src(15764, array(400, 400))[0];
   $soudan21_url = wp_get_attachment_image_src(12311, array(400, 400))[0];
   $soudan22_url = wp_get_attachment_image_src(13371, array(400, 400))[0];
   $es_url = wp_get_attachment_image_src(13411, array(400, 400))[0];
