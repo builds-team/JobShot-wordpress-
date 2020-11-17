@@ -15933,6 +15933,9 @@ a.column__detail__favo__btn:hover:after {
   z-index: 1001;
   background-color: white;
 }
+.category__bar::-webkit-scrollbar {
+  display: none;
+}
 .category__bar__wrap {
   min-width: fit-content;
 }
@@ -16425,7 +16428,6 @@ input[type=submit].header__navi__login__btn:hover,.header__navi__resist__btn:hov
   right: 0;
   bottom: 0;
   left: 0;
-  height: 100%;
   object-fit: cover;
   display: block;
 }
@@ -16463,7 +16465,6 @@ input[type=submit].header__navi__login__btn:hover,.header__navi__resist__btn:hov
   right: 0;
   bottom: 0;
   left: 0;
-  height: 100%;
   object-fit: cover;
   display: block;
 }
@@ -16678,6 +16679,15 @@ input[name="mypage__tab__item"]:checked + .mypage__tab__item {
 .text-center {
   text-align: center;
 }
+.favorite__containers .column__card__body .column__card__title {
+  height: initial;
+}
+.favorite__containers .column__card__body .column__card__title h3 {
+  margin: 0;
+}
+.singular .col-sidebar.sidebar-main {
+  padding-top: 30px !important;
+}
 @media screen and (max-width: 680px) {
   .singular .main-content h2.mypage__title {
     margin: 25px 0 10px 0;
@@ -16686,6 +16696,9 @@ input[name="mypage__tab__item"]:checked + .mypage__tab__item {
   .mypage__tab__item {
     font-size: 12px;
     padding: 0 5px;
+  }
+  .favorite__containers .column__card:first-child .column__card__body {
+    padding: 0;
   }
 }
 .menu-primary{
