@@ -4670,7 +4670,7 @@ nav.menu-primary {
   width: 100%;
   height: 50px;
   background-color: #fff;
-  box-shadow: rgba(0, 0, 0, 0.16) 0 5px 6px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0 1px 6px;
 }
 /* nav.menu-primary .container {
   position: absolute;
