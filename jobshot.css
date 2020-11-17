@@ -13770,7 +13770,7 @@ body.page-id-5511 {
   .consult__univ__consultant__img {
     position: absolute;
     top: -35px;
-    right: -10px;
+    left: -10px;
   }
   .consult__univ__consultant__img img {
     width: 100px;
@@ -13786,6 +13786,7 @@ body.page-id-5511 {
   }
   .consult__univ__comment__one-phrase {
     width: calc(100% - 80px);
+    margin-left: 80px !important;
     margin-bottom: 10px !important;
   }
   .consult__solve__reason__ele {
@@ -16327,7 +16328,7 @@ input[name="mypage__tab__item"]:checked + .mypage__tab__item {
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
-	margin: 0 0 1em;
+	margin: 30px 0 1em;
 	padding: 0;
 }
 .cp_stepflow07 > li {
@@ -16382,13 +16383,26 @@ input[name="mypage__tab__item"]:checked + .mypage__tab__item {
 .cp_stepflow07 > li.active .bubble::before {
 	background-color: #03c4b0;
 }
-.consult__apply__procedure {
+/* step説明 */
+.consult__apply__step__container ul.consult__apply__procedure {
   width: 100%;
+  padding: 0;
+  margin-bottom: 30px;
 }
 .consult__apply__procedure__step {
+  position: relative;
   display: none;
-  width: 100%;
+  margin: 0;
+  padding: 20px;
+  border: dashed 3px #03c4b0;
+  border-radius: 8px;
 }
 .consult__apply__procedure__step.active {
   display: block;
+}
+.consult__apply__procedure__step__title {
+  padding: 0 10px;
+  position: absolute;
+  top: -10px;
+  background-color: #fff;
 }
