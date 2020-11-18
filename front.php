@@ -353,7 +353,7 @@ function header_mypage(){
       <li class="header__navi__menu__edit"><a href="/?page_id=1603">ログアウト</a></li>
       ';
       $profile_html = '
-      <p class="header__navi__menu__user__score"><span>'.$user_profile_total_score.'</span>Profile Score</p>;
+      <p class="header__navi__menu__user__score"><span>'.$user_profile_total_score.'</span>Profile Score</p>
       ';
     }else if(current_user_can('company')){
       $current_user = wp_get_current_user();
