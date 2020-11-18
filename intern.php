@@ -404,68 +404,30 @@ function template_internship2_func($content){
   }
 
   $html = $top_campaign_html.'
+  <!-- card -->
   <div class="card-detail-container">
-    <div class="only-sp">
-      <div class="full-card-img intern-detail-img">
-        <img src="'.$image_url.'" alt>
-      </div>
-      <div class="detail-text-title">'.$post_title.'</div>
-      <!-- card -->
-      <div class="card full-card card-company-content">
-        <div class="full-card-main">
-          <div class="full-card-text">
-            <div class="full-card-text-caption">
-              <div class="full-card-text-company"><a href="'.esc_url($company_url).'"><b>'.$company_name.'</b></a></div>
-              <div class="card-category-container">'.$card_category_html.'</div>
-              <div class="card_company_square_logo">
-                <img src="'.$company_logo_square.'" alt="" scale="0">
-              </div>
+    <div class="card detail-card">
+      <div class="detail-card__wrap">
+        <div class="detail-card__img">
+          <img src="'.$image_url.'" alt="">
+          <h3 class="detail-card__title only-pc">'.$post_title.'</h3>
+          <div class="detail-card__title__img only-sp">
+            <div class="detail-card__title__img__wrap"><a href="">
             </div>
           </div>
+          <h3 class="detail-card__title only-sp"><a href="'.esc_url($company_url).'">'.$company_name.'</a></h3>
         </div>
-      </div>
-    </div>
-    <!-- card -->
-    <div class="card full-card new-card only-pc">
-    <div class="card__wrap">
-      <div class="card__img">
-        <div class="card__img__wrap">
-          <img src="'.$image_url.'" alt="">
-        </div>
-      </div>
-      <div class="card__company"><p class="card__name"><a href="'.esc_url($company_url).'">'.$company_name.'</a></p></div>
-      <div class="card__text">
-        <div class="card__text__wrap">
-          <h3 class="card__text__title"><a href="'.esc_url($intern_url).'">'.$post_title.'</a></h3>
-          <div class="card__text__explain"><p style="font-size: 0.8em;">'.$company_bussiness_card.'</p></div>
-          <div class="card__text__detail">
-            <ul class="card__text__info">
-              <li class="card__text__info__ele card__text__info__name">'.$company_name.'</li>
-              <li class="card__text__info__ele card__text__info__salary">'.$salary.'</li>
-              <li class="card__text__info__ele card__text__info__place">'.$area.'</li>
-              <li class="card__text__info__ele card__text__info__time">'.$requirements.'</li>
-            </ul>
-            <ul class="card__text__attr">
-              <li class="card__text__attr__ele card__text__attr__type">
-                <span>'.$business_type.'</span>
-              </li>
-              <li class="card__text__attr__ele card__text__attr__occupation">
-                <span>'.$occupation.'</span>
-              </li>
-              <li class="card__text__attr__ele card__text__attr__category">
-              '.$features_html_kai.'
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div class="card__btn">
-          '.$button_html.'
-          <a href="'.$entry_link.'" class="btn card__btn__info">応募する</a>
-        </div>
-      </div>
-    </div>
-  </div>
-  </div>
+        <div class="detail-card__info">
+          <div class="detail-card__info__detail">
+            <ul class="detail-card__info__detail__items">
+              <li class="detail-card__info__detail__item detail-card__info__detail__item__name only-pc"><a>'.$company_name.'</a></li>
+              <li class="detail-card__info__detail__item detail-card__info__detail__item__name only-sp">'.$post_title.'</li>
+              <li class="detail-card__info__detail__item card__text__info__salary">'$salary'</li>
+              <li class="detail-card__info__detail__item card__text__info__place">'.$area.'</li>
+              <li class="detail-card__info__detail__item card__text__info__time">週30時間以上（リモートワーク可能）</li>
+              <li class="detail-card__info__detail__item card__text__attr__type detail-card__info__detail__item__type"><span>教育</span></li>
+              <li class="detail-card__info__detail__item card__text__attr__occupation detail-card__info__detail__item__occupation"><span>マーケティング</span></li>
+
   <!-- main -->
   <section class="only-sp">';
   if(!empty($company_bussiness)){
