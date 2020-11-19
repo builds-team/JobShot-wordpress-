@@ -16473,6 +16473,10 @@ div#booking-package_inputFormPanel .bookingButton {
   .cp_stepflow07 {
     margin: 20px 0 1em;
   }
+  .cp_stepflow07 > li .bubble::after,
+  .cp_stepflow07 > li .bubble::before {
+    height: 7px;
+  }
   .consult__apply__step__container ul.consult__apply__procedure {
     margin-bottom: 20px;
   }
