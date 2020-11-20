@@ -89,7 +89,7 @@ function navigation_tab(){
           </a>
         </li>
         <li class="navi-menu-button navi-menu-content-favorite">
-          <a href="'.$home_url.'/user?um_tab=favorites" class="navi-menu-content">
+          <a href="'.$home_url.'/user/favorite?um_user='.$current_user_name.'" class="navi-menu-content">
             <span class="navi-menu-icon navi-menu-icon-favorite"></span>
             <span class="navi-menu-text">お気に入り</span>
           </a>
