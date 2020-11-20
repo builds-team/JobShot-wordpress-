@@ -16369,7 +16369,7 @@ a.column__detail__favo__btn:hover:after {
 }
 @media screen and (max-width: 480px) {
   .intern__detail__voice__student {
-    top: -70px;
+    /*top: -70px;*/
   }
   .intern-detail-table {
     font-size: 12px;

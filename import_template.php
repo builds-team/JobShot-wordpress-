@@ -67,6 +67,8 @@ function navigation_tab(){
     }
   }
   if ( is_user_logged_in() ){
+    $current_user = wp_get_current_user();
+    $current_user_name = $current_user->data->display_name;
     echo '
     <div class="navi-container">
       <ul class="navi-menu">

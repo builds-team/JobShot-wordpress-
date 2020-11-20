@@ -47,6 +47,7 @@ function dequeue_plugins_style() {
     wp_dequeue_style( 'jetpack_likes' );
     wp_dequeue_style( 'chronicle-style-lato-web' );
     wp_deregister_style( 'broadsheet-style' );
+    wp_deregister_style('genericons');
     if( !is_page( array('apply','contact','published_contact','scout','mail_setteing','アカウント削除', 'jobshotxtech-build','スカウトフォーム','ログイン（インターン応募）','面接対策（ログイン）') )){
         wp_dequeue_style( 'contact-form-7' );
     }
@@ -168,7 +169,7 @@ function my_enqueue_scripts() {
     if(is_page( array('user','register','login','user_account','mypage_test','apply','interview_apply','contact','published_contact','scout','intern_test','プロフィール更新のお願い','アカウント削除','スカウトフォーム','ログイン（インターン応募）','面接対策（ログイン）') )){
         wp_enqueue_script('jquery','https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js',array(),'3.1.1');
     }else{
-        wp_enqueue_script('jquery','https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js', array(), '1.8.3'); 
+        wp_enqueue_script('jquery','https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js', array(), '3.1.1'); 
     }
 }
 add_action('wp_enqueue_scripts', 'my_enqueue_scripts');
