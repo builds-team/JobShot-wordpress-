@@ -9,48 +9,7 @@ function about_interview(){
     }
     $html='
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
-    <style>
-        .datalist dt:before {
-            font-family: "Font Awesome 5 Free";
-            content: "\f00c";
-            padding-right: 15px;
-            color: #03c4b0;
-            }
-            .table th {
-            width: 25%;
-            text-align: left
-        }
-        .table td, .table th {
-            border-bottom: 2px solid #f0f0f0
-        }
-        .table td {
-            padding: 12px 0 13px
-        }
-        @media screen and (min-width:768px) {
-            .table {
-                width: 100%
-            }
-        }
-        .widget {
-            font-size: 1.0em;
-        }
-        footer .widget {
-            font-size: 0.8em;
-        }
-        .gmap {
-            height: 0;
-            overflow: hidden;
-            padding-bottom: 56.25%;
-            position: relative;
-        }
-        .gmap iframe {
-            position: absolute;
-            left: 0;
-            top: 0;
-            height: 100%;
-            width: 100%;
-        }
-    </style>
+
     <div class="siteorigin-widget-tinymce textwidget">
     <div class="background-img-container">
         <noscript><img src="https://i1.wp.com/jobshot.jp/wp-content/uploads/2020/02/photo-1555443712-22cd30585e5c.jpeg?w=1905&#038;ssl=1" alt data-recalc-dims="1"></noscript><img src="'.$home_url.'/wp-content/uploads/2020/06/charles-deluvio-Lks7vei-eAg-unsplash.jpg" alt="" data-src="https://jobshot.jp/wp-content/uploads/2020/02/photo-1555443712-22cd30585e5c.jpeg" class=" lazyloaded">
@@ -83,32 +42,35 @@ function about_interview(){
     <div class="consult__block consult__univ">
         <h2 class="menu_title consult__title only-pc">Jobshotの無料相談なら解決できます</h2>
         <h2 class="menu_title consult__title only-sp">Jobshotの無料相談なら解決</h2>
-        <div class="consult__univ__container consult__flex__container">
+		        <div class="consult__univ__container consult__flex__container">
             <div class="consult__univ__consultant">
-                <div class="consult__univ__consultant__img"><img src="'.$home_url.'/wp-content/uploads/2020/11/tabatashunsuke-2.jpg" alt=""></div>
-                <p class="consult-font-name consult-font-bold">JobShot事業部 田畑駿介（21）</p>
+                <div class="consult__univ__consultant__img"><img src="https://jobshot.jp/wp-content/uploads/2020/11/tabatashunsuke-2.jpg" alt=""></div>
+                <p class="consult-font-name consult-font-bold only-pc">JobShot事業部 田畑駿介（21）</p>
             </div>
-            <br><br>
             <div class="consult__univ__comment">
+                <p class="consult__univ__comment__one-phrase consult-font-bold only-sp">あなたに合った最適な長期インターンをご紹介します！</p>
                 <p class="consult-font-bold">実績：</p>
                 <p>一橋大学商学部に入学後、20名規模のベンチャー/マザーズ上場ベンチャー併せて2社での長期インターンを経験。<br>
                 自身の体験から「長期インターンを通じて、より多くの学生に人生が変わる瞬間を届けたい」という思いでJobShotの長期インターン個別面談を担当している。</p>
                 <br>
-                <p class="consult-font-bold">一言：</p>
-                <p>あなたに合った最適な長期インターンをご紹介します！</p>
+                <p class="consult-font-bold only-pc">一言：</p>
+                <p class="only-pc">あなたに合った最適な長期インターンをご紹介します！</p>
+                <p class="consult-font-name consult-font-bold only-sp">JobShot事業部 田畑駿介（21）</p>
             </div>
         </div>
         <div class="consult__univ__container consult__flex__container">
             <div class="consult__univ__consultant">
-                <div class="consult__univ__consultant__img"><img src="'.$home_url.'/wp-content/uploads/2020/06/takazawa.jpg" alt=""></div>
-                <p class="consult-font-name consult-font-bold">JobShot事業部長 高澤優（21）</p>
+                <div class="consult__univ__consultant__img"><img src="https://i1.wp.com/jobshot.jp/wp-content/uploads/2020/06/takazawa.jpg" alt=""></div>
+                <p class="consult-font-name consult-font-bold only-pc">JobShot事業部長 高澤優（21）</p>
             </div>
             <div class="consult__univ__comment">
+                <p class="consult__univ__comment__one-phrase consult-font-bold only-sp">良い学生生活が送れるよう、最適なインターン探しをお手伝いします！</p>
                 <p class="consult-font-bold">実績：</p>
                 <p>中央大学法学部３年生。これまで数多くの学生のキャリア設計・長期インターン選びを支え、就活まで徹底したサポートを続けてきた。<br>自身も長期インターン経験を持ち、就職活動では外資IT、外資コンサルの内定実績有り。</p>
                 <br>
-                <p class="consult-font-bold">一言：</p>
-                <p>良い学生生活が送れるよう、最適なインターン探しをお手伝いします！</p>
+                <p class="consult-font-bold only-pc">一言：</p>
+                <p class="only-pc">良い学生生活が送れるよう、最適なインターン探しをお手伝いします！</p>
+                <p class="consult-font-name consult-font-bold only-sp">JobShot事業部長 高澤優（21）</p>
             </div>
         </div>
     </div>
@@ -402,56 +364,33 @@ function fill_interview_apply(){
 add_action( 'wp_ajax_fill_interview_apply', 'fill_interview_apply' );
 add_action( 'wp_ajax_fill_interview_apply', 'fill_interview_apply');
 
-/*カレッジワークスの場所
-
-<div>カレッジワークススタジオ</div>
-<div>渋谷区神南1-11-1</div>
-<div><i class="fas fa-train"></i>渋谷駅徒歩8分</div>
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3241.5970616463133!2d139.6990004153449!3d35.66229558019869!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188ca880f4b6e7%3A0x6598c977001c85b3!2z44CSMTUwLTAwNDEg5p2x5Lqs6YO95riL6LC35Yy656We5Y2X77yR5LiB55uu77yR77yR4oiS77yR!5e0!3m2!1sja!2sjp!4v1560310092730!5m2!1sja!2sjp" width="100%" height="auto" frameborder="0" style="border:0" allowfullscreen=""></iframe>
-
-
-<section>
-        <img src="'.$home_url.'/wp-content/uploads/2020/02/9628bacf8cc0154c6bec8a8ac88ced35.png">
-        <div class="card-category-container event">
-            <div class="card-category">将来の志望企業から逆算して最適なインターン選びをお手伝いします！</div><br>
-            <div class="card-category">ESを一緒に作成し、通過率を高めます！</div><br>
-            <div class="card-category">過去問による面接で採用率を高めます！</div><br>
-        </div>
-    </section>
-    <section>
-        <table class="demo01">
-            <tbody>
-                <tr>
-                    <th>開催日時</th>
-                    <td>
-                        <div><a href="'.$home_url.'/interview/apply">こちらからお選びください</a></div>
-                    </td>
-                </tr>
-                <tr>
-                    <th>場所</th>
-                    <td>
-                        <div>オンラインにて開催いたします</div>
-                    </td>
-                </tr>
-                <tr>
-                    <th>参加費</th>
-                    <td>無料</td>
-                </tr>
-                <tr>
-                    <th>持ち物</th>
-                    <td>メモ帳・筆記用具</td>
-                </tr>
-                <tr>
-                    <th>備考</th>
-                    <td>コロナウイルスの影響により、安全面を考慮し、オンラインで開催いたします</br>オンライン面談ではZoom(※インストール不要)を使用する予定です</td>
-                </tr>
-            </tbody>
-        </table>
-    </section>
-    <div class="fixed-buttom">
-        <a href="'.$home_url.'/interview/apply">
-            <button class="button button-apply">申し込みはこちらから</button>
-        </a>
-    </div>';
-    */
+function interview_step(){
+    $html1 = '
+    <h3 class="widget-title consult__apply__title">Buildsイベント〜面接対策＆キャリア相談会＆就活相談会〜</h3>
+    <div class="consult__apply__step__container hidden">
+        <ul class="cp_stepflow07">
+            <li class="active"><span class="bubble"></span><span>STEP 1</span></li>
+            <li class=""><span class="bubble"></span><span>STEP 2</span></li>
+            <li class=""><span class="bubble"></span><span>STEP 3</span></li>
+        </ul>
+        <ul class="consult__apply__procedure">
+            <li class="consult__apply__procedure__step active">
+                <h4 class="consult__apply__procedure__step__title">まずは、日にちを選択しよう！</h4>
+                <p class="consult__apply__procedure__step__explain consult__apply__procedure__step__explain__icon"><span class="symbolPanel material-icons" style="font-family: Material Icons !important; color: rgb(244, 232, 0);">change_history</span>＝ 空いている時間帯が半分以下</p>
+                <p class="consult__apply__procedure__step__explain consult__apply__procedure__step__explain__icon"><span class="symbolPanel material-icons" style="font-family: Material Icons !important; color: rgb(150, 150, 150);">panorama_fish_eye</span>＝ 空いている時間帯が半分以上</p>
+            </li>
+            <li class="consult__apply__procedure__step">
+                <h4 class="consult__apply__procedure__step__title">次に、時間帯を選択しよう！</h4>
+                <p class="consult__apply__procedure__step__explain">右側の時間帯から、空いている時間帯（白色）を選択しよう</p>
+            </li>
+            <li class="consult__apply__procedure__step">
+                <h4 class="consult__apply__procedure__step__title">最後に、個人情報を入力しよう！</h4>
+                <p class="consult__apply__procedure__step__explain">名前・メールアドレス・電話番号・相談内容を記入しよう</p>
+            </li>
+        </ul>
+    </div>
+    ';
+    return $html;
+}
+add_shortcode('interview_step','interview_step');
 ?>

@@ -1388,3 +1388,41 @@ jQuery(function($){
 		return false;
 	});
 });
+
+//個別相談会のステップ
+jQuery(function($){
+	$( '#booking-package-id-1' ).click( function (){
+		if(!$("#booking-package_calendarPage").hasClass("hidden_panel")){
+			$('.cp_stepflow07 li').eq(0).removeClass('completed');
+			$('.cp_stepflow07 li').eq(0).addClass('active');
+			$('.cp_stepflow07 li').eq(1).removeClass('active');
+			$('.cp_stepflow07 li').eq(2).removeClass('active');
+
+			$('.consult__apply__procedure li').eq(0).addClass('active');
+			$('.consult__apply__procedure li').eq(1).removeClass('active');
+			$('.consult__apply__procedure li').eq(2).removeClass('active');
+		}
+		if(!$("#booking-package_schedulePage").hasClass("hidden_panel")){
+			$('.cp_stepflow07 li').eq(0).removeClass('active');
+			$('.cp_stepflow07 li').eq(0).addClass('completed');
+			$('.cp_stepflow07 li').eq(1).removeClass('completed');
+			$('.cp_stepflow07 li').eq(1).addClass('active');
+			$('.cp_stepflow07 li').eq(2).removeClass('active');
+
+			$('.consult__apply__procedure li').eq(0).removeClass('active');
+			$('.consult__apply__procedure li').eq(1).addClass('active');
+			$('.consult__apply__procedure li').eq(2).removeClass('active');
+		}
+		if(!$("#booking-package_inputFormPanel").hasClass("hidden_panel")){
+			$('.cp_stepflow07 li').eq(0).removeClass('active');
+			$('.cp_stepflow07 li').eq(0).addClass('completed');
+			$('.cp_stepflow07 li').eq(1).removeClass('active');
+			$('.cp_stepflow07 li').eq(1).addClass('completed');
+			$('.cp_stepflow07 li').eq(2).addClass('active');
+
+			$('.consult__apply__procedure li').eq(0).removeClass('active');
+			$('.consult__apply__procedure li').eq(1).removeClass('active');
+			$('.consult__apply__procedure li').eq(2).addClass('active');
+		}
+	});
+});	
