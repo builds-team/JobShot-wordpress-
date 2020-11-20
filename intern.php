@@ -65,26 +65,13 @@ function template_internship2_func($content){
   $skill_requirements = nl2br(get_field('応募資格',$post_id));
   $prospective_employer = nl2br(get_field('インターン卒業生の内定先',$post_id));
   $intern_student_voice = nl2br(get_field('働いているインターン生の声',$post_id));
+  $intern_student_voice1 = nl2br(get_field('働いているインターン生の声１',$post_id));
+  $intern_student_voice2 = nl2br(get_field('働いているインターン生の声２',$post_id));
+  $intern_student_voice3 = nl2br(get_field('働いているインターン生の声３',$post_id));
 
   $salesman_name = CFS()->get('salesman_name',$post_id);
   $salesman_picture = CFS()->get('salesman_picture',$post_id);
   $salesman_voice = CFS()->get('salesman_voice',$post_id);
-  if(!empty($salesman_voice)){
-    $builds_voice_html = '
-    <section>
-        <h2 class="maintitle">Builds担当者の声</h2>
-        <div class="sectionVoice">
-            <div class="sectionVoice__img">
-                <img src="'.$salesman_picture.'" alt="">
-            </div>
-            <div class="sectionVoice__comment">
-                <p class="sectionVoice__ttl">JobShot営業担当・'.$salesman_name.'</p>
-                <p class="sectionVoice__txt">'.$salesman_voice.'</p>
-            </div>
-        </div>
-    </section>
-    ';
-  }
 
   $features = get_field('特徴',$post_id);
   $selection_flows_re = get_field("選考フロー",$post_id);
@@ -92,26 +79,7 @@ function template_internship2_func($content){
   $selection_flows_re = array_map('trim', $selection_flows_re); // 各行にtrim()をかける
   $selection_flows_re = array_filter($selection_flows_re, 'strlen'); // 文字数が0の行を取り除く
   $selection_flows_re = array_values($selection_flows_re); // これはキーを連番に振りなおしてるだけ
-  $selection_html_re = '<ul class="flowchart">';
-  $counter = 1;
-  foreach($selection_flows_re as $selection_flow){
-        $selection_html_re .= '
-        <li class="flowlist">
-            <dl>
-                <dt><span class="icon">STEP.0'.$counter.'</span></dt>
-                <dd>'.$selection_flow.'</dd>
-            </dl>
-        </li>';
-	$counter +=1;
-  }
-  $selection_html_re .= '
-    <li class="flowlist">
-        <dl>
-            <dt><span class="icon">STEP.0'.$counter.'</span></dt>
-            <dd>採用</dd>
-        </dl>
-    </li>
-  </ul>';
+
 
   $image = get_field("イメージ画像",$post_id);
   $image2 = get_field("イメージ画像2",$post_id);
@@ -166,113 +134,14 @@ function template_internship2_func($content){
   $current_user_name = $current_user->data->display_name;
   $home_url =esc_url( home_url( ));
   if($company_name == $current_user_name){
-    $button_html = '
-    <div class="company_edit">
-      <button class="button favorite innactive" style="width:40%; margin-top:15px; background-color:#f9b539; border-radius: 5px;">戻る</button>
-      <button class="button favorite innactive" style="width:40%; margin-top:15px; background-color:red; border-radius: 5px;">削除する</button>
-    </div>';
-    $button_html = '
+    $delete_html = '
     <div class="company_edit" style="text-align:right;">
-      <a href="'.$home_url.'/edit_internship?post_id='.$post_id.'" style="margin-right:5px;">編集する</a>
       <form action="" method="POST" enctype="multipart/form-data">
         <input type="hidden" name="post_id" value="'.$post_id.'">
         <input type="hidden" name="company_id" value="'.$company_id.'">
         <input type="submit" name="intern-delete" id="intern-delete" class="" value="削除する">
       </form>
     </div>';
-  }else{
-    $button_html = '';
-  }
-
-  if($features){
-      $features_html = '';
-      foreach($features as $feature){
-      $features_html .=  '<div class="card-category" style="background-color:#f9b539;">'.$feature.'</div>';
-      }
-  }
-
-  $requirement = '
-  <p>【勤務可能時間】</p>
-  <p>'.$worktime.'</p>
-  <p>【勤務条件】</p>
-  <p>'.$requirements.'</p>
-  <p>【応募資格】</p>
-  <p>'.$skill_requirements.'</p>
-  <p>【求める人物像】</p>
-  <p>'.$require_person.'</p>
-  ';
-  $intern_time_table_array = array();
-  foreach ($intern_time_table as $field_name => $field_value ) {
-    $intern_array = array();
-    $intern_array["start"] = $field_value['start'];
-    $intern_array["end"] = $field_value['end'];
-    $intern_array["task"] = $field_value['task'];
-    array_push($intern_time_table_array,$intern_array);
-  }
-
-  $table_html = '';
-  foreach($intern_time_table as $time){
-      $start = $time['start'];
-      $end = $time['end'];
-      $task = $time['task'];
-      $start_time = explode(':',$start);
-      $end_time = explode(':',$end);
-      $span_hour = $end_time[0] - $start_time[0];
-      $span_minutes = $end_time[0] - $start_time[0];
-      $span_time = $span_hour + $span_minutes / 60;
-      $span_time = round($span_time, 0);
-      if ($time === end($intern_time_table)) {
-          // 最後
-          $table_html .= '
-          <tr class="timetable__row timetable__time-2">
-              <td class="timetable__task">'.$task.
-                  '<span class="timetable__start">'.$start.'</span>
-                  <span class="timetable__end">'.$end.'</span>
-              </td>
-          </tr>';
-      }else{
-          $table_html .= '
-          <tr class="timetable__row timetable__time-2">
-              <td class="timetable__task">'.$task.
-                  '<span class="timetable__start">'.$start.'</span>
-              </td>
-          </tr>';
-      }
-  }
-  if(!empty($intern_day_re[0]) and (count($intern_day_re)%3 == 0)){
-
-    $table_html = '';
-    for($i = 0; $i<(count($intern_day_re)/3); $i++){
-        $start = $intern_day_re[3*$i];
-	    //echo $start;
-        $end = $intern_day_re[3*$i+1];
-	    //echo $end;
-        $task = $intern_day_re[3*$i+2];
-	    //echo $task;
-        $start_time = explode(':',$start);
-        $end_time = explode(':',$end);
-        $span_hour = $end_time[0] - $start_time[0];
-        $span_minutes = $end_time[0] - $start_time[0];
-        $span_time = $span_hour + $span_minutes / 60;
-        $span_time = round($span_time, 0);
-        if ($i == (count($intern_day_re)/3)-1) {
-            // 最後
-            $table_html .= '
-            <tr class="timetable__row timetable__time-2">
-                <td class="timetable__task">'.$task.
-                    '<span class="timetable__start">'.$start.'</span>
-                    <span class="timetable__end">'.$end.'</span>
-                </td>
-            </tr>';
-        }else{
-            $table_html .= '
-            <tr class="timetable__row timetable__time-2">
-                <td class="timetable__task">'.$task.
-                    '<span class="timetable__start">'.$start.'</span>
-                </td>
-            </tr>';
-        }
-    }
   }
 
   $selection_flow_array = array();
@@ -283,58 +152,19 @@ function template_internship2_func($content){
   }
   $selection_flow_array = array_values($selection_flow_array);
 
-  $selection_html = '<ol class="flowchart">';
-  foreach($selection_flow_array as $selection_flow){
-    $selection_html .= '<li class="flowchart__item">'.$selection_flow[0].'</li>';
-  }
-  $selection_html .= '<li class="flowchart__item flowchart__item--last">採用</li></ol>';
-  if(is_user_logged_in()){
-    $entry_link = do_shortcode('[get_form_address formtype=apply form_id=324 post_id='.$post->ID.' title='.$post_title.']'); 
-  }else{
-    $entry_link = 'https://jobshot.jp/apply_login?form_id=324&post_id='.$post->ID.'&jobname='.$post_title;
-  }
-
-  if(current_user_can('student')){
-    $onclick = 'onclick="gtag(\'event\', \'click\', {\'event_category\': \'link\', \'event_label\': \'to_apply_form\'});"';
-  }else{
-    $onclick = '';
-  }
-  $entry_html = '
-      <a href="'.$entry_link.'" '.$onclick.'>
-          <button class="button button-apply">インターンに応募する</button>
-      </a>';
 
   $user_roles = $current_user->roles;
   if(!in_array("company", $user_roles)){
     $top_campaign_html = top_campaign();
   }
+
   $company_bussiness = get_field("事業内容",$company_id);
   $company_bussiness = strip_tags($company_bussiness);
-  $company_bussiness = preg_replace('/(?:\n|\r|\r\n)/', '', $company_bussiness);
-  if(empty($company_bussiness)){
-    $company_bussiness = get_field("業務内容",$post_id);
-    $company_bussiness = strip_tags($company_bussiness);
-    $company_bussiness = preg_replace('/(?:\n|\r|\r\n)/', '', $company_bussiness);
-  }
-  if(mb_strlen($company_bussiness) > 70){
-    $company_bussiness_card = mb_substr(nl2br($company_bussiness),0,70).'...';
-  }
-  $company_bussiness = get_field("事業内容",$company_id);
-  $company_bussiness = strip_tags($company_bussiness);
-  $card_category_html = '';
-  if(!empty($area)){
-    $card_category_html .= '<div class="card-category">'.$area.'</div>';
-  }
-  if(!empty($occupation)){
-    $card_category_html .= '<div class="card-category">'.$occupation.'</div>';
-  }
-  if(!empty($business_type)){
-    $card_category_html .= '<div class="card-category">'.$business_type.'</div>';
-  }
 
   if($features){
     $features_html = '';
     $features_html_kai = '';
+    $feature_all_html = '';
     $count = 0;
     $features_num = array();
     $feature_array = array("リモートワーク可能" => 1, "プログラミングが未経験から学べる" => 2, "週2日ok" => 3, "時給2000円以上" => 4, "時給1500円以上" => 5, "時給1200円以上" => 6, "英語力が身につく" => 7, "土日のみでも可能" => 8, "1,2年歓迎" => 9, "社長直下" => 10
@@ -343,6 +173,7 @@ function template_internship2_func($content){
     , "服装自由" => 30, "インセンティブあり" => 31, "1ヶ月からok" => 32, "3ヶ月以下歓迎" => 33, "週1日ok" => 34, "ネイル可能" => 35, "時給1000円以上" => 36);
     foreach($features as $feature){
       $features_num[] = $feature_array[$feature];
+      $feature_all_html .= '<a class="intern__detail__tag" href="/internship?feature%5B%5D='.$feature.'">'.$feature.'</a>';
     }
     if(in_array(4, $features_num)){
       
@@ -376,7 +207,12 @@ function template_internship2_func($content){
       $count += 1;
       if($count<4){
         $key = array_search($feature,$feature_array);
-        $features_html_kai .= '<span>'.$key.'</span>';
+        if($count==3 || $count == count($features_num)){
+          $features_html_kai .= '<span>'.$key.'</span>';
+        }
+        else{
+          $features_html_kai .= '<span>'.$key.'</span><span>・</span>';
+        }
       }
     }
   }
@@ -387,302 +223,402 @@ function template_internship2_func($content){
   $company_url = get_permalink($company_id);
   $intern_url=get_permalink($post_id);
 
-  if($company_name == $current_user_name){
-    $button_html = '<a href="'.$home_url.'/edit_internship?post_id='.$post_id.'" class="card__btn__edit">編集をする</a>';
-  }else{
-    $fav_array = get_post_meta($post_id,'favorite',true);
-    $user_id = get_current_user_id();
-    if(in_array($user_id,$fav_array)){
-      $fav_class = 'card__btn__favo active';
-    }else{
-      $fav_class = 'card__btn__favo';
-    }
-    $button_html = '
-      <button class="card__btn__favo__wrap" value="'.$post_id.'">
-        <a class="'.$fav_class.'" id="fav-'.$post_id.'">お気に入り</a>
-      </button>';
-  }
-
-  $html = $top_campaign_html.'
+  $html = $top_campaign_html.$delete_html.'
+  <!-- card -->
   <div class="card-detail-container">
-    <div class="only-sp">
-      <div class="full-card-img intern-detail-img">
-        <img src="'.$image_url.'" alt>
-      </div>
-      <div class="detail-text-title">'.$post_title.'</div>
-      <!-- card -->
-      <div class="card full-card card-company-content">
-        <div class="full-card-main">
-          <div class="full-card-text">
-            <div class="full-card-text-caption">
-              <div class="full-card-text-company"><a href="'.esc_url($company_url).'"><b>'.$company_name.'</b></a></div>
-              <div class="card-category-container">'.$card_category_html.'</div>
-              <div class="card_company_square_logo">
-                <img src="'.$company_logo_square.'" alt="" scale="0">
+    <div class="card detail-card">
+      <div class="detail-card__wrap">
+        <div class="detail-card__img">
+          <img src="'.$image_url.'" alt="">
+          <h3 class="detail-card__title only-pc">'.$post_title.'</h3>
+          <div class="detail-card__title__img only-sp">
+            <div class="detail-card__title__img__wrap"><a href="'.esc_url($company_url).'"><img src="'.$company_image_url.'" alt=""></a>
+            </div>
+          </div>
+          <h3 class="detail-card__title only-sp"><a href="'.esc_url($company_url).'">'.$company_name.'</a></h3>
+        </div>
+        <div class="detail-card__info">
+          <div class="detail-card__info__detail">
+            <ul class="detail-card__info__detail__items">
+              <li class="detail-card__info__detail__item detail-card__info__detail__item__name only-pc"><a>'.$company_name.'</a></li>
+              <li class="detail-card__info__detail__item detail-card__info__detail__item__name only-sp">'.$post_title.'</li>
+              <li class="detail-card__info__detail__item card__text__info__salary">'.$salary.'</li>
+              <li class="detail-card__info__detail__item card__text__info__place">'.$area.'</li>
+              <li class="detail-card__info__detail__item card__text__info__time">'.$requirements.'</li>
+              <li class="detail-card__info__detail__item card__text__attr__type detail-card__info__detail__item__type"><span>'.$business_type.'</span></li>
+              <li class="detail-card__info__detail__item card__text__attr__occupation detail-card__info__detail__item__occupation"><span>'.$occupation.'</span></li>
+              <li class="detail-card__info__detail__item card__text__attr__category">
+              '.$features_html_kai.'
+              </li>
+            </ul>
+            <div class="detail-card__info__detail__img">
+              <div class="detail-card__info__detail__img__wrap">
+                <a href="'.esc_url($company_url).'"><img src="'.$company_image_url.'" alt=""></a>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <!-- card -->
-    <div class="card full-card new-card only-pc">
-    <div class="card__wrap">
-      <div class="card__img">
-        <div class="card__img__wrap">
-          <img src="'.$image_url.'" alt="">
-        </div>
+  </div>';
+
+  //お気に入りと応募ボタン
+  if($company_name == $current_user_name){
+    $button_html = '<a href="'.$home_url.'/edit_internship?post_id='.$post_id.'" class="btn intern__detail__apply__info" style="background-color:#03c4b0">編集をする</a>';
+  }else{
+    $fav_array = get_post_meta($post_id,'favorite',true);
+    $user_id = get_current_user_id();
+    if(in_array($user_id,$fav_array)){
+      $fav_class = 'intern__detail__apply__favo active fav-'.$post_id;
+    }else{
+      $fav_class = 'intern__detail__apply__favo fav-'.$post_id;
+    }
+    $button_html = '
+      <button class="intern__detail__apply__favo__wrap" value="'.$post_id.'">
+        <a class="'.$fav_class.'">お気に入り</a>
+      </button>';
+  }
+  if(is_user_logged_in()){
+    $entry_link = do_shortcode('[get_form_address formtype=apply form_id=324 post_id='.$post->ID.' title='.$post_title.']'); 
+  }else{
+    $entry_link = 'https://jobshot.jp/apply_login?form_id=324&post_id='.$post->ID.'&jobname='.$post_title;
+  }
+
+  if(current_user_can('student')){
+    $onclick = 'onclick="gtag(\'event\', \'click\', {\'event_category\': \'link\', \'event_label\': \'to_apply_form\'});"';
+  }else{
+    $onclick = '';
+  }
+  $entry_html = '
+      <a href="'.$entry_link.'" '.$onclick.' class="btn intern__detail__apply__info">
+          応募する
+      </a>';
+  $html .= '
+  <!-- main -->
+  <section class="intern__detail__section intern__detail__apply">
+    <div class="intern__detail__apply__btn">
+      '.$button_html.$entry_html.'
+    </div>
+  </section>';
+
+  //インターン詳細
+  //会社の概要
+  if(mb_strlen($company_bussiness)>1){
+    if(!empty($image2_url)){
+      $image2_html = '
+      <div class="intern__detail__overview__img">
+        <img src="'.$image2_url.'" alt="">
       </div>
-      <div class="card__company"><p class="card__name"><a href="'.esc_url($company_url).'">'.$company_name.'</a></p></div>
-      <div class="card__text">
-        <div class="card__text__wrap">
-          <h3 class="card__text__title"><a href="'.esc_url($intern_url).'">'.$post_title.'</a></h3>
-          <div class="card__text__explain"><p style="font-size: 0.8em;">'.$company_bussiness_card.'</p></div>
-          <div class="card__text__detail">
-            <ul class="card__text__info">
-              <li class="card__text__info__ele card__text__info__name">'.$company_name.'</li>
-              <li class="card__text__info__ele card__text__info__salary">'.$salary.'</li>
-              <li class="card__text__info__ele card__text__info__place">'.$area.'</li>
-              <li class="card__text__info__ele card__text__info__time">'.$requirements.'</li>
-            </ul>
-            <ul class="card__text__attr">
-              <li class="card__text__attr__ele card__text__attr__type">
-                <span>'.$business_type.'</span>
-              </li>
-              <li class="card__text__attr__ele card__text__attr__occupation">
-                <span>'.$occupation.'</span>
-              </li>
-              <li class="card__text__attr__ele card__text__attr__category">
-              '.$features_html_kai.'
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div class="card__btn">
-          '.$button_html.'
-          <a href="'.$entry_link.'" class="btn card__btn__info">応募する</a>
-        </div>
+      ';
+    }
+    $bussiness_html = '
+    <div class="intern__detail__section__content">
+      <h3 class="intern__detail__section__title">会社の概要</h3>
+      '.$image2_html.'
+      <p class="intern__detail__section__text">'.$company_bussiness.'</p>
+    </div>
+    ';
+    }
+  //業務内容
+  if(!empty($intern_contents)){
+    if(!empty($image3_url)){
+      $image3_html = '
+      <div class="intern__detail__overview__img">
+        <img src="'.$image3_url.'" alt="">
+      </div>
+      ';
+    }
+    $intern_html = '
+    <div class="intern__detail__section__content">
+      <h3 class="intern__detail__section__title">仕事の概要</h3>
+      '.$image3_html.'
+      <p class="intern__detail__section__text">'.$intern_contents.'</p>
+    </div>
+    ';
+  }
+  //特徴
+  if($features){
+    $feature_html = '
+    <div class="intern__detail__section__content">
+      <h3 class="intern__detail__section__title">特徴</h3>
+      <div class="intern__detail__tag__container">
+        '.$feature_all_html.'
       </div>
     </div>
-  </div>
-  </div>
-  <!-- main -->
-  <section class="only-sp">';
-  if(!empty($company_bussiness)){
-    $html .= '
-    <div class="intern_list">
-      <h3 class="intern_list_title">会社の概要</h3>';
-    if(!empty($image2_url)){
-        $html .= '
-      <div class="intern_list_image_box">
-        <img src="'.$image2_url.'">
-      </div>';
-    }
-    $html .= '
-      <p class="intern_list_lead">'.$company_bussiness.'</p>
-    </div>';
+    ';
   }
-  if(!empty($intern_contents)){
-    $html .= '
-    <div class="intern_list">
-      <h3 class="intern_list_title">仕事の概要</h3>';
-    if(!empty($image3_url)){
-      $html .= '
-      <div class="intern_list_image_box">
-        <img src="'.$image3_url.'">
-      </div>';
+  //一日の流れ
+  if(!empty($intern_day_re[0]) and (count($intern_day_re)%3 == 0)){
+    $time_html = '';
+    for($i = 0; $i<(count($intern_day_re)/3); $i++){
+        $start = $intern_day_re[3*$i];
+	    //echo $start;
+        $end = $intern_day_re[3*$i+1];
+	    //echo $end;
+        $task = $intern_day_re[3*$i+2];
+	    //echo $task;
+        $start_time = explode(':',$start);
+        $end_time = explode(':',$end);
+        $span_hour = $end_time[0] - $start_time[0];
+        $span_minutes = $end_time[0] - $start_time[0];
+        $span_time = $span_hour + $span_minutes / 60;
+        $span_time = round($span_time, 0);
+        if ($i == (count($intern_day_re)/3)-1) {
+          // 最後
+          $time_html .= '
+          <tr class="timetable__row timetable__time-2">
+            <td class="timetable__task">'.$task.'
+              <span class="timetable__start">'.$start.'</span>
+              <span class="timetable__end">'.$end.'</span>
+            </td>
+          </tr>';
+        }else{
+          $time_html .= '
+            <tr class="timetable__row timetable__time-2">
+              <td class="timetable__task">'.$task.'
+                <span class="timetable__start">'.$start.'</span>
+              </td>
+            </tr>';
+        }
     }
-    $html .= '
-      <p class="intern_list_lead">'.$intern_contents.'</p>
-    </div>';
+    if(!empty($image4_url)){
+      $image4_html = '
+      <div class="intern__detail__overview__img">
+        <img src="'.$image4_url.'" alt="">
+      </div>
+      ';
+    }
+    $table_html = '
+    <div class="intern__detail__section__content intern__detail__day-flow">
+      <h3 class="intern__detail__section__title">１日の流れ</h3>
+      '.$image4_html.'
+      <table class="timetable">
+        <tbody>
+        '.$time_html.'
+        </tbody>
+      </table>
+     </div>
+      ';
   }
-  if(!empty($intern_day_re) and strpos($intern_day_pre,'</br>') !== false){
-    $html .= '
-      <div class="intern_list">
-        <h3 class="intern_list_title">１日の流れ</h3>';
-      if(!empty($image4_url)){
-        $html .= '
-        <div class="intern_list_image_box">
-          <img src="'.$image4_url.'">
-        </div>';
-      }
-      $html .= '
-        <table class="timetable">
-          <tbody>'.$table_html.'</tbody>
-        </table>
-      </div>';
-    }
-    
-    else if( !empty($intern_day_pre) and strpos($intern_day_pre,'</br>') === false){
-    $intern_day_pre = nl2br($intern_day_pre);
-    $html .= '
-      <div class="intern_list">
-        <h3 class="intern_list_title">１日の流れ</h3>';
-      if(!empty($image4_url)){
-        $html .= '
-        <div class="intern_list_image_box">
-          <img src="'.$image4_url.'">
-        </div>';
-      }
-      $html .= '
-        <p class="intern_list_lead">'.$intern_day_pre.'</p>
-      </div>';
-    }
+  //学べるスキル
+  if(!empty($skills)){
+    $skill_html = '
+    <div class="intern__detail__section__content">
+      <h3 class="intern__detail__section__title">学べるスキル</h3>
+      <p class="intern__detail__section__text">'.$skills.'</p>
+    </div>
+    ';
+  }
+  $html .= '
+  <section class="intern__detail__section intern__detail__overview">
+  '.$bussiness_html.$intern_html.$feature_html.$table_html.$skill_html.'
+  </section>';
 
-  if((!empty($selection_flows[0]['selection_step'])) and (empty($selection_flows_re[0]))){
-    $html .= '
-    <div class="intern_list">
-      <h3 class="intern_list_title">選考フロー</h3>
-      '.$selection_html.'
-    </div>';
+  //条件
+  //募集要項
+  if(!empty($worktime)){
+    $worktime_html = '
+    <h4 class="intern__detail__conditions__requirements__title">勤務可能時間</h4>
+    <div class="intern__detail__conditions__requirements__content">'.$worktime.'</div>
+    ';
   }
+  if(!empty($requirements)){
+    $requirements_html = '
+    <h4 class="intern__detail__conditions__requirements__title">勤務条件</h4>
+    <div class="intern__detail__conditions__requirements__content">'.$requirements.'</div>
+    ';
+  }
+  if(!empty($skill_requirements)){
+    $skill_requirements_html = '
+    <h4 class="intern__detail__conditions__requirements__title">応募資格</h4>
+    <div class="intern__detail__conditions__requirements__content">'.$skill_requirements.'</div>
+    ';
+  }
+  if(!empty($require_person)){
+    $require_person_html = '
+    <h4 class="intern__detail__conditions__requirements__title">求める人物像</h4>
+    <div class="intern__detail__conditions__requirements__content">'.$require_person.'</div>
+    ';
+  }
+  $requirement = '
+  <div class="intern__detail__section__content">
+    <h3 class="intern__detail__section__title">募集要項</h3>
+    <div class="intern__detail__conditions__requirements">
+      '.$worktime_html.$requirements_html.$skill_requirements_html.$require_person_html.'
+    </div>
+  </div>
+  ';
+  if($selection_flows_re){
+    $counter = 1;
+    $selection_html_re = '';
+    foreach($selection_flows_re as $selection_flow){
+      $selection_html_re .= '
+      <li class="flowlist">
+          <dl>
+              <dt><span class="icon">STEP.0'.$counter.'</span></dt>
+              <dd>'.$selection_flow.'</dd>
+          </dl>
+      </li>';
+      $counter += 1;
+    }
+    $selection_html_re .= '
+      <li class="flowlist">
+          <dl>
+              <dt><span class="icon">STEP.0'.$counter.'</span></dt>
+              <dd>採用</dd>
+          </dl>
+      </li>
+    ';
 
-  if(!empty($selection_flows_re[0])){
-    $html .= '
-    <div class="intern_list">
-      <h3 class="intern_list_title">選考フロー</h3>
+
+    $selection_html = '
+    <div class="intern__detail__section__content">
+      <h3 class="intern__detail__section__title">選考フロー</h3>
+      <ul class="flowchart">
       '.$selection_html_re.'
-    </div>';
+      </ul>
+    </div>
+    ';
   }
 
-    $html.='
-  </section>
-  <section class="only-pc">
-    <h2 class="maintitle">仕事の概要</h2>
-    <table class="table__base">
-      <tbody>';
-      if(!empty($company_bussiness)){
-        $html .= '
-        <tr>
-          <th>事業内容</th>
-          <td><p>'.$company_bussiness.'</p></td>
-        </tr>';
-      }
-      if(!empty($intern_contents)){
-        $html .= '
-        <tr>
-          <th>業務内容</th>
-          <td><p>'.$intern_contents.'</p></td>
-        </tr>';
-      }
-      if(!empty($intern_day_re) and strpos($intern_day_pre,'</br>') !== false){
-        $html .= '
-        <tr>
-          <th>１日の流れ</th>
-          <td>
-            <table class="timetable">
-              <tbody>'.$table_html.'</tbody>
-            </table>
-          </td>
-        </tr>';
-      }
-      else if(!empty($intern_day_pre) and strpos($intern_day_pre,'</br>') === false){
-		$intern_day_pre = nl2br($intern_day_pre);
-		$html .= '
-		<tr>
-          <th>１日の流れ</th>
-          <td><p>'.$intern_day_pre.'</p></td>
-        </tr>';
-	  }
-      if((!empty($selection_flows[0]['selection_step'])) and (empty($selection_flows_re[0]))){
-        $html .= '
-        <tr>
-          <th>選考フロー</th>
-          <td>'.$selection_html.'</td>
-        </div>';
-      }
-      if(!empty($selection_flows_re[0])){
-        $html .= '
-        <tr>
-          <th>選考フロー</th>
-          <td>'.$selection_html_re.'</td>
-        </div>';
-      }
-      $html.='</tbody>
-    </table>
-  </section>
-  <section>
-    <h2 class="maintitle">募集要項</h2>
-    <table class="intern-detail-table">';
+  $html .=' 
+  <section class="intern__detail__section intern__detail__conditions">
+  '.$requirement.$selection_html.'
+  </section>';
 
-    if(!empty($address)){
-      $html.='<tr>
-      <th>勤務地</th>
-      <td><p>'.$address.'</p></td>
-    </tr>';
-    }
-    if(!empty($access_text)){
-      $html.='<tr>
-      <th>アクセス</th>
-      <td><p>'.$access_html.'</p></td>
-    </tr>';
-    }
-    if(!empty($scholarship_value)){
-      $html.='<tr>
-      <th>給与</th>
-      <td>'.$salary.'</td>
-    </tr>';
-    }
-    if(!empty($requirements)){
-      $html.='<tr>
-      <th>勤務条件</th>
-      <td>'.$requirements.'</td>
-    </tr>';
-    }
-    if(!empty($worktime)){
-      $html.='<tr>
-      <th>勤務可能時間</th>
-      <td>'.$worktime.'</td>
-    </tr>';
-    }
-    if(!empty($skill_requirements)){
-      $html.='<tr>
-      <th>応募資格</th>
-      <td>'.$skill_requirements.'</td>
-    </tr>';
-    }
-    if(!empty($require_person)){
-      $html.='<tr>
-      <th>求める人物像</th>
-      <td>'.$require_person.'</td>
-    </tr>';
-    }
-    if(!empty($skills)){
-      $html.='<tr>
-      <th>学べるスキル</th>
-      <td>'.$skills.'</td>
-    </tr>';
-    }
-    if(!empty($scholarship_value)){
-	  $home_url =esc_url( home_url( ));
-      $html.='<tr>
-      <th>お祝い金</th>
-      <td>'.$scholarship_value.'<a href="'.$home_url.'/gift_money">　お祝い金制度とは</a>
-      </td>
-    </tr>';
-    }
+  //応募ボタン
+  $html .=' 
+  <section class="intern__detail__section intern__detail__apply">
+    <div class="intern__detail__apply__btn">
+      '.$button_html.$entry_html.'
+    </div>
+  </section>';
 
-    $html.= '</table>
-  </section>
-
-  <section>';
-  if(!empty($intern_student_voice)){
-    $html.='<h2 class="maintitle">働いているインターン生の声</h2>
-    <p>'.$intern_student_voice.'</p>';
+  //インターンの声
+  //buildsの声
+  if(mb_strlen($salesman_voice)>1){
+    $builds_voice_html = '
+      <h3 class="intern__detail__section__title">Builds担当者の声</h3>
+      <div class="intern__detail__voice__container">
+        <div class="sectionVoice consult__example__voice intern__detail__voice">
+          <div class="sectionVoice__img consult__example__voice__student intern__detail__voice__student">
+            <img src="'.$salesman_picture.'" alt="">
+          </div>
+          <div class="sectionVoice__comment consult__example__voice__comment consult-font-size intern__detail__voice__comment">
+                <p class="sectionVoice__ttl">JobShot営業担当・'.$salesman_name.'</p>
+                <p class="sectionVoice__txt">'.$salesman_voice.'</p>
+          </div>
+        </div>
+      </div>
+    ';
   }
-  $html.='</section>
 
-  <section>';
+  //インターン生の声
+  if(!empty($intern_student_voice1) || !empty($intern_student_voice2) || !empty($intern_student_voice3)){
+    $count = 1;
+    if(!empty($intern_student_voice1)){
+      $student_html1 = '
+      <div class="sectionVoice consult__example__voice intern__detail__voice">
+        <div class="sectionVoice__img consult__example__voice__student intern__detail__voice__student">
+          <img src="https://jobshot.jp/wp-content/uploads/2020/06/student__first.png" alt="" class="consult__example__voice__img intern__detail__voice__img">
+        </div>
+        <div class="sectionVoice__comment consult__example__voice__comment consult-font-size intern__detail__voice__comment">
+          <p class="sectionVoice__ttl">インターン生'.$count.'</p>
+          <p class="sectionVoice__txt">'.$intern_student_voice1.'</p>
+        </div>
+      </div>
+      ';
+      $count += 1;
+    }
+    if(!empty($intern_student_voice2)){
+      $student_html2 = '
+      <div class="sectionVoice consult__example__voice intern__detail__voice">
+        <div class="sectionVoice__img consult__example__voice__student intern__detail__voice__student">
+          <img src="https://jobshot.jp/wp-content/uploads/2020/06/student__second.png" alt="" class="consult__example__voice__img intern__detail__voice__img">
+        </div>
+        <div class="sectionVoice__comment consult__example__voice__comment consult-font-size intern__detail__voice__comment">
+          <p class="sectionVoice__ttl">インターン生'.$count.'</p>
+          <p class="sectionVoice__txt">'.$intern_student_voice2.'</p>
+        </div>
+      </div>
+      ';
+      $count += 1;
+    }
+    if(!empty($intern_student_voice3)){
+      $student_html3 = '
+      <div class="sectionVoice consult__example__voice intern__detail__voice">
+        <div class="sectionVoice__img consult__example__voice__student intern__detail__voice__student">
+          <img src="https://jobshot.jp/wp-content/uploads/2020/06/student__third.png" alt="" class="consult__example__voice__img intern__detail__voice__img">
+        </div>
+        <div class="sectionVoice__comment consult__example__voice__comment consult-font-size intern__detail__voice__comment">
+          <p class="sectionVoice__ttl">インターン生'.$count.'</p>
+          <p class="sectionVoice__txt">'.$intern_student_voice3.'</p>
+        </div>
+      </div>
+      ';
+      $count += 1;
+    }
+
+    $student_html = '
+    <h3 class="intern__detail__section__title">働いているインターン生の声</h3>
+    <div class="intern__detail__voice__container">
+      '.$student_html1.$student_html2.$student_html3.'
+    </div>
+    ';
+  }
+
+  //就職先
   if(!empty($prospective_employer)){
-    $html.='<h2 class="maintitle">インターン卒業生の内定先</h2>
-    <p>'.$prospective_employer.'</p>';
+    $employment_html = '
+    <h3 class="intern__detail__section__title">インターン卒業生の内定先</h3>
+    <p>'.$prospective_employer.'</p>
+    ';
   }
-  $html.='</section>'.
+  if(!empty($builds_voice_html) || !empty($builds_voice_html) || !empty($employment_html)){
+    $html .='
+    <section class="intern__detail__section">
+    '.$builds_voice_html.$student_html.$employment_html.'
+    </section>';
+  }
 
-  $builds_voice_html
+  //その他
+  if(!empty($salary)){
+    $salary_html = '
+    <h4 class="intern__detail__conditions__requirements__title">給与</h4>
+    <div class="intern__detail__conditions__requirements__content">'.$salary.'</div>
+    ';
+  }
+  if(!empty($address)){
+    $address_html = '
+    <h4 class="intern__detail__conditions__requirements__title">勤務地</h4>
+    <div class="intern__detail__conditions__requirements__content">'.$address.'</div>
+    ';
+  }
+  if(!empty($access_text)){
+    $access_html = '
+    <h4 class="intern__detail__conditions__requirements__title">アクセス</h4>
+    <div class="intern__detail__conditions__requirements__content">'.$access_text.'</div>
+    ';
+  }
+  if(!empty($scholarship_value)){
+    $scholarship_html = '
+    <h4 class="intern__detail__conditions__requirements__title">お祝い金</h4>
+    <div class="intern__detail__conditions__requirements__content">'.$scholarship_value.'<a href="https://jobshot.jp/gift_money">お祝い金制度とは</a></div>
+    ';
+  }
 
-  .'<!-- entry -->
-  <div class="fixed-buttom">'.$entry_html.'</div>
+  $html .='
+  <section class="intern__detail__section">
+    <h3 class="intern__detail__section__title">その他の事項</h3>
+    '.$salary_html.$address_html.$access_html.$scholarship_html.'
+  </section>';
+
+  //応募ボタン
+  $html .= '
+  <div class="fixed-buttom intern__detail__applyBtn">
+    <a href="'.$entry_link.'" onclick="gtag(\'event\', \'click\', {\'event_category\': \'link\', \'event_label\': \'to_apply_form\'});">
+      <button class="button button-apply">インターンに応募する</button>
+    </a>
   </div>';
   return do_shortcode($html);
 }

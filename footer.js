@@ -562,7 +562,7 @@ function cleanQuery(query) {
   });
   
   jQuery(function(){
-	  if(jQuery(".um-cover").length>1){
+	  if(jQuery(".um-cover").length){
 		  var profiletab = "";
 		  jQuery(".um-cover")[0].remove();
 		  jQuery(".um-profile-photo")[0].remove();
@@ -1218,6 +1218,9 @@ jQuery(function($){
 	if ( str.match(/user\?um_user/)) {
 		$('.robots-nocontent').remove();
 	}
+	else if( str.match(/user\//)){
+		$('.robots-nocontent').remove();
+	}
 });
 
 //相談会のポップアップ
@@ -1319,13 +1322,11 @@ jQuery(function($){
 		return false;
 	});
 });
-
 //個別相談会の情報を予め入れておく
 jQuery(function($){
-	$( 'body' ).click( function (){
+	$( '#booking-package-id-1' ).click( function (){
 		var str = location.href;
 		if ( str.match(/interview\/apply/)) {
-			console.log("test");
 			var fd = new FormData();
 			// サーバー側で何の処理をするかを指定。
 			fd.append('action' ,'fill_interview_apply' );
@@ -1347,5 +1348,43 @@ jQuery(function($){
 			});
 			return false;
 		}
+	});
+});
+
+
+  //favボタンのajax更新
+  jQuery(function($){
+	$( '.intern__detail__apply__favo__wrap' ).click( function (){
+		// フォームデータから、サーバへ送信するデータを作成
+		var fd = new FormData();
+		//post_id取得
+		var post_id = $(this).val();
+		//カウントを示すhtmlのid
+		if($(this).children('a').hasClass("active")){
+			$(this).children('a').removeClass("active");
+		}else{
+			$(this).children('a').addClass("active");
+		}
+		fd.append("post_id",post_id);
+		// サーバー側で何の処理をするかを指定。
+		fd.append('action' ,'update_favorite_count' );
+		// ajaxの通信（fav数を更新）
+		$.ajax({
+			type: 'POST',
+			url: ajaxurl,
+			data: fd,
+			processData: false,
+			contentType: false,
+			success: function( response ){
+				$('.entry').prepend(response);
+				if(response.length){
+					$('.fav-'+post_id).removeClass("active");
+				}
+			},
+			error: function( response ){
+				console.log('miss');
+			}
+		});
+		return false;
 	});
 });
