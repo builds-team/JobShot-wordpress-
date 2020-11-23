@@ -488,9 +488,9 @@ function top_bar_search($atts){
   }
   $html = '
   <div class="category__bar only-sp">
-    <div class="category__bar__item '.$job_active.'"><a href="https://jobshot.jp/company">新卒</a></div>
-    <div class="category__bar__item '.$internship_active.'"><a href="https://jobshot.jp/internship">長期インターン</a></div>
-    <div class="category__bar__item '.$event_active.'"><a href="https://jobshot.jp/event">イベント</a></div>
+    <div class="category__bar__item '.$job_active.'"><a href="https://jobshot.jp/company">新卒情報を探す</a></div>
+    <div class="category__bar__item '.$internship_active.'"><a href="https://jobshot.jp/internship">長期インターンを探す</a></div>
+    <div class="category__bar__item '.$event_active.'"><a href="https://jobshot.jp/event">イベントを探す</a></div>
   </div>
   ';
   return $html;

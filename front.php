@@ -248,20 +248,31 @@ function header_tab($atts){
 $url = $_SERVER["REQUEST_URI"];
   if($item_type=='internship' || strpos($url,'/internship')!== false){
     $intern = 'active';
+    $html = do_shortcode('[top_bar_search item_type=internship]');
+    $only = 'only-pc';
   }elseif($item_type=='event' || strpos($url,'/event')!== false){
     $event = 'active';
+    $html = do_shortcode('[top_bar_search item_type=event]');
+    $only = 'only-pc';
   }elseif($item_type=='company' || strpos($url,'/company')!== false){
     $job = 'active';
+    $html = do_shortcode('[top_bar_search item_type=job]');
+    $only = 'only-pc';
   }elseif($item_type=='scout' || strpos($url,'/scout')!== false){
     $scout = 'active';
   }elseif($item_type=='column' || strpos($url,'/column')!== false){
     $column = 'active';
+    $only = 'only-pc';
   }elseif($item_type=='entry-sheet' || strpos($url,'/entry-sheet')!== false){
     if(strpos($url,'user/entry-sheet')=== false){
       $entry = 'active';
+      $only = 'only-pc';
     }
   }elseif($url == '/'){
     $home = 'active';
+  }
+  if(strpos($url,'/user')!== false){
+    $only = 'only-pc';
   }
   if(current_user_can('company')){
     $current_user = wp_get_current_user();
@@ -282,7 +293,7 @@ $url = $_SERVER["REQUEST_URI"];
           <div class="category__bar__item only-pc '.$event.'"><a href="https://jobshot.jp/event">イベントを探す</a></div>
           <div class="category__bar__item only-sp '.$event.'"><a href="https://jobshot.jp/event">イベント</a></div>
           <div class="category__bar__item '.$scout.'"><a href="https://jobshot.jp/scout">スカウト</a></div>
-          <div class="category__bar__item '.$column.'"><a href="https://jobshot.jp/column">就活記事</a></div>
+          <div class="category__bar__item '.$column.'" id="category__bar__column"><a href="https://jobshot.jp/column">就活記事</a></div>
           <div class="category__bar__item '.$company.'"><a href="https://jobshot.jp'.$company_url.'">マイページ</a></div>
       </div>
     </div>
@@ -299,8 +310,8 @@ $url = $_SERVER["REQUEST_URI"];
           <div class="category__bar__item only-pc '.$event.'"><a href="https://jobshot.jp/event">イベントを探す</a></div>
           <div class="category__bar__item only-sp '.$event.'"><a href="https://jobshot.jp/event">イベント</a></div>
           <div class="category__bar__item '.$scout.'"><a href="https://jobshot.jp/scout">スカウト</a></div>
-          <div class="category__bar__item '.$column.'"><a href="https://jobshot.jp/column">就活記事</a></div>
-          <div class="category__bar__item '.$entry.'"><a href="https://jobshot.jp/entry-sheet">エントリーシート</a></div>
+          <div class="category__bar__item '.$column.'" id="category__bar__column"><a href="https://jobshot.jp/column">就活記事</a></div>
+          <div class="category__bar__item '.$entry.'" id="category__bar__entry-sheet"><a href="https://jobshot.jp/entry-sheet">エントリーシート</a></div>
           <div class="category__bar__item"><a href="https://jobshot.jp/manage-internship">インターン管理</a></div>
           <div class="category__bar__item"><a href="https://jobshot.jp/?page_id=2409">新卒管理</a></div>
           <div class="category__bar__item"><a href="https://jobshot.jp/?page_id=2421">イベント管理</a></div>
@@ -308,8 +319,8 @@ $url = $_SERVER["REQUEST_URI"];
     </div>
     ';
   }else{
-    $html = '
-    <div class="category__bar">
+    $html .= '
+    <div class="category__bar '.$only.'">
       <div class="category__bar__wrap">
           <div class="category__bar__item '.$home.'"><a href="https://jobshot.jp">ホーム</a></div>
           <div class="category__bar__item only-pc '.$job.'"><a href="https://jobshot.jp/company">新卒情報を探す</a></div>
@@ -318,8 +329,8 @@ $url = $_SERVER["REQUEST_URI"];
           <div class="category__bar__item only-sp '.$intern.'"><a href="https://jobshot.jp/internship">長期インターン</a></div>
           <div class="category__bar__item only-pc '.$event.'"><a href="https://jobshot.jp/event">イベントを探す</a></div>
           <div class="category__bar__item only-sp '.$event.'"><a href="https://jobshot.jp/event">イベント</a></div>
-          <div class="category__bar__item '.$column.'"><a href="https://jobshot.jp/column">就活記事</a></div>
-          <div class="category__bar__item '.$entry.'"><a href="https://jobshot.jp/entry-sheet">エントリーシート</a></div>
+          <div class="category__bar__item '.$column.'" id="category__bar__column"><a href="https://jobshot.jp/column">就活記事</a></div>
+          <div class="category__bar__item '.$entry.'" id="category__bar__entry-sheet"><a href="https://jobshot.jp/entry-sheet">エントリーシート</a></div>
       </div>
     </div>
     ';
