@@ -9,7 +9,7 @@ function add_landing_page(){
                 <div class="corp-contact-cover-left col s12 l6">
                     <img class="corp-contact-cover-logo" src="https://jobshot.jp/wp-content/uploads/2020/04/8d12a9f9f11d40a1dc7f06a7a45fe7ac.png" alt="">
                     <p class="corp-contact-cover-description">高学歴学生の求人・スカウトサービス</p>
-                    <h1 class="corp-contact-cover-heading">学歴だけとは言わせない。<br><small>「賢さ」と「熱意」を兼ね備えた学生がすぐそこに。</small></h1>
+                    <h1 class="corp-contact-cover-heading">人生が変わる瞬間をともに。<br><small>「賢さ」と「熱意」を兼ね備えた学生がすぐそこに。</small></h1>
                     <a href="#corp-contact-form-area" class="corp-contact-btn btn btn-large">資料請求・お問い合わせ</a>
                 </div>
                 <div class="corp-contact-cover-right col s12 l6">

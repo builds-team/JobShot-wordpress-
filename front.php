@@ -394,7 +394,7 @@ function header_mypage(){
     $html = '
     <nav class="menu-primary" role="navigation">
 		<div class="container">
-    <div class="header__subtitle only-pc"><p>高学歴層特化新卒・長期インターンキャリアサイト</p></div>
+    <div class="header__subtitle only-pc"><p>新卒・転職・長期インターンキャリアサイト</p></div>
     <div class="header__navi">
         <div class="header__navi__wrap">
             <div class="header__navi__user"><!-- ログイン時 -->
@@ -437,7 +437,7 @@ function header_mypage(){
   }else{
     $html = '
     <nav class="menu-primary" role="navigation">
-    <div class="header__subtitle only-pc"><p>高学歴層特化新卒・長期インターンキャリアサイト</p></div>
+    <div class="header__subtitle only-pc"><p>新卒・転職・長期インターンキャリアサイト</p></div>
     <div class="header__navi">
         <div class="header__navi__wrap">
             <div class="header__navi__btn"><!-- 未ログイン　-->
