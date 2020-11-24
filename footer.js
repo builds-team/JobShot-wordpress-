@@ -562,7 +562,7 @@ function cleanQuery(query) {
   });
   
   jQuery(function(){
-	  if(jQuery(".um-cover").length){
+	  if(jQuery(".um-cover").length>1){
 		  var profiletab = "";
 		  jQuery(".um-cover")[0].remove();
 		  jQuery(".um-profile-photo")[0].remove();
@@ -1097,14 +1097,7 @@ $(window).on( 'scroll', function () {
 		}
 	}
 });
-jQuery(function($){
-		var str = location.href;
-		if ( str.match(/column/)) {
-			if (jQuery(".ez-toc-title").length ){
-				$(".main h2").first().before('<a href="https://bit.ly/3hRzqVI"><img class="special_contents_img wp-image-5404 aligncenter" src="https://i1.wp.com/jobshot.jp/wp-content/uploads/2020/09/3445c5fbba6bb3ca4ce085d784f4ccca.png?fit=800%2C200&ssl=1"></a>');
-			}
-		}
-});
+
 // スカウト送信画面アコーディオン
 $(function(){
 	$(".scout__form__to__example").on("click", function() {
@@ -1327,6 +1320,7 @@ jQuery(function($){
 	$( '#booking-package-id-1' ).click( function (){
 		var str = location.href;
 		if ( str.match(/interview\/apply/)) {
+			console.log("test");
 			var fd = new FormData();
 			// サーバー側で何の処理をするかを指定。
 			fd.append('action' ,'fill_interview_apply' );
@@ -1350,7 +1344,6 @@ jQuery(function($){
 		}
 	});
 });
-
 
   //favボタンのajax更新
   jQuery(function($){
@@ -1425,4 +1418,4 @@ jQuery(function($){
 			$('.consult__apply__procedure li').eq(2).addClass('active');
 		}
 	});
-});	
+});
