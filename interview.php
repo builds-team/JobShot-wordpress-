@@ -356,7 +356,8 @@ function fill_interview_apply(){
     $email = $user->data->user_email;
     $user_id = $user->data->ID;
     $mobile_number = get_user_meta($user_id,'mobile_number',false)[0];
-    $list = array($first_name,$last_name,$email,$mobile_number);
+    $graduate_year = get_user_meta($user_id,'graduate_year',false)[0];
+    $list = array($first_name,$last_name,$email,$mobile_number,$graduate_year);
     header("Content-Type: application/json; charset=UTF-8"); //ヘッダー情報の明記。必須。
     echo json_encode($list);
     die();

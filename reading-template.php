@@ -15,7 +15,7 @@ function import_template2_func($content)
           setWeekViews(get_the_ID());
           setPostViews(get_the_ID());
         }
-        $content = do_shortcode('[header_mypage]').do_shortcode('[header_tab]').template_internship2_func($content);
+        $content = do_shortcode('[header_mypage]').template_internship2_func($content);
         return $content;
         // }else{
         //   return apply_redirect();

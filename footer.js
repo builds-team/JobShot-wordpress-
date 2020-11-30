@@ -1336,6 +1336,23 @@ jQuery(function($){
 					$('#booking_package_input_lastname').val(response[0]);
 					$('#booking_package_input_email').val(response[2]);
 					$('#booking_package_input_phone').val(response[3]);
+					if(response[4] == '2022'){
+						var str = document.getElementById("booking_package_input_graduateyear").innerHTML;
+						str = str.replace('value="22卒"', 'value="22卒" selected');
+						document.getElementById("booking_package_input_graduateyear").innerHTML = str;
+					}else if(response[4] == '2021'){
+						var str = document.getElementById("booking_package_input_graduateyear").innerHTML;
+						str = str.replace('value="21卒"', 'value="21卒" selected');
+						document.getElementById("booking_package_input_graduateyear").innerHTML = str;
+					}else if(response[4] == '2023'){
+						var str = document.getElementById("booking_package_input_graduateyear").innerHTML;
+						str = str.replace('value="23卒"', 'value="23卒" selected');
+						document.getElementById("booking_package_input_graduateyear").innerHTML = str;
+					}else if(response[4] == '2024'){
+						var str = document.getElementById("booking_package_input_graduateyear").innerHTML;
+						str = str.replace('value="24卒"', 'value="24卒" selected');
+						document.getElementById("booking_package_input_graduateyear").innerHTML = str;
+					}
 				},
 				error: function( response ){
 				}
