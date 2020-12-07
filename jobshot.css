@@ -16913,3 +16913,27 @@ div#booking-package_inputFormPanel .bookingButton {
   left: 0;
   z-index: 100;
 }
+
+.my_link_btn {
+  display: inline-flex;
+  transition: box-shadow 0.5s;
+  border-radius: 5px;
+  background: #f33;
+  font-weight: bold;
+  box-shadow: 0px 3px 6px #855;
+}
+
+.my_link_btn a{
+  color: white;
+  text-decoration: none;
+  padding: 15px 18px; 
+}
+
+.my_link_btn:hover{
+  box-shadow: 0px 9px 12px #855;  
+}
+
+
+.my_link_wrapper {
+	text-align:center;
+}

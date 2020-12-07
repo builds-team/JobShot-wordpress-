@@ -103,6 +103,7 @@ function template_column2_func($content){
         $html = $html_sub[0].'</h1><span class="column__detail__favo only-sp" id="">'.$fav_count.'</span>'.$html_sub[1];
     }
     if (!is_user_logged_in()){
+        /*
         $popup = '
         <div class="modal__mask">
             <div class="modal__login">
@@ -123,8 +124,9 @@ function template_column2_func($content){
         </div>
         ';
         $html = $popup.$html;
+        */
     }else{
-        $html = 
+        
     }
     return $html;
 }
