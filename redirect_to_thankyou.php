@@ -86,7 +86,7 @@ document.addEventListener('wpcf7mailsent', function( event ) {
             else{
                 motourl = motourl+'?redirected=true';
             }
-            location = motourl;
+            //location = motourl;
         }
     }
 }, false );

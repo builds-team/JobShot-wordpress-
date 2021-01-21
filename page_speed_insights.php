@@ -122,6 +122,9 @@ function dequeue_plugins_style() {
         wp_deregister_script('um_tipsy');
         wp_deregister_script('um_account');
     }
+    if ( ! is_page(array( 'お問い合わせ' ,'掲載のお問い合わせ')) ) {
+        wp_deregister_script( 'google-recaptcha' );
+    }
 }
 add_action( 'wp_enqueue_scripts', 'dequeue_plugins_style', 9999);
 /**

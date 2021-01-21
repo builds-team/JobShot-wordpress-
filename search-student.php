@@ -6,6 +6,8 @@ function admin_print_r($content, $tf){
     return '';
 }
 
+add_filter('wpcf7_spam', '__return_false');
+
 function restrict_to_company_and_admin_func ($atts, $content = null ) {
     extract( shortcode_atts( array(
     'id' => '',
