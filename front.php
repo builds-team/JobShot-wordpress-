@@ -340,6 +340,7 @@ $url = $_SERVER["REQUEST_URI"];
 add_shortcode('header_tab','header_tab');
 
 function header_mypage(){
+  $home_url = esc_url( home_url( ));
   if(is_user_logged_in()){
     $user_id = get_current_user_id();
     $user_info = get_userdata($user_id);
